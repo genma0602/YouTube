@@ -1,0 +1,26 @@
+# 環境変数・APIキー（文字起こしツール等で使用）
+.env
+.env.local
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# エディタ
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 大容量メディア（バックアップは別手段で）
+*.mp4
+*.mov
+*.avi
+*.wav
+*.mp3
