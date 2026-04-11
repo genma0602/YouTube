@@ -5,6 +5,7 @@
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+from pathlib import Path
 
 # ─────────────────────────────────────────────
 # データ定義
@@ -618,8 +619,13 @@ for sheet_name, companies, tab_color in TAB_CONFIGS:
     ws.cell(row=last_row, column=1, value=f"計 {len(companies)} 社")
     ws.cell(row=last_row, column=1).font = Font(name="Meiryo", bold=True, size=10)
 
-output_path = r"c:\Users\genki\01_YouTube\data1\関西_主要企業リスト.xlsx"
-wb.save(output_path)
+# リポジトリを別PCに clone しても動くよう、スクリプト基準の相対パスで保存する
+project_root = Path(__file__).resolve().parent
+output_dir = project_root / "data1"
+output_dir.mkdir(parents=True, exist_ok=True)
+output_path = output_dir / "関西_主要企業リスト.xlsx"
+
+wb.save(str(output_path))
 print(f"Output: {output_path}")
 print(f"  Kaigo:         {len(CARE_COMPANIES):3d}")
 print(f"  Fudosan:       {len(REAL_ESTATE_COMPANIES):3d}")
