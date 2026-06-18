@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資のすゝめ スライド テンプレート</title>
+<style>
+/* =========================================================
+   投資のすゝめ  スライドテンプレート（16:9 / 1280x720）
+   - 台本が来たら .slide ブロックをコピーして中身を差し替える
+   - 色・パーツは :root と各 .tmpl-* を参照
+   ========================================================= */
+:root{
+  --navy:#16294d;        /* ヘッダー・濃紺 */
+  --navy2:#1b2a4e;
+  --orange:#e8951f;      /* CTA・強調オレンジ */
+  --red:#b3373a;         /* バッジ・防衛系の赤 */
+  --blue:#3f7fd6;        /* TOPICピル */
+  --text:#1f2733;
+  --muted:#9aa3ad;       /* サブテキスト灰 */
+  --line:#d9dde3;
+  --graybox:#eceff3;     /* 比較・普通の会社 */
+  --redbox:#fcf1f1;      /* 比較・防衛企業 */
+  --redline:#d98a8c;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:#5a5f66;
+  font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;
+  color:var(--text);
+  display:flex;flex-direction:column;align-items:center;gap:28px;
+  padding:40px 0;
+}
+
+/* ---- スライド土台（YouTube 16:9） ---- */
+.slide{
+  position:relative;
+  width:1280px;height:720px;
+  background:#ffffff;
+  overflow:hidden;
+  box-shadow:0 6px 24px rgba(0,0,0,.35);
+  flex:0 0 auto;
+}
+
+/* ---- ヘッダーバー ---- */
+.hdr{
+  position:absolute;top:0;left:0;right:0;height:46px;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 26px;
+  color:#fff;
+}
+.hdr .sec{font-size:17px;font-weight:700;letter-spacing:.02em;}
+.hdr .brand{font-size:13px;color:#aeb7c4;letter-spacing:.35em;font-weight:500;}
+
+/* ---- 共通バッジ（特徴 / FACT など） ---- */
+.badge{
+  display:inline-block;
+  background:var(--red);color:#fff;
+  font-size:18px;font-weight:700;letter-spacing:.18em;
+  padding:9px 22px;border-radius:4px;
+}
+.badge.navy{background:var(--navy);}
+.badge.orange{background:var(--orange);}
+
+/* ---- 見出し ---- */
+.h-main{font-size:40px;font-weight:800;color:var(--navy);text-align:center;letter-spacing:.01em;}
+.h-sub{font-size:22px;color:var(--muted);text-align:center;font-weight:500;}
+.accent-red{color:var(--red);}
+.accent-orange{color:var(--orange);}
+.accent-navy{color:var(--navy);}
+
+/* ---- 下部の帯（結論バー） ---- */
+.foot-bar{
+  position:absolute;left:0;right:0;bottom:0;
+  background:var(--navy);color:#fff;text-align:center;
+  padding:18px 24px;font-size:22px;font-weight:700;line-height:1.5;
+}
+.foot-bar .em{color:var(--orange);}
+.foot-note{       /* 帯ではなく薄いキャプション（1枚目下部のような） */
+  position:absolute;left:0;right:0;bottom:34px;text-align:center;
+  font-size:22px;color:#b9c0c8;font-weight:600;
+}
+
+/* =========================================================
+   TEMPLATE 1 : セクション扉
+   ========================================================= */
+.t-section .topic{
+  position:absolute;top:78px;left:60px;
+  background:var(--blue);color:#fff;border-radius:8px;
+  padding:14px 30px;font-size:26px;font-weight:800;
+  display:flex;align-items:center;gap:22px;
+  box-shadow:0 3px 0 rgba(0,0,0,.08);
+}
+.t-section .topic .bar{width:46px;height:3px;background:#cfe0f6;display:inline-block;}
+.t-section .numbox{
+  position:absolute;top:200px;left:90px;
+  width:250px;height:240px;background:var(--navy);
+  border-radius:18px;color:#fff;font-size:150px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+.t-section .stitle{position:absolute;left:380px;top:215px;}
+.t-section .stitle .label{font-size:24px;letter-spacing:.45em;color:#8a93a0;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:6px;}
+.t-section .stitle .rule{width:54px;height:4px;background:var(--navy);margin:18px 0;}
+.t-section .stitle .desc{font-size:24px;color:#aab0b8;font-weight:600;}
+
+/* =========================================================
+   TEMPLATE 2 : 目次（今日お話しすること）
+   ========================================================= */
+.t-agenda{padding:70px 70px 0;}
+.t-agenda .h-main{margin:34px 0 26px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{
+  display:flex;align-items:center;gap:20px;
+  border:1.5px solid var(--line);border-radius:12px;
+  padding:13px 22px;
+}
+.t-agenda .row .no{
+  width:34px;height:34px;border-radius:50%;background:var(--navy);
+  color:#fff;font-size:18px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+}
+.t-agenda .row .t{font-size:24px;font-weight:800;color:var(--navy);min-width:300px;}
+.t-agenda .row .d{font-size:19px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"—　";color:#c4cad1;}
+.t-agenda .cta{
+  position:absolute;left:0;right:0;bottom:0;
+  background:var(--orange);color:#fff;text-align:center;
+  padding:16px;font-size:24px;font-weight:800;letter-spacing:.02em;
+}
+
+/* =========================================================
+   TEMPLATE 3 : 比較（VS 2カラム）
+   ========================================================= */
+.t-vs{padding:84px 70px 0;}
+.t-vs .badge{position:absolute;top:78px;left:60px;}
+.t-vs .h-main{margin:54px 0 40px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;gap:0;}
+.t-vs .box{
+  width:430px;border:2px solid #9aa6b5;border-radius:6px;
+  padding:30px 24px;text-align:center;
+}
+.t-vs .box.left{background:var(--graybox);}
+.t-vs .box.right{background:var(--redbox);border-color:var(--redline);}
+.t-vs .box .name{font-size:30px;font-weight:800;color:#5c6671;}
+.t-vs .box.right .name{color:var(--red);}
+.t-vs .box .cap{font-size:19px;color:#9aa3ad;margin-top:14px;}
+.t-vs .box .big{font-size:38px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);}
+.t-vs .box .div{height:1px;background:#cfd5dc;margin:22px 0;}
+.t-vs .box .small{font-size:18px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:24px;font-weight:800;color:#3a4350;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;font-size:40px;font-weight:800;color:#7c8694;padding:0 26px;}
+
+/* =========================================================
+   TEMPLATE 4 : 3カード（要因/ポイント整理）
+   ========================================================= */
+.t-cards{padding:84px 60px 0;}
+.t-cards .badge{position:absolute;top:78px;left:60px;}
+.t-cards .h-main{margin:48px 0 6px;}
+.t-cards .h-sub{margin-bottom:30px;}
+.t-cards .grid{display:flex;gap:24px;justify-content:center;}
+.t-cards .card{
+  flex:1;border:2px solid var(--line);border-radius:8px;
+  padding:26px 22px 30px;text-align:center;position:relative;
+}
+.t-cards .card.c1{border-color:#d6a3a4;}
+.t-cards .card.c2{border-color:#e7c48c;}
+.t-cards .card.c3{border-color:#a9c2e3;}
+.t-cards .card .cno{
+  width:54px;height:54px;border-radius:50%;color:#fff;
+  font-size:22px;font-weight:800;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.t-cards .c1 .cno{background:var(--red);}
+.t-cards .c2 .cno{background:var(--orange);}
+.t-cards .c3 .cno{background:var(--blue);}
+.t-cards .card .ctitle{font-size:28px;font-weight:800;margin-bottom:12px;}
+.t-cards .c1 .ctitle{color:var(--red);}
+.t-cards .c2 .ctitle{color:#d98a14;}
+.t-cards .c3 .ctitle{color:var(--blue);}
+.t-cards .card .ctext{font-size:19px;color:#6b747e;line-height:1.55;font-weight:600;}
+
+/* =========================================================
+   TEMPLATE 5 : 数字3カラム（業績などのファクト）
+   ========================================================= */
+.t-stats{padding:70px 60px 0;}
+.t-stats .h-main{margin-bottom:6px;}
+.t-stats .h-sub{font-size:20px;margin-bottom:30px;}
+.t-stats .cols{display:flex;gap:22px;justify-content:center;}
+.t-stats .col{flex:1;border:1.5px solid var(--orange);border-radius:4px;overflow:hidden;}
+.t-stats .col .top{
+  background:var(--orange);color:#fff;text-align:center;padding:14px;
+}
+.t-stats .col .top .nm{font-size:26px;font-weight:800;}
+.t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:24px 16px 26px;text-align:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:44px;font-weight:800;color:var(--navy);margin:2px 0 18px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:var(--orange);margin:2px 0 6px;}
+.t-stats .col .tag{font-size:20px;color:var(--orange);font-weight:800;}
+
+/* ---- 印刷（PDF書き出し用：1ページ1枚） ---- */
+@media print{
+  body{background:#fff;padding:0;gap:0;}
+  .slide{box-shadow:none;page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TEMPLATE 1 : セクション扉
+     ============================================================ -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 1：今週・来週のイベント</span><span class="brand">投資のすゝめ</span></div>
+  <div class="topic"><span>TOPIC 1 / 3</span><span class="bar"></span><span>市場の読み方の枠組み</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle">
+    <div class="label">SECTION</div>
+    <div class="ttl">今週・来週のイベント</div>
+    <div class="rule"></div>
+    <div class="desc">日米で、相場を動かす予定を整理する</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TEMPLATE 2 : 目次
+     ============================================================ -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">目次</span><span class="brand">投資のすゝめ</span></div>
+  <div class="h-main">今日お話しすること</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">今週・来週のイベント</span><span class="d">日米のスケジュール</span></div>
+    <div class="row"><span class="no">2</span><span class="t">「市場」とは誰か</span><span class="d">価格を決める仕組み</span></div>
+    <div class="row"><span class="no">3</span><span class="t">データで相場はどう動くか</span><span class="d">CPI・FOMCと米金利</span></div>
+    <div class="row"><span class="no">4</span><span class="t">日銀の会合と日本株</span><span class="d">利上げの影響</span></div>
+    <div class="row"><span class="no">5</span><span class="t">利上げ局面の歴史</span><span class="d">過去の値動き</span></div>
+    <div class="row"><span class="no">6</span><span class="t">アクションプラン</span><span class="d">結局どうするか</span></div>
+  </div>
+  <div class="cta">最後まで見れば、相場のカラクリがわかります</div>
+</section>
+
+<!-- ============================================================
+     TEMPLATE 3 : 比較（VS）
+     ============================================================ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：攻めと守りを兼ねた資産 ／ 攻めの要素</span><span class="brand">投資のすゝめ</span></div>
+  <div class="badge">特　徴</div>
+  <div class="h-main">景気に左右されにくい、その理由</div>
+  <div class="cols">
+    <div class="box left">
+      <div class="name">普通の会社</div>
+      <div class="cap">売上の決め手</div>
+      <div class="big accent-navy">消費者の財布</div>
+      <div class="div"></div>
+      <div class="small">景気で売上が上下</div>
+      <div class="strong">不況に弱い</div>
+    </div>
+    <div class="vsmark">VS</div>
+    <div class="box right">
+      <div class="name">防衛関連企業</div>
+      <div class="cap">売上の決め手</div>
+      <div class="big">国の予算</div>
+      <div class="div"></div>
+      <div class="small">複数年にわたる契約</div>
+      <div class="strong">不況でも数年先まで受注</div>
+    </div>
+  </div>
+  <div class="foot-note">予算が増える見通しが出れば、株価もすぐ反応する</div>
+</section>
+
+<!-- ============================================================
+     TEMPLATE 4 : 3カード
+     ============================================================ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：防衛関連株の特徴 ／ 直近3ヶ月の動き</span><span class="brand">投資のすゝめ</span></div>
+  <div class="badge">FACT</div>
+  <div class="h-main">直近3ヶ月の下落は、複合的な要因によるもの</div>
+  <div class="h-sub">三菱重工など代表的な防衛銘柄は、3つの要因が重なった調整局面</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">01</div><div class="ctitle">需給要因</div><div class="ctext">3月までに高値圏まで買われた反動</div></div>
+    <div class="card c2"><div class="cno">02</div><div class="ctitle">業績要因</div><div class="ctext">4月以降の決算発表で市場の期待値が修正</div></div>
+    <div class="card c3"><div class="cno">03</div><div class="ctitle">地政学要因</div><div class="ctext">中東情勢が一旦落ち着き地政学プレミアムが剥落</div></div>
+  </div>
+  <div class="foot-bar">ただ、世界の防衛費が増え続けているという需要の構造そのものは、変わっていない<br><span class="em">長期トレンドと、短期の値動きは、分けて考える</span></div>
+</section>
+
+<!-- ============================================================
+     TEMPLATE 5 : 数字3カラム
+     ============================================================ -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 2：日本で起きた三つの変化 ／ 重工3社の業績</span><span class="brand">投資のすゝめ</span></div>
+  <div class="h-main">重工3社、そろって過去最高益</div>
+  <div class="h-sub">2025年3月期（IFRS）</div>
+  <div class="cols">
+    <div class="col">
+      <div class="top"><div class="nm">三菱重工業</div><div class="cd">（7011）</div></div>
+      <div class="body"><div class="lbl">売上高</div><div class="val">5.0兆円</div><div class="lbl">事業利益</div><div class="val2">3,831億円</div><div class="tag">過去最高</div></div>
+    </div>
+    <div class="col">
+      <div class="top"><div class="nm">川崎重工業</div><div class="cd">（7012）</div></div>
+      <div class="body"><div class="lbl">売上高</div><div class="val">2.1兆円</div><div class="lbl">事業利益(前期比3.1倍)</div><div class="val2">1,431億円</div><div class="tag">過去最高</div></div>
+    </div>
+    <div class="col">
+      <div class="top"><div class="nm">IHI</div><div class="cd">（7013）</div></div>
+      <div class="body"><div class="lbl">売上高</div><div class="val">1.6兆円</div><div class="lbl">営業利益</div><div class="val2">1,435億円</div><div class="tag">過去最高</div></div>
+    </div>
+  </div>
+  <div class="foot-bar">装備需要の高まりが、決算数字にも反映されている</div>
+</section>
+
+</body>
+</html>

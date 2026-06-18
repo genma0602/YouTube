@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>日経平均7万円突破！ 米国・イラン終戦で日本株に歴史的チャンス</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:16px;font-weight:800;letter-spacing:.22em;padding:9px 24px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:38px;font-weight:800;color:var(--navy);text-align:center;line-height:1.35;letter-spacing:.01em;}
+.h-sub{font-size:20px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:17px 24px;font-size:20px;font-weight:700;line-height:1.55;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:36px;text-align:center;font-size:20px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:21px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:26px;padding:7px 22px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:66px;font-weight:800;line-height:1.28;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:24px;color:#c6d2e2;margin-top:32px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:96px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:14px 32px;font-size:23px;font-weight:800;display:flex;align-items:center;gap:20px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:20px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:52px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.2;letter-spacing:.01em;}
+.t-section .stitle .rule{width:60px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:20px 0;}
+.t-section .stitle .desc{font-size:21px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:68px 78px 0;}
+.t-agenda.center{padding-top:68px;}
+.t-agenda .h-main{margin:36px 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:12px;}
+.t-agenda .row{display:flex;align-items:center;gap:22px;background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:12px;padding:14px 24px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:36px;height:36px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:23px;font-weight:800;color:var(--navy);min-width:330px;}
+.t-agenda .row .d{font-size:17.5px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:16px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:12px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:16px;font-size:22px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:86px 70px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{position:absolute;top:80px;left:64px;}
+.t-vs .h-main{margin:50px 0 34px;}
+.t-vs .h-sub{margin:-22px 0 30px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:440px;background:#fff;border:1px solid var(--line);border-top:5px solid #9aa6b5;border-radius:14px;padding:30px 26px;text-align:center;box-shadow:var(--shadow);}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:27px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:17px;color:#9aa3ad;margin-top:14px;}
+.t-vs .box .big{font-size:34px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:20px 0;}
+.t-vs .box .small{font-size:16.5px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:22px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:22px;font-weight:800;color:var(--navy);margin:0 18px;flex:0 0 auto;width:56px;height:56px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:86px 56px 0;}
+.t-cards .h-main{margin:48px 0 6px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:24px;justify-content:center;}
+.t-cards .grid.g2{padding:0 80px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 22px 30px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:54px;height:54px;border-radius:16px;color:#fff;font-size:22px;font-weight:800;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:24px;font-weight:800;margin-bottom:13px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:17.5px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:68px 56px 0;}
+.t-stats .h-main{margin-bottom:6px;}
+.t-stats .h-sub{font-size:19px;margin-bottom:28px;}
+.t-stats .cols{display:flex;gap:24px;justify-content:center;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:15px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:23px;font-weight:800;} .t-stats .col .top .cd{font-size:16px;opacity:.9;}
+.t-stats .col .body{padding:24px 14px 26px;text-align:center;}
+.t-stats .col .lbl{font-size:17px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:40px;font-weight:800;color:var(--navy);margin:2px 0 16px;}
+.t-stats .col .val2{font-size:34px;font-weight:800;color:#cf820f;margin:2px 0 8px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:16px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:4px 16px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:78px 110px 0;}
+.t-text .lead{font-size:22px;color:#69727c;font-weight:600;margin-bottom:26px;line-height:1.6;position:relative;padding-top:22px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:46px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:40px;font-weight:800;color:var(--navy);line-height:1.45;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:20px;color:#7a828c;font-weight:600;margin-top:30px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:86px 60px 0;}
+.t-flow .h-main{margin:48px 0 40px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:4px solid #aeb8c4;border-radius:14px;padding:22px 24px;font-size:21px;font-weight:800;color:var(--navy);text-align:center;min-width:172px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:30px;color:#b6bec8;padding:0 16px;font-weight:800;}
+.t-flow .release{margin-top:44px;text-align:center;font-size:25px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:14px 32px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:68px 78px 0;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:32px;margin:46px 0 10px;}
+.t-rank .h-sub{margin-bottom:24px;font-size:18px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:11px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:11px;padding:13px 24px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:22px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:27px;font-weight:800;color:#c0392b;min-width:140px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:15px;font-weight:800;color:#fff;padding:7px 18px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:68px 80px 0;}
+.t-port .h-main{margin-bottom:34px;}
+.t-port .bars{display:flex;flex-direction:column;gap:22px;max-width:960px;margin:0 auto;}
+.t-port .brow{display:flex;align-items:center;gap:20px;}
+.t-port .brow .lab{font-size:22px;font-weight:800;color:var(--navy);width:230px;}
+.t-port .brow .track{flex:1;height:42px;background:#e9edf2;border-radius:10px;overflow:hidden;position:relative;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:16px;color:#fff;font-weight:800;font-size:18px;border-radius:10px;box-shadow:0 4px 12px rgba(19,35,63,.18);}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:46px;font-weight:800;line-height:1.4;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:23px;color:#c6d2e2;margin-top:28px;font-weight:600;}
+.t-closing .tags{margin-top:40px;display:flex;gap:18px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:13px 30px;font-size:22px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 80px 0;}
+.numviz .lead{font-size:22px;color:#69727c;font-weight:600;margin-bottom:4px;position:relative;padding-top:22px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:46px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:14px 0 36px;}
+.numviz .note{font-size:20px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:30px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:30px 44px 32px;min-width:360px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:20px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:84px;font-weight:800;line-height:1.04;margin:8px 0 6px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:42px;font-weight:800;}
+.metric .msub{font-size:19px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:36px 70px 38px;}
+.metric.hero .mfig{font-size:120px;}
+.metric.hero .mfig .u{font-size:56px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1060px;height:100px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:36px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:17px;font-weight:700;margin-top:7px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:24px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 36px;min-width:248px;}
+.t-fx .card .c-l{font-size:18px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:50px;font-weight:800;color:var(--navy);margin-top:4px;}
+.t-fx .arr{font-size:36px;color:#b6bec8;font-weight:800;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:24px 44px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:18px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:54px;font-weight:800;margin-top:2px;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== ① 導入 ===== -->
+
+<!-- 1 タイトル -->
+<section class="slide t-title">
+  <div class="kicker">2026.6.16  歴史的高値更新</div>
+  <div class="big">日経平均、<span class="em">7万円</span>突破。<br>日本株は、もう遅いのか？</div>
+  <div class="lead">米国・イラン終戦合意で見える、日本株5つの構造的追い風</div>
+</section>
+
+<!-- 2 歴史的水準 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">つい数年前まで、日経平均は2万円台・3万円台で動いていた</div>
+  <div class="stmt">取引時間中として<span class="em">初の7万円台</span>。<br>これは本当に、<span class="em">歴史的な水準</span>です。</div>
+</section>
+
+<!-- 3 結論 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">結論</span><span class="brand"></span></div>
+  <div class="lead">「もう遅い」のか、「乗り遅れる」のか —— 期待と不安の間で</div>
+  <div class="stmt">日本株は、短期では上下しながらも、<br><span class="em">まだまだ上がります。</span></div>
+  <div class="note">ただし、投資する前に必ず知っておくべきファクトがある</div>
+</section>
+
+<!-- 4 最高値の日のファクト -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">注目ファクト</span><span class="brand"></span></div>
+  <div class="lead">日経平均が7万円を超えた、その日でさえ —</div>
+  <div class="stmt">東京市場では、値上がりより<br><span class="emr">値下がり銘柄の方が多かった。</span></div>
+  <div class="note">「指数は最高値、でも自分の持ち株は上がっていない」——気のせいではありません</div>
+</section>
+
+<!-- 5 目次 -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">今日お話しすること</span><span class="brand"></span></div>
+  <div class="h-main">この動画で解説する3つのこと</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">日本株が今後も強い理由</span><span class="d">米・イラン終戦合意と、5つの構造</span></div>
+    <div class="row"><span class="no">2</span><span class="t">日経平均かTOPIXか</span><span class="d">新NISAでどちらを選ぶべきか</span></div>
+    <div class="row"><span class="no">3</span><span class="t">日本株を何％持つか</span><span class="d">ポートフォリオ全体での比率</span></div>
+  </div>
+  <div class="cta">最後まで見れば、あなたの迷いにハッキリ答えが出ます</div>
+</section>
+
+<!-- ===== ② 7万円はバブルか ===== -->
+
+<!-- 6 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 1：7万円という水準</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 1 / 7</span><span class="bar"></span><span>これはバブルなのか</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">7万円をどう見るか</div><div class="rule"></div><div class="desc">バブル絶頂期と、今を比べる</div></div>
+</section>
+
+<!-- 7 1989 vs 今 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：水準の比較</span><span class="brand"></span></div>
+  <div class="badge navy">FACT</div>
+  <div class="h-main">バブル最高値を、すでに1.8倍 上回る</div>
+  <div class="cols">
+    <div class="box left"><div class="name">1989年 バブル絶頂</div><div class="cap">日経平均 最高値</div><div class="big">38,915円</div><div class="div"></div><div class="small">伝説的な高値</div></div>
+    <div class="vsmark">→</div>
+    <div class="box right"><div class="name">2026年 現在</div><div class="cap">日経平均</div><div class="big">約 70,000円</div><div class="div"></div><div class="strong">約1.8倍の水準</div></div>
+  </div>
+  <div class="foot-note">数字だけ見れば、誰もが「バブルでは？」と思う水準</div>
+</section>
+
+<!-- 8 結論：少し割高 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：正直な評価</span><span class="brand"></span></div>
+  <div class="lead">正直にお伝えします</div>
+  <div class="stmt">今の日本株は、確かに<span class="emr">少し割高</span>です。<br>その理由が、<span class="em">PER（株価収益率）</span></div>
+  <div class="note">PER ＝ その会社の利益で、投資したお金を回収するのに何年かかるかを示す数字</div>
+</section>
+
+<!-- 9 PER 16-17 → 20 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：PERで見る</span><span class="brand"></span></div>
+  <div class="badge">PER</div>
+  <div class="h-main">普段なら16〜17年分。今は20年分を先払い</div>
+  <div class="cols">
+    <div class="box left"><div class="name">平常時の目安</div><div class="cap">日経平均PER</div><div class="big">16〜17倍</div><div class="div"></div><div class="small">利益16〜17年分で買われる</div></div>
+    <div class="vsmark">→</div>
+    <div class="box right"><div class="name">現在</div><div class="cap">日経平均PER</div><div class="big">約20倍</div><div class="div"></div><div class="strong">20年分を先払いの状態</div></div>
+  </div>
+  <div class="foot-note">決して安いとは言えない。ただし「バブル」と呼ぶのは少し違う</div>
+</section>
+
+<!-- 10 今20倍 vs 1989年60-70倍 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：バブルとの決定的な差</span><span class="brand"></span></div>
+  <div class="badge navy">FACT</div>
+  <div class="h-main">「少し割高」と「異常な割高」はまったく違う</div>
+  <div class="cols">
+    <div class="box right"><div class="name">1989年 バブル期</div><div class="cap">PER</div><div class="big">60〜70倍</div><div class="div"></div><div class="strong">60〜70年分を先払い</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">現在</div><div class="cap">PER</div><div class="big">約20倍</div><div class="div"></div><div class="strong">まだ異常な領域ではない</div></div>
+  </div>
+  <div class="foot-bar">本当に怖いのは、利益が伴わず価格だけが先走ること。<span class="em">今はその領域に入っていない</span></div>
+</section>
+
+<!-- ===== ③ 市場のズレ ===== -->
+
+<!-- 11 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 2：最高値の日に起きたズレ</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 2 / 7</span><span class="bar"></span><span>指数と実態のギャップ</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">市場の中身を見る</div><div class="rule"></div><div class="desc">なぜ持ち株は上がらないのか</div></div>
+</section>
+
+<!-- 12 449 vs 1079 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：6月16日の東証プライム</span><span class="brand"></span></div>
+  <div class="badge navy">FACT</div>
+  <div class="h-main">史上最高値の日に、下げた銘柄が倍以上</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">値上がり銘柄</div><div class="cap">東証プライム</div><div class="big">449</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">値下がり銘柄</div><div class="cap">東証プライム</div><div class="big">1,079</div></div>
+  </div>
+  <div class="foot-note">同じ日、TOPIXはわずかに下落。日経平均だけが上に飛び出していた</div>
+</section>
+
+<!-- 13 日経だけ突出 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：なぜズレるのか</span><span class="brand"></span></div>
+  <div class="lead">日経平均は最高値、でも市場全体はむしろ伸び悩み</div>
+  <div class="stmt">「自分の持ち株は上がっていない」は<br><span class="emr">気のせいではなく、事実。</span></div>
+  <div class="note">理由は、日経平均という指数の "構造" にある</div>
+</section>
+
+<!-- 14 日経の構造 上位数銘柄で4割 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 2：指数の構造</span><span class="brand"></span></div>
+  <div class="lead">アドバンテスト・キオクシアなど、一部の値がさ半導体株が牽引</div>
+  <div class="h-main">上位わずか数銘柄が、日経平均の約4割を動かす</div>
+  <div class="pbar">
+    <div class="seg main"><span class="p">約 40%</span><span class="l">上位の数銘柄</span></div>
+    <div class="seg rest"><span class="p">残り 約 60%</span><span class="l">その他の銘柄</span></div>
+  </div>
+  <div class="note">加えてこの日は、海外短期マネーの先物買いも指数を押し上げた</div>
+</section>
+
+<!-- 15 歪みはチャンス -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：歪みはチャンス</span><span class="brand"></span></div>
+  <div class="lead">7万円は、全体が買われた結果ではなく、一部の主役が引き上げた姿</div>
+  <div class="stmt">まだ上がっていない<span class="em">内需株・高配当株</span>には、<br>ここから恩恵を受ける余地が残る。</div>
+  <div class="note">「日経平均とTOPIXは中身が全然違う」——後半の最大のヒント</div>
+</section>
+
+<!-- ===== ④ 本当の材料 ===== -->
+
+<!-- 16 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 3：相場を動かした材料</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 3 / 7</span><span class="bar"></span><span>終戦合意の正体</span></div>
+  <div class="numbox">03</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">本当の材料は何か</div><div class="rule"></div><div class="desc">動いているのは戦争ではない</div></div>
+</section>
+
+<!-- 17 正体は原油と金利 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：相場の正体</span><span class="brand"></span></div>
+  <div class="lead">日本株を動かしているのは「戦争が終わった」ことではない</div>
+  <div class="stmt">動いているのは、<span class="em">原油と金利</span>という<br>相場の "土台" です。</div>
+</section>
+
+<!-- 18 最悪の連鎖 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：市場が恐れていた連鎖</span><span class="brand"></span></div>
+  <div class="h-main">合意が、最悪の連鎖の "引き金" を外した</div>
+  <div class="chain">
+    <div class="node danger">ホルムズ海峡<br>封鎖</div>
+    <div class="arr">→</div>
+    <div class="node danger">原油<br>急騰</div>
+    <div class="arr">→</div>
+    <div class="node danger">米インフレ<br>再燃</div>
+    <div class="arr">→</div>
+    <div class="node danger">FRB<br>追加利上げ</div>
+  </div>
+  <div class="release">合意で引き金が外れ → 原油警戒↓ ・ 金利不安↓ ・ 株にマネー回帰</div>
+</section>
+
+<!-- 19 一過性で終わらない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：一過性か、構造か</span><span class="brand"></span></div>
+  <div class="lead">「どうせ一時的なニュースだろう」——そう思う方へ</div>
+  <div class="stmt">今回の上昇は、ニュース相場だけでは<br><span class="em">終わりにくい。</span></div>
+  <div class="note">動いているのは、原油・金利・利益・海外マネー・政策という、根の深い5つの構造</div>
+</section>
+
+<!-- 20 5つの理由 一覧 -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 3：日本株を支える5つの構造</span><span class="brand"></span></div>
+  <div class="h-main">日本株が今後も強い、5つの構造的な理由</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">原油高リスクの後退</span><span class="d">日本企業の利益環境が改善</span></div>
+    <div class="row"><span class="no">2</span><span class="t">インフレ・金利不安の後退</span><span class="d">投資マネーがリスクオンへ</span></div>
+    <div class="row"><span class="no">3</span><span class="t">上昇の裾野が広い</span><span class="d">半導体だけでなく、意外な業種にも広がる</span></div>
+    <div class="row"><span class="no">4</span><span class="t">海外投資家の見直し条件</span><span class="d">地政学・円安・サプライチェーン</span></div>
+    <div class="row"><span class="no">5</span><span class="t">政策と企業改革</span><span class="d">日本株の下値を支える</span></div>
+  </div>
+  <div class="cta">順番に、ひとつずつ解き明かします</div>
+</section>
+
+<!-- ===== ⑤ 5つの追い風 ===== -->
+
+<!-- 21 理由1 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">理由1：原油リスクの変化</span><span class="brand"></span></div>
+  <div class="topic"><span>理由 1 / 5</span><span class="bar"></span><span>原油高リスクの後退</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">REASON</div><div class="ttl">原油リスクの後退</div><div class="rule"></div><div class="desc">資源輸入国・日本への追い風</div></div>
+</section>
+
+<!-- 22 企業コスト改善 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由1：恩恵を受ける業種</span><span class="brand"></span></div>
+  <div class="badge">ポイント</div>
+  <div class="h-main">原油安が、企業コストを軽くする</div>
+  <div class="h-sub">株価を動かすのは、最終的に企業の利益。コスト軽減は一番大事な追い風</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">✈</div><div class="ctitle">航空</div><div class="ctext">燃料費がコストの大部分。原油安が直接利益改善に</div></div>
+    <div class="card c2"><div class="cno">⚙</div><div class="ctitle">自動車・建設</div><div class="ctext">エネルギー・原材料コスト低下で利益が出やすい</div></div>
+    <div class="card c3"><div class="cno">⚗</div><div class="ctitle">化学・素材</div><div class="ctext">原料コストの低下が、そのまま採算改善に</div></div>
+  </div>
+  <div class="foot-bar">家計でも電気・ガソリン代が和らぎ → 消費増 → <span class="em">めぐって企業の売上を押し上げる</span></div>
+</section>
+
+<!-- 23 注意点：土台 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：正しい捉え方</span><span class="brand"></span></div>
+  <div class="lead">6月16日、トヨタやソニーグループはむしろ軟調だった</div>
+  <div class="stmt">原油安は「全部の株が今すぐ上がる理由」ではない。<br><span class="em">利益が中長期で出やすくなる "土台"。</span></div>
+  <div class="note">短期の値動きに一喜一憂せず、じわじわ効く底上げと捉える —— これが1つ目の理由</div>
+</section>
+
+<!-- 24 理由2 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">理由2：金利不安の変化</span><span class="brand"></span></div>
+  <div class="topic"><span>理由 2 / 5</span><span class="bar"></span><span>インフレ・金利不安の後退</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">REASON</div><div class="ttl">金利不安の後退</div><div class="rule"></div><div class="desc">世界のお金が株式に戻りやすくなる</div></div>
+</section>
+
+<!-- 25 連鎖の逆回転 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由2：連鎖が逆回転する</span><span class="brand"></span></div>
+  <div class="h-main">原油↓が、利上げ不安を和らげる</div>
+  <div class="chain">
+    <div class="node">原油<br>下落</div>
+    <div class="arr">→</div>
+    <div class="node">米インフレ<br>落ち着く</div>
+    <div class="arr">→</div>
+    <div class="node">FRB利上げの<br>理由が弱まる</div>
+    <div class="arr">→</div>
+    <div class="node">株に<br>マネー回帰</div>
+  </div>
+  <div class="release">※ 利上げが「なくなった」のではなく、急ぐ理由が弱まった、が正確</div>
+</section>
+
+<!-- 26 割引率 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由2：なぜ株が買われるのか</span><span class="brand"></span></div>
+  <div class="badge">割引率</div>
+  <div class="h-main">同じ100万円でも、価値が違う</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">今すぐの100万円</div><div class="cap">価値</div><div class="big">高い</div><div class="div"></div><div class="small">多くの人がこちらを選ぶ</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box left"><div class="name">10年後の100万円</div><div class="cap">価値</div><div class="big">割り引かれる</div><div class="div"></div><div class="small">金利が高いほど大きく目減り</div></div>
+  </div>
+  <div class="foot-note">将来の利益が大きい成長株（AI・半導体）ほど、金利の影響を強く受ける</div>
+</section>
+
+<!-- 27 成長株が買われる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：成長株が真っ先に</span><span class="brand"></span></div>
+  <div class="lead">金利の上昇不安が和らぐと、将来の利益が評価し直される</div>
+  <div class="stmt">不安が後退した瞬間に、真っ先に買われるのが<br><span class="em">AI・半導体などの成長株。</span></div>
+</section>
+
+<!-- 28 SOX +5% -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：裏づける動き</span><span class="brand"></span></div>
+  <div class="lead">6月15日、米フィラデルフィア半導体株指数（SOX）</div>
+  <div class="stmt">1日で<span class="em">+5%超</span>、最高値を更新。<br>日本でもアドバンテスト・キオクシアに買い。</div>
+  <div class="note">※ ただし急騰済みの東京エレクトロン・ソフトバンクGには利益確定売り。「全面高」ではなく土台の変化</div>
+</section>
+
+<!-- 29 理由3 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">理由3：上昇の裾野</span><span class="brand"></span></div>
+  <div class="topic"><span>理由 3 / 5</span><span class="bar"></span><span>半導体以外にも広がる</span></div>
+  <div class="numbox">03</div>
+  <div class="stitle"><div class="label">REASON</div><div class="ttl">裾野が広い</div><div class="rule"></div><div class="desc">6月15日の値動きを見る</div></div>
+</section>
+
+<!-- 30 半導体グループ -->
+<section class="slide t-rank">
+  <div class="hdr"><span class="sec">理由3：6/15 ①半導体・電子部品</span><span class="brand"></span></div>
+  <span class="gtag" style="background:var(--blue);position:absolute;top:80px;left:60px;">金利不安の後退で買われたグループ</span>
+  <div class="h-main">AI・半導体・電子部品が大幅高</div>
+  <div class="rows">
+    <div class="row"><span class="nm">イビデン</span><span class="pct up">+19.1%</span></div>
+    <div class="row"><span class="nm">村田製作所</span><span class="pct up">+17.5%</span></div>
+    <div class="row"><span class="nm">キオクシア</span><span class="pct up">+12.0%</span></div>
+    <div class="row"><span class="nm">アドバンテスト</span><span class="pct up">+7.7%</span></div>
+    <div class="row"><span class="nm">東京エレクトロン</span><span class="pct up">+7.0%</span></div>
+  </div>
+</section>
+
+<!-- 31 原油安・化学グループ -->
+<section class="slide t-rank">
+  <div class="hdr"><span class="sec">理由3：6/15 ②原油安・景気敏感／化学</span><span class="brand"></span></div>
+  <span class="gtag" style="background:var(--orange);position:absolute;top:80px;left:60px;">原油安でコストが軽くなるグループ</span>
+  <div class="h-main">航空・自動車・建設・化学にも買い</div>
+  <div class="rows">
+    <div class="row"><span class="nm">大成建設</span><span class="pct up">+13.4%</span></div>
+    <div class="row"><span class="nm">鹿島</span><span class="pct up">+11.0%</span></div>
+    <div class="row"><span class="nm">日本航空</span><span class="pct up">+7.5%</span></div>
+    <div class="row"><span class="nm">三井化学</span><span class="pct up">+6.1%</span></div>
+    <div class="row"><span class="nm">ANAホールディングス / トヨタ / 三菱ケミカルG</span><span class="pct up">+6.0〜4.4%</span></div>
+  </div>
+</section>
+
+<!-- 32 顔ぶれの違い -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：何が証拠なのか</span><span class="brand"></span></div>
+  <div class="lead">半導体・航空・自動車・建設・化学 —— 普段バラバラに動く業種が、同時に買われた</div>
+  <div class="stmt">ただのAI・半導体バブルではない。<br><span class="em">原油と金利という土台の変化</span>が効いている証拠。</div>
+  <div class="note">※ 個別銘柄は「今すぐ買うべきリスト」ではなく、裾野の広さを示す例</div>
+</section>
+
+<!-- 33 理由4 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">理由4：海外投資家</span><span class="brand"></span></div>
+  <div class="topic"><span>理由 4 / 5</span><span class="bar"></span><span>日本株を見直す条件</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">REASON</div><div class="ttl">海外マネーの再評価</div><div class="rule"></div><div class="desc">相場の主役は海外のお金</div></div>
+</section>
+
+<!-- 34 3条件 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由4：日本にお金が向かう条件</span><span class="brand"></span></div>
+  <div class="badge">3つの条件</div>
+  <div class="h-main">海外マネーから見て、条件はそろっている</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">01</div><div class="ctitle">地政学の安定</div><div class="ctext">脱・中国の移し先。安定インフラと安全性を両立するアジアの国は実質日本だけ</div></div>
+    <div class="card c2"><div class="cno">02</div><div class="ctitle">割安な円</div><div class="ctext">円安で土地も企業も人件費も割安。「世界一安い先進国」</div></div>
+    <div class="card c3"><div class="cno">03</div><div class="ctitle">サプライチェーン</div><div class="ctext">東エレク・アドテスト・信越化学など、半導体の供給網の中心</div></div>
+  </div>
+  <div class="foot-bar">終戦合意で世界のリスクが一段低下 → <span class="em">「安全な置き場所」としての日本の価値が高まる</span></div>
+</section>
+
+<!-- 35 AI投資金額 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">理由4：世界IT大手の対日AI投資</span><span class="brand"></span></div>
+  <div class="h-main">巨大IT企業が、日本に巨額投資を発表</div>
+  <div class="h-sub">日本がAI時代の「インフラ拠点」として再評価されている</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">AWS（Amazon）</div><div class="cd">2023〜2027</div></div><div class="body"><div class="lbl">東京・大阪のクラウド</div><div class="val2">2兆2,600億円</div><div class="tag">公式発表</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">Microsoft</div><div class="cd">2026〜2029</div></div><div class="body"><div class="lbl">AIインフラ・サイバー防衛</div><div class="val2">約1兆6,000億円</div><div class="tag">100億ドル</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">Oracle</div><div class="cd">今後10年</div></div><div class="body"><div class="lbl">AI・クラウド需要</div><div class="val2">約1兆2,000億円</div><div class="tag">80億ドル超</div></div></div>
+  </div>
+</section>
+
+<!-- 36 合計5兆 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：投資の規模感</span><span class="brand"></span></div>
+  <div class="lead">Googleも日米間の海底ケーブルに10億ドル＋千葉県印西市に日本初のデータセンター</div>
+  <div class="stmt">AWS・Microsoft・Oracleだけで<br>合計<span class="em">約5兆円</span>規模。</div>
+  <div class="note">裏側で、データセンター・電力・冷却・通信・半導体に長期需要 → 東エレク・アドテスト・信越化学にも追い風</div>
+</section>
+
+<!-- 37 理由4まとめ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：まとめ</span><span class="brand"></span></div>
+  <div class="lead">地政学の安定・割安な円・強いサプライチェーン</div>
+  <div class="stmt">10年単位で続く、<br><span class="em">海外マネーが日本株を見直す流れ。</span></div>
+  <div class="note">終戦合意で世界がリスクオンに傾けば、その流れはさらに後押しされる</div>
+</section>
+
+<!-- 38 理由5 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">理由5：政策と企業改革</span><span class="brand"></span></div>
+  <div class="topic"><span>理由 5 / 5</span><span class="bar"></span><span>下値を支える力</span></div>
+  <div class="numbox">05</div>
+  <div class="stitle"><div class="label">REASON</div><div class="ttl">政策と企業改革</div><div class="rule"></div><div class="desc">相場が崩れにくい理由</div></div>
+</section>
+
+<!-- 39 日銀無難通過 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由5：日銀の金融政策</span><span class="brand"></span></div>
+  <div class="lead">今回、日銀は追加利上げを決定 ——「株にマイナスでは？」</div>
+  <div class="stmt">利上げはほぼ想定通りで、<span class="em">無難に通過。</span><br>警戒イベント通過で安心感が広がった。</div>
+</section>
+
+<!-- 40 利上げの効き方 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由5：利上げの効き方は正反対</span><span class="brand"></span></div>
+  <div class="badge navy">立場で逆になる</div>
+  <div class="h-main">利上げは、一律にマイナスではない</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">銀行</div><div class="cap">金利上昇は</div><div class="big">追い風</div><div class="div"></div><div class="strong">利ざやが広がり利益増</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box left"><div class="name">成長株</div><div class="cap">金利上昇は</div><div class="big">やや重荷</div><div class="div"></div><div class="strong">将来利益が割り引かれる</div></div>
+  </div>
+  <div class="foot-note">相場全体では、警戒した日銀イベントを無難に通過できたこと自体が下値を支えた</div>
+</section>
+
+<!-- 41 中間選挙＋FRB -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由5：米国側の事情</span><span class="brand"></span></div>
+  <div class="badge navy">下を支える力</div>
+  <div class="h-main">2つの力が、同じ方向に重なる</div>
+  <div class="grid g2">
+    <div class="card c2"><div class="cno">政</div><div class="ctitle">中間選挙（11月）</div><div class="ctext">共和党が多数派維持を狙う天王山。政権は景気・株価を支えたい、と市場は見る</div></div>
+    <div class="card c3"><div class="cno">金</div><div class="ctitle">FRBは据え置き観測</div><div class="ctext">原油安でインフレ不安が和らげば、追加利上げを急ぐ理由が弱まる</div></div>
+  </div>
+  <div class="foot-bar">利上げ懸念の後退 ＋ 選挙前の景気下支え期待 → <span class="em">株式市場の下値は固くなりやすい</span></div>
+</section>
+
+<!-- 42 東証PBR改革 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由5：日本企業自身の改革</span><span class="brand"></span></div>
+  <div class="lead">2023年3月、東証が「資本コストや株価を意識した経営」を要請</div>
+  <div class="stmt">対応・検討中の企業は、プライムで<span class="em">94%（1,459社）</span><br>スタンダードでも54%（849社）</div>
+  <div class="note">背景はPBR1倍割れの多さ。「資産はあるのに利益に変えられていない」企業に改革を促す</div>
+</section>
+
+<!-- 43 自社株買い -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">理由5：自社株買いとTOPIX</span><span class="brand"></span></div>
+  <div class="h-main">改革は、すでに数字に表れている</div>
+  <div class="h-sub">市場の株数が減り、1株の価値が上がる → 株価を直接支える力に</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">自社株買い</div><div class="cd">2025年4〜12月</div></div><div class="body"><div class="lbl">日本企業</div><div class="val2">14.2兆円</div><div class="tag">過去最高クラス</div></div></div>
+    <div class="col"><div class="top"><div class="nm">前年度</div><div class="cd">通期</div></div><div class="body"><div class="lbl">自社株買い</div><div class="val2">18.7兆円</div><div class="tag">過去最高クラス</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">TOPIX連動資金</div><div class="cd">ETF・年金など</div></div><div class="body"><div class="lbl">改革は指数全体を押し上げ</div><div class="val2">約110兆円</div><div class="tag">2026/10 定期入替も</div></div></div>
+  </div>
+</section>
+
+<!-- 44 5つの理由まとめ -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 3：5つの理由まとめ</span><span class="brand"></span></div>
+  <div class="h-main">5つは、バラバラではなくつながっている</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">原油リスクの後退</span><span class="d">企業の利益環境を底上げ</span></div>
+    <div class="row"><span class="no">2</span><span class="t">金利不安の後退</span><span class="d">マネーが株式・成長株へ</span></div>
+    <div class="row"><span class="no">3</span><span class="t">裾野の広い上昇</span><span class="d">複数業種に追い風</span></div>
+    <div class="row"><span class="no">4</span><span class="t">海外マネーの見直し</span><span class="d">10年単位の構造変化</span></div>
+    <div class="row"><span class="no">5</span><span class="t">政策と企業改革</span><span class="d">下値を支える力</span></div>
+  </div>
+  <div class="cta">押し上げる力も、下を支える力もそろっている</div>
+</section>
+
+<!-- ===== ⑥ 日経 vs TOPIX ===== -->
+
+<!-- 45 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：日経平均 vs TOPIX</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4 / 7</span><span class="bar"></span><span>新NISAでどちらを選ぶか</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">日経平均かTOPIXか</div><div class="rule"></div><div class="desc">4つの角度で整理する</div></div>
+</section>
+
+<!-- 46 4つの角度 予告 -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 4：4つの角度</span><span class="brand"></span></div>
+  <div class="h-main">両者の違いを、4つの角度で整理</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">計算方式の違い</span><span class="d">株価平均型 vs 時価総額加重型</span></div>
+    <div class="row"><span class="no">2</span><span class="t">構成銘柄・業種バランス</span><span class="d">偏り vs 広い分散</span></div>
+    <div class="row"><span class="no">3</span><span class="t">リターンとリスク</span><span class="d">攻め vs 安定・配当</span></div>
+    <div class="row"><span class="no">4</span><span class="t">米国株・オルカンとの組合せ</span><span class="d">今の主軸で答えが変わる</span></div>
+  </div>
+  <div class="cta">最後に「どんな人にどちらが向くか」をハッキリさせます</div>
+</section>
+
+<!-- 47 計算方式 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：①計算方式</span><span class="brand"></span></div>
+  <div class="badge blue">違いの出発点</div>
+  <div class="h-main">この計算方式が、性格のすべてを決める</div>
+  <div class="cols">
+    <div class="box left"><div class="name">日経平均</div><div class="cap">方式</div><div class="big">株価平均型</div><div class="div"></div><div class="strong">値がさ株の影響が極端に大きい</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">TOPIX</div><div class="cap">方式</div><div class="big">時価総額加重型</div><div class="div"></div><div class="strong">会社の規模に応じて影響</div></div>
+  </div>
+  <div class="foot-note">時価総額加重型は、S&P500やオルカン（MSCI ACWI）と同じ考え方 → 海外勢はTOPIXを重視</div>
+</section>
+
+<!-- 48 構成銘柄 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：②構成銘柄・業種</span><span class="brand"></span></div>
+  <div class="badge navy">FACT</div>
+  <div class="h-main">同じ「日本株」でも、中身はまったく違う</div>
+  <div class="cols">
+    <div class="box left"><div class="name">日経平均</div><div class="cap">上位5銘柄で</div><div class="big">41.75%</div><div class="div"></div><div class="small">アドテスト・東エレク・ファストリ・SBG・キオクシア</div><div class="strong">AI・半導体・値がさ株に偏重</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">TOPIX</div><div class="cap">1位トヨタでも</div><div class="big">数％程度</div><div class="div"></div><div class="small">トヨタ・三菱UFJ・ソニー・日立・三菱商事…</div><div class="strong">日本経済全体の縮図</div></div>
+  </div>
+  <div class="foot-note">「最高値でも持ち株が上がらない」の正体は、この日経平均の構造にあった</div>
+</section>
+
+<!-- 49 リターンとリスク -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：③リターンとリスク</span><span class="brand"></span></div>
+  <div class="badge">過去 vs これから</div>
+  <div class="h-main">攻めの日経平均、安定のTOPIX</div>
+  <div class="cols">
+    <div class="box left"><div class="name">日経平均</div><div class="cap">ここ十数年</div><div class="big">高リターン</div><div class="div"></div><div class="strong">上にも下にも振れが激しい</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">TOPIX</div><div class="cap">広く分散</div><div class="big">安定・高配当</div><div class="div"></div><div class="strong">比較的、値動きが安定</div></div>
+  </div>
+  <div class="foot-bar">過去に勝った＝これからも勝つ、とは限らない。<span class="em">金利上昇・円高・半導体反転ならTOPIXが崩れにくい</span></div>
+</section>
+
+<!-- 50 組み合わせ 3ケース -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：④主軸との組み合わせ</span><span class="brand"></span></div>
+  <div class="badge orange">一番大事な視点</div>
+  <div class="h-main">今の主軸によって、答えが変わる</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">A</div><div class="ctitle">NASDAQ100<br>/ FANG+ が主軸</div><div class="ctext">AI・半導体の二重投資を避けたい → <b>TOPIX</b>で分散効果</div></div>
+    <div class="card c2"><div class="cno">B</div><div class="ctitle">S&P500 が主軸</div><div class="ctext">分散が効いている → 攻めなら<b>日経平均</b>、安定なら<b>TOPIX</b>、半々も可</div></div>
+    <div class="card c3"><div class="cno">C</div><div class="ctitle">オルカン が主軸</div><div class="ctext">既に日本株5%(TOPIX的)を保有 → 安定増なら<b>TOPIX</b>、攻めなら<b>日経</b></div></div>
+  </div>
+  <div class="foot-bar">大事なのは、<span class="em">自分がすでに何を持っているかを、まず確認すること</span></div>
+</section>
+
+<!-- 51 具体的商品 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：⑤新NISAで買える商品</span><span class="brand"></span></div>
+  <div class="badge">商品選びの3ポイント</div>
+  <div class="h-main">複雑に考えすぎない。低コストのインデックスでOK</div>
+  <div class="h-sub">例：eMAXIS Slim 国内株式（日経平均型／TOPIX型）信託報酬 年0.143%程度</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">信託報酬が低いか</div><div class="ctext">保有中ずっとかかるコストを抑える</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">純資産が十分大きいか</div><div class="ctext">規模が大きいほど安定して運用される</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">自分の証券会社で買えるか</div><div class="ctext">新NISA口座で取扱いがあるか</div></div>
+  </div>
+  <div class="foot-bar">商品選びより、<span class="em">「攻めの日経型か、分散のTOPIX型か」を決める方がずっと大事</span></div>
+</section>
+
+<!-- ===== ⑦ どれくらい持つか ===== -->
+
+<!-- 52 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 5：日本株を何％持つか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 5 / 7</span><span class="bar"></span><span>ポートフォリオ全体で考える</span></div>
+  <div class="numbox">05</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">日本株をどれくらい</div><div class="rule"></div><div class="desc">資産全体の中での比率</div></div>
+</section>
+
+<!-- 53 資産の役割 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：資産それぞれの役割</span><span class="brand"></span></div>
+  <div class="badge navy">単独で考えない</div>
+  <div class="h-main">資産には、それぞれ役割がある</div>
+  <div class="grid">
+    <div class="card c4"><div class="cno">守</div><div class="ctitle">現預金</div><div class="ctext">増やす資産ではなく守る資産。生活費の3〜6か月分を確保</div></div>
+    <div class="card c3"><div class="cno">土</div><div class="ctitle">インデックス</div><div class="ctext">オルカン・S&P500が土台。NASDAQ100・FANG+は攻めの上乗せ</div></div>
+    <div class="card c2"><div class="cno">補</div><div class="ctitle">日本株</div><div class="ctext">円ベースで資産を安定させる補完。米国偏重を是正</div></div>
+  </div>
+  <div class="foot-bar">資産のほとんどを米国株・オルカンに置くと、<span class="em">知らぬ間に大きな為替リスクを背負う</span></div>
+</section>
+
+<!-- 54 為替リスク -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：為替リスク</span><span class="brand"></span></div>
+  <div class="lead">1ドル160円で米国株を買い、その後130円まで円高が進むと</div>
+  <div class="stmt">株価が同じでも、円に戻した価値は<br><span class="emr">約19%下がる。</span></div>
+  <div class="note">株で負けたのではなく、為替だけで資産が目減りする。オルカンの日本株は約5%にすぎない</div>
+</section>
+
+<!-- 55 日本株の目安 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：日本株の目安</span><span class="brand"></span></div>
+  <div class="badge">目安：総資産の10〜25%</div>
+  <div class="h-main">タイプ別の、日本株の持ち方</div>
+  <div class="cols">
+    <div class="box left"><div class="name">大きく攻めたい人</div><div class="cap">日本株</div><div class="big">10〜15%</div><div class="div"></div><div class="strong">米・全世界株の成長を厚めに取る</div></div>
+    <div class="vsmark">/</div>
+    <div class="box right"><div class="name">為替リスクを抑えたい人</div><div class="cap">日本株</div><div class="big">15〜25%</div><div class="div"></div><div class="strong">構造改革・高配当にも乗る</div></div>
+  </div>
+  <div class="foot-note">ただし日本株を50〜60%まで持つのは×。今度は日本経済への集中リスクが出る</div>
+</section>
+
+<!-- 56 配分例 -->
+<section class="slide t-port">
+  <div class="hdr"><span class="sec">Section 5：現実的なバランス例</span><span class="brand"></span></div>
+  <div class="h-main">ポートフォリオ配分の一例</div>
+  <div class="bars">
+    <div class="brow"><span class="lab">現預金</span><div class="track"><div class="fill f-cash" style="width:30%">20〜30%</div></div></div>
+    <div class="brow"><span class="lab">インデックス投資</span><div class="track"><div class="fill f-idx" style="width:55%">45〜55%</div></div></div>
+    <div class="brow"><span class="lab">日本株</span><div class="track"><div class="fill f-jp" style="width:25%">15〜25%</div></div></div>
+    <div class="brow"><span class="lab">ゴールド</span><div class="track"><div class="fill f-gold" style="width:12%">5〜10%</div></div></div>
+  </div>
+  <div class="foot-bar">インデックスはオルカン・S&P500中心。<span class="em">日本株はTOPIX型で分散か、日経型で攻めるかを選ぶ</span></div>
+</section>
+
+<!-- 57 各資産のリスク整理 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 5：いちばん大事なこと</span><span class="brand"></span></div>
+  <div class="h-main">どれか一つに偏れば、必ずリスクが残る</div>
+  <div class="rows">
+    <div class="row"><span class="no">!</span><span class="t">現預金だけ</span><span class="d">インフレに負ける可能性</span></div>
+    <div class="row"><span class="no">!</span><span class="t">米国株・オルカンだけ</span><span class="d">為替リスク</span></div>
+    <div class="row"><span class="no">!</span><span class="t">NASDAQ100・FANG+だけ</span><span class="d">米ハイテクへの集中リスク</span></div>
+    <div class="row"><span class="no">!</span><span class="t">ゴールドだけ</span><span class="d">企業の成長を取りにくい</span></div>
+    <div class="row"><span class="no">!</span><span class="t">日本株をまったく持たない</span><span class="d">円で生活する人にはリスク</span></div>
+  </div>
+  <div class="cta">日本株は米国株の "代わり" ではなく、円ベースで安定させる "補完資産"</div>
+</section>
+
+<!-- 58 まとめ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ</span><span class="brand"></span></div>
+  <div class="lead">日経平均かTOPIXかを考える前に</div>
+  <div class="stmt">まず、資産全体で<span class="em">日本株を何％持つか</span>を決める。<br>そして今の保有とのバランスを見直す。</div>
+  <div class="note">日本株は、外貨建ての成長資産に偏ったポートフォリオを、日本円ベースで安定させる補完資産</div>
+</section>
+
+<!-- 59 エンディング -->
+<section class="slide t-closing">
+  <div class="big">日本株は、短期で上下しながらも<br><span class="em">まだまだ上がる。</span></div>
+  <div class="sub">「7万円は高すぎるのか」「今からでも間に合うのか」——答えは出ましたか？</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span></div>
+</section>
+
+</body>
+</html>
