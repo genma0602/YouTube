@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AI・半導体バブルついに崩壊か⁉急落原因を徹底解説！AI半導体株は次のステージへ！</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:50px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 32px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:42px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:18px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:26px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 0;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:60px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:44px;}
+.t-port .bars{display:flex;flex-direction:column;gap:28px;max-width:1000px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:26px;font-weight:800;color:var(--navy);width:250px;}
+.t-port .brow .track{flex:1;height:54px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:320px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:38px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:340px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* ===== industry chips map ===== */
+.t-chips{display:flex;flex-direction:column;justify-content:center;padding:56px 60px 0;}
+.t-chips .h-main{margin:0 0 12px;}
+.t-chips .h-sub{margin-bottom:32px;}
+.t-chips .groups{display:flex;gap:24px;justify-content:center;align-items:stretch;}
+.t-chips .grp{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px 28px;text-align:center;}
+.t-chips .grp.g-a{border-top:6px solid var(--blue);} .t-chips .grp.g-b{border-top:6px solid var(--orange);} .t-chips .grp.g-c{border-top:6px solid var(--green);}
+.t-chips .grp .gh{font-size:23px;font-weight:800;margin-bottom:18px;}
+.t-chips .grp.g-a .gh{color:var(--blue);} .t-chips .grp.g-b .gh{color:#cf820f;} .t-chips .grp.g-c .gh{color:var(--green);}
+.t-chips .chip{display:inline-block;margin:6px;padding:11px 18px;border-radius:26px;background:#eef2f7;color:var(--navy);font-size:19px;font-weight:700;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ① 導入 ============ -->
+
+<!-- 1 タイトル -->
+<section class="slide t-title">
+  <div class="kicker">2026  AI・半導体 急落を徹底解説</div>
+  <div class="big">AI・半導体バブル、<br>ついに<span class="em">崩壊</span>か⁉</div>
+  <div class="lead">急落の原因を解き明かす。そしてAI半導体株は、次のステージへ</div>
+</section>
+
+<!-- 2 歴史的暴落 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">いま、AI半導体株で何が起きているのか</div>
+  <div class="stmt">AI半導体株が、<br><span class="emr">歴史的な暴落</span>に見舞われました。</div>
+</section>
+
+<!-- 3 日経 急落 fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">はじめに：日経平均の動き</span><span class="brand"></span></div>
+  <div class="lead">わずかな期間で、これだけ動いた</div>
+  <div class="h-main">7万2000円台から、6万9000円台へ一気に急落</div>
+  <div class="row">
+    <div class="card"><div class="c-l">直前の水準</div><div class="c-v">7万2000円台</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">急落後</div><div class="c-v">6万9000円台</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">その後も</div><div class="r-v">乱高下</div></div>
+  </div>
+  <div class="note">一度下げて終わりではなく、上げ下げを繰り返す大きな揺れが、今も続いている</div>
+</section>
+
+<!-- 3b 乱高下 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：今も続く揺れ</span><span class="brand"></span></div>
+  <div class="lead">一度下げて終わり、ではありません</div>
+  <div class="stmt">その後も上げ下げを繰り返し、<br>大きな<span class="emr">乱高下</span>が、今も続いています。</div>
+</section>
+
+<!-- 3c 崩壊か -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：市場の空気</span><span class="brand"></span></div>
+  <div class="lead">この急落を前に</div>
+  <div class="stmt">「ついにAIバブルが崩壊したのか」<br>そう<span class="emr">青ざめた</span>方も、多いはずです。</div>
+</section>
+
+<!-- 4 楽観 vs 悲観 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">はじめに：割れる見方</span><span class="brand"></span></div>
+  <div class="badge navy">2つの見方</div>
+  <div class="h-main">「崩壊」なのか、「一時的な調整」なのか</div>
+  <div class="cols">
+    <div class="box right"><div class="name">悲観</div><div class="cap">こう見る人</div><div class="big">バブル崩壊</div><div class="div"></div><div class="strong">ついにAIバブルが弾けた</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">楽観</div><div class="cap">こう見る人</div><div class="big">一時的な調整</div><div class="div"></div><div class="strong">戻って、また安定する</div></div>
+  </div>
+  <div class="foot-note">青ざめた人もいれば、冷静に見ている人もいる</div>
+</section>
+
+<!-- 5 本音 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：僕たちの本音</span><span class="brand"></span></div>
+  <div class="lead">株を持つ僕たちの本音は、おそらく一つ</div>
+  <div class="stmt">今、<span class="emr">売るべき</span>か。<br>それとも、<span class="em">持ち続ける</span>べきか。</div>
+</section>
+
+<!-- 6 結論 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">結論</span><span class="brand"></span></div>
+  <div class="lead">先に、結論からお伝えします</div>
+  <div class="stmt">今回の暴落は、AI・半導体バブルの<br><span class="em">「崩壊」ではありません。</span></div>
+  <div class="note">だから僕は、まだ売りません</div>
+</section>
+
+<!-- 7 でも不安 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">とはいえ</div>
+  <div class="stmt">それでも、不安は<br>簡単には消えないはずです。</div>
+  <div class="note">だからこそ、この動画で「3つのこと」を解説していきます</div>
+</section>
+
+<!-- 7b 最後まで見れば -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">この動画のゴール</span><span class="brand"></span></div>
+  <div class="lead">この動画を最後まで見れば</div>
+  <div class="stmt">目先の値動きに振り回されず、<br><span class="em">落ち着いて判断</span>できるようになります。</div>
+</section>
+
+<!-- 8 目次 -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">この動画で解説すること</span><span class="brand"></span></div>
+  <div class="h-main">この動画で解説する3つのこと</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">暴落の原因</span><span class="d">2つの引き金と、世界・日本へ連鎖した本当の理由</span></div>
+    <div class="row"><span class="no">2</span><span class="t">本当に崩壊なのか</span><span class="d">決算や在庫など、実際のデータが示す答え</span></div>
+    <div class="row"><span class="no">3</span><span class="t">今、何をすべきか</span><span class="d">選別相場に移った今、僕たちがやるべきこと</span></div>
+  </div>
+  <div class="cta">最後まで見れば、値動きに振り回されず、落ち着いて判断できるようになります</div>
+</section>
+
+<!-- ============ ② 2つの引き金 ============ -->
+
+<!-- 9 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 1：暴落の引き金</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 1</span><span class="bar"></span><span>暴落を引き起こした2つの引き金</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">2つの"引き金"</div><div class="rule"></div><div class="desc">何が、この暴落に火をつけたのか</div></div>
+</section>
+
+<!-- 10 引き金は2つ -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 1：引き金は2つ</span><span class="brand"></span></div>
+  <div class="h-main">今回の暴落、引き金は大きく2つ</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">AI投資の採算への疑念</span><span class="d">いちばん買われていたAIの中核を直撃</span></div>
+    <div class="row"><span class="no">2</span><span class="t">韓国メモリ市場の暴落</span><span class="d">AIメモリ相場全体を揺らした</span></div>
+  </div>
+  <div class="cta">まずは1つ目の引き金から、順番に見ていきます</div>
+</section>
+
+<!-- 11 引き金1 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">引き金1：採算への疑念</span><span class="brand"></span></div>
+  <div class="topic"><span>引き金 1 / 2</span><span class="bar"></span><span>AI投資の採算への疑念</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">TRIGGER</div><div class="ttl">AI投資の採算疑念</div><div class="rule"></div><div class="desc">「これだけ使って、儲かっているのか？」</div></div>
+</section>
+
+<!-- 12 いくら使われているか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：AI投資の規模</span><span class="brand"></span></div>
+  <div class="lead">まず、AIにどれだけのお金が使われているか</div>
+  <div class="stmt">その金額は、<br><span class="em">想像を超える規模</span>です。</div>
+</section>
+
+<!-- 13 4社100兆 metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">引き金1：4社のAI投資</span><span class="brand"></span></div>
+  <div class="lead">ヘッジファンド大手ブリッジウォーターの分析</div>
+  <div class="h-main">マイクロソフト・グーグル・アマゾン・メタの4社</div>
+  <div class="metrics">
+    <div class="metric navy hero"><div class="mlbl">今年のAIインフラ投資（合計）</div><div class="mfig">約100<span class="u">兆円</span></div><div class="msub">約6,500億ドル ／ たった4社・たった1年で</div></div>
+  </div>
+  <div class="note">これだけの金額を、わずか4社が1年で注ぎ込んでいる</div>
+</section>
+
+<!-- 13b 4社 chips -->
+<section class="slide t-chips">
+  <div class="hdr"><span class="sec">引き金1：投じている4社</span><span class="brand"></span></div>
+  <div class="h-main">約100兆円を投じている、4社の顔ぶれ</div>
+  <div class="h-sub">世界最大級のヘッジファンド、ブリッジウォーターの分析</div>
+  <div class="groups">
+    <div class="grp g-a"><div class="gh">巨大テック4社</div><span class="chip">マイクロソフト</span><span class="chip">グーグル</span><span class="chip">アマゾン</span><span class="chip">メタ</span></div>
+  </div>
+  <div class="foot-bar">この4社が、今年のAIインフラに<span class="em">合わせて約6,500億ドル</span>を投じる</div>
+</section>
+
+<!-- 13c とんでもない金額 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：規模感</span><span class="brand"></span></div>
+  <div class="lead">日本の国家予算に迫る金額を、たった4社が、たった1年で</div>
+  <div class="stmt">とんでもない金額ですよね。<br>普通なら、<span class="em">期待で株が買われる</span>水準です。</div>
+</section>
+
+<!-- 14 日本予算と比較 vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">引き金1：規模の比較</span><span class="brand"></span></div>
+  <div class="h-main">4社のAI投資は、日本の国家予算に迫る</div>
+  <div class="h-sub">日本の一年間の予算 約122兆円 —— それに迫る規模を、4社が1年で</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:221px">約100兆円</div><div class="cap">4社のAI投資</div><div class="sub">わずか1年・4社で</div></div>
+    <div class="vb"><div class="bar" style="height:270px">約122兆円</div><div class="cap">日本の国家予算</div><div class="sub">1年間</div></div>
+  </div>
+  <div class="foot-bar">国家予算に迫る金額を、<span class="em">たった4社が投じている</span></div>
+</section>
+
+<!-- 15 普通なら買われる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：本来なら</span><span class="brand"></span></div>
+  <div class="lead">普通なら、これだけ投資をすれば</div>
+  <div class="stmt">「将来きっと大きく儲かる」という期待で、<br><span class="em">株はどんどん買われる。</span></div>
+</section>
+
+<!-- 16 市場が気づいた不安 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：市場の気づき</span><span class="brand"></span></div>
+  <div class="lead">ところが今回、市場はある不安に気づいてしまった</div>
+  <div class="stmt">「これだけ使って、肝心の儲けは、<br><span class="emr">本当に出ているのか？」</span></div>
+</section>
+
+<!-- 17 野村レポート FCF -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：FCFの減少</span><span class="brand"></span></div>
+  <div class="lead">野村證券のレポート「石黒英之のMarket Navi」でも指摘</div>
+  <div class="stmt">巨大テック4社の<span class="em">フリーキャッシュフロー</span>は、<br>ここ数年、むしろ<span class="emr">減り続けている。</span></div>
+  <div class="note">グーグル・マイクロソフト・アマゾン・メタ —— AIへの巨額投資が、稼いだお金を食いつぶしている</div>
+</section>
+
+<!-- 18 巨額投資が稼ぎを食う flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">引き金1：稼ぎを食いつぶす構図</span><span class="brand"></span></div>
+  <div class="h-main">稼いでも、AI投資がそれを食いつぶす</div>
+  <div class="chain">
+    <div class="node">本業で<br>稼ぐ</div>
+    <div class="arr">→</div>
+    <div class="node danger">巨額の<br>AI投資</div>
+    <div class="arr">→</div>
+    <div class="node danger">手元資金<br>（FCF）が減少</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbe9ea);border-color:var(--redline);">投資は増えるのに、残るお金は減っていく</div>
+</section>
+
+<!-- 19 オラクルが裏付け -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：オラクルの実例</span><span class="brand"></span></div>
+  <div class="lead">その不安を、いちばんはっきり裏づけたのが</div>
+  <div class="stmt">メモリではなく、<span class="em">オラクル</span>でした。</div>
+  <div class="note">自分の稼ぎではとても足りず、借金を重ねながらAI投資を続けている状態</div>
+</section>
+
+<!-- 20 オラクル700億 metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">引き金1：オラクルの設備投資</span><span class="brand"></span></div>
+  <div class="lead">ロイターによれば、オラクルの2026年度の計画</div>
+  <div class="h-main">約700億ドルもの、巨額の設備投資</div>
+  <div class="metrics">
+    <div class="metric navy hero"><div class="mlbl">2026年度 設備投資計画</div><div class="mfig">約700<span class="u">億ドル</span></div><div class="msub">AIインフラへの大規模投資</div></div>
+  </div>
+  <div class="note">問題は、その資金を「どうやって」まかなうのか</div>
+</section>
+
+<!-- 21 400億を借金で prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">引き金1：資金の出どころ</span><span class="brand"></span></div>
+  <div class="lead">700億ドルの投資資金 —— その多くを</div>
+  <div class="h-main">400億ドルを、借金と新株発行でまかなう</div>
+  <div class="pbar">
+    <div class="seg main" style="width:57%"><span class="p">400億ドル</span><span class="l">借金・新株発行でまかなう</span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">その他の資金</span></div>
+  </div>
+  <div class="note">稼いだお金で投資しているのではなく、借金で穴を埋めながら走り続けている</div>
+</section>
+
+<!-- 22 最初の一撃 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：最初の一撃</span><span class="brand"></span></div>
+  <div class="lead">これだけ投資しているのに、お金は残るどころか借金で埋めている</div>
+  <div class="stmt">「AIは、まだ十分に稼げていないのでは」<br>この疑念が、<span class="emr">最初の一撃</span>となった。</div>
+  <div class="note">いちばん高く買われていた、AIの中核を直撃した</div>
+</section>
+
+<!-- 22b 採算疑念の正体 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：正体</span><span class="brand"></span></div>
+  <div class="lead">オラクルの姿が、いちばんはっきり示していた</div>
+  <div class="stmt">これは業績の崩壊ではなく、<br>「本当に稼げているのか」という<span class="em">採算への疑念</span>。</div>
+</section>
+
+<!-- 23 素朴な疑問 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：素朴な疑問</span><span class="brand"></span></div>
+  <div class="lead">ここで、こんな疑問が湧くかもしれません</div>
+  <div class="stmt">なぜ、いちばん買われていた<span class="em">AIの中核</span>が、<br>真っ先に、いちばん激しく売られる？</div>
+  <div class="note">不安が出たなら、株全体が均等に下がってもいいはずなのに —— 理由は2つあります</div>
+</section>
+
+<!-- 23b 理由は2つ -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">引き金1：なぜ中核が真っ先か</span><span class="brand"></span></div>
+  <div class="h-main">中核が、真っ先に激しく売られる理由は2つ</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">株価の決まり方</span><span class="d">将来の利益ほど、不安・金利で大きく目減りする</span></div>
+    <div class="row"><span class="no">2</span><span class="t">レバレッジの巻き戻し</span><span class="d">借金で買った投資家の、強制売りの連鎖</span></div>
+  </div>
+  <div class="cta">この2つが、順番に効いてきます</div>
+</section>
+
+<!-- 24 理由1 成長株の値決め -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：理由①株価の決まり方</span><span class="brand"></span></div>
+  <div class="lead">1つ目の理由は、株の値段の決まり方</div>
+  <div class="stmt">成長株は、今の利益ではなく<br><span class="em">「何年も先の大きな利益」</span>で買われている。</div>
+</section>
+
+<!-- 25 今100万 vs 10年後100万 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">引き金1：将来の価値は目減りする</span><span class="brand"></span></div>
+  <div class="badge">同じ100万円でも</div>
+  <div class="h-main">「今の100万円」と「10年後の100万円」は違う</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">今すぐの100万円</div><div class="cap">価値</div><div class="big">高い</div><div class="div"></div><div class="strong">すぐ手に入る</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box left"><div class="name">10年後の100万円</div><div class="cap">価値</div><div class="big">目減り</div><div class="div"></div><div class="strong">不安・金利が高いほど軽くなる</div></div>
+  </div>
+  <div class="foot-note">先の話であるほど、割り引かれて「今の価値」は軽くなる</div>
+</section>
+
+<!-- 26 遠い未来ほど削られる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：だから中核が削られる</span><span class="brand"></span></div>
+  <div class="lead">遠い未来の期待で買われていた銘柄ほど</div>
+  <div class="stmt">不安が出た瞬間に、<br>価格が<span class="emr">大きく削られる。</span></div>
+</section>
+
+<!-- 27 理由2 レバレッジ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：理由②レバレッジ</span><span class="brand"></span></div>
+  <div class="lead">2つ目の理由は、借金を使った投資 ——「レバレッジの巻き戻し」</div>
+  <div class="stmt">買われすぎた人気銘柄ほど、<br><span class="em">借金を効かせて買う投資家</span>が多い。</div>
+</section>
+
+<!-- 28 巻き戻しの連鎖 flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">引き金1：巻き戻しの連鎖</span><span class="brand"></span></div>
+  <div class="h-main">下げが、下げを呼ぶ悪循環</div>
+  <div class="chain">
+    <div class="node danger">株価が<br>下がる</div>
+    <div class="arr">→</div>
+    <div class="node danger">借金組が<br>強制売り</div>
+    <div class="arr">→</div>
+    <div class="node danger">さらに<br>株価下落</div>
+    <div class="arr">→</div>
+    <div class="node danger">次の<br>強制売り</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbe9ea);border-color:var(--redline);">この連鎖で、下げが一気に加速する</div>
+</section>
+
+<!-- 29 2つ重なると -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：2つが重なると</span><span class="brand"></span></div>
+  <div class="lead">「将来の期待で買われた」×「借金で買われた」</div>
+  <div class="stmt">この2つが重なるAIの中核が、<br>真っ先に、<span class="emr">いちばん激しく売られた。</span></div>
+</section>
+
+<!-- 30 慌てないで -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金1：ここで押さえる1点</span><span class="brand"></span></div>
+  <div class="lead">ただし、ここで慌てないでください</div>
+  <div class="stmt">1つ目の引き金は、業績の崩壊ではなく<br><span class="em">投資家の「不安心理」</span>だった。</div>
+  <div class="note">本当にバブル崩壊のサインなのかは、後半で他社の数字とあわせて検証します</div>
+</section>
+
+<!-- 31 引き金2 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">引き金2：韓国メモリ暴落</span><span class="brand"></span></div>
+  <div class="topic"><span>引き金 2 / 2</span><span class="bar"></span><span>韓国メモリ市場の暴落</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">TRIGGER</div><div class="ttl">韓国メモリ市場の暴落</div><div class="rule"></div><div class="desc">AI半導体の"心臓部"が崩れた</div></div>
+</section>
+
+<!-- 32 KOSPI -9.99% metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">引き金2：6月23日のKOSPI</span><span class="brand"></span></div>
+  <div class="lead">まず、その激しさを見てください</div>
+  <div class="h-main">韓国の代表的株価指数KOSPIが、記録的大暴落</div>
+  <div class="metrics">
+    <div class="metric up hero"><div class="mlbl">6月23日 KOSPI 1日の下落率</div><div class="mfig">−9.99<span class="u">%</span></div><div class="msub">たった一日で、約10%の下落</div></div>
+  </div>
+  <div class="note">あまりの下げに、取引を強制的に止める「サーキットブレーカー」が発動した</div>
+</section>
+
+<!-- 33 サーキットブレーカーとは vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">引き金2：ストップ安との違い</span><span class="brand"></span></div>
+  <div class="badge navy">仕組みの違い</div>
+  <div class="h-main">「ストップ安」とは、まったく違う</div>
+  <div class="cols">
+    <div class="box left"><div class="name">日本のストップ安</div><div class="cap">対象</div><div class="big">1銘柄だけ</div><div class="div"></div><div class="strong">他の銘柄の取引は続く</div></div>
+    <div class="vsmark">≠</div>
+    <div class="box right"><div class="name">韓国のサーキットブレーカー</div><div class="cap">対象</div><div class="big">市場全体</div><div class="div"></div><div class="strong">市場そのものに緊急ブレーキ</div></div>
+  </div>
+  <div class="foot-note">一つの銘柄の話ではなく、市場全体にかかる「緊急ブレーキ」</div>
+</section>
+
+<!-- 34 発動条件 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金2：発動の条件</span><span class="brand"></span></div>
+  <div class="lead">サーキットブレーカーの発動条件</div>
+  <div class="stmt">KOSPIが前日比<span class="emr">8%以上</span>下落した状態が1分続くと、<br>市場全体の取引が<span class="emr">20分間</span>止まる。</div>
+  <div class="note">韓国の株式市場そのものが「危険水域」に入ったと判断され、強制的に止められた</div>
+</section>
+
+<!-- 35 サムスン・SK -12% -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">引き金2：中心にいた2社</span><span class="brand"></span></div>
+  <div class="badge navy">6月23日</div>
+  <div class="h-main">中心にいたのは、メモリ大手の2社</div>
+  <div class="cols">
+    <div class="box right"><div class="name">サムスン電子</div><div class="cap">6月23日</div><div class="big">−12%超</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box right"><div class="name">SKハイニックス</div><div class="cap">6月23日</div><div class="big">−12%超</div></div>
+  </div>
+  <div class="foot-note">この2社が、それぞれ12%を超えて売られた</div>
+</section>
+
+<!-- 35b HBMの問い -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金2：なぜこの2社なのか</span><span class="brand"></span></div>
+  <div class="lead">サムスンとSKハイニックス —— なぜ、この2社が売られると市場は身構えるのか</div>
+  <div class="stmt">鍵は、AIサーバーに不可欠な<br>高性能メモリ<span class="em">「HBM」</span>にあります。</div>
+</section>
+
+<!-- 36 なぜ重要か HBM -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金2：なぜ重要なのか</span><span class="brand"></span></div>
+  <div class="lead">なぜ、韓国のメモリ株がこれほど重要なのか</div>
+  <div class="stmt">この2社は、AIサーバーに不可欠な高性能メモリ<br><span class="em">「HBM」</span>を世界で握る、AI半導体の心臓部。</div>
+</section>
+
+<!-- 37 心臓部が崩れる flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">引き金2：市場の連想</span><span class="brand"></span></div>
+  <div class="h-main">心臓部が1割崩れると、市場はこう身構える</div>
+  <div class="chain">
+    <div class="node danger">HBMの2社が<br>1割超の下落</div>
+    <div class="arr">→</div>
+    <div class="node danger">AIメモリ需要に<br>異変が？</div>
+    <div class="arr">→</div>
+    <div class="node danger">AI相場全体に<br>警戒感</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbe9ea);border-color:var(--redline);">「AIメモリの需要そのものに、異変が起きたのでは」</div>
+</section>
+
+<!-- 38 背景 個人レバレッジ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金2：背景にあったもの</span><span class="brand"></span></div>
+  <div class="lead">背景にあったのは</div>
+  <div class="stmt">過熱した半導体株に積み上がった、<br><span class="emr">個人投資家のレバレッジ</span>でした。</div>
+</section>
+
+<!-- 39 60兆ウォン metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">引き金2：個人のマージン債務</span><span class="brand"></span></div>
+  <div class="lead">ロイターによれば、韓国の個人が借金で株を買っていた残高</div>
+  <div class="h-main">マージン債務は、過去最高水準に</div>
+  <div class="metrics">
+    <div class="metric up hero"><div class="mlbl">韓国の個人マージン債務</div><div class="mfig">約60<span class="u">兆ウォン</span></div><div class="msub">日本円で およそ6〜7兆円規模</div></div>
+  </div>
+  <div class="note">借入による投資は、前の年からなんと71%も増えていた</div>
+</section>
+
+<!-- 40 +71% -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">引き金2：借入投資の伸び</span><span class="brand"></span></div>
+  <div class="lead">借金をして株を買う動きが、急増していた</div>
+  <div class="h-main">借入による投資は、前の年から急増</div>
+  <div class="metrics">
+    <div class="metric up hero"><div class="mlbl">借入投資 前年比</div><div class="mfig">+71<span class="u">%</span></div><div class="msub">多くの個人が、借りたお金で半導体株に強く張っていた</div></div>
+  </div>
+  <div class="note">自分の手元資金だけでなく、レバレッジ商品も使って半導体株に集中していた</div>
+</section>
+
+<!-- 41 当局警告＋外国人売り flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">引き金2：そこへ重なったもの</span><span class="brand"></span></div>
+  <div class="h-main">過熱した相場に、2つの売り要因が重なる</div>
+  <div class="chain">
+    <div class="node danger">当局のレバレッジ型<br>ETFへのリスク警告</div>
+    <div class="arr">＋</div>
+    <div class="node danger">外国人投資家の<br>売り</div>
+    <div class="arr">→</div>
+    <div class="node danger">株価が<br>下がり始める</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbe9ea);border-color:var(--redline);">値動きを何倍にも増幅する商品が、下げを加速させた</div>
+</section>
+
+<!-- 42 強制売りの連鎖 flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">引き金2：レバレッジの巻き戻し</span><span class="brand"></span></div>
+  <div class="h-main">ここでも「レバレッジの巻き戻し」が起きた</div>
+  <div class="chain">
+    <div class="node danger">株価下落</div>
+    <div class="arr">→</div>
+    <div class="node danger">担保不足で<br>強制売り</div>
+    <div class="arr">→</div>
+    <div class="node danger">さらに下落</div>
+    <div class="arr">→</div>
+    <div class="node danger">次の<br>強制売り</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbe9ea);border-color:var(--redline);">増幅装置が乗っていたから、下げが「暴落」にまで膨らんだ</div>
+</section>
+
+<!-- 42b 1週間で2回 flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">引き金2：異例の連発</span><span class="brand"></span></div>
+  <div class="h-main">たった1週間で、サーキットブレーカーが2回</div>
+  <div class="chain">
+    <div class="node danger">6月23日<br>1回目</div>
+    <div class="arr">→</div>
+    <div class="node">わずか3日後</div>
+    <div class="arr">→</div>
+    <div class="node danger">6月26日<br>2回目</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbe9ea);border-color:var(--redline);">1週間で2回というのは、極めて異例</div>
+</section>
+
+<!-- 43 6/26再発動 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金2：一度では終わらなかった</span><span class="brand"></span></div>
+  <div class="lead">しかも、これは一度では終わらなかった</div>
+  <div class="stmt">3日後の6月26日にも、KOSPIは<br>再び<span class="emr">サーキットブレーカーが発動。</span></div>
+  <div class="note">たった1週間で2回というのは、極めて異例</div>
+</section>
+
+<!-- 44 韓国発の警報 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">引き金2：まとめ</span><span class="brand"></span></div>
+  <div class="lead">この韓国発の「警報」が</div>
+  <div class="stmt">AIメモリ相場全体を揺らす、<br><span class="emr">2つ目の引き金</span>になった。</div>
+</section>
+
+<!-- ============ ②-2 世界へ連鎖 ============ -->
+
+<!-- 44b 2つの引き金まとめ -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">引き金：ここまでのまとめ</span><span class="brand"></span></div>
+  <div class="h-main">暴落に火をつけた、2つの引き金</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">AI投資の採算疑念</span><span class="d">「稼げているのか」という不安心理（業績崩壊ではない）</span></div>
+    <div class="row"><span class="no">2</span><span class="t">韓国メモリの暴落</span><span class="d">過熱＋レバレッジの巻き戻し（実需の消失ではない）</span></div>
+  </div>
+  <div class="cta">では、なぜこれが「世界」へ連鎖したのか</div>
+</section>
+
+<!-- 45 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 2：世界への連鎖</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 2</span><span class="bar"></span><span>なぜ暴落は世界へ連鎖したのか</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">世界への連鎖</div><div class="rule"></div><div class="desc">きっかけは韓国一国だったのに</div></div>
+</section>
+
+<!-- 46 2つの共通点 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：2つの引き金の共通点</span><span class="brand"></span></div>
+  <div class="lead">この2つの引き金には、決定的な共通点があります</div>
+  <div class="stmt">どちらも、企業が実際にモノを売って稼ぐ力<br><span class="em">「実需」</span>が落ちて起きたわけではない。</div>
+</section>
+
+<!-- 47 実需は落ちていない vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：問われたのは何か</span><span class="brand"></span></div>
+  <div class="badge navy">論点の整理</div>
+  <div class="h-main">問われたのは「実需」ではなかった</div>
+  <div class="cols">
+    <div class="box left"><div class="name">採算疑念</div><div class="cap">問われたのは</div><div class="big">将来の回収</div><div class="div"></div><div class="strong">きちんと回収できるのか、という不安</div></div>
+    <div class="vsmark">＆</div>
+    <div class="box left"><div class="name">韓国メモリ</div><div class="cap">売られた理由</div><div class="big">反動と巻き戻し</div><div class="div"></div><div class="strong">注文が消えたわけではない</div></div>
+  </div>
+  <div class="foot-note">どちらも、需要が壊れたのではない</div>
+</section>
+
+<!-- 48 期待と株価がしぼんだ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：しぼんだのは何か</span><span class="brand"></span></div>
+  <div class="lead">需要そのものが壊れたのではなく</div>
+  <div class="stmt">上がりすぎた<span class="em">「期待」と「株価」</span>が、<br>一気にしぼんだ。</div>
+  <div class="note">この違いは、後半でとても重要になります。頭の片隅に置いておいてください</div>
+</section>
+
+<!-- 49 疑問：なぜ世界へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：ここで一つの疑問</span><span class="brand"></span></div>
+  <div class="lead">きっかけは、韓国一国の暴落だったはず</div>
+  <div class="stmt">なぜ海を越えて、米国のNVIDIAや<br>日本の半導体株まで<span class="emr">巻き込まれた</span>のか？</div>
+</section>
+
+<!-- 50 答え 一つの相場 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：答え</span><span class="brand"></span></div>
+  <div class="lead">答えは、世界の投資家から見れば</div>
+  <div class="stmt">これらはすべて<span class="em">「AI・半導体」</span>という、<br>一つの相場だからです。</div>
+</section>
+
+<!-- 51 同じ期待で買われた chips -->
+<section class="slide t-chips">
+  <div class="hdr"><span class="sec">Section 2：一つの相場としての動き</span><span class="brand"></span></div>
+  <div class="h-main">国は違っても、同じ「AIの成長」で買われてきた</div>
+  <div class="h-sub">別々の国の別々の会社が、一本の期待でまとめて動いている</div>
+  <div class="groups">
+    <div class="grp g-a"><div class="gh">韓国</div><span class="chip">サムスン電子</span><span class="chip">SKハイニックス</span></div>
+    <div class="grp g-b"><div class="gh">アメリカ</div><span class="chip">NVIDIA</span><span class="chip">AMD</span><span class="chip">Micron</span></div>
+    <div class="grp g-c"><div class="gh">日本</div><span class="chip">東京エレクトロン</span><span class="chip">アドバンテスト</span></div>
+  </div>
+  <div class="foot-bar">全部が同じ一つの相場として、<span class="em">まとめて動いている</span></div>
+</section>
+
+<!-- 52 連想が世界へ flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：連想が世界へ広がる</span><span class="brand"></span></div>
+  <div class="h-main">相場の一角が崩れると、連想が広がる</div>
+  <div class="chain">
+    <div class="node danger">韓国メモリ<br>暴落</div>
+    <div class="arr">→</div>
+    <div class="node danger">AI相場全体が<br>冷え始めた？</div>
+    <div class="arr">→</div>
+    <div class="node danger">米国・日本へ<br>一気に波及</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbe9ea);border-color:var(--redline);">同じAI相場だからこそ、暴落が一瞬で世界へ広がった</div>
+</section>
+
+<!-- 53 SOX -7.9% 米国半導体 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：米国半導体も急落</span><span class="brand"></span></div>
+  <div class="lead">韓国市場が荒れた、同じ週のアメリカ</div>
+  <div class="h-main">米半導体株指数SOXも、大きく売られた</div>
+  <div class="metrics">
+    <div class="metric up hero"><div class="mlbl">SOX指数（米半導体） 週間</div><div class="mfig">−7.9<span class="u">%</span></div><div class="msub">6/23には NVIDIA・AMD・Micron も大きく売られた</div></div>
+  </div>
+  <div class="note">主役級の半導体株が、そろって下落した</div>
+</section>
+
+<!-- 54 全部が韓国のせいではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：誤解しないでほしい</span><span class="brand"></span></div>
+  <div class="lead">ただし、すべての原因が韓国にあったわけではない</div>
+  <div class="stmt">韓国発のニュースは、<br><span class="em">「きっかけの一つ」</span>にすぎない。</div>
+</section>
+
+<!-- 55 重なった要因 cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 2：いっせいに重なった要因</span><span class="brand"></span></div>
+  <div class="badge navy">複合要因</div>
+  <div class="h-main">もともと熱を持った相場に、要因が重なった</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">米株の過熱感</div><div class="ctext">買われすぎていた米国半導体株に、反動が出やすかった</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">金利への警戒</div><div class="ctext">金利をめぐる不安が、成長株の重荷になっていた</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">採算への疑念</div><div class="ctext">最初に見た「本当に稼げているのか」という不安</div></div>
+  </div>
+  <div class="foot-bar">ここに、韓国という<span class="em">スイッチが入った</span></div>
+</section>
+
+<!-- 56 韓国はスイッチ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：連鎖の正体</span><span class="brand"></span></div>
+  <div class="lead">すでに熱を持ちすぎていた相場に、韓国というスイッチが入った</div>
+  <div class="stmt">これが、暴落が<br><span class="emr">世界へ連鎖した正体</span>です。</div>
+</section>
+
+<!-- ============ ②-3 指数の下落幅 ============ -->
+
+<!-- 57 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 3：あなたの指数はどれだけ下げたか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 3</span><span class="bar"></span><span>あなたの持つ指数は、どれだけ下げたか</span></div>
+  <div class="numbox">03</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">指数別の下落幅</div><div class="rule"></div><div class="desc">集中か、分散か、で差が出た</div></div>
+</section>
+
+<!-- 58 偏って出た -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：下落の偏り</span><span class="brand"></span></div>
+  <div class="lead">今回の下落は、すべての株に均等に来たのではない</div>
+  <div class="stmt">AIと半導体に<span class="emr">偏って</span>、<br>強く出ました。</div>
+</section>
+
+<!-- 59 米指数ランキング rank -->
+<section class="slide t-rank">
+  <div class="hdr"><span class="sec">Section 3：米国 指数別の週間下落率</span><span class="brand"></span></div>
+  <div class="h-main">AI・半導体に集中した指数ほど、深く下げた</div>
+  <div class="h-sub">同じ週でも、指数によって下げ幅がまったく違った</div>
+  <div class="rows">
+    <div class="row"><span class="nm">SOX（半導体）</span><span class="pct up">−7.9%</span></div>
+    <div class="row"><span class="nm">NASDAQ（ハイテク中心）</span><span class="pct up">−4.7%</span></div>
+    <div class="row" style="border-left-color:var(--blue);"><span class="nm">S&amp;P500（米国全体）</span><span class="pct up" style="color:var(--blue);">−2.05%</span></div>
+    <div class="row" style="border-left-color:var(--green);"><span class="nm">オルカン（全世界）</span><span class="pct up" style="color:var(--green);">さらに浅い</span></div>
+  </div>
+</section>
+
+<!-- 60 集中ほど深い -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：分散のクッション</span><span class="brand"></span></div>
+  <div class="lead">AIや半導体に集中した指数ほど深く下げ</div>
+  <div class="stmt">幅広く分散した指数ほど、<br><span class="em">クッションが効いて浅く済んだ。</span></div>
+  <div class="note">NASDAQ100やFANG＋は揺れが大きく、オルカンやS&P500は守られた</div>
+</section>
+
+<!-- 60b 守られた指数 vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：揺れた指数、守られた指数</span><span class="brand"></span></div>
+  <div class="badge navy">同じショックでも</div>
+  <div class="h-main">集中は揺れ、分散は守られた</div>
+  <div class="cols">
+    <div class="box right"><div class="name">揺れが大きかった</div><div class="cap">集中型</div><div class="big">NASDAQ100 / FANG＋</div><div class="div"></div><div class="strong">AI・ハイテクに高集中</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">守られた</div><div class="cap">分散型</div><div class="big">オルカン / S&P500</div><div class="div"></div><div class="strong">幅広い分散でクッション</div></div>
+  </div>
+  <div class="foot-note">同じAIショックでも、中身の集中度でダメージがまったく違った</div>
+</section>
+
+<!-- 61 日本も同じ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：日本でも同じ</span><span class="brand"></span></div>
+  <div class="lead">そして、これは日本でも全く同じでした</div>
+  <div class="stmt">日経平均は、特定の<span class="em">値がさ半導体株</span>の<br>影響を強く受ける指数です。</div>
+</section>
+
+<!-- 62 日経 vs TOPIX vbars 6/26 -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 3：6月26日の下落率</span><span class="brand"></span></div>
+  <div class="h-main">同じ日本株でも、3倍以上の差がついた</div>
+  <div class="h-sub">再び大きく下げた6月26日 —— 日経平均とTOPIXの下落率</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:270px">−4.15%</div><div class="cap">日経平均</div><div class="sub">値がさ半導体の影響大</div></div>
+    <div class="vb"><div class="bar" style="height:86px">−1.32%</div><div class="cap">TOPIX</div><div class="sub">より幅広い銘柄</div></div>
+  </div>
+  <div class="foot-bar">同じ日本株でも、<span class="em">3倍以上の差</span>がついた</div>
+</section>
+
+<!-- 63 なぜ振り回される -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：なぜ日経は振り回されるのか</span><span class="brand"></span></div>
+  <div class="lead">では、なぜ日経平均はここまで半導体に振り回されるのか</div>
+  <div class="stmt">理由はシンプル。日経平均は<br><span class="em">AI・半導体の比重がとても高い</span>指数だから。</div>
+</section>
+
+<!-- 64 半導体比重 prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 3：日経平均の構成比</span><span class="brand"></span></div>
+  <div class="lead">ロイターによれば、日経平均に占める割合</div>
+  <div class="h-main">半導体関連＋電子部品で、日経の約35%</div>
+  <div class="pbar">
+    <div class="seg main" style="width:35%"><span class="p">約35%</span><span class="l">AI・半導体＋関連</span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">その他の銘柄</span></div>
+  </div>
+  <div class="note">東京エレクトロン・アドバンテスト・キオクシアだけで約25%、村田・ソニーまで含めると約35%</div>
+</section>
+
+<!-- 65 同じ供給網 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：同じ供給網</span><span class="brand"></span></div>
+  <div class="lead">日本と韓国の半導体は、同じ世界の供給網でつながっている</div>
+  <div class="stmt">だから海の向こうで半導体が崩れれば、<br>日経は<span class="emr">TOPIX以上に大きく下がる。</span></div>
+</section>
+
+<!-- 66 6/23 vs 6/26 TOPIX vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 3：下げの中心が絞られた</span><span class="brand"></span></div>
+  <div class="h-main">TOPIXの下げ幅で見る、下げの性格の変化</div>
+  <div class="h-sub">6/23はほぼ全面安、6/26はより半導体に集中した下げ</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:270px">−2.56%</div><div class="cap">6月23日</div><div class="sub">ほぼ全面安</div></div>
+    <div class="vb"><div class="bar" style="height:139px">−1.32%</div><div class="cap">6月26日</div><div class="sub">半導体に集中</div></div>
+  </div>
+  <div class="foot-bar">下げの中心が、だんだん<span class="em">「AI・半導体そのもの」</span>に絞られていった</div>
+</section>
+
+<!-- 67 整理 一つの動き -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ここまでの整理</span><span class="brand"></span></div>
+  <div class="lead">採算疑念・韓国メモリ・米国半導体・日本への波及</div>
+  <div class="stmt">一見バラバラな暴落は、結局すべて<br><span class="em">「買われすぎたAIの中核の巻き戻し」</span>に束ねられる。</div>
+</section>
+
+<!-- 68 業績は悪化していない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ここが大事</span><span class="brand"></span></div>
+  <div class="lead">ここまでのどこを見ても</div>
+  <div class="stmt">企業の業績そのものが、急に悪化した<br>わけではない。下がったのは<span class="emr">株価と期待</span>のほう。</div>
+  <div class="note">実需ではなく、上がりすぎた「株価」と「期待」が下がった</div>
+</section>
+
+<!-- ============ ③ 崩壊なのか ============ -->
+
+<!-- 69 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：これは"崩壊"なのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4</span><span class="bar"></span><span>それでも、これは"崩壊"なのか</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">これは"崩壊"なのか</div><div class="rule"></div><div class="desc">データが示す、本当の答え</div></div>
+</section>
+
+<!-- 70 成長シナリオは崩れたか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：問い</span><span class="brand"></span></div>
+  <div class="lead">この暴落で、AIの成長シナリオそのものは</div>
+  <div class="stmt">本当に、<span class="emr">崩れてしまった</span>のか？</div>
+</section>
+
+<!-- 71 結論 崩れていない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：結論</span><span class="brand"></span></div>
+  <div class="lead">結論から言えば</div>
+  <div class="stmt">崩れて<span class="em">いません。</span><br>成長を支える土台は、びくともしていない。</div>
+</section>
+
+<!-- 72 証拠 マイクロン -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：何よりの証拠</span><span class="brand"></span></div>
+  <div class="lead">その何よりの証拠が、暴落のさなかに飛び込んできた</div>
+  <div class="stmt">メモリ大手<span class="em">マイクロン</span>の決算。<br>中身は、市場の予想を超える絶好調でした。</div>
+</section>
+
+<!-- 73 220億ドル契約 metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：マイクロンの長期契約</span><span class="brand"></span></div>
+  <div class="lead">AI向けメモリの需要が、極めて強い</div>
+  <div class="h-main">顧客と、総額220億ドルの長期供給契約</div>
+  <div class="metrics">
+    <div class="metric blue hero"><div class="mlbl">長期供給契約（総額）</div><div class="mfig">220<span class="u">億ドル</span></div><div class="msub">日本円で およそ3兆4,000億円</div></div>
+  </div>
+  <div class="note">供給が足りない状態は、少なくとも2027年まで続く可能性があるという</div>
+</section>
+
+<!-- 74 供給不足2027 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：品薄が続く</span><span class="brand"></span></div>
+  <div class="lead">需要が弱いどころか</div>
+  <div class="stmt">供給が足りない状態は、<br>少なくとも<span class="em">2027年まで続く</span>可能性。</div>
+</section>
+
+<!-- 75 株価+15.7% metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：市場の空気が一変</span><span class="brand"></span></div>
+  <div class="lead">この決算を受けて、マイクロンの株価は</div>
+  <div class="h-main">たった1日で、急騰した</div>
+  <div class="metrics">
+    <div class="metric up hero"><div class="mlbl">マイクロン株価 1日の上昇率</div><div class="mfig">+15.7<span class="u">%</span></div><div class="msub">強い決算ひとつで、空気が一変した</div></div>
+  </div>
+  <div class="note">「AIはもう稼げないのでは」という不安が、吹き飛ばされた瞬間</div>
+</section>
+
+<!-- 76 4000億ドル戻る metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：半導体株全体に資金が戻る</span><span class="brand"></span></div>
+  <div class="lead">マイクロンだけではない</div>
+  <div class="h-main">売られていた半導体株全体に、時価が戻った</div>
+  <div class="metrics">
+    <div class="metric blue hero"><div class="mlbl">半導体株全体に戻った時価</div><div class="mfig">4,000<span class="u">億ドル超</span></div><div class="msub">強い決算ひとつで、不安が吹き飛んだ</div></div>
+  </div>
+  <div class="note">AIの実需が、まだ力強く残っていることを示した</div>
+</section>
+
+<!-- 77 設備投資も同方向 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：設備投資の動き</span><span class="brand"></span></div>
+  <div class="lead">設備投資の動きも、同じ方向を指している</div>
+  <div class="stmt">需要が怪しいなら投資を絞るはず。<br>ところが現実は、<span class="em">逆</span>でした。</div>
+</section>
+
+<!-- 78 設備投資6割増 metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：主要テックの設備投資</span><span class="brand"></span></div>
+  <div class="lead">主要なテック企業の設備投資は、むしろ積み増し</div>
+  <div class="h-main">前年から、およそ6割増へ</div>
+  <div class="metrics">
+    <div class="metric blue hero"><div class="mlbl">主要テック企業の設備投資（合計）</div><div class="mfig">6,500<span class="u">億ドル</span></div><div class="msub">前年比 およそ +6割 ／ 約100兆円超の規模へ</div></div>
+  </div>
+  <div class="note">これだけのお金を張るのは、先の需要に強い自信がある証拠</div>
+</section>
+
+<!-- ============ ④ 崩壊のサイン ============ -->
+
+<!-- 78b マイクロンの意味 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：決算が語ったこと</span><span class="brand"></span></div>
+  <div class="lead">品薄・長期契約・積み増される投資</div>
+  <div class="stmt">どれも、AIの<span class="em">実需がまだ強い</span>ことを<br>示していました。</div>
+</section>
+
+<!-- 78c 土台は崩れていない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：まとめ</span><span class="brand"></span></div>
+  <div class="lead">株価は乱高下しても</div>
+  <div class="stmt">AIの成長を支える<span class="em">土台</span>は、<br>びくともしていない。</div>
+  <div class="note">では、それでも念のため —— 本物の崩壊なら出るはずの"サイン"を確認します</div>
+</section>
+
+<!-- 79 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 5：バブル崩壊のサイン</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 5</span><span class="bar"></span><span>本物のバブル崩壊に出る"サイン"</span></div>
+  <div class="numbox">05</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">崩壊の"サイン"</div><div class="rule"></div><div class="desc">今の現実と、照らし合わせる</div></div>
+</section>
+
+<!-- 80 あくまで目安 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：前置き</span><span class="brand"></span></div>
+  <div class="lead">崩壊を正確に言い当てることは、誰にもできない</div>
+  <div class="stmt">あくまで<span class="em">目安</span>。<br>サインは3つ、注意点を1つ加えます。</div>
+</section>
+
+<!-- 81 サイン3つ agenda -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 5：3つの危険なサイン</span><span class="brand"></span></div>
+  <div class="h-main">本物のバブル崩壊に出る、3つのサイン</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">半導体の作りすぎ</span><span class="d">在庫が積み上がってきたら危険信号</span></div>
+    <div class="row"><span class="no">2</span><span class="t">設備投資の引き下げ</span><span class="d">テック大手が投資を絞り出したら危険</span></div>
+    <div class="row"><span class="no">3</span><span class="t">AIで売上が立っていない</span><span class="d">投資しても、お金を生んでいないなら危険</span></div>
+  </div>
+  <div class="cta">この3つを、今の現実と照らし合わせてみます</div>
+</section>
+
+<!-- 81b 1つずつ照らす -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：現実と照らし合わせる</span><span class="brand"></span></div>
+  <div class="lead">それでは、3つのサインを</div>
+  <div class="stmt">今の現実と、<br>1つずつ<span class="em">照らし合わせて</span>みましょう。</div>
+</section>
+
+<!-- 82 サイン1 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：サイン①半導体の作りすぎ</span><span class="brand"></span></div>
+  <div class="badge">サイン 1</div>
+  <div class="h-main">「作りすぎ・在庫増」——現実は、真逆</div>
+  <div class="cols">
+    <div class="box right"><div class="name">危険なサイン</div><div class="cap">もし起きていたら</div><div class="big">在庫が山積み</div><div class="div"></div><div class="strong">売れ残り＝需要不足</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">今の現実</div><div class="cap">実際は</div><div class="big">品薄・売り切れ</div><div class="div"></div><div class="strong">価格はむしろ上がっている</div></div>
+  </div>
+  <div class="foot-bar">マイクロンが「2027年まで供給が足りない」と言っていた通り。<span class="em">青信号</span></div>
+</section>
+
+<!-- 83 サイン2 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：サイン②設備投資の引き下げ</span><span class="brand"></span></div>
+  <div class="badge">サイン 2</div>
+  <div class="h-main">「投資を絞る」——現実は、6割増</div>
+  <div class="cols">
+    <div class="box right"><div class="name">危険なサイン</div><div class="cap">もし起きていたら</div><div class="big">投資を縮小</div><div class="div"></div><div class="strong">需要への自信喪失</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">今の現実</div><div class="cap">実際は</div><div class="big">投資6割増</div><div class="div"></div><div class="strong">アクセルを踏み続けている</div></div>
+  </div>
+  <div class="foot-bar">需要を見込んで、各社は投資を積み増している。<span class="em">青信号</span></div>
+</section>
+
+<!-- 83b 2つとも青信号 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ここまで2つ</span><span class="brand"></span></div>
+  <div class="lead">「作りすぎ」も「投資引き下げ」も、現実は真逆だった</div>
+  <div class="stmt">ここまで2つのサインは、<br>どちらも<span class="em">青信号</span>。残るは3つ目。</div>
+</section>
+
+<!-- 84 サイン3 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：サイン③AIで売上が立っているか</span><span class="brand"></span></div>
+  <div class="lead">3つ目のサインは「AIで売上が立っていないこと」</div>
+  <div class="stmt">巨額の投資をしても、AIがお金を<br>生んでいないなら危険。でも —— <span class="em">数字が反論します。</span></div>
+</section>
+
+<!-- 85 クアルコム 150億ドル metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：クアルコムの目標</span><span class="brand"></span></div>
+  <div class="lead">たとえばクアルコムは、データセンター事業で</div>
+  <div class="h-main">2029年に、年間150億ドルの売上を目指す</div>
+  <div class="metrics">
+    <div class="metric blue hero"><div class="mlbl">クアルコム データセンター事業（2029年目標）</div><div class="mfig">150<span class="u">億ドル</span></div><div class="msub">日本円で およそ2兆3,000億円</div></div>
+  </div>
+  <div class="note">マイクロンも、AI向けメモリ需要を背景に市場予想を上回る決算を出した</div>
+</section>
+
+<!-- 86 AI売上は現実に -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：もう絵に描いた餅ではない</span><span class="brand"></span></div>
+  <div class="lead">AIの売上は</div>
+  <div class="stmt">もう絵に描いた餅ではなく、<br><span class="em">現実の数字</span>として立ち始めている。</div>
+</section>
+
+<!-- 87 3つとも青 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：3つとも青信号</span><span class="brand"></span></div>
+  <div class="lead">ここまで3つ</div>
+  <div class="stmt">どれも、崩壊とは正反対の<br><span class="em">「青信号」</span>でした。</div>
+</section>
+
+<!-- 88 黄信号の芽 FCF -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：1つだけ黄信号の芽</span><span class="brand"></span></div>
+  <div class="lead">ただ、良いことばかりお話しするのも公平ではない</div>
+  <div class="stmt">1つだけ、注意すべき<span class="em">"黄信号の芽"</span>。<br>それが「フリーキャッシュフロー」です。</div>
+</section>
+
+<!-- 89 FCFの動き cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：黄信号の中身</span><span class="brand"></span></div>
+  <div class="badge navy">黄信号</div>
+  <div class="h-main">投資が重すぎて、手元のお金が細る動き</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">A</div><div class="ctitle">アマゾン</div><div class="ctext">フリーキャッシュフローの減少が出始めている</div></div>
+    <div class="card c2"><div class="cno">O</div><div class="ctitle">オラクル</div><div class="ctext">借金で穴を埋めながら投資を続ける状態（赤字）</div></div>
+    <div class="card c3"><div class="cno">AI</div><div class="ctitle">オープンAI</div><div class="ctext">年間およそ2兆円規模の赤字とも報じられている</div></div>
+  </div>
+  <div class="foot-bar">AIにこれだけ投じても、<span class="em">ビジネスとして黒字にするのは簡単ではない</span></div>
+</section>
+
+<!-- 90 オープンAI 2兆赤字 metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：オープンAIの赤字</span><span class="brand"></span></div>
+  <div class="lead">ChatGPTのオープンAIは</div>
+  <div class="h-main">年間、およそ2兆円規模の赤字とも</div>
+  <div class="metrics">
+    <div class="metric up hero"><div class="mlbl">オープンAI 年間赤字（報道）</div><div class="mfig">約2<span class="u">兆円</span></div><div class="msub">黒字化は、簡単ではない</div></div>
+  </div>
+  <div class="note">これは、正直に受け止めるべき事実</div>
+</section>
+
+<!-- 91 でもまだ芽 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：それでも結論は</span><span class="brand"></span></div>
+  <div class="lead">とはいえ、この黄信号も、まだ「芽」の段階</div>
+  <div class="stmt">決定的な3つのサインは、<br>すべて<span class="em">青のまま</span>です。</div>
+</section>
+
+<!-- 92 巻き戻し -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：結論</span><span class="brand"></span></div>
+  <div class="lead">今回の暴落は、バブル崩壊の条件を満たしていない</div>
+  <div class="stmt">やはりこれは、崩壊ではなく<br>上がりすぎた期待の<span class="em">「巻き戻し」</span>です。</div>
+</section>
+
+<!-- ============ ④-2 過去の暴落 ============ -->
+
+<!-- 93 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 6：過去の暴落は、その後どうなったか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 6</span><span class="bar"></span><span>過去の暴落は、その後どうなったのか</span></div>
+  <div class="numbox">06</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">過去の暴落に学ぶ</div><div class="rule"></div><div class="desc">共通点が、見えてくる</div></div>
+</section>
+
+<!-- 93b 共通点 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：過去に学ぶ</span><span class="brand"></span></div>
+  <div class="lead">過去の暴落を振り返ると</div>
+  <div class="stmt">一つの<span class="em">共通点</span>が、<br>はっきり見えてきます。</div>
+</section>
+
+<!-- 94 コロナ -34% metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：2020年 コロナショック</span><span class="brand"></span></div>
+  <div class="lead">2020年のコロナショック</div>
+  <div class="h-main">S&P500は高値から約34%下落。でも —</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">下落率</div><div class="mfig">−34<span class="u">%</span></div><div class="msub">高値からの下落</div></div>
+    <div class="metric blue"><div class="mlbl">高値回復まで</div><div class="mfig">約5<span class="u">カ月</span></div><div class="msub">わずかな期間で回復</div></div>
+  </div>
+  <div class="note">FRBの大規模緩和と、在宅・クラウドといったデジタル需要の拡大が背景</div>
+</section>
+
+<!-- 95 2022金利ショック metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：2022年 金利ショック</span><span class="brand"></span></div>
+  <div class="lead">2022年の金利ショック</div>
+  <div class="h-main">NASDAQは1年で約33%下落</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">下落率（1年）</div><div class="mfig">−33<span class="u">%</span></div><div class="msub">高PERグロース株が削られた</div></div>
+    <div class="metric navy"><div class="mlbl">高値更新まで</div><div class="mfig">2<span class="u">年超</span></div><div class="msub">インフレと利上げで時間がかかった</div></div>
+  </div>
+  <div class="note">それでも、AIやクラウドの需要そのものは消えていなかった</div>
+</section>
+
+<!-- 96 NASDAQ回復 stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 6：需要は消えていなかった</span><span class="brand"></span></div>
+  <div class="h-main">需要が残っていたから、力強く戻した</div>
+  <div class="h-sub">NASDAQの年間リターン（金利ショックの後）</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">2022年</div><div class="cd">金利ショック</div></div><div class="body"><div class="lbl">年間</div><div class="val" style="color:#c0392b;">−33%</div><div class="tag" style="background:#c0392b;">下落</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">2023年</div><div class="cd">回復局面</div></div><div class="body"><div class="lbl">年間</div><div class="val2">+43%</div><div class="tag">力強く上昇</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">2024年</div><div class="cd">上昇継続</div></div><div class="body"><div class="lbl">年間</div><div class="val2">+29%</div><div class="tag">上昇継続</div></div></div>
+  </div>
+</section>
+
+<!-- 97 2024半導体も売られた -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：2024年の半導体</span><span class="brand"></span></div>
+  <div class="lead">そして2024年にも、半導体株は何度も大きく売られた</div>
+  <div class="stmt">8月にSOXが1日<span class="emr">7%超</span>の急落。<br>9月にも、再び<span class="emr">7%超</span>の急落。</div>
+  <div class="note">9月は、NVIDIAの見通しが市場の高すぎる期待に届かず、AI投資の回収不安から</div>
+</section>
+
+<!-- 98 でも終わらなかった -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：それでも</span><span class="brand"></span></div>
+  <div class="lead">それでも</div>
+  <div class="stmt">この程度の下げで、AI半導体相場が<br><span class="em">終わることはありませんでした。</span></div>
+</section>
+
+<!-- 99 教訓 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：教訓</span><span class="brand"></span></div>
+  <div class="lead">教訓は一つです</div>
+  <div class="stmt">重要なのは「どれだけ下げたか」ではなく<br><span class="em">「実需が壊れたかどうか」。</span></div>
+</section>
+
+<!-- 100 回復期間 steps -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 6：回復にかかる時間</span><span class="brand"></span></div>
+  <div class="h-main">壊れ方によって、回復にかかる時間が違う</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">実需が残る急落</div><div class="v">数週〜数カ月</div></div>
+    <div class="sarr">→</div>
+    <div class="step s2"><div class="era">金利で評価が削られる</div><div class="v">1〜2年</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">実需そのものが崩壊</div><div class="v">数年単位</div></div>
+  </div>
+</section>
+
+<!-- 100b 実需が残れば戻る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：カギは実需</span><span class="brand"></span></div>
+  <div class="lead">下げ幅の大きさより、実需が残っているかどうか</div>
+  <div class="stmt">実需が残っていれば、急落は<br><span class="em">数週間から数カ月で戻る</span>こともある。</div>
+  <div class="note">メモリ需要やデータセンター投資そのものが崩れれば、回復は数年単位になる</div>
+</section>
+
+<!-- 101 今回は過熱調整型 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：今回はどれか</span><span class="brand"></span></div>
+  <div class="lead">今回は、マイクロンの決算が記録的で、実需はまだ崩れていない</div>
+  <div class="stmt">「実需崩壊型」ではなく<br><span class="em">「過熱調整型」。</span>過度に悲観する場面ではない。</div>
+</section>
+
+<!-- ============ ④-3 投資増でも株下落 ============ -->
+
+<!-- 102 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 7：投資は増えているのに、なぜ株は下がる？</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 7</span><span class="bar"></span><span>投資は増えているのに、なぜ株は下がる？</span></div>
+  <div class="numbox">07</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">投資 ≠ 株価</div><div class="rule"></div><div class="desc">大事な視点を一つ加える</div></div>
+</section>
+
+<!-- 103 2つのピークは別 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：大事な視点</span><span class="brand"></span></div>
+  <div class="lead">ここで、一つ大事な視点を加えておきます</div>
+  <div class="stmt">「AI投資のピーク」と「AI関連株のピーク」は、<br><span class="em">同じではない。</span></div>
+</section>
+
+<!-- 104 ゴールドマン試算 steps -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 7：ゴールドマンの試算</span><span class="brand"></span></div>
+  <div class="h-main">AIインフラ投資は、まだ拡大が続く見通し</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">2026年</div><div class="v">7,650億ドル</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2031年</div><div class="v">1.6兆ドル</div></div>
+  </div>
+</section>
+
+<!-- 105 投資はピークでない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：投資金額はまだ増える</span><span class="brand"></span></div>
+  <div class="lead">データセンター・GPU・電力設備への投資金額そのものは</div>
+  <div class="stmt">まだ<span class="em">ピークではない</span>可能性が高い。</div>
+</section>
+
+<!-- 106 投資増と株価は別 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：ここで勘違いしない</span><span class="brand"></span></div>
+  <div class="lead">ただ、ここで勘違いしてはいけません</div>
+  <div class="stmt">投資が増え続けることと、<br>株価が上がり続けることは、<span class="emr">別の話</span>です。</div>
+</section>
+
+<!-- 107 車のたとえ fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：車のたとえ</span><span class="brand"></span></div>
+  <div class="lead">車でたとえると分かりやすい</div>
+  <div class="h-main">スピードは出ているのに、加速の"感じ"は弱くなる</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまで</div><div class="c-v">50→100km</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">これから</div><div class="c-v">100→120km</div></div>
+    <div class="arr">＝</div>
+    <div class="result" style="background:linear-gradient(135deg,var(--orange),var(--orange2));box-shadow:0 12px 26px rgba(230,145,42,.32);"><div class="r-l">加速の感じ</div><div class="r-v">弱まる</div></div>
+  </div>
+  <div class="note">50→100の一気の加速が、これまでのAI関連株。120でもスピードは出ているが、勢いは鈍る</div>
+</section>
+
+<!-- 108 伸び率が鈍ると下がる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：株価が見ているもの</span><span class="brand"></span></div>
+  <div class="lead">AI投資の金額はまだ増えている。でも、伸び率が鈍ると</div>
+  <div class="stmt">株価が見ているのは、金額そのものより<br><span class="em">「どれだけ期待を上回って成長するか」。</span></div>
+</section>
+
+<!-- 109 株が先にピーク -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：投資全般の原則</span><span class="brand"></span></div>
+  <div class="lead">つまり</div>
+  <div class="stmt">AI投資はまだ拡大しているのに、<br>AI関連株が<span class="emr">先にピークをつける</span>可能性がある。</div>
+</section>
+
+<!-- 110 これから見るべき点 cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：これから見るべきポイント</span><span class="brand"></span></div>
+  <div class="badge">2つの着眼点</div>
+  <div class="h-main">これから、本当に見るべきポイント</div>
+  <div class="grid g2">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">来年以降の投資計画</div><div class="ctext">ハイパースケーラーの投資計画が、市場予想を上回るのか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">利益の成長</div><div class="ctext">その巨額投資が、実際に利益の成長につながるのか</div></div>
+  </div>
+  <div class="foot-bar">見るべきは踏み込みが<span class="em">「さらに強まるのか、少し緩むのか」</span></div>
+</section>
+
+<!-- 111 だから選別 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：だから選別が重要に</span><span class="brand"></span></div>
+  <div class="lead">アクセルの踏み込みが強まるのか、緩むのか</div>
+  <div class="stmt">だからこそ、次にお話しする<br><span class="em">「選別」</span>が、これまで以上に重要になる。</div>
+</section>
+
+<!-- ============ ⑤ 明暗 ============ -->
+
+<!-- 112 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 8：なぜ明暗が分かれたのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 8</span><span class="bar"></span><span>同じAI関連株、なぜ明暗が分かれたのか</span></div>
+  <div class="numbox">08</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">明暗が分かれた</div><div class="rule"></div><div class="desc">選別相場の、はっきりした証拠</div></div>
+</section>
+
+<!-- 113 どれも同じに売られた？ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：思い込み</span><span class="brand"></span></div>
+  <div class="lead">「暴落」と聞くと、AI関連株はどれも同じように売られた、と思いがち</div>
+  <div class="stmt">ところが中身を見ると、<br>同じ「AI関連」でも<span class="em">明暗がはっきり分かれていた。</span></div>
+</section>
+
+<!-- 113b 先週の値動き -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：先週1週間の値動き</span><span class="brand"></span></div>
+  <div class="lead">具体的に、先週1週間の値動きを見てみましょう</div>
+  <div class="stmt">同じ「AI関連」の中で、<br><span class="emr">売られた銘柄</span>と<span class="em">買われた銘柄</span>があった。</div>
+</section>
+
+<!-- 114 売られた銘柄 rank -->
+<section class="slide t-rank">
+  <div class="hdr"><span class="sec">Section 8：大きく売られた銘柄</span><span class="brand"></span></div>
+  <div class="h-main">大きく売られた銘柄（先週1週間）</div>
+  <div class="h-sub">AIデータセンターやメモリへの期待で、それまで買われすぎていた銘柄</div>
+  <div class="rows">
+    <div class="row"><span class="nm">古河電工（光通信・電線）</span><span class="pct up">−15.14%</span></div>
+    <div class="row"><span class="nm">キオクシア（メモリ）</span><span class="pct up">−15.12%</span></div>
+    <div class="row"><span class="nm">太陽誘電（電子部品）</span><span class="pct up">−13.12%</span></div>
+    <div class="row"><span class="nm">村田製作所（DC関連の本命）</span><span class="pct up">−8.34%</span></div>
+  </div>
+</section>
+
+<!-- 115 業績でなく反動 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：売られた理由</span><span class="brand"></span></div>
+  <div class="lead">これらは、業績が崩れたのではない</div>
+  <div class="stmt">上がりすぎた反動で、<br><span class="emr">利益確定売り</span>を浴びた。</div>
+  <div class="note">本命とされた村田製作所でさえ、マイナス8.34%と大きく売られた</div>
+</section>
+
+<!-- 116 上がった銘柄 rank -->
+<section class="slide t-rank">
+  <div class="hdr"><span class="sec">Section 8：しっかり上がった銘柄</span><span class="brand"></span></div>
+  <div class="h-main">同じ週に、しっかり上がった銘柄もある</div>
+  <div class="h-sub">買われて「生き残った」側</div>
+  <div class="rows">
+    <div class="row" style="border-left-color:var(--green);"><span class="nm">フジクラ</span><span class="pct up" style="color:var(--green);">+18.79%</span></div>
+    <div class="row" style="border-left-color:var(--green);"><span class="nm">アドバンテスト（半導体テスター）</span><span class="pct up" style="color:var(--green);">プラス</span></div>
+    <div class="row" style="border-left-color:var(--green);"><span class="nm">ルネサス（車載・産業向け）</span><span class="pct up" style="color:var(--green);">プラス</span></div>
+  </div>
+</section>
+
+<!-- 117 なぜ上がった cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：買われた理由</span><span class="brand"></span></div>
+  <div class="badge">なぜ生き残ったか</div>
+  <div class="h-main">上がった銘柄には、それぞれ理由があった</div>
+  <div class="grid g2">
+    <div class="card c4"><div class="cno">A</div><div class="ctitle">アドバンテスト</div><div class="ctext">マイクロンの好決算を受けた反発を、いち早く吸収したから</div></div>
+    <div class="card c3"><div class="cno">R</div><div class="ctitle">ルネサス</div><div class="ctext">車載・産業向けの比率が高く、AIの過熱からは少し距離があった</div></div>
+  </div>
+  <div class="foot-bar">純粋なAIバブル株かどうかで、<span class="em">明暗が分かれた</span></div>
+</section>
+
+<!-- 118 古河 vs フジクラ 注目 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：いちばん注目してほしい対比</span><span class="brand"></span></div>
+  <div class="lead">ここで、いちばん注目してほしいのが</div>
+  <div class="stmt">古河電工と<span class="em">フジクラ</span>の対比です。</div>
+  <div class="note">実はこの2社、どちらも「AIデータセンターの配線」という、ほとんど同じテーマの会社</div>
+</section>
+
+<!-- 119 古河 vs フジクラ vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：同じテーマ、正反対の結果</span><span class="brand"></span></div>
+  <div class="badge navy">先週1週間</div>
+  <div class="h-main">同じテーマで、30%以上もの差がついた</div>
+  <div class="cols">
+    <div class="box right"><div class="name">古河電工</div><div class="cap">DC配線</div><div class="big">−15.14%</div><div class="div"></div><div class="strong">期待先行の反動</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">フジクラ</div><div class="cap">DC配線</div><div class="big">+18.79%</div><div class="div"></div><div class="strong">買われて生き残った</div></div>
+  </div>
+  <div class="foot-note">ほとんど同じテーマなのに、30%以上の差 —— 何が分けたのか？</div>
+</section>
+
+<!-- 120 分けたのは期待か業績か -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：何が分けたのか</span><span class="brand"></span></div>
+  <div class="lead">なぜ、同じテーマでここまで差がついたのか</div>
+  <div class="stmt">分けたのは、<br><span class="em">「期待」か「実際の業績」か</span>でした。</div>
+</section>
+
+<!-- 121 フジクラ上方修正 fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：フジクラの上方修正</span><span class="brand"></span></div>
+  <div class="lead">フジクラは6月18日、業績予想を大きく上方修正（今期の営業利益見通し）</div>
+  <div class="h-main">会社の想定を超えて、DC向け受注が伸びた</div>
+  <div class="row">
+    <div class="card"><div class="c-l">従来予想</div><div class="c-v">2,110億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">上方修正後</div><div class="c-v">3,100億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result" style="background:linear-gradient(135deg,var(--green),#3fae84);box-shadow:0 12px 26px rgba(47,143,107,.32);"><div class="r-l">引き上げ幅</div><div class="r-v">約 +47%</div></div>
+  </div>
+  <div class="note">AIデータセンター需要が、「期待」ではなく「実際の業績」として表れ始めた</div>
+</section>
+
+<!-- 122 古河は期待先行 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：一方の古河電工</span><span class="brand"></span></div>
+  <div class="lead">一方の古河電工は、同じテーマでも</div>
+  <div class="stmt">期待が先行したまま買われていた分、<br>その反動で<span class="emr">利益確定売り</span>を浴びた。</div>
+</section>
+
+<!-- 123 市場が選び分けた -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：市場が選び分け始めた</span><span class="brand"></span></div>
+  <div class="lead">市場は、同じ「AI関連」でも</div>
+  <div class="stmt">まだ期待だけの銘柄と、実際に利益が伸びた銘柄を<br><span class="em">はっきり選び分け始めた。</span></div>
+  <div class="note">「AI関連だから一律に動く」時代が終わった、何よりの証拠</div>
+</section>
+
+<!-- 124 AIは終わっていない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：これが示すこと</span><span class="brand"></span></div>
+  <div class="lead">この事実が示すのは「AIが終わった」ということでは、決してない</div>
+  <div class="stmt">むしろ逆。本当に必要とされる銘柄が、<br><span class="em">改めて選び直された</span>のです。</div>
+</section>
+
+<!-- 125 選別相場へ vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：ステージが移った</span><span class="brand"></span></div>
+  <div class="badge navy">ステージの変化</div>
+  <div class="h-main">「一斉高」から「選別相場」へ</div>
+  <div class="cols">
+    <div class="box left"><div class="name">これまで</div><div class="cap">相場の性格</div><div class="big">一斉に上昇</div><div class="div"></div><div class="strong">AI関連なら何でも買われた</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">これから</div><div class="cap">相場の性格</div><div class="big">選別相場</div><div class="div"></div><div class="strong">勝ち負けがはっきり分かれる</div></div>
+  </div>
+  <div class="foot-note">全部が一斉に上がる相場から、中身が問われる相場へ</div>
+</section>
+
+<!-- 125b 中身が問われる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：中身が問われる</span><span class="brand"></span></div>
+  <div class="lead">これまでは「AI関連」というだけで、何もかもが一緒に買われた</div>
+  <div class="stmt">その時代が終わり、これからは<br><span class="em">中身</span>が問われる。</div>
+</section>
+
+<!-- 126 暴落の本当の意味 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：暴落の本当の意味</span><span class="brand"></span></div>
+  <div class="lead">これこそが、今回の暴落の本当の意味</div>
+  <div class="stmt">AIは終わるどころか、<br><span class="em">次のステージに入った。</span></div>
+  <div class="note">「AI関連だから上がる」のではなく、「AIの中で、何が本当に伸びるのか」が問われる</div>
+</section>
+
+<!-- ============ ⑤-2 今何をすべきか ============ -->
+
+<!-- 127 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 9：僕たちは今、何をすればいいのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 9</span><span class="bar"></span><span>では、僕たちは今、何をすればいいのか</span></div>
+  <div class="numbox">09</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">今、何をすべきか</div><div class="rule"></div><div class="desc">立場別に、具体的に整理する</div></div>
+</section>
+
+<!-- 128 いちばん大事な結論 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：いちばん大事な結論</span><span class="brand"></span></div>
+  <div class="lead">オルカンやS&P500を、コツコツ積み立ててきた方</div>
+  <div class="stmt">あなたは、特別なことを<br><span class="em">何もしなくて大丈夫</span>です。</div>
+  <div class="note">むしろ、これまで通り淡々と続けるのが、いちばん強い</div>
+</section>
+
+<!-- 129 基準価額で見る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：基準価額で見る</span><span class="brand"></span></div>
+  <div class="lead">実際に積み立てている投信そのものの値段、つまり基準価額で見てみると</div>
+  <div class="stmt">分散がどれだけ効いたかが、<br><span class="em">はっきり分かります。</span></div>
+</section>
+
+<!-- 129b AIに近いほど深く -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：下落は均等ではなかった</span><span class="brand"></span></div>
+  <div class="lead">今回の下落は、すべての商品に均等に来たわけではない</div>
+  <div class="stmt">AIと半導体に<span class="em">近いものほど</span>、<br>深く売られました。</div>
+</section>
+
+<!-- 129c SOX・NASDAQ vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 9：指数でも同じだった</span><span class="brand"></span></div>
+  <div class="h-main">半導体・ハイテクに近い指数ほど、深く下げた</div>
+  <div class="h-sub">それぞれの週間の下落率で見る</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:270px">−7.9%</div><div class="cap">SOX指数</div><div class="sub">半導体株を集めた指数</div></div>
+    <div class="vb"><div class="bar" style="height:161px">−4.7%</div><div class="cap">NASDAQ総合</div><div class="sub">ハイテク中心</div></div>
+  </div>
+  <div class="foot-bar">AIと半導体に近いものほど、<span class="em">深く売られた</span></div>
+</section>
+
+<!-- 130 FANG+ fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 9：①FANG＋（集中型）</span><span class="brand"></span></div>
+  <div class="lead">ハイテク10社に集中した iFreeNEXT FANG+インデックス（1週間）</div>
+  <div class="h-main">集中した商品ほど、深く売られた</div>
+  <div class="row">
+    <div class="card"><div class="c-l">6月22日</div><div class="c-v">95,905円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">6月26日</div><div class="c-v">89,761円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">1週間で</div><div class="r-v">−6.41%</div></div>
+  </div>
+  <div class="note">半導体・ハイテクに近いものほど、深く売られた</div>
+</section>
+
+<!-- 131 S&P500 fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 9：②S&P500（分散型）</span><span class="brand"></span></div>
+  <div class="lead">米国全体に分散した eMAXIS Slim S&P500（1週間）</div>
+  <div class="h-main">幅広い分散は、まるで違う動きだった</div>
+  <div class="row">
+    <div class="card"><div class="c-l">before</div><div class="c-v">44,536円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">after</div><div class="c-v">43,772円</div></div>
+    <div class="arr">＝</div>
+    <div class="result" style="background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 12px 26px rgba(63,127,214,.3);"><div class="r-l">1週間で</div><div class="r-v">−1.72%</div></div>
+  </div>
+  <div class="note">同じAIショックでも、下げは浅く済んだ</div>
+</section>
+
+<!-- 132 オルカン fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 9：③オルカン（全世界）</span><span class="brand"></span></div>
+  <div class="lead">全世界に分散した eMAXIS Slim オール・カントリー（1週間）</div>
+  <div class="h-main">全世界分散は、さらに浅い下げにとどまった</div>
+  <div class="row">
+    <div class="card"><div class="c-l">before</div><div class="c-v">38,306円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">after</div><div class="c-v">37,729円</div></div>
+    <div class="arr">＝</div>
+    <div class="result" style="background:linear-gradient(135deg,var(--green),#3fae84);box-shadow:0 12px 26px rgba(47,143,107,.32);"><div class="r-l">1週間で</div><div class="r-v">−1.51%</div></div>
+  </div>
+  <div class="note">わずかマイナス1.51%にとどまった</div>
+</section>
+
+<!-- 132b 3商品まとめ stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 9：基準価額で見た1週間</span><span class="brand"></span></div>
+  <div class="h-main">同じ1週間でも、下げ幅はこれだけ違った</div>
+  <div class="h-sub">実際に積み立てている投信の、基準価額の下落率</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">FANG＋</div><div class="cd">ハイテク10社に集中</div></div><div class="body"><div class="lbl">1週間</div><div class="val" style="color:#c0392b;">−6.41%</div><div class="tag" style="background:#c0392b;">集中</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">S&P500</div><div class="cd">米国全体に分散</div></div><div class="body"><div class="lbl">1週間</div><div class="val2">−1.72%</div><div class="tag">分散</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">オルカン</div><div class="cd">全世界に分散</div></div><div class="body"><div class="lbl">1週間</div><div class="val2">−1.51%</div><div class="tag">全世界</div></div></div>
+  </div>
+</section>
+
+<!-- 133 4倍差 vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 9：分散の力</span><span class="brand"></span></div>
+  <div class="h-main">同じAIショックでも、下げ幅は4倍以上の差</div>
+  <div class="h-sub">FANG＋（集中） と オルカン（全世界分散）の、1週間の下落率</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:270px">−6.41%</div><div class="cap">FANG＋</div><div class="sub">ハイテク集中</div></div>
+    <div class="vb"><div class="bar" style="height:64px">−1.51%</div><div class="cap">オルカン</div><div class="sub">全世界分散</div></div>
+  </div>
+  <div class="foot-bar">分散した商品ほど、<span class="em">クッションが効いて浅く済んだ</span></div>
+</section>
+
+<!-- 134 慌てて売る理由なし -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：積立勢へ</span><span class="brand"></span></div>
+  <div class="lead">価格が下がった局面は、同じ積立額でより多くの口数を仕込めるタイミング</div>
+  <div class="stmt">だからこそ、<br>慌てて売る理由は<span class="em">見当たりません。</span></div>
+</section>
+
+<!-- 135 4タイプ agenda -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 9：4つのタイプ別に整理</span><span class="brand"></span></div>
+  <div class="h-main">立場によって、最適な動き方は変わる</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">オルカン/S&P500 積立勢</span><span class="d">継続でOK</span></div>
+    <div class="row"><span class="no">2</span><span class="t">ハイテク集中投資</span><span class="d">NASDAQ100・FANG＋・半導体テーマ型</span></div>
+    <div class="row"><span class="no">3</span><span class="t">日本の半導体個別株</span><span class="d">選別の物差しを持つ</span></div>
+    <div class="row"><span class="no">4</span><span class="t">含み損／現金で様子見</span><span class="d">分割で少しずつ</span></div>
+  </div>
+  <div class="cta">ご自身がどれに当てはまるか、考えながら聞いてみてください</div>
+</section>
+
+<!-- 135b タイプ別に見る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ここから4タイプ別に</span><span class="brand"></span></div>
+  <div class="lead">立場によって、最適な動き方は変わります</div>
+  <div class="stmt">ここからは、<span class="em">4つのタイプ別</span>に<br>整理していきます。</div>
+</section>
+
+<!-- 136 タイプ1 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：タイプ①積立勢</span><span class="brand"></span></div>
+  <div class="lead">オルカンやS&P500の積立勢</div>
+  <div class="stmt">これは<span class="em">継続でOK</span>。<br>下落は、判断を変える理由になりにくい。</div>
+</section>
+
+<!-- 137 タイプ2 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：タイプ②ハイテク集中</span><span class="brand"></span></div>
+  <div class="lead">NASDAQ100・FANG＋・半導体テーマ型に集中している方</div>
+  <div class="stmt">総入れ替えは不要。ただし選別相場では<br><span class="emr">一点集中のリスク</span>がこれまでより高まる。</div>
+  <div class="note">怖いと感じるなら、新しく積み立てる分の一部を、より分散の効いた指数へ回す</div>
+</section>
+
+<!-- 138 タイプ3 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：タイプ③日本の半導体個別株</span><span class="brand"></span></div>
+  <div class="lead">「AI関連だから持ち続ける」は、選別相場では通用しにくい</div>
+  <div class="stmt">問われるのは、本当に必要とされる<span class="em">実需</span>と、<br>自分の稼ぎで投資を回収できる力。</div>
+  <div class="note">「この銘柄を買え」ではなく、選別の物差しを持ちましょう、という話</div>
+</section>
+
+<!-- 139 タイプ4 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：タイプ④含み損・現金</span><span class="brand"></span></div>
+  <div class="lead">一番やってはいけないのは、底で投げ売り、そして一度に全額投入</div>
+  <div class="stmt">おすすめは、時間を分けて少しずつ買う<br><span class="em">「分割」</span>です。</div>
+  <div class="note">荒れた局面ほど、何回かに分けて買い下がれば、下げを味方につけられる</div>
+</section>
+
+<!-- 140 共通 守りを足す -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：どのタイプにも共通</span><span class="brand"></span></div>
+  <div class="lead">どのタイプの方にも共通して言えるのが</div>
+  <div class="stmt">「守りを、少し足しておく」<br>という考え方です。</div>
+  <div class="note">米国のAI・半導体に偏った商品ほど、深く下げたという事実がはっきりした</div>
+</section>
+
+<!-- 140b 偏りに気づく -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：まず自分の偏りを見る</span><span class="brand"></span></div>
+  <div class="lead">今回はっきりしたのは、米国のAI・半導体に偏った商品ほど深く下げた事実</div>
+  <div class="stmt">自分の資産が<span class="emr">米国ハイテクに偏っている</span>なら、<br>値動きの違うものを足して、バランスを取る。</div>
+</section>
+
+<!-- 141 守りの選択肢 cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：守りの選択肢</span><span class="brand"></span></div>
+  <div class="badge navy">バランスを取る</div>
+  <div class="h-main">値動きの違うものを足して、バランスを取る</div>
+  <div class="grid">
+    <div class="card c3"><div class="cno">8</div><div class="ctitle">8資産均等型</div><div class="ctext">株式・債券・REITに分散したバランスファンド</div></div>
+    <div class="card c4"><div class="cno">債</div><div class="ctitle">国内債券</div><div class="ctext">株が暴落した時のクッションになりやすい</div></div>
+    <div class="card c2"><div class="cno">T</div><div class="ctitle">TOPIX</div><div class="ctext">米国偏重を薄める意味で</div></div>
+  </div>
+  <div class="foot-bar">自分の資産が米国ハイテクに偏っているなら、<span class="em">違う値動きを足す</span></div>
+</section>
+
+<!-- 141b 銀行株という考え方 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：守りとしての銀行株</span><span class="brand"></span></div>
+  <div class="lead">持ち株が半導体などAI関連に偏っている方へ</div>
+  <div class="stmt">守りとして<span class="em">「銀行株」</span>を<br>組み合わせる、という考え方もあります。</div>
+  <div class="note">値動きの向きが違うものを、あえて一緒に持っておく —— これも分散の一つの形</div>
+</section>
+
+<!-- 141c 金利で逆に動く vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：金利で、逆に動く</span><span class="brand"></span></div>
+  <div class="badge navy">金利が上がると</div>
+  <div class="h-main">成長株と銀行株は、金利で逆に動く</div>
+  <div class="cols">
+    <div class="box right"><div class="name">半導体などの成長株</div><div class="cap">金利上昇は</div><div class="big">逆風</div><div class="div"></div><div class="strong">将来の利益が割り引かれ、株価が下がりやすい</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">銀行株</div><div class="cap">金利上昇は</div><div class="big">追い風</div><div class="div"></div><div class="strong">貸し出しの利ざやが広がり、収益にプラス</div></div>
+  </div>
+  <div class="foot-note">半導体株が金利で売られる局面で、銀行株が逆に支えになりやすい</div>
+</section>
+
+<!-- 141d メガバンク vs 地銀 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：メガバンク vs 地方銀行</span><span class="brand"></span></div>
+  <div class="badge navy">中身はかなり違う</div>
+  <div class="h-main">ひとくちに銀行株でも、中身は違う</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">メガバンク</div><div class="cap">三菱UFJ・三井住友・みずほ</div><div class="big">守りに使いやすい</div><div class="div"></div><div class="strong">海外・大企業取引で事業が分散。売買も活発でわかりやすい</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box left"><div class="name">地方銀行</div><div class="cap">地域密着型</div><div class="big">地域経済次第</div><div class="div"></div><div class="strong">中小企業・住宅ローン・不動産融資が中心。"安い理由"の見極めが必要</div></div>
+  </div>
+  <div class="foot-note">高配当で割安に見える地銀も多いが、その"安さ"が見落としか、地域への不安か</div>
+</section>
+
+<!-- 141e 結論 まずメガバンク -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：まず組み合わせるなら</span><span class="brand"></span></div>
+  <div class="lead">守りとして、まず組み合わせるなら</div>
+  <div class="stmt">地銀よりも<span class="em">メガバンク</span>のほうが、<br>扱いやすい。</div>
+  <div class="note">値動きの違う銀行株を少し足して、金利局面での揺れをやわらげる</div>
+</section>
+
+<!-- 141f 3資産の役割 cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：配分の一例（役割）</span><span class="brand"></span></div>
+  <div class="badge">一つの目安</div>
+  <div class="h-main">50 : 30 : 20 —— 3つの役割で組む</div>
+  <div class="grid">
+    <div class="card c3"><div class="cno">50%</div><div class="ctitle">全世界株式</div><div class="ctext">長期成長のコアに据える。資産を伸ばす主役</div></div>
+    <div class="card c4"><div class="cno">30%</div><div class="ctitle">国内債券</div><div class="ctext">下落への備え。株が売られる局面のクッション</div></div>
+    <div class="card c2"><div class="cno">20%</div><div class="ctitle">TOPIX</div><div class="ctext">米国偏重を薄める。円ベースで分散を効かせる</div></div>
+  </div>
+  <div class="foot-bar">それぞれ役割が違う3つを、<span class="em">一つの目安として組み合わせる</span></div>
+</section>
+
+<!-- 142 配分例 stack -->
+<section class="slide t-stack">
+  <div class="hdr"><span class="sec">Section 9：配分の一例</span><span class="brand"></span></div>
+  <div class="h-main">米国AIへの依存度だけを下げる、配分の一例</div>
+  <div class="h-sub">株式の伸びは残しながら、値動きの違うものでバランスを取る</div>
+  <div class="sbar">
+    <div class="seg b" style="width:50%"><div class="sn">全世界株式</div><div class="sv">50%（長期成長のコア）</div></div>
+    <div class="seg c" style="width:30%"><div class="sn">国内債券</div><div class="sv">30%（下落への備え）</div></div>
+    <div class="seg a" style="width:20%"><div class="sn">TOPIX</div><div class="sv">20%（米国偏重を薄める）</div></div>
+  </div>
+  <div class="total">これは<span class="em">考え方の一例</span>。株式の伸びを残しつつ、米国AIへの依存度を下げる</div>
+</section>
+
+<!-- 142b 配分の狙い text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：この配分の狙い</span><span class="brand"></span></div>
+  <div class="lead">全世界株式50%・国内債券30%・TOPIX20%</div>
+  <div class="stmt">株式の伸びは残しながら、<br><span class="em">米国AIへの依存度だけを下げる。</span></div>
+  <div class="note">あくまで一つの考え方の例。大事なのは、自分の立場に合ったバランスを整えておくこと</div>
+</section>
+
+<!-- 143 もう一歩先 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：もう一歩先の話</span><span class="brand"></span></div>
+  <div class="lead">この選別相場で、これから資金が向かいやすいのはどこか</div>
+  <div class="stmt">注目されているのが、<br>AIの<span class="em">「周辺」と「次」</span>です。</div>
+</section>
+
+<!-- 144 周辺と次 chips -->
+<section class="slide t-chips">
+  <div class="hdr"><span class="sec">Section 9：物色が広がる先</span><span class="brand"></span></div>
+  <div class="h-main">中核だけでなく、周辺と「次」へ広がる可能性</div>
+  <div class="h-sub">NVIDIAやメモリといった中核だけでなく、物色が広がっていく可能性</div>
+  <div class="groups">
+    <div class="grp g-a"><div class="gh">AIの周辺</div><span class="chip">光通信</span><span class="chip">基板</span><span class="chip">電源</span><span class="chip">冷却</span></div>
+    <div class="grp g-b"><div class="gh">AIの次（フィジカルAI）</div><span class="chip">ロボット</span><span class="chip">自動運転</span><span class="chip">産業機械</span></div>
+  </div>
+  <div class="foot-bar">AIが現実世界のモノを動かす<span class="em">「フィジカルAI」</span>にも注目</div>
+</section>
+
+<!-- 144b フィジカルAIとは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：AIの「次」</span><span class="brand"></span></div>
+  <div class="lead">周辺のさらに先にあるのが</div>
+  <div class="stmt">AIが現実世界のモノを動かす<br><span class="em">「フィジカルAI」</span>——ロボットや自動運転。</div>
+</section>
+
+<!-- 145 個人的理由 福祉 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：個人的な理由</span><span class="brand"></span></div>
+  <div class="lead">じつは、僕がフィジカルAIに注目するのには、個人的な理由が</div>
+  <div class="stmt">僕自身、もともと<span class="em">福祉業界</span>で働いていました。<br>医療・介護の現場は、今も深刻な人手不足。</div>
+</section>
+
+<!-- 146 安川電機 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：安川電機のAIロボット</span><span class="brand"></span></div>
+  <div class="lead">そこで注目しているのが、安川電機のAIロボット</div>
+  <div class="stmt">いきなり介助ではなく、まずは病院や介護施設の<br><span class="em">"裏方"</span>の作業を手伝うことから。</div>
+  <div class="note">使用済み器具の仕分けや、備品・タオルの整理といった作業</div>
+</section>
+
+<!-- 147 安川×NVIDIA vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：役割分担</span><span class="brand"></span></div>
+  <div class="badge navy">フィジカルAIの実例</div>
+  <div class="h-main">安川が「手足」、NVIDIAが「目」と「頭脳」</div>
+  <div class="cols">
+    <div class="box left"><div class="name">安川電機</div><div class="cap">担うのは</div><div class="big">手足</div><div class="div"></div><div class="strong">ロボットの動作・制御</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box bluebox"><div class="name">NVIDIA</div><div class="cap">担うのは</div><div class="big">目・頭脳</div><div class="div"></div><div class="strong">AI技術</div></div>
+  </div>
+  <div class="foot-note">介護を全部肩代わりするのではなく、裏方の作業から少しずつ</div>
+</section>
+
+<!-- 148 現実的な可能性 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：現実的な可能性</span><span class="brand"></span></div>
+  <div class="lead">介護を全部肩代わりするのではなく、裏方の作業から少しずつ</div>
+  <div class="stmt">ここに、医療・介護分野のフィジカルAIの<br><span class="em">現実的な可能性</span>があると思っています。</div>
+</section>
+
+<!-- 149 今すぐ買うリストではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ただし</span><span class="brand"></span></div>
+  <div class="lead">繰り返しますが、これらは「今すぐ買うべきリスト」ではありません</div>
+  <div class="stmt">あくまで、選別相場で<br>お金がどう動きやすいか、<span class="em">その力学の話</span>。</div>
+</section>
+
+<!-- 150 大事なこと -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：大事なこと</span><span class="brand"></span></div>
+  <div class="lead">大事なのは、特定の一発を当てにいくことではない</div>
+  <div class="stmt">自分の立場に合った<span class="em">守りと攻めのバランス</span>を、<br>淡々と整えておくこと。</div>
+</section>
+
+<!-- ============ ⑥ 締め ============ -->
+
+<!-- 151 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 10：これだけは覚えてほしい</span><span class="brand"></span></div>
+  <div class="topic"><span>FINAL</span><span class="bar"></span><span>最後に、これだけは覚えてほしい</span></div>
+  <div class="numbox">10</div>
+  <div class="stitle"><div class="label">CONCLUSION</div><div class="ttl">最後の整理</div><div class="rule"></div><div class="desc">今日の結論を、もう一度</div></div>
+</section>
+
+<!-- 151b 今日の結論3点 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 10：今日の結論</span><span class="brand"></span></div>
+  <div class="h-main">今日の結論を、3つに整理する</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">崩壊ではない</span><span class="d">AIの実需は、まだ崩れていない</span></div>
+    <div class="row"><span class="no">2</span><span class="t">崩れたのは期待と株価</span><span class="d">だからこれは「過熱の調整」</span></div>
+    <div class="row"><span class="no">3</span><span class="t">選別相場という次のステージへ</span><span class="d">中身が問われる時代が始まった</span></div>
+  </div>
+  <div class="cta">一つずつ、もう一度おさらいします</div>
+</section>
+
+<!-- 152 崩壊ではなかった -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：結論①</span><span class="brand"></span></div>
+  <div class="lead">今回の暴落は</div>
+  <div class="stmt">AIバブルの「崩壊」では<br><span class="em">ありませんでした。</span></div>
+  <div class="note">マイクロンの記録的な決算が示す通り、AIの実需はまだ崩れていない</div>
+</section>
+
+<!-- 153 崩れたのは期待と株価 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：結論②</span><span class="brand"></span></div>
+  <div class="lead">崩れたのは</div>
+  <div class="stmt">上がりすぎた<span class="emr">「期待」と「株価」</span>のほう。<br>だからこれは、崩壊ではなく「過熱の調整」。</div>
+</section>
+
+<!-- 154 次のステージ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：結論③</span><span class="brand"></span></div>
+  <div class="lead">そしてAIは、終わるどころか</div>
+  <div class="stmt">勝ち負けが分かれる<span class="em">「選別相場」</span>という、<br>次のステージに入った。</div>
+</section>
+
+<!-- 155 最大のリスク -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：最大のリスク</span><span class="brand"></span></div>
+  <div class="lead">最後に一つ、これからの最大のリスクも</div>
+  <div class="stmt">「巨額投資で作ったデータセンターから、<br>本当に十分な利益を<span class="emr">回収できるのか」。</span></div>
+</section>
+
+<!-- 156 崩れれば本物 flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 10：次の分かれ道</span><span class="brand"></span></div>
+  <div class="h-main">実需が崩れたとき、相場の性格が変わる</div>
+  <div class="chain">
+    <div class="node">今は強い実需が<br>相場を支える</div>
+    <div class="arr">→</div>
+    <div class="node danger">投資に見合う<br>稼ぎが出ない</div>
+    <div class="arr">→</div>
+    <div class="node danger">本物のバブル<br>崩壊に近づく</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbe9ea);border-color:var(--redline);">ここが、単なる調整か、本物の崩壊かの分かれ道</div>
+</section>
+
+<!-- 157 2つを気にする cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 10：これから気にすべき2つ</span><span class="brand"></span></div>
+  <div class="badge">2つの着眼点</div>
+  <div class="h-main">ニュースの片隅で、この2つを気にする</div>
+  <div class="grid g2">
+    <div class="card c2"><div class="cno">1</div><div class="ctitle">フリーキャッシュフロー</div><div class="ctext">巨額投資で、手元のお金が細っていないか</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">AIが実際に稼げているか</div><div class="ctext">投資に見合う利益が、出てきているか</div></div>
+  </div>
+  <div class="foot-bar">この2つが、<span class="em">次の分かれ道</span>になる</div>
+</section>
+
+<!-- 157b 方向性は示した -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：どう構えるか</span><span class="brand"></span></div>
+  <div class="lead">僕たちがどう構えるか、方向性はここまで話した通り</div>
+  <div class="stmt">ですが、最終的に決めるのは<br><span class="em">あなた自身</span>です。</div>
+</section>
+
+<!-- 158 決めるのは自分 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：最終的に決めるのは</span><span class="brand"></span></div>
+  <div class="lead">誰かが「上がる」と言ったから買う、のではなく</div>
+  <div class="stmt">なぜ動いたのかを理解したうえで、<br><span class="em">自分の判断</span>で持ち続ける。</div>
+  <div class="note">それが、急落を何度もくぐり抜けるための、いちばん確かな方法</div>
+</section>
+
+<!-- 159 何もしないこともリスク -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：忘れないでほしいこと</span><span class="brand"></span></div>
+  <div class="lead">忘れないでほしいことがあります</div>
+  <div class="stmt">「何もしないこと」もまた、<br>一つの<span class="emr">リスク</span>だということ。</div>
+</section>
+
+<!-- 160 何もしないリスク cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 10：偏りが生むリスク</span><span class="brand"></span></div>
+  <div class="badge navy">どれも偏れば危険</div>
+  <div class="h-main">「動かない」「偏る」にも、リスクがある</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">現</div><div class="ctitle">現金だけ</div><div class="ctext">インフレで、お金の価値が静かに目減りする</div></div>
+    <div class="card c2"><div class="cno">米</div><div class="ctitle">米国株・オルカン偏重</div><div class="ctext">為替の波を、まともに受ける</div></div>
+    <div class="card c3"><div class="cno">降</div><div class="ctitle">市場から降りる</div><div class="ctext">AIが生む成長を、まるごと取り逃す</div></div>
+  </div>
+  <div class="foot-bar">大事なのは、<span class="em">一発を当てにいくことではない</span></div>
+</section>
+
+<!-- 161 分散も個別も vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 10：どちらの人も</span><span class="brand"></span></div>
+  <div class="badge navy">共通する構え</div>
+  <div class="h-main">分散でいく人も、個別で勝負する人も</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">分散でいくなら</div><div class="cap">やること</div><div class="big">淡々と継続</div><div class="div"></div><div class="strong">自分に合った分散を続ける</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">個別でいくなら</div><div class="cap">やること</div><div class="big">中身を見て選ぶ</div><div class="div"></div><div class="strong">実需と自己資金の回収力で選び続ける</div></div>
+  </div>
+  <div class="foot-note">選別相場では、その「目」こそが、いちばんの武器になる</div>
+</section>
+
+<!-- 162 判断を変える理由にならない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：最後に</span><span class="brand"></span></div>
+  <div class="lead">今回のような暴落は</div>
+  <div class="stmt">長期で投資する人にとって、<br>判断を変える理由には<span class="em">なりにくい。</span></div>
+</section>
+
+<!-- 162b コメント募集 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：ぜひ教えてください</span><span class="brand"></span></div>
+  <div class="lead">ぜひ、コメント欄で教えてください</div>
+  <div class="stmt">あなたが今どんな株を持っていて、<br><span class="em">なぜその株を持っているのか。</span></div>
+  <div class="note">動画へのご意見・ご感想でも構いません。皆さんの声を楽しみにしています</div>
+</section>
+
+<!-- 163 エンディング -->
+<section class="slide t-closing">
+  <div class="big">これは崩壊ではなく、<br>AIは<span class="em">次のステージ</span>へ。</div>
+  <div class="sub">なぜ動いたのかを理解して、自分の判断で持ち続ける</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span><span class="tg">💬 コメント</span></div>
+</section>
+
+</body>
+</html>
