@@ -49,6 +49,7 @@
 - 変換：`スライド/`で `python convert.py "日経平均10万円は近いか.html"`（PDF＋PNG/ 1920×1080）
 - 型別の目安：単一数字=t-metric(hero)／2量比較=t-vs・t-vbars／シェア%=t-rank／連鎖=t-flow／推移=t-steps／3指標=t-stats／割合=t-prop
 - 行が多い型（rank7行・agenda6行）は`.compact`必須
+- 高配当株パートは、ナレーションを「利回り → 続けられるか」と「利益の余裕／配当方針／業種分散」の3点に圧縮する。スライドもこの3点を基本とし、DOEの定義、配当性向の計算式、下限配当との差額は補足テロップまたは補足スライドに分離する。
 </content>
 </invoke>
 <invoke name="Glob">
