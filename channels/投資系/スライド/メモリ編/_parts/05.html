@@ -1,0 +1,533 @@
+<!-- ================= ⑤ なぜメモリが、世界の奪い合いになったのか ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：メモリ争奪戦の理由</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4 / 10</span><span class="bar"></span><span>なぜ奪い合いになるのか</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">なぜメモリが、世界の<br>奪い合いになったのか</div><div class="rule"></div><div class="desc">ここからは、需要の側を見ていきます</div></div>
+</section>
+
+<!-- ===== 理由1 ===== -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：ボトルネックの移動</span><span class="brand"></span></div>
+  <div class="lead">理由の1つ目</div>
+  <div class="stmt">AIの性能を左右するものが、<br>GPUの計算力<span class="em">だけではなくなった</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由1：GPUだけでは足りない</span><span class="brand"></span></div>
+  <div class="h-main">高性能なGPUを、どれだけ並べても</div>
+  <div class="chain">
+    <div class="node">GPUを増やす</div>
+    <div class="arr">→</div>
+    <div class="node danger">必要なデータが<br>すぐに届かない</div>
+    <div class="arr">→</div>
+    <div class="node danger">GPUは十分に<br>働けない</div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由1：たとえるなら</span><span class="brand"></span></div>
+  <div class="badge navy">例えるなら、こういうことです</div>
+  <div class="h-main">シェフを増やしても、通路が細ければ料理は増えない</div>
+  <div class="grid g2">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">GPU ＝ シェフ</div><div class="ctext">どれだけ優秀なシェフを増やしても</div></div>
+    <div class="card c1"><div class="cno">2</div><div class="ctitle">通路が細い</div><div class="ctext">食材を運ぶ通路が細ければ、料理が出てくるスピードは上がらない</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：追いつかなくなった側</span><span class="brand"></span></div>
+  <div class="lead">GPUの計算力が急速に高まったことで</div>
+  <div class="stmt">データを保存してGPUへ送り届ける<br><span class="emr">メモリの側</span>が、追いつかなくなりました。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：HBMとは</span><span class="brand"></span></div>
+  <div class="lead">そこで重要になったのが、HBMという高性能なメモリ</div>
+  <div class="stmt">メモリを何段にも積み重ねて、<br>GPUの<span class="em">すぐ隣</span>に置きます。</div>
+  <div class="note">さっきの厨房でいえば、すぐ横に食材庫を建てて、通路も広げたようなものです</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">理由1：GPUに載るメモリの量</span><span class="brand"></span></div>
+  <div class="lead">エヌビディアの主力GPUに載るメモリ</div>
+  <div class="h-main">数年で、これだけ増えた</div>
+  <div class="row">
+    <div class="card"><div class="c-l">数年前まで</div><div class="c-v">80GB</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年後半に出る最新のもの</div><div class="c-v">288GB</div></div>
+    <div class="arr">→</div>
+    <div class="result" style="background:linear-gradient(135deg,var(--orange),var(--orange2));box-shadow:0 12px 26px rgba(230,145,42,.32);"><div class="r-l">GPU1枚あたり</div><div class="r-v">3.6倍</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：メモリの位置づけ</span><span class="brand"></span></div>
+  <div class="lead">メモリ大手 マイクロンの説明</div>
+  <div class="stmt">メモリはもはや単なる部品ではなく、<br>AIの性能を左右する<span class="em">戦略的な資産</span>になった。</div>
+</section>
+
+<section class="slide t-agenda compact">
+  <div class="hdr"><span class="sec">理由1：AIの成長を制限する要因</span><span class="brand"></span></div>
+  <div class="h-main">世界最大の資産運用会社も、メモリを挙げている</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">電力</span><span class="d">ブラックロックが挙げる、AIの成長を制限する要因</span></div>
+    <div class="row"><span class="no">2</span><span class="t">データセンター</span><span class="d">同上</span></div>
+    <div class="row"><span class="no">3</span><span class="t">半導体</span><span class="d">同上</span></div>
+    <div class="row"><span class="no">4</span><span class="t">メモリ</span><span class="d">この3つと並べて挙げられている</span></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：1年先まで押さえている</span><span class="brand"></span></div>
+  <div class="lead">マイクロンが2026年供給分のHBMを、すでに決め終えている</div>
+  <div class="stmt">顧客が必要になってから買うのではなく、<br>1年先の生産分まで、<span class="em">先に押さえている</span>。</div>
+  <div class="note">それほど、先端メモリが足りていないということです</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由1：ただし</span><span class="brand"></span></div>
+  <div class="badge">ここは、何度でも申し上げます</div>
+  <div class="h-main">産業として伸びることと、株価が上がることは別</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">産業として</div><div class="cap">キオクシアは</div><div class="big">AIデータセンター<br>向けの恩恵企業</div></div>
+    <div class="vsmark">≠</div>
+    <div class="box right"><div class="name">株価は</div><div class="cap">7月の最終週</div><div class="big">およそ −17%</div></div>
+  </div>
+  <div class="foot-note">将来への期待がすでに株価に織り込まれていれば、業績が良くても売られることがあります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：まとめ</span><span class="brand"></span></div>
+  <div class="stmt">AIのボトルネックが、GPUの計算力だけでなく、<br>データを運ぶ<span class="em">メモリにも広がった</span>。</div>
+  <div class="note">これが、世界的なメモリの争奪戦が起きている、理由の1つです</div>
+</section>
+
+<!-- ===== 理由2 ===== -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：推論の時代</span><span class="brand"></span></div>
+  <div class="lead">理由の2つ目</div>
+  <div class="stmt">AIが「学習する段階」から、<br>「<span class="em">多くの人に使われる段階</span>」へ進んだ。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由2：学習と推論</span><span class="brand"></span></div>
+  <div class="h-main">2つは、計算の起き方が違う</div>
+  <div class="cols">
+    <div class="box left"><div class="name">学習</div><div class="cap">AIを賢くするための計算</div><div class="big">まとめて<br>1回</div><div class="div"></div><div class="strong">大きな計算を、まとめて行う</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">推論</div><div class="cap">質問に答える・要約する</div><div class="big">使うたびに<br>毎回</div><div class="div"></div><div class="strong">誰かが使うたびに発生する</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：増え方</span><span class="brand"></span></div>
+  <div class="stmt">使う人が増えるほど、質問の回数が増えるほど、<br>必要な計算とメモリも、<span class="em">そのぶん増えていきます</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：会話のメモ</span><span class="brand"></span></div>
+  <div class="lead">AIは、会話の途中で、それまでの話を忘れないように一時的なメモを持っています</div>
+  <div class="stmt">会話が長いほど、読ませる資料が多いほど、<br>そのメモは<span class="em">大きくなります</span>。</div>
+  <div class="note">同時に使う人が増えれば、人数分のメモも必要になります</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由2：置き場所は3つある</span><span class="brand"></span></div>
+  <div class="badge navy">必要になるメモリは、HBMだけではない</div>
+  <div class="h-main">机に置ききれない資料は、棚へ。さらに大量なら、倉庫へ</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">作業机 ＝ HBM</div><div class="ctext">AIのすぐ手元にある、いちばん速いメモリ</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">棚 ＝ サーバー向けDRAM</div><div class="ctext">机に置ききれない資料を、すぐ後ろに置く</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">倉庫 ＝ SSD</div><div class="ctext">データセンター向けの、大量の保管場所</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：AIが動く場所も増えている</span><span class="brand"></span></div>
+  <div class="lead">クラウドのデータセンターだけではありません</div>
+  <div class="stmt">企業の社内システム、自動車、工場の機械、ロボット。<br>AIが動く場所が増えれば、<span class="em">その場所ごとにメモリが要ります</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由2：ただし</span><span class="brand"></span></div>
+  <div class="badge">すべてのメモリ需要が、同じように強いわけではありません</div>
+  <div class="h-main">主要10社の中にも、追い風をそのまま受けない会社がある</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">AIサーバー向け</div><div class="cap">主力の用途</div><div class="big">HBM・DRAM<br>SSD</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box left"><div class="name">ルネサス／ローム</div><div class="cap">主力の用途</div><div class="big">自動車・産業用<br>の機械</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：混ぜてはいけない2つ</span><span class="brand"></span></div>
+  <div class="stmt">AIのためにメモリが足りない、という話と、<br>半導体の会社がどこも同じように伸びる、という話は、<span class="emr">別です</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：まとめ</span><span class="brand"></span></div>
+  <div class="lead">学習の段階から、多くの人が日常的に使う推論の段階へ</div>
+  <div class="stmt">HBMだけでなく、<br>サーバー向けDRAMやSSDにも<span class="em">需要が広がっています</span>。</div>
+</section>
+
+<!-- ===== 理由3 ===== -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：すぐには増やせない</span><span class="brand"></span></div>
+  <div class="lead">理由の3つ目</div>
+  <div class="stmt">足りないと分かっていても、<br><span class="emr">すぐには増やせない</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由3：普通の商品なら</span><span class="brand"></span></div>
+  <div class="h-main">普通の商品なら、こうなります</div>
+  <div class="chain">
+    <div class="node">値段が上がる</div>
+    <div class="arr">→</div>
+    <div class="node">作る会社が<br>増産する</div>
+    <div class="arr">→</div>
+    <div class="node">やがて値段は<br>落ち着く</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf4f4,#fbeced);border-color:#e6bcbe;">ところが、メモリではこれが効きません</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由3：理由は、時間</span><span class="brand"></span></div>
+  <div class="h-main">メモリの工場は、製品が出るまでに数年かかる</div>
+  <div class="chain">
+    <div class="node">建てると<br>決める</div>
+    <div class="arr">→</div>
+    <div class="node">建物を建てて<br>装置を入れる</div>
+    <div class="arr">→</div>
+    <div class="node danger">狙った品質で<br>安定して作れるまで</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：積む設備も要る</span><span class="brand"></span></div>
+  <div class="lead">今の先端メモリは、ただ作るだけでは終わりません</div>
+  <div class="stmt">何段にも積み重ねて、隙間を固めて、検査する。<br>この<span class="em">積み上げる工程の設備</span>も、同時に増やす必要があります。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：出てくるのは数年後</span><span class="brand"></span></div>
+  <div class="stmt">今日お金を出しても、<br>モノが出てくるのは<span class="emr">数年後</span>だということです。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：各社は動いている</span><span class="brand"></span></div>
+  <div class="lead">では、各社は何もしていないのか</div>
+  <div class="stmt">そんなことはありません。<br>むしろ、<span class="em">はっきり動いています</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由3：マイクロンの設備投資</span><span class="brand"></span></div>
+  <div class="lead">メモリ大手 マイクロンの発表</div>
+  <div class="h-main">2026年の設備投資を、ここまで引き上げる</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">マイクロン 2026年 設備投資</div>
+      <div class="mfig">200<span class="u">億ドル</span></div>
+      <div class="msub">装置の発注も前倒し。クリーンルームも増設している</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由3：メモリ各社の業績</span><span class="brand"></span></div>
+  <div class="badge navy">各社が、過去最高の数字を出している</div>
+  <div class="h-main">それでも、投資を積み増している</div>
+  <div class="grid g2">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">サムスン電子</div><div class="ctext">2026年1〜3月期、メモリ事業で四半期として過去最高の売上と利益。次世代のHBM4も初期の量産販売を開始</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">SKハイニックス</div><div class="ctext">AI向けの高付加価値な製品が伸びて、過去最高の業績</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：何よりの証拠</span><span class="brand"></span></div>
+  <div class="lead">過去最高の数字を出しながら、同時に投資を積み増している</div>
+  <div class="stmt">これは、<span class="em">需要に追いつけていない</span>という、<br>何よりの証拠です。</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">理由3：投資は増えても、供給は増えない</span><span class="brand"></span></div>
+  <div class="lead">DRAMの設備投資（業界全体・トレンドフォース）</div>
+  <div class="h-main">投資を増やしても、出てくる量はほとんど変わらない</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2025年</div><div class="c-v">537億ドル</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年（見通し）</div><div class="c-v">613億ドル</div></div>
+    <div class="arr">→</div>
+    <div class="result" style="background:linear-gradient(135deg,#1b3157,#2a4a7e);box-shadow:0 12px 26px rgba(19,35,63,.32);"><div class="r-l">2026年の供給は</div><div class="r-v">ほぼ横ばい</div></div>
+  </div>
+  <div class="note">工場を広げようにも、クリーンルームの空きが限られているためです</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：新工場が動くのは</span><span class="brand"></span></div>
+  <div class="lead">マイクロンがアメリカに建てている新しい工場も</div>
+  <div class="stmt">動き出すのは、<br><span class="em">2027年から</span>です。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：ただし</span><span class="brand"></span></div>
+  <div class="lead">ここは冷静に見る必要があります</div>
+  <div class="stmt">供給が増えないことは、<br><span class="emr">永遠を意味しません</span>。</div>
+  <div class="note">今まさに各社が巨額の投資をしている。数年後には、その供給が立ち上がってきます</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由3：言えることと、言えないこと</span><span class="brand"></span></div>
+  <div class="h-main">「当面は足りない」であって、「ずっと足りない」ではない</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">言えること</div><div class="cap">はっきりしているのは</div><div class="big">今は<br>足りていない</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box left"><div class="name">言えないこと</div><div class="cap">誰にも断定できない</div><div class="big">この足りなさが<br>何年続くのか</div></div>
+  </div>
+  <div class="foot-note">今の増産も、いずれ次の値崩れの入り口になり得ます。しかも株価は、それを先回りします</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：まとめ</span><span class="brand"></span></div>
+  <div class="lead">足りない。しかも、すぐには増やせない</div>
+  <div class="stmt">その状態にあるものを、<br>世界が同時に欲しがったとき、<span class="em">何が起きるのか</span>。</div>
+  <div class="note">ここから、話は企業どうしの競争を超えていきます</div>
+</section>
+
+<!-- ===== 理由4 ===== -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：国家が奪い合う</span><span class="brand"></span></div>
+  <div class="lead">理由の4つ目</div>
+  <div class="stmt">足りないものは、<br><span class="emr">国家が奪い合う</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由4：半導体はどこに入っているか</span><span class="brand"></span></div>
+  <div class="badge navy">パソコンやスマートフォンだけのものではない</div>
+  <div class="h-main">そもそも、なぜ国が半導体をここまで気にするのか</div>
+  <div class="grid">
+    <div class="card c2"><div class="cno">1</div><div class="ctitle">産業</div><div class="ctext">工場の機械、自動車</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">社会の基盤</div><div class="ctext">電力網、通信</div></div>
+    <div class="card c1"><div class="cno">3</div><div class="ctitle">安全保障</div><div class="ctext">兵器にも入っている</div></div>
+  </div>
+  <div class="foot-bar">だから各国は半導体を、経済政策ではなく<span class="em">国の安全に関わる問題</span>として扱っています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：韓国①</span><span class="brand"></span></div>
+  <div class="lead">まず、韓国です</div>
+  <div class="stmt">韓国にとって、メモリは<br><span class="em">国の柱そのもの</span>です。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由4：韓国②</span><span class="brand"></span></div>
+  <div class="lead">韓国の輸出に占める半導体の比率</div>
+  <div class="h-main">2社がメモリで上位を握ること自体が、国の交渉力になる</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">韓国の輸出に占める半導体</div>
+      <div class="mfig">約13<span class="u">%</span></div>
+      <div class="msub">サムスン電子とSKハイニックス</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由4：韓国③</span><span class="brand"></span></div>
+  <div class="badge">投じる金額もけた違い</div>
+  <div class="h-main">1つの国が投じる金額として、異例の規模</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">5,760億ドル</div><div class="ctext">2026年6月末、韓国が打ち出したAI・半導体構想</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">5,000億ドル超</div><div class="ctext">7月、SKグループとエヌビディアのデータセンター・次世代メモリ構想</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">最大2,000億ドル</div><div class="ctext">同じく7月、サムスン電子とブロードコムの連携</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：中国①</span><span class="brand"></span></div>
+  <div class="lead">次に、中国です</div>
+  <div class="stmt">弱点は、半導体を<span class="emr">輸入に頼っている</span>こと。<br>外から止められれば、産業も軍事も止まります。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由4：中国②</span><span class="brand"></span></div>
+  <div class="lead">7月27日、CXMTが上海市場へ上場</div>
+  <div class="h-main">アジアでも最大級の規模だった</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">CXMT 上場による調達額</div>
+      <div class="mfig">86<span class="u">億ドル</span></div>
+      <div class="msub">1つの会社がお金を集めた、という話にとどまりません</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：中国③</span><span class="brand"></span></div>
+  <div class="lead">国の方針として、メモリを自分たちで作れるようにする</div>
+  <div class="stmt">その動きが、<br><span class="em">株式市場を通じて形になったもの</span>です。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由4：中国④</span><span class="brand"></span></div>
+  <div class="badge navy">ここが重要です</div>
+  <div class="h-main">中国が、メモリに力を入れる理由</div>
+  <div class="cols">
+    <div class="box left"><div class="name">計算用半導体</div><div class="cap">いちばん先端の領域</div><div class="big">まだアメリカに<br>追いついていない</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">メモリ</div><div class="cap">こちらなら</div><div class="big">追いつける<br>可能性がある</div></div>
+  </div>
+  <div class="foot-note">メモリで自給率を上げることが、制裁への耐性を高めるいちばん現実的な道になっています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：台湾①</span><span class="brand"></span></div>
+  <div class="lead">3つ目は、台湾です</div>
+  <div class="stmt"><span class="em">シリコンシールド</span>、シリコンの盾。<br>半導体そのものが、国防の一部になっている。</div>
+  <div class="note">世界が台湾の半導体に頼っている限り、その台湾を守ろうとする力が働く、という考え方です</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：台湾②</span><span class="brand"></span></div>
+  <div class="lead">だから台湾は、技術の流出に極めて厳しい</div>
+  <div class="stmt">TSMCの元幹部が、技術を持ち出した疑いで<span class="emr">起訴</span>されています。</div>
+  <div class="note">一企業の機密の問題ではなく、国家の核心技術を守る、という扱いです</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由4：アメリカ①</span><span class="brand"></span></div>
+  <div class="badge navy">4つ目は、アメリカです</div>
+  <div class="h-main">アメリカの立ち位置は、少し違う</div>
+  <div class="grid">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">設計</div><div class="ctext">半導体を設計する力で優位を保っている</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">製造装置</div><div class="ctext">作るための装置でも強い</div></div>
+    <div class="card c2"><div class="cno">3</div><div class="ctitle">ルール</div><div class="ctext">どの国に、どの性能の半導体を売ってよいか。輸出管理で決めている</div></div>
+  </div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由4：アメリカ②</span><span class="brand"></span></div>
+  <div class="badge">ただし、ここは単純ではありません</div>
+  <div class="h-main">緩めながら、締める</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">緩める</div><div class="cap">一方で</div><div class="big">高性能なAI半導体の<br>中国向け出荷を認める</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box right"><div class="name">締める</div><div class="cap">同じ時期に</div><div class="big">商務省の高官が<br>追加の規制もあり得ると話す</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：日本①</span><span class="brand"></span></div>
+  <div class="lead">そして、日本です</div>
+  <div class="stmt">この争いを、<br><span class="emr">いちばん痛い形で経験した国</span>です。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由4：日本②</span><span class="brand"></span></div>
+  <div class="lead">1980年代、日本は半導体で世界の首位に立っていた</div>
+  <div class="h-main">とくにDRAMというメモリでは</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">日本企業の世界シェア（一時）</div>
+      <div class="mfig">およそ8<span class="u">割</span></div>
+      <div class="msub">世界で使われるメモリの8割が日本製だった時代が、実際にありました</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-agenda compact">
+  <div class="hdr"><span class="sec">理由4：日本③</span><span class="brand"></span></div>
+  <div class="h-main">そこから日本は、主役の座を失っていく</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">日米半導体協定</span><span class="d">1986年。きっかけの1つ。ただし、原因はこれだけではない</span></div>
+    <div class="row"><span class="no">2</span><span class="t">韓国メーカーの巨額投資</span><span class="d">競争相手が、桁違いの投資で追い上げた</span></div>
+    <div class="row"><span class="no">3</span><span class="t">円高</span><span class="d">輸出の条件が、大きく変わった</span></div>
+    <div class="row"><span class="no">4</span><span class="t">パソコンの時代への対応の遅れ</span><span class="d">需要の中心が移るのに、追いつけなかった</span></div>
+    <div class="row"><span class="no">5</span><span class="t">設計と製造が分かれていく流れ</span><span class="d">産業の形そのものが変わった</span></div>
+  </div>
+  <div class="cta">こうした変化がいくつも重なって、少しずつ押し出されていきました</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">理由4：日本④</span><span class="brand"></span></div>
+  <div class="badge navy">その翌年、1987年に2つの出来事がありました</div>
+  <div class="h-main">日本が主役を降りた、その年に</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">日本</div><div class="cap">旧東芝の日本人技術者が</div><div class="big">NAND型フラッシュ<br>メモリを発明</div><div class="div"></div><div class="strong">今、スマートフォンやSSDに入っているメモリの原型</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">台湾</div><div class="cap">この年に創業</div><div class="big">TSMC</div><div class="div"></div><div class="strong">よその会社が設計した半導体を、作ることだけ引き受ける</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：日本⑤</span><span class="brand"></span></div>
+  <div class="stmt">日本からは<span class="em">次の技術</span>が生まれ、<br>台湾からは<span class="em">次の仕組み</span>が生まれた。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由4：40年続く争い</span><span class="brand"></span></div>
+  <div class="h-main">主導権をめぐる争いは、舞台を変えながら約40年続いている</div>
+  <div class="chain">
+    <div class="node">DRAM</div>
+    <div class="arr">→</div>
+    <div class="node">NAND</div>
+    <div class="arr">→</div>
+    <div class="node">ロジック半導体</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">AI半導体</div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由4：日本⑥</span><span class="brand"></span></div>
+  <div class="badge navy">かつて世界を制した経験と、今も強い技術の両方がある</div>
+  <div class="h-main">今の日本にあるもの</div>
+  <div class="grid">
+    <div class="card c2"><div class="cno">1</div><div class="ctitle">材料</div><div class="ctext">半導体を作るための素材</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">製造装置</div><div class="ctext">作るための機械</div></div>
+    <div class="card c4"><div class="cno">3</div><div class="ctitle">NAND・先端の組み上げ</div><div class="ctext">メモリ本体と、半導体を組み上げる工程</div></div>
+  </div>
+  <div class="foot-bar">2026年7月21日には、<span class="em">日本成長戦略</span>が閣議決定されました</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：ただし、両刃</span><span class="brand"></span></div>
+  <div class="lead">国が関わることは、良いことばかりではありません</div>
+  <div class="stmt">日本の半導体製造装置にとって、中国は<span class="emr">大口のお客さん</span>でもある。<br>規制が強まれば、大事な売り先を一部失うことになります。</div>
+  <div class="note">この地政学は、日本にとって追い風であると同時に、逆風にもなり得る。両刃だということです</div>
+</section>
+
+<!-- ===== 4つの理由のまとめ ===== -->
+<section class="slide t-agenda compact">
+  <div class="hdr"><span class="sec">Section 4：ここまでの4つ</span><span class="brand"></span></div>
+  <div class="h-main">ここまでの4つを、整理します</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">メモリが、真ん中に出てきた</span><span class="d">AIの性能を左右するものが、メモリにも広がった</span></div>
+    <div class="row"><span class="no">2</span><span class="t">必要なメモリの種類が増えた</span><span class="d">AIが多くの人に使われる段階に入り、HBMの外側にまで広がった</span></div>
+    <div class="row"><span class="no">3</span><span class="t">すぐには増やせない</span><span class="d">足りないと分かっていても、工場は数年かけないと立ち上がらない</span></div>
+    <div class="row"><span class="no">4</span><span class="t">国家が奪い合う</span><span class="d">そして、足りないものは、国が動く</span></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：4つの理由のまとめ</span><span class="brand"></span></div>
+  <div class="h-main">この4つは、バラバラの理由ではありません。1本の川です</div>
+  <div class="chain">
+    <div class="node">主役が変わり</div>
+    <div class="arr">→</div>
+    <div class="node">需要が増え</div>
+    <div class="arr">→</div>
+    <div class="node">供給が追いつかず</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">だから国が動いた</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">順番に、つながっています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：もう1つの答えへ</span><span class="brand"></span></div>
+  <div class="lead">ここまでが、なぜメモリが世界の奪い合いになっているのか、という話でした</div>
+  <div class="stmt">世界中がメモリを奪い合っている。<br>その争奪戦のまん中に、<span class="em">なぜ日本の企業がいるのか</span>。</div>
+  <div class="note">2026年7月、その答えが、はっきり見えた場面がありました</div>
+</section>
