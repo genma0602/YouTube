@@ -1,0 +1,2385 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<title>金利が上がる中で、揺れる日本株</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:50px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 32px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:42px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:18px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:26px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 0;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:60px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:44px;}
+.t-port .bars{display:flex;flex-direction:column;gap:28px;max-width:1000px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:26px;font-weight:800;color:var(--navy);width:250px;}
+.t-port .brow .track{flex:1;height:54px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:300px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:50px;font-weight:800;color:var(--navy);}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:340px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* ===== industry chips map ===== */
+.t-chips{display:flex;flex-direction:column;justify-content:center;padding:56px 60px 0;}
+.t-chips .h-main{margin:0 0 12px;}
+.t-chips .h-sub{margin-bottom:32px;}
+.t-chips .groups{display:flex;gap:24px;justify-content:center;align-items:stretch;}
+.t-chips .grp{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px 28px;text-align:center;}
+.t-chips .grp.g-a{border-top:6px solid var(--blue);} .t-chips .grp.g-b{border-top:6px solid var(--orange);} .t-chips .grp.g-c{border-top:6px solid var(--green);}
+.t-chips .grp .gh{font-size:23px;font-weight:800;margin-bottom:18px;}
+.t-chips .grp.g-a .gh{color:var(--blue);} .t-chips .grp.g-b .gh{color:#cf820f;} .t-chips .grp.g-c .gh{color:var(--green);}
+.t-chips .chip{display:inline-block;margin:6px;padding:11px 18px;border-radius:26px;background:#eef2f7;color:var(--navy);font-size:19px;font-weight:700;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+
+</style></head><body>
+<!-- ================= ① 金利が上がる中で、揺れる日本株（12枚） ================= -->
+
+<section class="slide t-title">
+  <div class="kicker">2026.9 日本株</div>
+  <div class="big">金利が上がる中で、<br><span class="em">揺れる日本株</span></div>
+  <div class="lead">長期金利3%、そして円高 —— 何が出て、それにどう答えが付いたのかを、1つずつ確かめます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">いま、日本株が大きく動いています</div>
+  <div class="stmt">日本株が、<span class="em">金利の上昇</span>と<br><span class="em">円高</span>で揺れています。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：今月ある2つの会合</span><span class="brand"></span></div>
+  <div class="lead">しかも今月は、日銀だけではありません</div>
+  <div class="stmt">アメリカのFRBも、<br><span class="em">利上げするかもしれません</span>。</div>
+  <div class="note">FRBは、日本でいえば日銀にあたる機関です</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">はじめに：為替の動き</span><span class="brand"></span></div>
+  <div class="lead">金利だけではなく、為替も動いています</div>
+  <div class="h-main">円が、大きく上がりました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまで</div><div class="c-v">1ドル 160円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">そこから</div><div class="r-v">一時 152円台</div></div>
+  </div>
+  <div class="note">金利の上昇と、円高。この2つが、同時に来ています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：多くの方が感じていること</span><span class="brand"></span></div>
+  <div class="lead">金利の上昇と円高が重なれば</div>
+  <div class="stmt"><span class="emr">暴落が来るのではないか</span>。<br>そう不安に感じている方も、<br>多いと思います。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">はじめに：3つの選択肢</span><span class="brand"></span></div>
+  <div class="badge navy">いま、多くの方が迷っているところ</div>
+  <div class="h-main">売るか、持つか、買い増すか</div>
+  <div class="grid" style="min-height:400px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">売って待つ</div><div class="ctext">これ以上下がる前に、いったん現金に戻す</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">持って耐える</div><div class="ctext">動かさずに、この揺れをやり過ごす</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">買い増す</div><div class="ctext">下がった今こそ、足していく</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：正直なところ</span><span class="brand"></span></div>
+  <div class="lead">この3つを前にして</div>
+  <div class="stmt"><span class="emr">決められない</span>というのが、<br>正直なところではないでしょうか。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：先に結論から</span><span class="brand"></span></div>
+  <div class="lead">先に、僕の結論をお伝えします</div>
+  <div class="stmt">これからが日本株にとって、<br><span class="em">大チャンスになるかもしれません</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">はじめに：結論の中身</span><span class="brand"></span></div>
+  <div class="badge orange">ただし、言い切れるのはここまで</div>
+  <div class="h-main">この2つを、はっきりさせておきます</div>
+  <div class="grid g2" style="min-height:400px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">悪材料は、まだ全部は出ていません</div><div class="ctext">「もう出尽くした」とは言いません。この先ずっと出ない、という意味でもありません</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">それでも、慌てて売る時期ではありません</div><div class="ctext">足すなら、分けて足していける時期だと考えています</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：今日やること</span><span class="brand"></span></div>
+  <div class="lead">今日は</div>
+  <div class="stmt"><span class="em">何が出て</span>、それに<br><span class="em">どう答えが付いたのか</span>を、<br>1つずつ確かめていきます。</div>
+</section>
+
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">今日お話しすること</span><span class="brand"></span></div>
+  <div class="h-main">大きく、3つに分けてお話しします</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">4つの材料と、その答え</span><span class="d">雇用統計 ／ 金利と円 ／ 原油と中東 ／ 中国</span></div>
+    <div class="row"><span class="no">2</span><span class="t">それでも日本株が強いと言える理由</span><span class="d">利益が出ている。工場が来て、国が予算を投資に変えた</span></div>
+    <div class="row"><span class="no">3</span><span class="t">金利が上がる今、僕たちはどう動くか</span><span class="d">投資初心者の方に向けて、僕なら5つに分けて考えます</span></div>
+  </div>
+  <div class="cta">1つずつ、順番に確かめていきます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：この動画のゴール</span><span class="brand"></span></div>
+  <div class="lead">見終わるころには</div>
+  <div class="stmt">「どう動けばいいか分からない」が、<br><span class="em">「自分はこう動く」</span>に<br>変わっているはずです。</div>
+  <div class="note">ぜひ、最後までご覧ください</div>
+</section>
+
+<!-- ================= ② 雇用統計は出た。でも今回は暴落しなかった（19枚） ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">材料 1：アメリカの雇用統計</span><span class="brand"></span></div>
+  <div class="topic"><span>材料 1 / 4</span><span class="bar"></span><span>アメリカの雇用統計</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">MATERIAL</div><div class="ttl">雇用統計は出た。<br>でも今回は、<br>暴落しなかった</div><div class="rule"></div><div class="desc">9月4日に出た、8月の数字</div></div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">材料 1：出てきた数字</span><span class="brand"></span></div>
+  <div class="h-main">働く人の数は、事前の予想を大きく超えました</div>
+  <div class="h-sub">アメリカの8月の雇用統計（9月4日発表）／前の月と比べて増えた人数</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:110px;font-size:27px;line-height:1.25;padding-top:14px;">5万<br>6,000人</div><div class="cap">事前の予想</div></div>
+    <div class="vb orange"><div class="bar" style="height:320px;font-size:27px;line-height:1.25;padding-top:16px;">16万<br>2,000人</div><div class="cap">実際の数字</div></div>
+  </div>
+  <div class="foot-bar">予想の<span class="em">3倍</span>です</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 1：なぜ株の話になるのか</span><span class="brand"></span></div>
+  <div class="h-main">景気が強すぎると、金利が上がりやすくなります</div>
+  <div class="chain">
+    <div class="node">景気が<br>強すぎる</div>
+    <div class="arr">→</div>
+    <div class="node">FRBは<br>物価を抑えたい</div>
+    <div class="arr">→</div>
+    <div class="node danger">金利を<br>上げやすくなる</div>
+  </div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">材料 1：市場の反応</span><span class="brand"></span></div>
+  <div class="lead">この発表で、市場の見方はこう動きました</div>
+  <div class="h-main">今月、利上げする確率</div>
+  <div class="row">
+    <div class="card"><div class="c-l">発表前</div><div class="c-v">5割</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">発表後</div><div class="r-v">6割近く</div></div>
+  </div>
+  <div class="note">普通なら、ここからハイテク株が売られます</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">材料 1：確率はどこで見るのか</span><span class="brand"></span></div>
+  <div class="badge blue">誰でも確かめられます</div>
+  <div class="h-main">「FedWatch」というページ</div>
+  <div class="grid" style="min-height:400px">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">出しているところ</div><div class="ctext">アメリカの取引所、CME</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">見るための費用</div><div class="ctext">誰でも、無料で見られます</div></div>
+    <div class="card c1"><div class="cno">3</div><div class="ctitle">どんな数字か</div><div class="ctext">世界の投資家が、毎日見ている数字です</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 1：前回はどうだったか</span><span class="brand"></span></div>
+  <div class="lead">実際、前回はそうなりました</div>
+  <div class="stmt"><span class="em">6月5日</span>です。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 1：6月5日に起きたこと</span><span class="brand"></span></div>
+  <div class="h-main">あのときは、2つが重なりました</div>
+  <div class="chain">
+    <div class="node">雇用が<br>予想の倍近く</div>
+    <div class="arr">→</div>
+    <div class="node">利上げの心配が<br>一気に強まる</div>
+    <div class="arr">＋</div>
+    <div class="node danger">ブロードコムの<br>決算への失望</div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">材料 1：6月5日の下げ幅</span><span class="brand"></span></div>
+  <div class="h-main">半導体株が、まとめて売られました</div>
+  <div class="h-sub">SOXは、アメリカの半導体株をまとめた指数です</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">SOX</div><div class="cd">アメリカの半導体株の指数</div></div><div class="body"><div class="lbl">1日で</div><div class="val">−1割</div><div class="tag">6月5日</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">日経平均</div><div class="cd">週明けの東京</div></div><div class="body"><div class="lbl">下げ幅</div><div class="val">−2,500円超</div><div class="tag">週明け</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 1：6月に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">これが</div>
+  <div class="stmt"><span class="emr">6月の急落</span>の、<br>最初のきっかけでした。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 1：今回はどうだったか</span><span class="brand"></span></div>
+  <div class="lead">同じ雇用統計で、利上げの確率も上がった</div>
+  <div class="stmt">ところが今回は、<br><span class="em">違いました</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">材料 1：前回と今回</span><span class="brand"></span></div>
+  <div class="badge navy">同じ材料で、反応が変わった</div>
+  <div class="h-main">6月5日と、9月4日</div>
+  <div class="cols">
+    <div class="box left"><div class="name">前回 ／ 6月5日</div><div class="cap">SOX（米半導体）</div><div class="big">−1割</div><div class="div"></div><div class="strong">週明けの東京では、<br>日経平均が2,500円超の下げ</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">今回 ／ 9月4日</div><div class="cap">S&amp;P500 −0.4% ／ SOX</div><div class="big">＋3.4%</div><div class="div"></div><div class="strong">利上げの確率は上がったのに、<br>半導体は上げた</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 1：起きたこと</span><span class="brand"></span></div>
+  <div class="lead">つまり</div>
+  <div class="stmt">金利が上がりそうな日に、<br><span class="em">半導体だけが買われた</span>。</div>
+  <div class="note">半年前なら、考えにくい動きです</div>
+</section>
+
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">材料 1：なぜ違ったのか</span><span class="brand"></span></div>
+  <div class="h-main">理由は、4つあります</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">雇用の中身</span><span class="d">人数は増えたが、給料の奪い合いではなかった</span></div>
+    <div class="row"><span class="no">2</span><span class="t">景気そのものへの安心</span><span class="d">金利には悪材料でも、企業の利益には安心材料</span></div>
+    <div class="row"><span class="no">3</span><span class="t">株価が、もう下がっていた</span><span class="d">悪材料に驚く人が、もう少なかった</span></div>
+    <div class="row"><span class="no">4</span><span class="t">企業の決算が、良かった</span><span class="d">AIへの投資が、受注と売上になって数字に出ている</span></div>
+  </div>
+</section>
+
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">理由1：雇用の中身</span><span class="brand"></span></div>
+  <div class="lead">働く人は増えましたが、時給の伸びは3.1%で、前の月より鈍りました</div>
+  <div class="h-main">増えた雇用の6割は、飲食店と学校</div>
+  <div class="pbar">
+    <div class="seg main" style="width:60%"><span class="p">6割</span><span class="l">飲食店と、地方自治体が運営する学校</span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">その他</span></div>
+  </div>
+  <div class="note">幅広い会社が人を奪い合い、給料を上げた結果ではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：ここから言えること</span><span class="brand"></span></div>
+  <div class="lead">つまり、雇用は強くても</div>
+  <div class="stmt">物価がもう一度加速するような<br><span class="em">内容ではなかった</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由2：景気そのものへの安心</span><span class="brand"></span></div>
+  <div class="h-main">雇用が強いことは、こちらにはプラスです</div>
+  <div class="chain">
+    <div class="node">雇用が強い</div>
+    <div class="arr">→</div>
+    <div class="node">仕事を失う人が<br>増えない</div>
+    <div class="arr">→</div>
+    <div class="node">家計の買い物も<br>急には減らない</div>
+  </div>
+  <div class="release">金利には悪材料でも、景気と企業の利益には安心材料でした</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">理由3：株価が、もう下がっていた</span><span class="brand"></span></div>
+  <div class="h-main">悪材料に驚く人が、もう少なかった</div>
+  <div class="h-sub">雇用統計が出る前の時点で、すでにこれだけ下げていました</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">SOX</div><div class="cd">アメリカの半導体株の指数</div></div><div class="body"><div class="lbl">7月からの2か月で</div><div class="val">−18%</div><div class="tag">下落</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">日本の主力半導体株</div><div class="cd">高値からの下落率</div></div><div class="body"><div class="lbl">高値から</div><div class="val">3割〜5割</div><div class="tag">下げたまま</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由4：企業の決算が良かった</span><span class="brand"></span></div>
+  <div class="lead">そして4つ目</div>
+  <div class="stmt">AIへの投資は、もう<br><span class="em">実際の受注と売上</span>になって、<br>決算の数字に出ています。</div>
+  <div class="note">これは後半で、数字でお見せします</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">材料 1：答え</span><span class="brand"></span></div>
+  <div class="badge orange">材料 1 の答え</div>
+  <div class="h-main">半導体が、売り買いされる理由が変わってきています</div>
+  <div class="cols">
+    <div class="box left"><div class="name">これまで</div><div class="cap">売り買いの理由</div><div class="big">金利がどうか</div><div class="div"></div><div class="strong">金利が上がりそうな日は、<br>まとめて売られていた</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">いま</div><div class="cap">売り買いの理由</div><div class="big">利益が出ているか</div><div class="div"></div><div class="strong">金利だけで半導体が売られる相場は、<br>終わりつつあります</div></div>
+  </div>
+</section>
+
+<!-- ================= ③ 金利は、もう織り込まれている。円は、まだ（22枚） ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">材料 2：金利</span><span class="brand"></span></div>
+  <div class="topic"><span>材料 2 / 4</span><span class="bar"></span><span>金利と、円</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">MATERIAL</div><div class="ttl">金利は、もう<br>織り込まれている。<br>円は、まだ</div><div class="rule"></div><div class="desc">ここは、日本が主役です</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 2：長期金利とは</span><span class="brand"></span></div>
+  <div class="lead">まず、言葉の意味から</div>
+  <div class="stmt">長期金利とは、<br>国が10年お金を借りるときの<br><span class="em">金利</span>のことです。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">材料 2：9月1日に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">その長期金利が、9月1日に</div>
+  <div class="h-main">1996年以来の高さに乗りました</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">日本の長期金利</div>
+      <div class="mfig">3<span class="u">%</span></div>
+      <div class="msub">1996年以来の水準</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 2：なぜ株が売られるのか</span><span class="brand"></span></div>
+  <div class="lead">国債を持っているだけで3%もらえるなら</div>
+  <div class="stmt">無理をして株を持たなくてもいい。<br><span class="em">そう考える人が出てきます</span>。</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">材料 2：翌日の東京</span><span class="brand"></span></div>
+  <div class="h-main">9月2日、日本株はまとめて下げました</div>
+  <div class="h-sub">一部の業種だけではなく、全部が下がった日です</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col cnavy"><div class="top"><div class="nm">日経平均</div><div class="cd">9月2日</div></div><div class="body"><div class="lbl">下げ幅</div><div class="val">−1,889円</div><div class="tag">大幅安</div></div></div>
+    <div class="col"><div class="top"><div class="nm">下がった業種</div><div class="cd">東証33業種</div></div><div class="body"><div class="lbl">33業種のうち</div><div class="val">すべて</div><div class="tag">全面安</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">日経新聞</div><div class="cd">翌日の見出し</div></div><div class="body"><div class="lbl">紙面には、この言葉</div><div class="val2">うたげの終わり</div><div class="tag">見出し</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">材料 2：6月はどう違ったか</span><span class="brand"></span></div>
+  <div class="badge navy">6月の急落のとき</div>
+  <div class="h-main">あのときは、2つの不安が重なっていました</div>
+  <div class="grid g2" style="min-height:400px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">金利が上がる不安</div><div class="ctext">利上げが近いのではないか、という心配</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">AIの需要への不安</div><div class="ctext">この注文は、続くのかという疑い</div></div>
+  </div>
+  <div class="foot-bar">市場が、<span class="em">売る理由を探していた状態</span>です。だから、あれだけ大きく下げました</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 2：今回との違い</span><span class="brand"></span></div>
+  <div class="lead">ところが今回は、違います。数字で確かめます</div>
+  <div class="stmt">日経平均の1株あたりの利益、<br><span class="em">EPS</span>です。</div>
+  <div class="note">1株あたり、どれだけ利益が出ているかを表す数字です</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">材料 2：利益はどうなったか</span><span class="brand"></span></div>
+  <div class="lead">日経平均の1株あたりの利益（EPS）</div>
+  <div class="h-main">この夏、利益は増えています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">7月下旬</div><div class="c-v">2,790円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">いま</div><div class="c-v">3,007円</div></div>
+    <div class="arr">＝</div>
+    <div class="result" style="background:linear-gradient(135deg,#2f8f6b,#3fae84);box-shadow:0 12px 26px rgba(47,143,107,.32);"><div class="r-l">増加率</div><div class="r-v">＋7.8%</div></div>
+  </div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">材料 2：利益と株価</span><span class="brand"></span></div>
+  <div class="h-main">同じ期間で比べると、伸びたのは利益のほうです</div>
+  <div class="h-sub">7月下旬から9月4日まで／日経平均の1株あたりの利益と、日経平均株価</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:250px">＋7.8%</div><div class="cap">1株あたりの利益</div><div class="sub">EPS</div></div>
+    <div class="vb"><div class="bar" style="height:90px">＋2.8%</div><div class="cap">日経平均</div><div class="sub">株価</div></div>
+  </div>
+  <div class="foot-bar">株価も上がりましたが、<span class="em">利益の伸びのほうが大きい</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 2：PERとは</span><span class="brand"></span></div>
+  <div class="lead">株価が、利益の何倍まで買われているか。PERです</div>
+  <div class="stmt">言い換えれば、<br><span class="em">期待の大きさ</span>です。</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">材料 2：日経平均の期待</span><span class="brand"></span></div>
+  <div class="lead">日経平均のPER</div>
+  <div class="h-main">期待のほうは、下がりました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">7月下旬</div><div class="c-v">23.2倍</div></div>
+    <div class="arr">→</div>
+    <div class="result" style="background:linear-gradient(135deg,#1b3157,#2a4a7e);box-shadow:0 12px 26px rgba(19,35,63,.32);"><div class="r-l">いま</div><div class="r-v">およそ 22.1倍</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">材料 2：半導体株の期待</span><span class="brand"></span></div>
+  <div class="lead">主力の半導体株のPER</div>
+  <div class="h-main">こちらは、もっと大きく下がりました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">7月</div><div class="c-v">46倍 〜 55倍</div></div>
+    <div class="arr">→</div>
+    <div class="result" style="background:linear-gradient(135deg,#1b3157,#2a4a7e);box-shadow:0 12px 26px rgba(19,35,63,.32);"><div class="r-l">いま</div><div class="r-v">33倍 〜 37倍</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 2：この夏に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">つまりこの夏は</div>
+  <div class="stmt">利益が増えた一方で、<br><span class="em">高すぎた期待のほうが削れました</span>。</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">材料 2：利上げは、もう入っている</span><span class="brand"></span></div>
+  <div class="h-main">利上げそのものは、金利の市場にかなり入っています</div>
+  <div class="h-sub">株価ではなく、金利の市場に織り込まれている、という意味です</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">アメリカ</div><div class="cd">年内に少なくとも1回</div></div><div class="body"><div class="lbl">利上げの確率</div><div class="val">8割超</div><div class="tag">織り込み</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">日本</div><div class="cd">9月18日の日銀</div></div><div class="body"><div class="lbl">織り込まれている量</div><div class="val">ほぼ1回分</div><div class="tag">さらに進んでいる</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 2：なぜ、もう入っているのか</span><span class="brand"></span></div>
+  <div class="h-main">日銀が利上げに向かう道筋は、8月の時点で見えていました</div>
+  <div class="chain">
+    <div class="node">7月の終わり<br>15年ぶりの協調介入</div>
+    <div class="arr">→</div>
+    <div class="node">円安を止めるため<br>日銀が利上げへ</div>
+    <div class="arr">→</div>
+    <div class="node">8月の時点で<br>道筋が見えていた</div>
+  </div>
+  <div class="release">市場が18日に初めて知る話ではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 2：ただし、条件があります</span><span class="brand"></span></div>
+  <div class="lead">アメリカの物価は、まだ高いままです</div>
+  <div class="stmt">利上げが1回で終わらず、<br>2回、3回と続くなら、<br><span class="emr">この話は崩れます</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 2：日本は、逆です</span><span class="brand"></span></div>
+  <div class="h-main">円が上がると、金利は下がる方向に働きます</div>
+  <div class="chain">
+    <div class="node">円が上がる</div>
+    <div class="arr">→</div>
+    <div class="node">輸入するものが<br>安くなる</div>
+    <div class="arr">→</div>
+    <div class="node">物価の上がり方が<br>弱まる</div>
+  </div>
+  <div class="release">実際に、円が上がったこの1週間で、長期金利は下がりました</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 2：日本で気をつけるところ</span><span class="brand"></span></div>
+  <div class="lead">だから、日本の長期金利で気をつけるのは</div>
+  <div class="stmt">日銀の利上げより、<br><span class="em">国の予算</span>のほうです。</div>
+  <div class="note">これは後半でお話しします</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 2：円は、まだ</span><span class="brand"></span></div>
+  <div class="lead">ただし、円は別です</div>
+  <div class="stmt">円は、<span class="emr">まだ織り込まれていません</span>。<br>160円から152円台への動きが<br>どこで止まるかは、分かりません。</div>
+  <div class="note">海外で稼ぐ会社には、逆風です</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">材料 2：円の、見るところ</span><span class="brand"></span></div>
+  <div class="badge orange">円で見るべきなのは、こちら</div>
+  <div class="h-main">円は「何円か」ではなく「何円で計算しているか」</div>
+  <div class="cols">
+    <div class="box left"><div class="name">つい見てしまうもの</div><div class="cap">今日の為替</div><div class="big">円が何円か</div><div class="div"></div><div class="strong">毎日動くので、<br>判断がそのたびに揺れます</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">本当に見るもの</div><div class="cap">その会社の前提</div><div class="big">何円で計算しているか</div><div class="div"></div><div class="strong">多くの会社は、1ドル150円前後で<br>今年の利益を計算しています<br><span style="font-size:19px;color:#9aa4b2;">※ 要確認</span></div></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">材料 2：見るべき問い</span><span class="brand"></span></div>
+  <div class="badge blue">「利上げするかどうか」ではありません</div>
+  <div class="h-main">見るべき問いは、この3つです</div>
+  <div class="grid" style="min-height:400px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">アメリカ</div><div class="ctext">利上げが、1回で終わるかどうか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">日本</div><div class="ctext">国の予算が、どうなるか</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">円</div><div class="ctext">会社の前提を、超えるかどうか</div></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 2：答え</span><span class="brand"></span></div>
+  <div class="h-main">最初の手がかりが出る日は、決まっています</div>
+  <div class="chain">
+    <div class="node">9月11日<br><span style="font-size:22px;color:#7a828c;">アメリカの物価</span></div>
+    <div class="arr">→</div>
+    <div class="node">9月16日<br><span style="font-size:22px;color:#7a828c;">FRB</span></div>
+    <div class="arr">→</div>
+    <div class="node">9月18日<br><span style="font-size:22px;color:#7a828c;">日銀</span></div>
+  </div>
+  <div class="release">これが、2つ目の答えです</div>
+</section>
+
+<!-- ================= ④ 原油と中東は半年耐えた。そして11月3日に答えが出る（25枚） ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">材料 3：原油と中東</span><span class="brand"></span></div>
+  <div class="topic"><span>材料 3 / 4</span><span class="bar"></span><span>原油と中東</span></div>
+  <div class="numbox">03</div>
+  <div class="stitle"><div class="label">MATERIAL</div><div class="ttl">原油と中東は<br>半年耐えた。<br>そして11月3日に<br>答えが出る</div><div class="rule"></div><div class="desc">アメリカの中間選挙が、この材料の区切りになります</div></div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">材料 3：いまの原油</span><span class="brand"></span></div>
+  <div class="lead">アメリカとイランの衝突は、半年続いています</div>
+  <div class="h-main">原油は、ここまで上がりました</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">原油 ／ 1バレルあたり</div>
+      <div class="mfig">94<span class="u">ドル前後</span></div>
+      <div class="msub">※ 要確認</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：日本株への伝わり方</span><span class="brand"></span></div>
+  <div class="lead">ここ数週間、日経平均が大きく下げた日は、決まってこれが理由に挙がっていました</div>
+  <div class="stmt">ただ、ここで見てほしいのは、<br><span class="em">アメリカの政治</span>です。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 3：アメリカの事情</span><span class="brand"></span></div>
+  <div class="h-main">ガソリンの値段は、選挙に直結します</div>
+  <div class="chain">
+    <div class="node">ガソリンが高い<br>トラックの燃料は<br>記録的な高さ</div>
+    <div class="arr">→</div>
+    <div class="node danger">11月3日の<br>中間選挙に不利</div>
+    <div class="arr">→</div>
+    <div class="node">政権は、選挙の前に<br>値段を下げたい</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：8月末に出た動き</span><span class="brand"></span></div>
+  <div class="lead">8月の終わりには</div>
+  <div class="stmt">南米の産油国<span class="em">ベネズエラ</span>の油田で、<br>アメリカが権益を取る枠組みも<br>発表されました。</div>
+  <div class="note">すぐに原油が増えるわけではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：ここから言えること</span><span class="brand"></span></div>
+  <div class="lead">それでも</div>
+  <div class="stmt">政権が原油を下げる側に<br>動いていることは、<br><span class="em">はっきりしています</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 3：日本にとっての意味</span><span class="brand"></span></div>
+  <div class="h-main">原油が下がれば、日本の負担は軽くなります</div>
+  <div class="chain">
+    <div class="node">原油が下がる</div>
+    <div class="arr">→</div>
+    <div class="node">日本は<br>輸入国</div>
+    <div class="arr">→</div>
+    <div class="node">企業のコストも<br>家計の負担も<br>軽くなる</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：選挙が終わると</span><span class="brand"></span></div>
+  <div class="lead">そして、選挙を通過すると</div>
+  <div class="stmt"><span class="em">政策が読めるようになります</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">材料 3：過去のデータ</span><span class="brand"></span></div>
+  <div class="lead">世界最大の運用会社ブラックロックの調べ（1970年以降）</div>
+  <div class="h-main">中間選挙のあと、アメリカ株はどう動いたか</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">中間選挙のあとの6か月 ／ アメリカ株</div>
+      <div class="mfig">平均 ＋14.1<span class="u">%</span></div>
+      <div class="msub">出典：ブラックロック</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：日本にはどう伝わるか</span><span class="brand"></span></div>
+  <div class="lead">では、日本には、どう伝わるのか</div>
+  <div class="stmt">いちばん近い例が、<br><span class="em">2022年</span>です。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 3：2022年11月の連鎖</span><span class="brand"></span></div>
+  <div class="h-main">アメリカから、順番に伝わりました</div>
+  <div class="chain">
+    <div class="node">11月<br>アメリカの物価の<br>伸びが鈍る</div>
+    <div class="arr">→</div>
+    <div class="node">アメリカの<br>金利が下がる</div>
+    <div class="arr">→</div>
+    <div class="node">SOXが<br>急騰</div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">材料 3：翌日の東京</span><span class="brand"></span></div>
+  <div class="h-main">翌日の東京では、この3社が一斉に上げました</div>
+  <div class="h-sub">2022年11月／アメリカの半導体株の急騰を受けて</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">レーザーテック</div><div class="cd">検査装置</div></div><div class="body"><div class="lbl">翌日の東京で</div><div class="val2">一斉高</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">東京エレクトロン</div><div class="cd">製造装置</div></div><div class="body"><div class="lbl">翌日の東京で</div><div class="val2">一斉高</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">アドバンテスト</div><div class="cd">検査装置</div></div><div class="body"><div class="lbl">翌日の東京で</div><div class="val2">一斉高</div></div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">材料 3：そこからの半年</span><span class="brand"></span></div>
+  <div class="lead">2022年11月から、翌年5月までで</div>
+  <div class="h-main">日経平均も、ついていきました</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">日経平均 ／ 2022年11月 → 2023年5月</div>
+      <div class="mfig">＋10<span class="u">%</span></div>
+      <div class="msub">同じ経路が通れば、動きは大きく出ます</div>
+    </div>
+  </div>
+  <div class="note">いまの日経平均は、あのときよりAI半導体の比率が高いためです</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：ここは隠しません</span><span class="brand"></span></div>
+  <div class="lead">ただし</div>
+  <div class="stmt"><span class="emr">正直にお伝えします</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">材料 3：日本株の実績</span><span class="brand"></span></div>
+  <div class="lead">アメリカの株が上がっても、日本株が同じように上がったとは限りません</div>
+  <div class="h-main">中間選挙のあとの日本株</div>
+  <div class="metrics">
+    <div class="metric navy">
+      <div class="mlbl">過去4回のうち</div>
+      <div class="mfig">2勝2敗</div>
+      <div class="msub">半分は、上がっていません</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：2018年の例</span><span class="brand"></span></div>
+  <div class="lead">とくに2018年です</div>
+  <div class="stmt">トランプ大統領、利上げ、<br>そして米中の貿易戦争。<br><span class="emr">いまと同じ組み合わせ</span>でした。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">材料 3：2018年に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">アメリカの株は、選挙のあとも上がりました。ところが</div>
+  <div class="h-main">日経平均は、逆に下げています</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">日経平均 ／ 中間選挙のあとの6か月</div>
+      <div class="mfig">−7.8<span class="u">%</span></div>
+      <div class="msub">2018年11月 → 2019年5月</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">材料 3：2018年の理由</span><span class="brand"></span></div>
+  <div class="badge navy">民主党が下院を取ったから、ではありません</div>
+  <div class="h-main">重なったのは、この4つです</div>
+  <div class="grid" style="min-height:400px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">利上げ</div><div class="ctext">金利が上がり続けた</div></div>
+    <div class="card c1"><div class="cno">2</div><div class="ctitle">貿易戦争</div><div class="ctext">米中の対立が深まった</div></div>
+    <div class="card c2"><div class="cno">3</div><div class="ctitle">アップルの販売不安</div><div class="ctext">売れ行きへの懸念が広がった</div></div>
+    <div class="card c2"><div class="cno">4</div><div class="ctitle">半導体の弱い見通し</div><div class="ctext">各社の業績見通しが弱かった</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：2018年から言えること</span><span class="brand"></span></div>
+  <div class="lead">政治の不安は減ったのに</div>
+  <div class="stmt"><span class="emr">利益と金利の環境が、悪くなった</span>。<br>だから日本株は、<br>選挙の効果を受け取れませんでした。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">材料 3：2018年と今年</span><span class="brand"></span></div>
+  <div class="badge orange">組み合わせは同じでも</div>
+  <div class="h-main">では、今年はどうか</div>
+  <div class="cols">
+    <div class="box left"><div class="name">2018年</div><div class="cap">同じだったもの</div><div class="big">利上げ・貿易戦争</div><div class="div"></div><div class="strong">そこに、利益と金利の<br>環境の悪化が重なった</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">今年</div><div class="cap">違うもの</div><div class="big">利益</div><div class="div"></div><div class="strong">利上げも貿易の対立もあるが、<br>会社の利益が伸びている</div></div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">材料 3：今年の利益</span><span class="brand"></span></div>
+  <div class="h-main">アメリカも日本も、利益は伸びています</div>
+  <div class="h-sub">アメリカの大手金融機関JPモルガンの集計 ／ ※ 要確認</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">S&amp;P500</div><div class="cd">1株あたりの利益</div></div><div class="body"><div class="lbl">前の年より</div><div class="val">＋52%</div><div class="tag">増益</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">S&amp;P500</div><div class="cd">利益率</div></div><div class="body"><div class="lbl">2009年の集計開始以来</div><div class="val2">最も高い</div><div class="tag">過去最高</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">日本の会社</div><div class="cd">4月〜6月</div></div><div class="body"><div class="lbl">この四半期の利益</div><div class="val2">過去最高</div><div class="tag">過去最高</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：日本とのつながり</span><span class="brand"></span></div>
+  <div class="lead">しかも今年は</div>
+  <div class="stmt">アメリカのAI投資が、<br><span class="em">日本の会社の利益に直接つながっています</span>。</div>
+  <div class="note">アメリカのAIデータセンター投資が、日本の幅広い業種の株を押し上げていると、同じJPモルガンが分析しています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 3：2018年型になる条件</span><span class="brand"></span></div>
+  <div class="lead">それでも、2018年と同じ型になる条件はあります</div>
+  <div class="stmt">中東の原油の多くが通る<br><span class="emr">ホルムズ海峡が本当にふさがれて</span>、<br>原油100ドルが定着したときです。</div>
+  <div class="note">大きなショックは、選挙の効果を上書きします</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">材料 3：見るべきもの</span><span class="brand"></span></div>
+  <div class="badge blue">見るべきは、選挙の結果ではありません</div>
+  <div class="h-main">確かめるのは、この2つです</div>
+  <div class="grid g2" style="min-height:400px">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">会社の利益</div><div class="ctext">利益が崩れていないか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">AI投資</div><div class="ctext">投資が続いているか</div></div>
+  </div>
+  <div class="foot-bar">この2つが崩れていない限り、選挙前の下げは、悪材料が出た下げではなく<span class="em">選挙待ちの下げ</span>です</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 3：答え</span><span class="brand"></span></div>
+  <div class="h-main">市場は、結果が出る前に織り込み始めます</div>
+  <div class="h-sub">同じブラックロックの過去データでは、S&amp;P500は中間選挙のおよそ1か月前から動き始めています</div>
+  <div class="chain">
+    <div class="node">選挙の<br>およそ1か月前</div>
+    <div class="arr">→</div>
+    <div class="node">選挙後を<br>先取りして動き出す</div>
+    <div class="arr">→</div>
+    <div class="node">11月3日</div>
+  </div>
+  <div class="release">11月3日で、相場を揺らしている不透明感の1つは、確実に消える —— これが、3つ目の答えです</div>
+</section>
+
+<!-- ================= ⑤ 中国は脅威。だから日本に注文が来る（19枚） ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">材料 4：中国</span><span class="brand"></span></div>
+  <div class="topic"><span>材料 4 / 4</span><span class="bar"></span><span>中国との競争</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">MATERIAL</div><div class="ttl">中国は脅威。<br>だから日本に<br>注文が来る</div><div class="rule"></div><div class="desc">脅威は本物です。それでも、注文は日本を通ります</div></div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">材料 4：7月の終わりに起きたこと</span><span class="brand"></span></div>
+  <div class="lead">SKハイニックスは、過去最高の利益を出した直後でした</div>
+  <div class="h-main">韓国のメモリ2社が、1日で大きく下げました</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">SKハイニックス／サムスン ／ 1日の下落率</div>
+      <div class="mfig">−13〜15<span class="u">%</span></div>
+      <div class="msub">2026年7月末</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：下げた理由</span><span class="brand"></span></div>
+  <div class="lead">理由の1つが、中国との競争でした</div>
+  <div class="stmt">同じ日、<br><span class="emr">日本の半導体株も連れて下げています</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：まず、正面から</span><span class="brand"></span></div>
+  <div class="lead">先に、はっきりさせておきます</div>
+  <div class="stmt"><span class="emr">脅威は、本物です</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：中国のAI</span><span class="brand"></span></div>
+  <div class="lead">中国のAI企業ムーンショットAIが、7月に出したAI</div>
+  <div class="stmt">性能の一部で、<br><span class="em">アメリカの最新のAIに迫っています</span>。</div>
+  <div class="note">しかも、それを動かしているのは、中国のファーウェイの半導体です</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">材料 4：国を挙げた投資</span><span class="brand"></span></div>
+  <div class="h-main">中国は、AIを動かす半導体まで国内で揃えようとしています</div>
+  <div class="h-sub">お金と、使い先の両方を、国が用意しています</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">国の基金</div><div class="cd">半導体への投資</div></div><div class="body"><div class="lbl">規模</div><div class="val">7兆円</div><div class="tag">国のお金</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">データセンター</div><div class="cd">政府のお金で建てるもの</div></div><div class="body"><div class="lbl">使うチップ</div><div class="val2">国産が義務</div><div class="tag">需要を確保</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：ここが怖いところ</span><span class="brand"></span></div>
+  <div class="lead">つまり、中国の半導体会社は</div>
+  <div class="stmt"><span class="emr">赤字でも、何年でも耐えられる</span>。<br>ここは、甘く見ないほうがいい。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">材料 4：それでも、差はあります</span><span class="brand"></span></div>
+  <div class="badge navy">ここが分かれ目です</div>
+  <div class="h-main">設計できることと、作れることは別です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">できること</div><div class="cap">中国も</div><div class="big">半導体は作れる</div><div class="div"></div><div class="strong">設計も、製造そのものも、<br>中国のなかでできます</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">まだできないこと</div><div class="cap">いちばん進んだ半導体を</div><div class="big">同じ性能と量で</div><div class="div"></div><div class="strong">台湾のTSMCと同じように作ることは、<br>まだできません</div></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 4：止まっているところ</span><span class="brand"></span></div>
+  <div class="h-main">回路を焼き付ける装置が、手に入りません</div>
+  <div class="chain">
+    <div class="node">回路を<br>焼き付ける装置</div>
+    <div class="arr">→</div>
+    <div class="node">オランダのASML<br>1社しか作れない</div>
+    <div class="arr">→</div>
+    <div class="node danger">中国には<br>売られていない</div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">材料 4：代わりにやっていること</span><span class="brand"></span></div>
+  <div class="h-main">古い装置で作ると、こうなります</div>
+  <div class="chain">
+    <div class="node">古い装置を<br>何度も使う</div>
+    <div class="arr">→</div>
+    <div class="node">工程が増える</div>
+    <div class="arr">→</div>
+    <div class="node danger">不良品が増え、<br>値段も上がる</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：そこで日本が出てきます</span><span class="brand"></span></div>
+  <div class="lead">そして、その焼き付けの前後で使う装置と材料は</div>
+  <div class="stmt"><span class="em">日本</span>です。</div>
+</section>
+
+<section class="slide t-rank">
+  <div class="hdr"><span class="sec">材料 4：日本のシェア</span><span class="brand"></span></div>
+  <span class="gtag" style="background:var(--navy);position:absolute;top:80px;left:60px;">世界シェア</span>
+  <div class="h-main">この工程は、日本が握っています</div>
+  <div class="rows">
+    <div class="row"><span class="nm">回路を焼き付けるときに薬を塗る装置</span><span class="pct up">88%</span></div>
+    <div class="row"><span class="nm">焼き付けに使う原板（HOYA・AGCの2社）</span><span class="pct up">9割</span></div>
+    <div class="row"><span class="nm">AIチップの土台に使う材料（味の素）</span><span class="pct up">95%</span></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">材料 4：ほぼ1社が握っているもの</span><span class="brand"></span></div>
+  <div class="badge orange">最先端になるほど、選択肢が減ります</div>
+  <div class="h-main">この2社は、代わりがいません</div>
+  <div class="grid g2" style="min-height:400px">
+    <div class="card c2"><div class="cno">1</div><div class="ctitle">東京エレクトロン</div><div class="ctext">いちばん進んだ、薬を塗る装置は、ほぼ全部</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">レーザーテック</div><div class="ctext">焼き付けに使う原板の検査装置は、ほぼ独占</div></div>
+  </div>
+  <div class="foot-bar">あの味の素も含めて、いずれも<span class="em">名前だけ見れば普通の会社</span>です　　<span style="font-size:20px;opacity:.7;">※ 要確認</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：ここから言えること</span><span class="brand"></span></div>
+  <div class="lead">世界中のAI半導体が</div>
+  <div class="stmt">こうした会社の製品なしでは、<br><span class="em">作れません</span>。</div>
+  <div class="note">だからアメリカだけでなく、日本もオランダも台湾も、いちばん進んだ装置は中国に売っていません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：規制の目的</span><span class="brand"></span></div>
+  <div class="lead">そもそもアメリカの規制は</div>
+  <div class="stmt">中国に半導体を作らせないためではなく、<br><span class="em">軍事とAIに使う最先端で、<br>追い越させないため</span>のものです。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：ここに逆説があります</span><span class="brand"></span></div>
+  <div class="lead">そしてここに、逆説があります</div>
+  <div class="stmt">中国が本気で、自分の国で全部作ろうと<br>投資するほど、<br><span class="em">世界は工場を二重に建てます</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">材料 4：二重に建つ工場</span><span class="brand"></span></div>
+  <div class="badge blue">分断そのものが、注文を増やしています</div>
+  <div class="h-main">実際に、こう動いています</div>
+  <div class="grid" style="min-height:400px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">アメリカ</div><div class="ctext">対抗して、国内に工場を増やす</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">TSMC</div><div class="ctext">分散のために、熊本に来る</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">サムスン</div><div class="ctext">横浜に開発拠点を置く</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">マイクロン</div><div class="ctext">広島でメモリを作る</div></div>
+  </div>
+  <div class="foot-bar">どこに建てても、<span class="em">装置と材料は日本を通ります</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：ここも隠しません</span><span class="brand"></span></div>
+  <div class="lead">ただし、ここも隠しません</div>
+  <div class="stmt">中国の追い上げは、品質の差以上に、<br>日本の半導体株への<br><span class="emr">期待を押し下げる力</span>があります。</div>
+  <div class="note">7月の終わりの下げが、まさにそれでした。「中国は怖くない」とは言いません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">材料 4：答え</span><span class="brand"></span></div>
+  <div class="lead">それでも、こう言えます</div>
+  <div class="stmt">中国が本気になるほど、<br>世界は工場を二重に建てる。<br><span class="em">その全部が、日本を通る</span>。</div>
+  <div class="note">これが、4つ目の答えです</div>
+</section>
+
+<!-- ================= ⑥ 耐えられた理由：利益が出ている（45枚） ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">後半：耐えられた理由</span><span class="brand"></span></div>
+  <div class="topic"><span>ここから後半</span><span class="bar"></span><span>耐えられた理由</span></div>
+  <div class="numbox">05</div>
+  <div class="stitle"><div class="label">REASON</div><div class="ttl">耐えられた理由は、<br>利益が出ているから</div><div class="rule"></div><div class="desc">4つの材料は、もう出て、答えも付きました</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">後半：ここからの話</span><span class="brand"></span></div>
+  <div class="lead">ただ、耐えただけでは、強いとは言えません</div>
+  <div class="stmt">だから後半は、<br><span class="em">なぜ耐えられたのか</span>を話します。</div>
+  <div class="note">答えは1つ。利益が出ているからです</div>
+</section>
+
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">後半：3つの角度</span><span class="brand"></span></div>
+  <div class="h-main">利益を、3つの角度から見ていきます</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">会社全体の利益</span><span class="d">AI半導体だけの話ではありません</span></div>
+    <div class="row"><span class="no">2</span><span class="t">海外のお金の見方</span><span class="d">海外の投資家が、日本の何を見ているのか</span></div>
+    <div class="row"><span class="no">3</span><span class="t">AIの注文の広がり</span><span class="d">半導体の外まで、注文が来ています</span></div>
+  </div>
+  <div class="cta">そのあとで、日本に来ている工場と、国の予算の話をします</div>
+</section>
+
+<!-- ---------- 理由1 ---------- -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">理由1：会社全体の利益</span><span class="brand"></span></div>
+  <div class="topic"><span>理由 1 / 3</span><span class="bar"></span><span>会社全体の利益</span></div>
+  <div class="numbox">1</div>
+  <div class="stitle"><div class="label">REASON 1</div><div class="ttl">会社全体の利益が、<br>過去最強クラス</div><div class="rule"></div><div class="desc">この4月から6月の決算です</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：決算に出ています</span><span class="brand"></span></div>
+  <div class="lead">AIの注文は、もう決算に出ています</div>
+  <div class="stmt">しかも、<br><span class="em">AI半導体だけではありません</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由1：会社全体の利益</span><span class="brand"></span></div>
+  <div class="lead">財務省の統計（4月〜6月）</div>
+  <div class="h-main">日本の会社全体の利益が、過去最高になりました</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">日本の会社全体の利益 ／ 前の年と比べて</div>
+      <div class="mfig">＋25<span class="u">%</span></div>
+      <div class="msub">1954年から続く統計で、過去最高</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：業種の広がり</span><span class="brand"></span></div>
+  <div class="lead">しかも、一部の業種だけではありません</div>
+  <div class="stmt">製造業も、それ以外の業種も、<br><span class="em">どちらも過去最高</span>でした。</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">理由1：上方修正</span><span class="brand"></span></div>
+  <div class="h-main">1年の予想を引き上げた会社の割合</div>
+  <div class="h-sub">最初の3か月の決算で、1年間の業績予想を引き上げた会社（TOPIXに入っている会社）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:80px">1割未満</div><div class="cap">普段の年</div></div>
+    <div class="vb orange"><div class="bar" style="height:250px">17%</div><div class="cap">今年</div><div class="sub">※ 要確認</div></div>
+  </div>
+  <div class="foot-bar">最初の3か月で、これだけの会社が<span class="em">1年の予想を引き上げました</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：ここが大きい</span><span class="brand"></span></div>
+  <div class="lead">日本の会社は、控えめな予想を出しがちです</div>
+  <div class="stmt">その日本の会社が、最初の3か月で、<br><span class="em">ここまで引き上げた</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由1：世界の中での位置</span><span class="brand"></span></div>
+  <div class="lead">その結果、日本株は主な先進国の中で</div>
+  <div class="h-main">いちばん上がった市場の1つになっています</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">日経平均 ／ 年初から</div>
+      <div class="mfig">＋29<span class="u">%</span></div>
+      <div class="msub">アメリカのS&amp;P500の、2倍以上</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由1：TOPIXも同じ</span><span class="brand"></span></div>
+  <div class="lead">日本株全体の指数であるTOPIXも、大きく上がっています</div>
+  <div class="stmt">つまり、<br><span class="em">一部の大型株だけの話ではありません</span>。</div>
+</section>
+
+<!-- ---------- 理由2 ---------- -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">理由2：海外のお金の見方</span><span class="brand"></span></div>
+  <div class="topic"><span>理由 2 / 3</span><span class="bar"></span><span>海外のお金の見方</span></div>
+  <div class="numbox">2</div>
+  <div class="stitle"><div class="label">REASON 2</div><div class="ttl">海外のお金が、<br>日本の会社の<br>変化を見ている</div><div class="rule"></div><div class="desc">円安やAI半導体だけが、理由ではありません</div></div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由2：海外投資家の保有比率</span><span class="brand"></span></div>
+  <div class="lead">東京証券取引所を運営する日本取引所グループによると、今年3月末の時点で</div>
+  <div class="h-main">海外の投資家が持つ日本株の比率は、過去最高です</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">海外の投資家が持つ、日本株の比率</div>
+      <div class="mfig">34.7<span class="u">%</span></div>
+      <div class="msub">出典：日本取引所グループ ／ ※ 要確認</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：ここは隠しません</span><span class="brand"></span></div>
+  <div class="lead">もちろん、ずっと買い続けているわけではありません。8月の後半には、売り越した週もありました</div>
+  <div class="stmt">それでも、海外勢が日本株を見る理由は、<br><span class="em">円安やAI半導体だけではありません</span>。</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">理由2：お金の使い方が変わった</span><span class="brand"></span></div>
+  <div class="lead">以前は、利益を出しても現金として貯め込む会社が多くありました</div>
+  <div class="h-main">配当と自社株買いが、増えています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2020年</div><div class="c-v">配当と自社株買い</div></div>
+    <div class="arr">→</div>
+    <div class="result" style="background:linear-gradient(135deg,#2f8f6b,#3fae84);box-shadow:0 12px 26px rgba(47,143,107,.32);"><div class="r-l">いま</div><div class="r-v">およそ 2.5倍</div></div>
+  </div>
+  <div class="note">※ 要確認</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：自社株買いとは</span><span class="brand"></span></div>
+  <div class="lead">自社株買いは、会社が自分の会社の株を市場から買い戻すことです</div>
+  <div class="stmt">株の数が減るので、<br>1株あたりの価値が上がり、<br><span class="em">株主に利益を返すこと</span>になります。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：返すだけではありません</span><span class="brand"></span></div>
+  <div class="lead">変わったのは、株主に返す分だけではありません</div>
+  <div class="stmt">工場、研究開発、人材、AIへの設備投資、<br>会社の買収。<br><span class="em">将来の利益を増やすために<br>お金を使う会社も増えています</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由2：海外が挙げている理由</span><span class="brand"></span></div>
+  <div class="badge blue">アメリカの大手証券会社 ゴールドマン・サックス</div>
+  <div class="h-main">日本株を評価する理由として、この4つを挙げています</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">利益の伸び</div><div class="ctext">会社の利益が伸びている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">AI投資の恩恵</div><div class="ctext">世界のAI投資の恩恵を、日本が受けている</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">経営の改革</div><div class="ctext">会社の経営そのものが変わってきた</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">株主に返す姿勢</div><div class="ctext">配当と自社株買いを増やしている</div></div>
+  </div>
+  <div class="foot-bar">利益を貯め込む会社から、<span class="em">株主に返し、成長のためにも投資する会社へ</span>　　<span style="font-size:20px;opacity:.7;">※ 要確認</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由2：円安ではありません</span><span class="brand"></span></div>
+  <div class="lead">しかも海外の投資家にとって、円安はむしろ困ります</div>
+  <div class="stmt">日本株が上がっても、円が下がれば、<br>ドルで見た儲けが消えるからです。<br><span class="em">円安で買われているのではありません</span>。</div>
+</section>
+
+<!-- ---------- 理由3 ---------- -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">理由3：AIの注文の広がり</span><span class="brand"></span></div>
+  <div class="topic"><span>理由 3 / 3</span><span class="bar"></span><span>AIの注文の広がり</span></div>
+  <div class="numbox">3</div>
+  <div class="stitle"><div class="label">REASON 3</div><div class="ttl">AIの注文が、<br>半導体の外まで<br>広がっている</div><div class="rule"></div><div class="desc">お金の流れる順に、見ていきます</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：お金の出どころ</span><span class="brand"></span></div>
+  <div class="lead">まず、お金がどこから出ているのか</div>
+  <div class="stmt">マイクロソフト、アマゾン、<br>グーグル、メタを含む<br><span class="em">大手5社</span>です。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由3：設備投資の予想</span><span class="brand"></span></div>
+  <div class="lead">今年AIに使う設備投資の予想は、年初から7月までで</div>
+  <div class="h-main">減額ではなく、上方修正が続いています</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">大手5社 ／ 今年のAI設備投資の予想</div>
+      <div class="mfig">1.5<span class="u">倍</span></div>
+      <div class="msub">年初から7月までの引き上げ幅</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由3：お金の流れ</span><span class="brand"></span></div>
+  <div class="h-main">このお金は、こう流れます</div>
+  <div class="chain">
+    <div class="node">大手5社</div>
+    <div class="arr">→</div>
+    <div class="node">エヌビディア<br>TSMC</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">その工場で使う<br>装置と材料<br>＝日本へ</div>
+  </div>
+</section>
+
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">理由3：日本の主な10社</span><span class="brand"></span></div>
+  <div class="lead">AI半導体に近い、日本の主な10社の決算</div>
+  <div class="h-main">10社のうち9社が、売上も利益も増えました</div>
+  <div class="pbar">
+    <div class="seg main" style="width:90%"><span class="p">9社</span><span class="l">売上も利益も増えた</span></div>
+    <div class="seg rest"><span class="p">1社</span><span class="l"></span></div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">理由3：主な会社の決算</span><span class="brand"></span></div>
+  <div class="h-main">4月から6月の決算です</div>
+  <div class="h-sub">ただし、全部が順調だったわけではありません</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">アドバンテスト</div><div class="cd">検査装置</div></div><div class="body"><div class="lbl">営業利益 ／ 前の年より</div><div class="val">＋53%</div><div class="tag">通期見通し 8,460億円へ</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">東京エレクトロン・ディスコ</div><div class="cd">製造装置</div></div><div class="body"><div class="lbl">増益率</div><div class="val">4割以上</div><div class="tag">増益</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">レーザーテック</div><div class="cd">検査装置</div></div><div class="body"><div class="lbl">この四半期は</div><div class="val2">減益</div><div class="tag">全部が順調ではない</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：ここが今の相場です</span><span class="brand"></span></div>
+  <div class="lead">レーザーテックは、次の期は最高益を見込んでいます。それでも、市場の予想に届かなかったというだけで売られました</div>
+  <div class="stmt">利益が出ていても、<br><span class="emr">期待のほうが高ければ株は下がる</span>。</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">理由3：その極端な例</span><span class="brand"></span></div>
+  <div class="lead">6月に、トヨタを抜いて国内で最も大きな会社になりました</div>
+  <div class="h-main">キオクシアの時価総額</div>
+  <div class="row">
+    <div class="card"><div class="c-l">6月</div><div class="c-v">45兆円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">そこから3か月で</div><div class="r-v">株価は 半分</div></div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">理由3：その間に出た数字</span><span class="brand"></span></div>
+  <div class="h-main">ところが、その間に出た数字を見てください</div>
+  <div class="h-sub">キオクシア ／ 4月から6月</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">営業利益</div><div class="cd">4月〜6月</div></div><div class="body"><div class="lbl">およそ</div><div class="val">1兆2,700億円</div><div class="tag">前の年の29倍</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">利益率</div><div class="cd">売上のうち利益として残った割合</div></div><div class="body"><div class="lbl">売上の</div><div class="val">72%</div><div class="tag">利益として残った</div></div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由3：次の四半期の見込み</span><span class="brand"></span></div>
+  <div class="lead">7月から9月は、さらに増える見込みです</div>
+  <div class="h-main">キオクシアの営業利益（7月〜9月の見込み）</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">営業利益 ／ 7月〜9月の見込み</div>
+      <div class="mfig">1兆8,900<span class="u">億円</span></div>
+      <div class="msub">利益率は79%を見込んでいます</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由3：どこが伸びたのか</span><span class="brand"></span></div>
+  <div class="lead">伸びているのは、AI向けです</div>
+  <div class="h-main">データセンター向けの売上</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">データセンター向けの売上 ／ 前の年と比べて</div>
+      <div class="mfig">5<span class="u">倍超</span></div>
+      <div class="msub">キオクシア</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：それでも下がった</span><span class="brand"></span></div>
+  <div class="lead">これだけの数字が出ていて</div>
+  <div class="stmt">それでも、<br><span class="emr">株価は下がりました</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由3：会社も手を打ちました</span><span class="brand"></span></div>
+  <div class="lead">会社は、自社株買いを発表しました</div>
+  <div class="h-main">8,000億円を、わずか6営業日で使い切りました</div>
+  <div class="metrics">
+    <div class="metric navy">
+      <div class="mlbl">自社株買い ／ 使い切るまでの日数</div>
+      <div class="mfig">6<span class="u">営業日</span></div>
+      <div class="msub">総額 8,000億円。それでも、株価は下がりました</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：市場が疑っていること</span><span class="brand"></span></div>
+  <div class="lead">つまり、売りが多くて下がったのではありません</div>
+  <div class="stmt">市場が疑っているのは、ただ1つ。<br><span class="emr">この利益が、いつまで続くのか</span>、です。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：続く理由を、会社の側から</span><span class="brand"></span></div>
+  <div class="lead">キオクシアが作るのは、NANDというメモリです</div>
+  <div class="stmt">データを保存する<br><span class="em">SSD</span>という部品に使われます。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由3：なぜSSDが要るのか</span><span class="brand"></span></div>
+  <div class="h-main">AIの使われ方が、変わってきています</div>
+  <div class="chain">
+    <div class="node">賢くする<br>「学習」</div>
+    <div class="arr">→</div>
+    <div class="node">実際に使う<br>「推論」へ</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">24時間止まらず<br>データを<br>出し入れし続ける</div>
+  </div>
+  <div class="release">そこで要るのが、SSDです</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由3：SSDの立ち位置</span><span class="brand"></span></div>
+  <div class="badge orange">3つとも、AIのデータセンターに必要な条件です</div>
+  <div class="h-main">SSDは、この3つを同時に満たします</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ハードディスクより速い</div><div class="ctext">読み書きの速さが違います</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">HBMより安い</div><div class="ctext">AI向けの高速メモリHBMより、コストを抑えられます</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">電源を切っても消えない</div><div class="ctext">保存したデータが残ります</div></div>
+  </div>
+  <div class="foot-bar">だから<span class="em">GPUの次に、メモリが売れます</span></div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">理由3：会社の計画</span><span class="brand"></span></div>
+  <div class="lead">キオクシアは、売上に占めるデータセンター向けの比率を</div>
+  <div class="h-main">3年で、こう上げる計画です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">いま</div><div class="c-v">5割未満</div></div>
+    <div class="arr">→</div>
+    <div class="result" style="background:linear-gradient(135deg,#2f8f6b,#3fae84);box-shadow:0 12px 26px rgba(47,143,107,.32);"><div class="r-l">3年後</div><div class="r-v">6割以上へ</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：会社が言っていること</span><span class="brand"></span></div>
+  <div class="lead">社長は、技術は競合より4年先を行くと言い切っています</div>
+  <div class="stmt">9月初めの技術説明会では、<br>エヌビディアと日常的に協議しながら<br>製品を作っていることも明かし、<br><span class="em">翌日、株価は5%上げています</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">理由3：注文は、半導体の外まで</span><span class="brand"></span></div>
+  <div class="h-main">AI投資を、お金の流れる順に並べてみます</div>
+  <div class="chain">
+    <div class="node">計算する<br><span style="font-size:22px;color:#7a828c;">エヌビディア</span></div>
+    <div class="arr">→</div>
+    <div class="node">記憶する<br><span style="font-size:22px;color:#7a828c;">キオクシア</span></div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">データと電気を運ぶ<br><span style="font-size:22px;color:#7a828c;">フジクラ・古河電工<br>住友電工</span></div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">理由3：電線3社の決算</span><span class="brand"></span></div>
+  <div class="h-main">運ぶ側の会社も、利益が伸びています</div>
+  <div class="h-sub">4月から6月／AIサーバーを何万台も並べれば、つなぐ光ファイバーと電力のケーブルが要ります</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col"><div class="top"><div class="nm">フジクラ</div><div class="cd">電線</div></div><div class="body"><div class="lbl">営業利益 ／ 前の年の</div><div class="val">2.5倍</div><div class="tag">利益率 26%</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">古河電工</div><div class="cd">電線</div></div><div class="body"><div class="lbl">営業利益 ／ 前の年の</div><div class="val">3倍</div><div class="tag">増益</div></div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由3：いちばん根っこにあるもの</span><span class="brand"></span></div>
+  <div class="lead">その先に電力設備。そして、いちばん根っこに、銅があります</div>
+  <div class="h-main">AI半導体が脳なら、銅は血管です</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">銅の値段 ／ 1年前と比べて</div>
+      <div class="mfig">5<span class="u">割高</span></div>
+      <div class="msub">史上最高値圏。AI用データセンターは、従来型より銅を大量に使います</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">理由3：銅に近い日本の会社</span><span class="brand"></span></div>
+  <div class="badge navy">日本で、この銅にいちばん近いのは2種類の会社です</div>
+  <div class="h-main">分け方は、この2つです</div>
+  <div class="grid g2" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">鉱山の権益を持つ会社</div><div class="ctext">銅の値段が、そのまま利益になる会社</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">加工でシェアを持つ会社</div><div class="ctext">銅をAI向けの材料に加工して、世界シェアを持つ会社</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由3：銅の値段が利益になる会社</span><span class="brand"></span></div>
+  <div class="lead">1つ目。鉱山の権益を持っていて、銅の値段がそのまま利益になる会社</div>
+  <div class="h-main">住友金属鉱山</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">銅が1トン100ドル上がるごとに</div>
+      <div class="mfig">＋35<span class="u">億円</span></div>
+      <div class="msub">税引き前の利益</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">理由3：加工でシェアを持つ会社</span><span class="brand"></span></div>
+  <div class="lead">2つ目。銅をAI向けの材料に加工して、世界シェアを持つ会社</div>
+  <div class="h-main">三井金属</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">半導体の基板に使う、極薄の銅箔 ／ 世界シェア</div>
+      <div class="mfig">98<span class="u">%</span></div>
+      <div class="msub">この材料が無ければ、AI半導体の基板は作れません</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-rank">
+  <div class="hdr"><span class="sec">理由3：加工でシェアを持つ会社</span><span class="brand"></span></div>
+  <span class="gtag" style="background:var(--navy);position:absolute;top:80px;left:60px;">同じく、加工でシェアを持つ会社</span>
+  <div class="h-main">JX金属</div>
+  <div class="h-sub">こちらは、2つの材料でシェアを持っています</div>
+  <div class="rows">
+    <div class="row"><span class="nm">曲がる基板に使う銅箔</span><span class="pct up">8割</span></div>
+    <div class="row"><span class="nm">半導体の配線を作る材料</span><span class="pct up">6割超</span></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：ただし、注意もあります</span><span class="brand"></span></div>
+  <div class="lead">銅の値上がりは、AIだけが理由ではありません</div>
+  <div class="stmt">鉱山のトラブルや中国の需要など、<br>ほかの理由も重なっています。<br><span class="emr">そのまま儲かるという<br>単純な話ではありません</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：ここまでのまとめ</span><span class="brand"></span></div>
+  <div class="lead">AIの注文が、半導体を越えて、電線と銅まで来ている</div>
+  <div class="stmt">耐えられた理由には、<br><span class="em">この裾野の広さ</span>もあります。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">理由3：見るべきもの</span><span class="brand"></span></div>
+  <div class="lead">見るべきものは、はっきりしています</div>
+  <div class="stmt">さきほどの大手5社が、<br>AIへの設備投資を<br><span class="em">一斉に削るかどうか</span>。</div>
+  <div class="note">それが出ない限り、利益が出ている側に、いまは分があります</div>
+</section>
+
+<!-- ================= ⑦ 日本に工場が来て、国が予算を投資に変えた（28枚） ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">もう1つの理由：工場と予算</span><span class="brand"></span></div>
+  <div class="topic"><span>もう1つの理由</span><span class="bar"></span><span>工場と、国の予算</span></div>
+  <div class="numbox">06</div>
+  <div class="stitle"><div class="label">REASON</div><div class="ttl">日本に工場が来て、<br>国が予算を<br>投資に変えた</div><div class="rule"></div><div class="desc">AIの投資は、日本の外だけの話ではなくなりました</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">工場と予算：もう1つの理由</span><span class="brand"></span></div>
+  <div class="lead">耐えられた理由が、もう1つあります</div>
+  <div class="stmt">AIの投資が、<br><span class="em">日本の外だけで起きている話では<br>なくなったこと</span>です。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">工場：なぜ日本なのか</span><span class="brand"></span></div>
+  <div class="lead">工場の名前を並べる前に</div>
+  <div class="stmt">なぜ世界の半導体会社が、<br><span class="em">日本に工場を作っているのか</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">工場：大きな理由の1つ</span><span class="brand"></span></div>
+  <div class="h-main">大きな理由の1つが、中国のリスクです</div>
+  <div class="chain">
+    <div class="node">中国とアメリカの<br>対立が続く</div>
+    <div class="arr">→</div>
+    <div class="node">世界の最先端の<br>半導体は<br>台湾に集中</div>
+    <div class="arr">→</div>
+    <div class="node danger">台湾海峡で<br>何かが起きれば<br>生産が止まる</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">工場：だから分散させる</span><span class="brand"></span></div>
+  <div class="lead">だからアメリカも日本も、半導体を台湾だけに頼るのは危ないと考えています</div>
+  <div class="stmt">工場を、自分の国や友好国に<br><span class="em">分散させています</span>。</div>
+  <div class="note">その受け皿の1つが、日本です</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">工場：日本が選ばれる理由</span><span class="brand"></span></div>
+  <div class="badge blue">日本が選ばれる理由は、はっきりしています</div>
+  <div class="h-main">この4つが、同時に揃っています</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">アメリカの同盟国</div><div class="ctext">安全保障の面で、任せられる</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">国の大きな支援</div><div class="ctext">国が、まとまったお金を出している</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">装置と材料の会社</div><div class="ctext">作るための会社が、すでに揃っている</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">AIの需要</div><div class="ctext">そこへ、AIの需要まで重なった</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">工場：実際の動き</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt">台湾のTSMC、アメリカのマイクロン、<br>韓国のサムスンが、<br><span class="em">ほぼ同時に日本に投資しています</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">工場：日本に来ている工場</span><span class="brand"></span></div>
+  <div class="badge orange">名前を、ここで並べます</div>
+  <div class="h-main">日本の各地で、同時に動いています</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">熊本｜TSMC</div><div class="ctext">2028年から、最先端の半導体を作ります。ソニー、デンソー、トヨタも出資</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">広島｜マイクロン</div><div class="ctext">AI向けの高速メモリHBMの工場を広げています</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">横浜｜サムスン</div><div class="ctext">先端パッケージの開発拠点を置きました</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">北海道 千歳｜ラピダス</div><div class="ctext">さらに先の半導体に挑んでいます</div></div>
+  </div>
+  <div class="foot-bar">サムスンが横浜を選んだのは、<span class="em">日本の材料と装置の会社の近くで開発したいから</span>です</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">工場：8月末に出た発表</span><span class="brand"></span></div>
+  <div class="lead">そして、岩手の北上と三重の四日市</div>
+  <div class="stmt">キオクシアと、<br>アメリカのメモリ会社<span class="em">サンディスク</span>が、<br>8月末に大きな投資を発表しました。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">工場：投資の規模</span><span class="brand"></span></div>
+  <div class="lead">キオクシアとサンディスクが、2032年までに合わせて</div>
+  <div class="h-main">日本国内に投資する金額です</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">2032年までの国内投資 ／ 2社合計</div>
+      <div class="mfig">およそ 5<span class="u">兆円</span></div>
+      <div class="msub">2026年8月末に発表</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">工場：もう動き出しています</span><span class="brand"></span></div>
+  <div class="lead">北上の新しい棟は</div>
+  <div class="stmt">2029年度の稼働を目指して、<br><span class="em">土地の整備が始まっています</span>。</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">工場：これまでと、これから</span><span class="brand"></span></div>
+  <div class="lead">キオクシアが、日本国内に投資してきた金額</div>
+  <div class="h-main">投資のペースが、上がっています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">この25年で</div><div class="c-v">9兆円</div></div>
+    <div class="arr">→</div>
+    <div class="result" style="background:linear-gradient(135deg,#2f8f6b,#3fae84);box-shadow:0 12px 26px rgba(47,143,107,.32);"><div class="r-l">次の6年で、さらに</div><div class="r-v">5兆円</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">工場：海外からの評価</span><span class="brand"></span></div>
+  <div class="lead">さきほどのゴールドマン・サックスは、日本株全体の指数であるTOPIXの1年後の目標を</div>
+  <div class="h-main">こう引き上げました</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">TOPIX ／ 1年後の目標</div>
+      <div class="mfig">4,600</div>
+      <div class="msub">いまの4,100ポイント台から、さらに11%ほど上 ／ ※ 要確認</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">工場：一貫しているテーマ</span><span class="brand"></span></div>
+  <div class="lead">年初から一貫して日本株のテーマに挙げているのが</div>
+  <div class="stmt">ロボットや工場で動くAI、<br><span class="em">フィジカルAI</span>と、<br>その装置を作る日本の会社です。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">工場：日本が握っているところ</span><span class="brand"></span></div>
+  <div class="h-main">半導体が難しくなるほど、日本の出番が増えます</div>
+  <div class="chain">
+    <div class="node">半導体が<br>難しくなる</div>
+    <div class="arr">→</div>
+    <div class="node">工程が増え、<br>検査が増える</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">削る、重ねる、<br>つなぐ、試す<br>の値打ちが上がる</div>
+  </div>
+  <div class="release">その工程を、日本が握っています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">予算：ここからが新しい話</span><span class="brand"></span></div>
+  <div class="lead">そしてここからが、今日いちばん新しい話です</div>
+  <div class="stmt">国が、<br><span class="em">予算の作り方を変えました</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">予算：概算要求</span><span class="brand"></span></div>
+  <div class="lead">9月4日に財務省が発表した、来年度の概算要求</div>
+  <div class="h-main">過去最大の規模です</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">来年度の概算要求 ／ 2026年9月4日 財務省</div>
+      <div class="mfig">143<span class="u">兆円</span></div>
+      <div class="msub">過去最大</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">予算：変わったのは金額ではありません</span><span class="brand"></span></div>
+  <div class="lead">ただ、大事なのは金額ではありません</div>
+  <div class="stmt">変わったのは、<br><span class="em">仕組み</span>のほうです。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">予算：新しくできた枠</span><span class="brand"></span></div>
+  <div class="badge blue">「強く豊かな日本」投資枠</div>
+  <div class="h-main">この枠の中では、ルールが違います</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">およそ14兆円</div><div class="ctext">新しくできた投資の枠です</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">要求の上限なし</div><div class="ctext">各省庁は、必要な額を出せます</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">複数年が基本</div><div class="ctext">1年ごとではなく、複数年の計画が基本です</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">予算：査定の基準</span><span class="brand"></span></div>
+  <div class="lead">査定では、成長への寄与と、民間の投資をどれだけ呼び込めるかを丁寧に見る、と財務大臣は話しています</div>
+  <div class="stmt">こういう予算の作り方は、<br><span class="em">戦後初めて</span>だとされています。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">予算：なぜ株の話になるのか</span><span class="brand"></span></div>
+  <div class="lead">会社が工場を決められなかった理由の1つは</div>
+  <div class="stmt">「今年は支援があるが、<br><span class="emr">来年は分からない</span>」<br>だったからです。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">予算：工場を決めるまで</span><span class="brand"></span></div>
+  <div class="h-main">半導体の工場は、動き出すまでに数年かかります</div>
+  <div class="chain">
+    <div class="node">土地、建物、装置、<br>電力、水</div>
+    <div class="arr">→</div>
+    <div class="node">動き出すまでに<br>数年</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">支援が複数年で<br>見えれば決められる</div>
+  </div>
+  <div class="release">5年、10年の投資を、決めやすくなります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">予算：本当に大事なところ</span><span class="brand"></span></div>
+  <div class="lead">大事なのは、政府が使うお金そのものではありません</div>
+  <div class="stmt">それで動く、<br><span class="em">民間の設備投資</span>です。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">予算：注文の広がり方</span><span class="brand"></span></div>
+  <div class="h-main">株式投資は、連想ゲームのようなものです</div>
+  <div class="chain">
+    <div class="node">政府</div>
+    <div class="arr">→</div>
+    <div class="node">半導体<br>メーカー</div>
+    <div class="arr">→</div>
+    <div class="node">新しい工場</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">装置、材料、建設、<br>電力、電線、水処理</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">予算：この流れの先</span><span class="brand"></span></div>
+  <div class="lead">注文は、そうやって広がります</div>
+  <div class="stmt">この流れの先には、<br><span class="em">まだ名前の挙がっていない会社</span>も<br>あります。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">予算：すでに動いている例</span><span class="brand"></span></div>
+  <div class="lead">キオクシアとサンディスクの5兆円は</div>
+  <div class="stmt">まさに<span class="em">「政府の支援を前提に」</span>と<br>明記された投資です。</div>
+  <div class="note">キオクシアは、受けた支援を上回る税金で返す、という考え方を示しています</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">予算：ここも隠しません</span><span class="brand"></span></div>
+  <div class="badge navy">ただし、決まった話ではありません</div>
+  <div class="h-main">気をつけることが、2つあります</div>
+  <div class="grid g2" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">概算要求は、決まった予算ではありません</div><div class="ctext">年末の査定で削られる分野は必ず出ます。14兆円のうち何が残るかは、これからです</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">長期金利も、上がります</div><div class="ctext">国が積極的にお金を使えば、物価が上がり、長期金利が上がります。さきほどの3%は、その裏返しでもあります</div></div>
+  </div>
+  <div class="foot-bar">見るのは、<span class="em">9月から12月の査定</span>と、<span class="em">12月の終わりに出る政府の予算案</span>です</div>
+</section>
+
+<!-- ================= ⑧ 金利が上がる今、僕たちはどう動くか（37枚） ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">どう動くか</span><span class="brand"></span></div>
+  <div class="topic"><span>実践</span><span class="bar"></span><span>金利が上がる今</span></div>
+  <div class="numbox">07</div>
+  <div class="stitle"><div class="label">ACTION</div><div class="ttl">金利が上がる今、<br>僕たちはどう動くか</div><div class="rule"></div><div class="desc">とくに、投資初心者の方に向けて</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">どう動くか：考え方</span><span class="brand"></span></div>
+  <div class="lead">では、金利が上がっている今、僕たち個人投資家はどう動けばいいのか</div>
+  <div class="stmt">とくに投資初心者の方に向けて、<br>僕なら<span class="em">5つに分けて</span>考えます。</div>
+</section>
+
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">どう動くか：5つ</span><span class="brand"></span></div>
+  <div class="h-main">この5つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">会社の利益を見る</span><span class="d">株価ではなく、会社そのものを見る</span></div>
+    <div class="row"><span class="no">2</span><span class="t">一度に全部買わない</span><span class="d">分けて足していける形にしておく</span></div>
+    <div class="row"><span class="no">3</span><span class="t">待つお金を残す</span><span class="d">株に入れないお金にも、置き場ができました</span></div>
+    <div class="row"><span class="no">4</span><span class="t">金利高で得をする会社もある</span><span class="d">すべての株にとって悪材料ではありません</span></div>
+    <div class="row"><span class="no">5</span><span class="t">持ちすぎない、集中しすぎない</span><span class="d">銘柄数が多ければ分散、とは限りません</span></div>
+  </div>
+</section>
+
+<!-- ---------- 1つ目 ---------- -->
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">1つ目：会社の利益を見る</span><span class="brand"></span></div>
+  <div class="lead">1つ目</div>
+  <div class="stmt">株価ではなく、<br><span class="em">会社の利益を見る</span>ことです。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">1つ目：金利が上がると</span><span class="brand"></span></div>
+  <div class="lead">金利が上がると、普通は、株は売られやすくなります</div>
+  <div class="stmt">とくに、将来の成長を期待されて<br>高い値段まで買われている株ほど、<br><span class="emr">大きく下がることがあります</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">1つ目：ここを分ける</span><span class="brand"></span></div>
+  <div class="lead">ただ</div>
+  <div class="stmt">株価が下がったからといって、<br><span class="em">その会社まで悪くなったとは限りません</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">1つ目：見るのはこの3つ</span><span class="brand"></span></div>
+  <div class="badge blue">決算のすべての数字を見る必要はありません</div>
+  <div class="h-main">投資初心者の方なら、この3つで足ります</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">売上</div><div class="ctext">売上が、伸びているか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">営業利益</div><div class="ctext">営業利益が、伸びているか</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">業績予想</div><div class="ctext">会社が1年間の業績予想を、下げていないか</div></div>
+  </div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">1つ目：同じ「株価が下がった」でも</span><span class="brand"></span></div>
+  <div class="badge navy">この2つは、まったく別です</div>
+  <div class="h-main">株価が下がったとき、中身を確かめる</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">こちらなら</div><div class="cap">株価 −20%でも</div><div class="big">利益は ＋50%</div><div class="div"></div><div class="strong">会社が1年間の予想まで引き上げているなら、<br>「会社が悪くなったから下がった」とは<br>言いにくい</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">こちらなら</div><div class="cap">株価も利益も下がって</div><div class="big">予想も下げた</div><div class="div"></div><div class="strong">会社まで業績予想を下げたなら、<br>話は変わります</div></div>
+  </div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">1つ目：AI半導体株も同じ</span><span class="brand"></span></div>
+  <div class="badge orange">ここまで見てきたAI半導体株も同じです</div>
+  <div class="h-main">この2つを、分けて考えてください</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">こちらなら</div><div class="cap">下げの理由</div><div class="big">金利だけ</div><div class="div"></div><div class="strong">注文も利益も崩れていないなら、<br>下げの理由は金利です</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">こちらなら</div><div class="cap">下げの理由</div><div class="big">注文と利益</div><div class="div"></div><div class="strong">AIの注文や会社の利益まで<br>崩れ始めたのなら、話は別です</div></div>
+  </div>
+</section>
+
+<!-- ---------- 2つ目 ---------- -->
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">2つ目：一度に全部買わない</span><span class="brand"></span></div>
+  <div class="lead">2つ目</div>
+  <div class="stmt"><span class="em">一度に全部買わない</span>ことです。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">2つ目：当てにいかない</span><span class="brand"></span></div>
+  <div class="lead">金利がこれからどうなるかを、僕たち個人投資家が正確に当てることはできません</div>
+  <div class="stmt">だから、<br><span class="em">当てにいく必要もありません</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">2つ目：手がかりが出る日</span><span class="brand"></span></div>
+  <div class="h-main">手がかりは、順番に出てきます</div>
+  <div class="chain">
+    <div class="node">9月11日<br><span style="font-size:22px;color:#7a828c;">アメリカの物価</span></div>
+    <div class="arr">→</div>
+    <div class="node">9月16日<br><span style="font-size:22px;color:#7a828c;">FRB</span></div>
+    <div class="arr">→</div>
+    <div class="node">9月18日<br><span style="font-size:22px;color:#7a828c;">日銀</span></div>
+    <div class="arr">→</div>
+    <div class="node">11月3日<br><span style="font-size:22px;color:#7a828c;">中間選挙</span></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">2つ目：この2か月</span><span class="brand"></span></div>
+  <div class="lead">手がかりが順番に出るこの2か月は、相場が荒れやすい</div>
+  <div class="stmt">ただし、荒れる理由は金利と選挙であって、<br><span class="em">会社の利益ではありません</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">2つ目：金利の見方</span><span class="brand"></span></div>
+  <div class="lead">金利の見方だけなら</div>
+  <div class="stmt">さきほど紹介した<span class="em">FedWatch</span>を<br>見るだけでも、世界の投資家が<br>次の利上げをどの程度予想しているかが<br>分かります。</div>
+</section>
+
+<section class="slide t-stack">
+  <div class="hdr"><span class="sec">2つ目：分けて買う</span><span class="brand"></span></div>
+  <div class="h-main">例えば100万円分買いたい株があっても</div>
+  <div class="h-sub">最初から100万円入れる必要はありません</div>
+  <div class="sbar">
+    <div class="seg c" style="width:25%"><div class="sn">25万円</div><div class="sv">1回目</div></div>
+    <div class="seg b" style="width:25%"><div class="sn">25万円</div><div class="sv">2回目</div></div>
+    <div class="seg b" style="width:25%"><div class="sn">25万円</div><div class="sv">3回目</div></div>
+    <div class="seg a" style="width:25%"><div class="sn">25万円</div><div class="sv">4回目</div></div>
+  </div>
+  <div class="total">合計 <span class="em">100万円</span> ／ 4回に分けてもいい</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">2つ目：分けるタイミング</span><span class="brand"></span></div>
+  <div class="badge blue">日付は、もう決まっています</div>
+  <div class="h-main">例えば、この4回です</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">FRBのあと</div><div class="ctext">9月16日</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">日銀のあと</div><div class="ctext">9月18日</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">中間選挙のあと</div><div class="ctext">11月3日</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">相場が大きく下がったとき</div><div class="ctext">日付は決まっていません</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">2つ目：分けておく意味</span><span class="brand"></span></div>
+  <div class="lead">何回かに分けておけば、最初の買値を外しても、次があります</div>
+  <div class="stmt">初心者のうちは、<br>安いところを一発で当てることより、<br><span class="em">大きく外さない買い方</span>をするほうが<br>大切です。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">2つ目：いちばん危ないこと</span><span class="brand"></span></div>
+  <div class="lead">金利の方向がまだ分からない時期に、お金を借りて買う信用取引で大きく買う必要もありません</div>
+  <div class="stmt">予想を外すこと以上に危ないのは、<br><span class="emr">買いすぎること</span>です。</div>
+</section>
+
+<!-- ---------- 3つ目 ---------- -->
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">3つ目：待つお金を残す</span><span class="brand"></span></div>
+  <div class="lead">3つ目</div>
+  <div class="stmt">待つお金まで、<br><span class="em">無理に株に入れない</span>ことです。</div>
+  <div class="note">ここは、金利が上がった今だからこそ、変わったところです</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">3つ目：金利が上がるということ</span><span class="brand"></span></div>
+  <div class="lead">金利が上がるというのは</div>
+  <div class="stmt">国がお金を借りるときに払う利息が<br><span class="em">増える</span>、ということでもあります。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">3つ目：個人でも買えます</span><span class="brand"></span></div>
+  <div class="lead">そして、その国にお金を貸す商品を、個人でも買えます</div>
+  <div class="stmt"><span class="em">個人向け国債</span>です。</div>
+  <div class="note">銀行やネット証券で買えて、元本は国が保証します</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">3つ目：いまの利率</span><span class="brand"></span></div>
+  <div class="lead">これまでは、これを買ってもほとんど利息が付きませんでした。ところが</div>
+  <div class="h-main">この9月に募集している「変動10年」は</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">個人向け国債 変動10年 ／ 利率</div>
+      <div class="mfig">年 1.95<span class="u">%</span></div>
+      <div class="msub">2026年9月の募集分</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">3つ目：1,000万円なら</span><span class="brand"></span></div>
+  <div class="lead">1,000万円を、この利率で1年間</div>
+  <div class="h-main">受け取る利息は、こうなります</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">1,000万円 ／ 1年あたり（税引き前）</div>
+      <div class="mfig">19万5,000<span class="u">円</span></div>
+      <div class="msub">税引き前の金額です</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">3つ目：ただし</span><span class="brand"></span></div>
+  <div class="lead">変動という名前のとおり、金利は半年ごとに見直されます</div>
+  <div class="stmt">この1.95%が、<br><span class="emr">10年続くわけではありません</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">3つ目：お金を2つに分ける</span><span class="brand"></span></div>
+  <div class="badge orange">金利が上がって、変わったところ</div>
+  <div class="h-main">お金を、分けやすくなりました</div>
+  <div class="h-sub">下がったときに買うためのお金まで、無理に株に入れておく必要はありません</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">増やすお金</div><div class="cap">役割</div><div class="big">株で増やす</div><div class="div"></div><div class="strong">値動きを受け入れて、<br>会社の利益についていくお金</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">待たせるお金</div><div class="cap">役割</div><div class="big">下がるまで待つ</div><div class="div"></div><div class="strong">株価が大きく下がったときに<br>買うためのお金</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">3つ目：逆です</span><span class="brand"></span></div>
+  <div class="lead">金利が上がったから株を全部売る、ではありません。逆です</div>
+  <div class="stmt">株が下がるたびに不安になる方ほど、<br><span class="em">株に入れていないお金を<br>残しておくこと</span>に意味があります。</div>
+</section>
+
+<!-- ---------- 4つ目 ---------- -->
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">4つ目：金利高で得をする会社</span><span class="brand"></span></div>
+  <div class="lead">4つ目</div>
+  <div class="stmt">金利が上がって<br><span class="em">得をする会社もある</span>、ということです。</div>
+  <div class="note">金利の上昇は、すべての株にとって悪材料ではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">4つ目：代表は銀行</span><span class="brand"></span></div>
+  <div class="lead">代表が、銀行です</div>
+  <div class="stmt">金利が上がれば、銀行は<br>貸したお金から受け取る利息を<br><span class="em">増やしやすくなります</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">4つ目：確かめ方</span><span class="brand"></span></div>
+  <div class="badge blue">この2つを、並べて見てください</div>
+  <div class="h-main">銀行株と、TOPIX</div>
+  <div class="cols">
+    <div class="box left"><div class="name">TOPIX</div><div class="cap">日本株全体</div><div class="big">横ばい</div><div class="div"></div><div class="strong">市場全体は、動いていない</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">銀行株</div><div class="cap">金利に反応する株</div><div class="big">上がっている</div><div class="div"></div><div class="strong">市場は、金利の上昇を<br>銀行にプラスだと見ています</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">4つ目：持ち方</span><span class="brand"></span></div>
+  <div class="lead">だから、AI半導体と銀行のように</div>
+  <div class="stmt"><span class="em">値動きの理由が違う株を、<br>分けて持つ</span>。<br>全部を同じ方向にそろえる必要は<br>ありません。</div>
+</section>
+
+<!-- ---------- 5つ目 ---------- -->
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">5つ目：持ちすぎない</span><span class="brand"></span></div>
+  <div class="lead">5つ目</div>
+  <div class="stmt"><span class="em">持ちすぎない、<br>同じ業種に集中しすぎない</span>ことです。</div>
+  <div class="note">ここは、サラリーマンの方と、年金を中心に生活している方で、話が変わります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">5つ目：まず、サラリーマンの方</span><span class="brand"></span></div>
+  <div class="lead">まず</div>
+  <div class="stmt">仕事をしながら投資をしている、<br><span class="em">サラリーマンの方</span>です。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">5つ目：短期から中期の個別株</span><span class="brand"></span></div>
+  <div class="lead">投資初心者なら、短期から中期で持つ個別株は</div>
+  <div class="h-main">これで十分だと、僕は考えています</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">仕事をしながら投資をする方 ／ 短期〜中期の個別株</div>
+      <div class="mfig">3 〜 5<span class="u">銘柄</span></div>
+      <div class="msub">これで十分です</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">5つ目：なぜ絞るのか</span><span class="brand"></span></div>
+  <div class="lead">仕事をしながら、何十社もの決算、業績、株価、ニュースまで追うのは</div>
+  <div class="stmt"><span class="emr">簡単ではありません</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">5つ目：説明できるようにしておくこと</span><span class="brand"></span></div>
+  <div class="badge blue">持っている会社について</div>
+  <div class="h-main">この3つを、自分の言葉で説明できるか</div>
+  <div class="grid" style="min-height:360px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">売上と利益</div><div class="ctext">伸びているか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">業績予想</div><div class="ctext">会社が、下げていないか</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">下がった理由</div><div class="ctext">何が理由だったのか</div></div>
+  </div>
+  <div class="foot-bar">これを<span class="em">全部説明できる数</span>に抑える、ということです</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">5つ目：長期の配当株なら</span><span class="brand"></span></div>
+  <div class="lead">長期で配当を受け取りながら持つ株なら、短期の売買ほど頻繁に確認しなくて済みます</div>
+  <div class="h-main">だから、ここまで広げても管理できると思います</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">仕事をしながら投資をする方 ／ 長期の配当株</div>
+      <div class="mfig">10<span class="u">銘柄</span></div>
+      <div class="msub">くらいまでなら、広げても管理できると思います</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">5つ目：年金を中心に生活している方</span><span class="brand"></span></div>
+  <div class="lead">一方</div>
+  <div class="stmt">年金を中心に生活している方は、<br><span class="em">もう少し守りを重視します</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">5つ目：守りを重視する理由</span><span class="brand"></span></div>
+  <div class="lead">給料が毎月入ってくるサラリーマンの方と違って</div>
+  <div class="stmt">株で大きな損を出したあとに、<br><span class="emr">給料で取り戻せるとは限りません</span>。</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">5つ目：年金生活の方の目安</span><span class="brand"></span></div>
+  <div class="h-main">年金を中心に生活している方の、銘柄数の目安</div>
+  <div class="h-sub">さきほどのサラリーマンの方より、少なめにしています</div>
+  <div class="cols" style="min-height:400px">
+    <div class="col cnavy"><div class="top"><div class="nm">短期から中期</div><div class="cd">個別株</div></div><div class="body"><div class="lbl">まず</div><div class="val">2 〜 4銘柄</div><div class="tag">守りを重視</div></div></div>
+    <div class="col"><div class="top"><div class="nm">長期</div><div class="cd">配当株</div></div><div class="body"><div class="lbl">1つの目安として</div><div class="val">10銘柄まで</div><div class="tag">目安</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">5つ目：年金生活の方は、もう1つ</span><span class="brand"></span></div>
+  <div class="lead">ただし、年金生活の方は</div>
+  <div class="stmt">何銘柄持つか以上に、<br><span class="em">大切なことがあります</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">5つ目：いちばん大切なところ</span><span class="brand"></span></div>
+  <div class="lead">それは</div>
+  <div class="stmt">生活に使うお金を、<br><span class="emr">株に入れすぎないこと</span>です。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">5つ目：入れすぎると、どうなるか</span><span class="brand"></span></div>
+  <div class="h-main">生活費まで株に入れてしまうと、こうなります</div>
+  <div class="chain">
+    <div class="node">数年のうちに使うお金や<br>生活費まで<br>株に入れる</div>
+    <div class="arr">→</div>
+    <div class="node">相場が<br>大きく下がる</div>
+    <div class="arr">→</div>
+    <div class="node danger">安いところで<br>売らなければ<br>ならなくなる</div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">5つ目：お金を2つに分ける</span><span class="brand"></span></div>
+  <div class="badge navy">だから、こう分けます</div>
+  <div class="h-main">増やすお金と、減らしてはいけないお金</div>
+  <div class="grid g2" style="min-height:360px">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">株で増やすお金</div><div class="ctext">値動きを受け入れられるお金</div></div>
+    <div class="card c1"><div class="cno">2</div><div class="ctitle">減らしてはいけないお金</div><div class="ctext">数年のうちに使うお金と、生活費</div></div>
+  </div>
+  <div class="foot-bar">さきほどの<span class="em">個人向け国債</span>の話は、ここでも使えます</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">5つ目：銘柄数と分散は別</span><span class="brand"></span></div>
+  <div class="badge orange">サラリーマンでも年金生活の方でも、ここは同じです</div>
+  <div class="h-main">銘柄数が多ければ分散できている、とは限りません</div>
+  <div class="cols">
+    <div class="box left"><div class="name">見た目は</div><div class="cap">アドバンテスト・東京エレクトロン・キオクシア</div><div class="big">3社に分かれている</div><div class="div"></div><div class="strong">会社は、たしかに3つです</div></div>
+    <div class="vsmark">→</div>
+    <div class="box right"><div class="name">中身は</div><div class="cap">実際には</div><div class="big">全部AI半導体</div><div class="div"></div><div class="strong">半導体全体が売られれば、<br>3社とも一緒に下がります</div></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">5つ目：持ち方の一例</span><span class="brand"></span></div>
+  <div class="badge blue">投資初心者の方なら、こういう持ち方でもいいと思います</div>
+  <div class="h-main">生活に欠かせない業種を土台にする</div>
+  <div class="grid" style="min-height:340px">
+    <div class="card c3"><div class="cno">土</div><div class="ctitle">食品</div><div class="ctext">景気が悪くなっても需要が落ちにくい</div></div>
+    <div class="card c3"><div class="cno">台</div><div class="ctitle">通信・電力</div><div class="ctext">生活に欠かせない</div></div>
+    <div class="card c2"><div class="cno">＋</div><div class="ctitle">AI半導体 1銘柄</div><div class="ctext">自分がしっかり決算まで確認している会社を、1つ</div></div>
+  </div>
+  <div class="foot-bar">何銘柄持っているかより、<span class="em">自分が持っている会社を理解しているか</span>。初心者のうちは、こちらのほうが大切です</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">どう動くか：まとめ</span><span class="brand"></span></div>
+  <div class="lead">金利が高い時代は、「株を買うか、売るか」の二択ではありません</div>
+  <div class="stmt"><span class="em">どう持つか</span>のほうが、<br>大切になります。</div>
+</section>
+
+<!-- ================= ⑨ 今が大チャンスなのか（13枚・エンディング込み） ================= -->
+
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">まとめ：今が大チャンスなのか</span><span class="brand"></span></div>
+  <div class="topic"><span>まとめ</span><span class="bar"></span><span>今が大チャンスなのか</span></div>
+  <div class="numbox">08</div>
+  <div class="stitle"><div class="label">CONCLUSION</div><div class="ttl">今が、<br>大チャンスなのか</div><div class="rule"></div><div class="desc">冒頭で言った「かもしれない」の意味を、はっきりさせて終わります</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ：冒頭の言葉</span><span class="brand"></span></div>
+  <div class="lead">冒頭で、そうなるかもしれない、と言いました</div>
+  <div class="stmt">最後に、<br><span class="em">その意味をはっきりさせて</span><br>終わります。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">まとめ：底は分かりません</span><span class="brand"></span></div>
+  <div class="lead">値段の底を当てる、という意味なら、僕にも分かりません</div>
+  <div class="h-main">それが、今の相場です</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">利益が29倍になった会社の株価が</div>
+      <div class="mfig">3か月で 半分</div>
+      <div class="msub">キオクシアで、実際に起きたことです</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ：底を当てにいくと</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt">底を当てにいく人は、<br><span class="emr">この揺れに振り回されます</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ：それでも言えること</span><span class="brand"></span></div>
+  <div class="lead">それでも、大チャンスになるかもしれないと言えるのは</div>
+  <div class="stmt"><span class="em">何を見て決めればいいかが、<br>はっきりしているから</span>です。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">まとめ：残っているもの</span><span class="brand"></span></div>
+  <div class="badge orange">悪材料は、まだ全部は出ていません</div>
+  <div class="h-main">でも、残っているのはこの3つだけです</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">FRB</div><div class="ctext">9月16日</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">日銀</div><div class="ctext">9月18日</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">中間選挙</div><div class="ctext">11月3日</div></div>
+  </div>
+  <div class="foot-bar">円も、この2つの中央銀行で動きます。つまり<span class="em">動く日が決まっているものだけ</span>です</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ：狙うなら</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt">狙うなら、<br><span class="em">FRBの姿勢が見えてからで十分</span>です。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ：会合で分かること</span><span class="brand"></span></div>
+  <div class="lead">今回の会合で決まるのは、9月に利上げするかどうかです。ただ、政策を決める人たちの年末の金利予想も公表されます</div>
+  <div class="stmt">利上げを1回で止めたいのか、<br>その後も続く可能性があるのかは、<br><span class="em">今より見えやすくなります</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ：そのあとで判断する</span><span class="brand"></span></div>
+  <div class="lead">その内容を確かめてから、足すかどうか判断しても遅くありません</div>
+  <div class="stmt">そのイベントが終われば、<br><span class="em">仕込み時になる可能性があります</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">まとめ：ただし、条件があります</span><span class="brand"></span></div>
+  <div class="badge navy">条件は、今日お話ししたとおりです</div>
+  <div class="h-main">この3つが揃っていること</div>
+  <div class="grid" style="min-height:380px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">会社の利益</div><div class="ctext">利益が、崩れていないこと</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">AI投資</div><div class="ctext">投資が、続いていること</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">円</div><div class="ctext">円高が、会社の前提を壊していないこと</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ：これが揃っているなら</span><span class="brand"></span></div>
+  <div class="lead">これが揃っているなら</div>
+  <div class="stmt"><span class="em">慌てて先回りする必要も、<br>慌てて売る必要もありません</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">おわりに</span><span class="brand"></span></div>
+  <div class="lead">金利の仕組みや、日経平均とTOPIXの違いは</div>
+  <div class="stmt">僕のチャンネルの過去の動画で<br>かなり詳しく解説していますので、<br><span class="em">良ければそちらもご覧ください</span>。</div>
+</section>
+
+<section class="slide t-closing">
+  <div class="big">今回の動画は、以上です。<br><span class="em">ご視聴ありがとうございました。</span></div>
+  <div class="sub" style="max-width:960px;margin:0 auto;">投資をするうえで少しでも参考になった点があれば、<br>ぜひコメント欄で教えてください</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span><span class="tg">💬 コメント</span></div>
+</section>
+</body></html>

@@ -1,0 +1,2560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>日本成長戦略・3分野｜コンテンツ／エネルギー／宇宙</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:40px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 24px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:32px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:12px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:18px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 48px;display:flex;flex-direction:column;justify-content:center;}
+.t-cards:has(.foot-bar){padding-bottom:104px;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .h-sub{margin:-38px 0 34px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:300px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:50px;font-weight:800;color:var(--navy);}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:400px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* compact variants for row-heavy slides */
+.t-rank.compact{padding-top:44px;}
+.t-rank.compact .h-main{margin:6px 0 10px;font-size:32px;}
+.t-rank.compact .rows{gap:9px;}
+.t-rank.compact .row{padding:12px 28px;}
+.t-rank.compact .row .pct{font-size:29px;}
+.t-agenda.compact{padding:52px 76px 44px;}
+.t-agenda.compact .h-main{margin:0 0 16px;font-size:38px;}
+.t-agenda.compact .rows{gap:10px;}
+.t-agenda.compact .row{padding:13px 28px;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* portfolio bars */
+.t-port{padding:56px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:34px;}
+.t-port .bars{display:flex;flex-direction:column;gap:18px;max-width:1040px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:24px;font-weight:800;color:var(--navy);width:230px;}
+.t-port .brow .track{flex:1;height:46px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;align-items:stretch;padding:60px 80px 0;}
+.t-stack .h-main,.t-stack .h-sub,.t-stack .lead,.t-stack .note{text-align:center;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+</style>
+</head>
+<body>
+<!-- ================= ① 導入（001–011） ================= -->
+
+<section class="slide t-title">
+  <div class="kicker">2026 日本の成長戦略</div>
+  <div class="big">7万円台が、<span class="em">すぐそこ</span>。<br>いま買うなら、どの分野か</div>
+  <div class="lead">政府が示した17の戦略分野 —— そこから、3つに絞ってお話しします</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">日経平均株価が、驚異的なスピードで</div>
+  <div class="stmt"><span class="em">7万円台</span>に、<br>戻ろうとしています。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：戻りの速さ</span><span class="brand"></span></div>
+  <div class="lead">7月には、大きく下げた場面もありました</div>
+  <div class="stmt">ところが、そこからの戻りが、<br><span class="em">下げよりもずっと速い</span>。</div>
+  <div class="note">気がつけば、7万円台がすぐそこまで来ています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：上がっているのは日経平均だけではない</span><span class="brand"></span></div>
+  <div class="lead">東証に上場している会社を、広くまとめたTOPIX</div>
+  <div class="stmt">こちらも、<br><span class="em">史上最高値</span>を更新しました。</div>
+  <div class="note">一部の会社だけが上がっているわけではない、ということです</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">はじめに：ここまで来ると</span><span class="brand"></span></div>
+  <div class="badge navy">まったく逆のことを、同時に考えてしまう</div>
+  <div class="h-main">もう遅いのか、乗り遅れるのか</div>
+  <div class="cols">
+    <div class="box left"><div class="name">ためらい</div><div class="cap">こう思う</div><div class="big">もう遅い</div><div class="div"></div><div class="strong">ここから買うのは、<br>さすがにもう遅いんじゃないか</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">焦り</div><div class="cap">こう思う</div><div class="big">乗り遅れる</div><div class="div"></div><div class="strong">ここで動かなかったら、<br>この上昇に<br>乗り遅れるんじゃないか</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：いちばん困るところ</span><span class="brand"></span></div>
+  <div class="lead">そして、仮に買うとして</div>
+  <div class="stmt">どの分野を買えばいいのかが、<br><span class="emr">正直わからない</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：この動画で答えを出すこと</span><span class="brand"></span></div>
+  <div class="lead">今回は、その「どの分野を買うのか」に</div>
+  <div class="stmt">僕なりの答えを、<br><span class="em">はっきりお伝えします</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">はじめに：17分野から、3つへ</span><span class="brand"></span></div>
+  <div class="h-main">日本政府が、この7月に成長戦略を打ち出しました</div>
+  <div class="chain">
+    <div class="node">そこに並ぶ<br><span style="font-size:44px;">17</span>の戦略分野</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">僕が特に上がると思う<br><span style="font-size:44px;">3</span>つに絞る</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">その3つを、選んだ理由から順にお話しします</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：先に、正直に</span><span class="brand"></span></div>
+  <div class="lead">ただ、その前に、正直にお伝えしておきたいことがあります</div>
+  <div class="stmt">国策と聞いて名前が挙がる会社は、<br><span class="emr">もう安くありません</span>。</div>
+  <div class="note">すでに、何倍にもなっている会社がいくつもあります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：それでも</span><span class="brand"></span></div>
+  <div class="lead">それでも僕は、こう思っています</div>
+  <div class="stmt">この3つの分野は、<br>ここから<span class="em">まだ上がる</span>。</div>
+</section>
+
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">この動画でお話しすること</span><span class="brand"></span></div>
+  <div class="h-main">今回お話しするのは、大きくこちらの3つ</div>
+  <div class="rows">
+    <div class="row"><div class="no">1</div><div class="t">3つの分野と、その理由</div><div class="d">17分野から、なぜこの3つを選んだのか</div></div>
+    <div class="row"><div class="no">2</div><div class="t">新NISAで買うなら</div><div class="d">何を参考にすればいいのか</div></div>
+    <div class="row"><div class="no">3</div><div class="t">失われた30年</div><div class="d">なぜ、もう来ないと言えるのか</div></div>
+  </div>
+  <div class="cta">最後まで見ていただければ、どの分野を、どうやって買えばいいのかが、ハッキリします</div>
+</section>
+
+<!-- ================= ② なぜ、これまで日本株は上がらなかったのか（012–027） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 1 / 9</span><span class="bar"></span><span>3つの分野に入る前に</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">なぜ、これまで<br>日本株は上がらなかったのか</div><div class="rule"></div><div class="desc">30年のあいだ、何が起きていたのかを先に片づけます</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：先にお伝えしておきたいこと</span><span class="brand"></span></div>
+  <div class="lead">3つの分野の話に入る前に</div>
+  <div class="stmt">日本株は、長いあいだ<br><span class="emr">上がりませんでした</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：高値を取り戻すまで</span><span class="brand"></span></div>
+  <div class="lead">バブルのときにつけた3万8,915円という高値</div>
+  <div class="h-main">それを取り戻したのは、2024年2月でした</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">かかった年数</div><div class="mfig">34<span class="u">年</span></div><div class="msub">1989年の高値 → 2024年2月</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：失われた30年</span><span class="brand"></span></div>
+  <div class="lead">これが、失われた30年と呼ばれてきた時期です</div>
+  <div class="stmt">給料はほとんど増えず、<br>持っていても<span class="emr">報われない</span>。</div>
+  <div class="note">日本株を持っていても報われない状態が、長く続きました</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：では、なぜ上がらなかったのか</span><span class="brand"></span></div>
+  <div class="lead">日本企業が儲からなかったから。そう思っている方が多いと思います</div>
+  <div class="stmt">でも、それだけでは<br><span class="em">説明がつきません</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：バブル崩壊のあと、何が起きたか</span><span class="brand"></span></div>
+  <div class="h-main">問題は、利益が戻ったあとにありました</div>
+  <div class="chain">
+    <div class="node danger">崩壊した直後<br>業績そのものが<br>落ち込んだ</div>
+    <div class="arr">→</div>
+    <div class="node">その後<br>企業は利益を<br>回復させていく</div>
+    <div class="arr">→</div>
+    <div class="node danger">ところが<br>稼いだ利益ほどには<br>国内投資を増やさず</div>
+  </div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 1：1990年代の終わりごろ</span><span class="brand"></span></div>
+  <div class="lead">日本の企業全体が、こう変わりました</div>
+  <div class="h-main">お金を借りる側から、お金が余る側へ</div>
+  <div class="row">
+    <div class="card"><div class="c-l">それまで</div><div class="c-v">銀行から借りる側</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">1990年代の終わりごろ</div><div class="c-v">お金が余る側</div></div>
+  </div>
+  <div class="note">日銀は、この変化を日本経済の大きな転換点として指摘しています</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：なぜ企業はお金を使わなくなったのか</span><span class="brand"></span></div>
+  <div class="h-main">理由は、いくつもあります</div>
+  <div class="h-sub">そのどれもが効いています</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">借金の返済</div><div class="ctext">バブルのあとに残った<br>借入れを返していく</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">不良債権の処理</div><div class="ctext">銀行が抱えた<br>不良債権の後始末</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">人口減少と高齢化</div><div class="ctext">国内の市場そのものが<br>細っていく</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：そのうえで、大きな理由の1つ</span><span class="brand"></span></div>
+  <div class="lead">そのうえで、大きな理由の1つが、これです</div>
+  <div class="stmt">日本の将来の需要と成長に、<br><span class="emr">自信を持てなくなった</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：お金を使わないことが、正しくなった</span><span class="brand"></span></div>
+  <div class="h-main">工場を建てても、人を増やしても、売り先がない</div>
+  <div class="chain">
+    <div class="node">国内に投資しても<br>売り先がない</div>
+    <div class="arr">＋</div>
+    <div class="node">物価が下がる世界では<br>現金で持つほうが得</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbeaea);border-color:#e6bcbe;">お金を使わないことが、正しい判断になってしまいました</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：日本の問題は、どこにあったのか</span><span class="brand"></span></div>
+  <div class="lead">つまり日本の問題は、企業がダメだったことだけではありません</div>
+  <div class="stmt">将来の需要が見えず、<br>お金を動かす<span class="emr">理由がなかった</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：正直にお伝えします</span><span class="brand"></span></div>
+  <div class="h-main">今回の政権が、初めて成長戦略を打ち出したわけではありません</div>
+  <div class="h-sub">成長戦略そのものは、何度も出てきています</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="ctitle">岸田政権</div><div class="ctext">「新しい資本主義」を掲げて、<br>賃上げ・半導体・脱炭素への<br>投資を進めた</div></div>
+    <div class="card c2"><div class="ctitle">石破政権</div><div class="ctext">賃上げと投資が引っ張る経済を、<br>中心に置いていた</div></div>
+  </div>
+  <div class="foot-bar">だから「また同じことを言っているだけでは」と思うのは、<span class="em">当然だと思います</span></div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：では、今回は何が違うのか</span><span class="brand"></span></div>
+  <div class="h-main">違うのは、この2つです</div>
+  <div class="grid g2">
+    <div class="card c2"><div class="cno">1</div><div class="ctitle">中身の細かさ</div><div class="ctext">どこに、何を、いつまでに。<br>製品と技術の単位まで<br>落とし込んでいる</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">お金の出し方</div><div class="ctext">予算の組み方そのものを<br>変えてきた</div></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：違い①　中身の細かさ</span><span class="brand"></span></div>
+  <div class="h-main">今回の成長戦略は、ここまで具体的です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">17</div><div class="ctext">戦略分野を決めた</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">62</div><div class="ctext">その中の製品や技術まで<br>具体的に落とし込んだ</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">2040年度まで</div><div class="ctext">それぞれ、いくら投資するのか<br>というロードマップを作った</div></div>
+  </div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：違い②　お金の出し方</span><span class="brand"></span></div>
+  <div class="badge navy">1年ごとの予算だと、何が困るのか</div>
+  <div class="h-main">工場も、新技術の実用化も、数年から10年かかる</div>
+  <div class="cols">
+    <div class="box left"><div class="name">これまで</div><div class="cap">予算の組み方</div><div class="big">1年ごと</div><div class="div"></div><div class="strong">来年も続くのか分からない。<br>それを当てにして、<br>10年がかりの投資は決められない</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">今回</div><div class="cap">予算の組み方</div><div class="big">複数の年度に<br>またがる</div><div class="div"></div><div class="strong">何年にわたって、いくら出すのか。<br>それを先に決めてしまう</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：これが何を意味するか</span><span class="brand"></span></div>
+  <div class="lead">これまでの成長戦略は「やります」でした。今回は「いつ、どこに、いくら」まで出してきました</div>
+  <div class="stmt">政府はいま、<br>その見えなかったものを、<br><span class="em">自分で作りにいっています</span>。</div>
+  <div class="note">企業から見ると、10年先まで、国がこの方針を続けると計算できるようになる、ということです</div>
+</section>
+
+<!-- ================= ③ ただし、株はもう安くありません（028–036） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 2 / 9</span><span class="bar"></span><span>先に片づけておくこと</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">ただし、株はもう<br>安くありません</div><div class="rule"></div><div class="desc">この動画を通して使う考え方と、3つを選んだ基準</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：浮かれるわけにはいきません</span><span class="brand"></span></div>
+  <div class="lead">さきほど、国策と聞いて名前が挙がるような会社は、もう安くない、とお伝えしました</div>
+  <div class="stmt">ここを、<br><span class="em">先に片づけます</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：たとえば三菱重工</span><span class="brand"></span></div>
+  <div class="lead">発電設備からロケットまで手がけている会社です</div>
+  <div class="h-main">株価は、すでにここまで来ています</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">2024年の1年だけで</div><div class="mfig">約2.4<span class="u">倍</span></div><div class="msub">1年間の値上がり</div></div>
+    <div class="metric"><div class="mlbl">この10年では</div><div class="mfig">約6.68<span class="u">倍</span></div><div class="msub">10年間の値上がり</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：単純な段階は、もう過ぎている</span><span class="brand"></span></div>
+  <div class="lead">政府が成長戦略を出したから、これから上がる</div>
+  <div class="stmt">そんな単純な段階は、<br><span class="emr">もう過ぎています</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：この動画を通して使う考え方</span><span class="brand"></span></div>
+  <div class="lead">だから、先にお伝えしておきます</div>
+  <div class="stmt">国が出すお金の大きさで、<br><span class="emr">株を選ばないでください</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：株価は、何で動いているのか</span><span class="brand"></span></div>
+  <div class="h-main">株価は、いまの業績では動いていません</div>
+  <div class="chain">
+    <div class="node">この会社は<br>これから何年かで<br>これくらい稼ぐだろう</div>
+    <div class="arr">→</div>
+    <div class="node">その<br><span style="color:#cf820f;">予想</span>で<br>株価は動いている</div>
+    <div class="arr">→</div>
+    <div class="node danger">だから利益が増えても<br>予想に届かなければ<br>売られる</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：知られていることは、値段に入っている</span><span class="brand"></span></div>
+  <div class="lead">国がこの分野に力を入れる。それは、もうみんなが知っています</div>
+  <div class="stmt">知られていることは、<br>すでに<span class="emr">値段に入っています</span>。</div>
+  <div class="note">政策が正しいことと、その株が今の値段で割安であることは、まったく別の話です</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：370兆円という数字について</span><span class="brand"></span></div>
+  <div class="lead">今回のロードマップに並んでいる、370兆円を超えるという投資額</div>
+  <div class="stmt">そのまま売上と利益に変わる保証は、<br><span class="emr">どこにもありません</span>。</div>
+  <div class="note">数字だけが残る可能性は、当然あります</div>
+</section>
+
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 2：17分野から3つを選んだ基準</span><span class="brand"></span></div>
+  <div class="h-main">僕が17の分野から3つを選んだ基準は、この3つです</div>
+  <div class="rows">
+    <div class="row"><div class="no">1</div><div class="t">国が、お金を配るだけで終わらない分野かどうか</div></div>
+    <div class="row"><div class="no">2</div><div class="t">日本がすでに世界で勝っている分野かどうか</div></div>
+    <div class="row"><div class="no">3</div><div class="t">その政策が、すでに企業の売上や利益になりはじめているかどうか</div></div>
+  </div>
+  <div class="cta">この3つの基準で、17の分野を絞り込みました。1つ目から、順番に見ていきます</div>
+</section>
+
+<!-- ================= ⑤-1 ゲームを含むコンテンツ産業（037–101） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 3 / 9</span><span class="bar"></span><span>僕が選んだ3つの分野</span></div>
+  <div class="numbox">03</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">1つ目は、ゲームを含む<br>コンテンツ産業</div><div class="rule"></div><div class="desc">設備がいらないのに、世界に売れる。そしてIPは、何十年も生き続ける</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：意外に思われるかもしれません</span><span class="brand"></span></div>
+  <div class="lead">国の成長戦略と聞くと</div>
+  <div class="stmt">工場や発電所を<br>思い浮かべる方が、<br><span class="em">多いと思います</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：他にはない特徴</span><span class="brand"></span></div>
+  <div class="lead">ですが、この分野には、他にはない特徴があります</div>
+  <div class="stmt">大きな設備が、<br><span class="em">いらない</span>。</div>
+  <div class="note">工場を建てる必要も、電線を引く必要もありません</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：必要なもの</span><span class="brand"></span></div>
+  <div class="h-main">必要なのは、この3つだけです</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">人</div><div class="ctext">作る人がいること</div></div>
+    <div class="card c2"><div class="ctitle">時間</div><div class="ctext">作りきる時間があること</div></div>
+    <div class="card c3"><div class="ctitle">アイデア</div><div class="ctext">何を作るか</div></div>
+  </div>
+  <div class="foot-bar">一度当たれば、同じものを世界中に、<span class="em">追加のコストをほとんどかけずに</span>売れます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：2つ目の基準に当てはまる</span><span class="brand"></span></div>
+  <div class="lead">さきほどお伝えした2つ目の基準、日本がすでに世界で勝っているかどうか</div>
+  <div class="stmt">これに、<br><span class="em">いちばんはっきり</span>当てはまります。</div>
+  <div class="note">日本がすでに世界で勝っている、数少ない産業です</div>
+</section>
+
+<section class="slide numviz t-stack">
+  <div class="hdr"><span class="sec">Section 3：官民投資ロードマップ</span><span class="brand"></span></div>
+  <div class="h-main">ゲームだけで、24兆5,000億円</div>
+  <div class="h-sub">まず、政府がどれくらいの規模を見ているのかを見ていきます</div>
+  <div class="sbar">
+    <div class="seg a" style="width:74%;"><div class="sn">ゲーム</div><div class="sv">24兆5,000億円</div></div>
+    <div class="seg c" style="width:26%;"><div class="sn">アニメ・音楽・漫画</div><div class="sv">ほか</div></div>
+  </div>
+  <div class="total">合わせて <span class="em">33兆円</span> を超えます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：この数字の読み方</span><span class="brand"></span></div>
+  <div class="lead">ただし、この24兆5,000億円は</div>
+  <div class="stmt">政府が配る<br><span class="emr">補助金ではありません</span>。</div>
+  <div class="note">民間の投資も含めて、これくらいのお金が動くだろう、という見込みの数字です</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：政府が掲げている目標</span><span class="brand"></span></div>
+  <div class="lead">そのうえで、政府が掲げている目標は</div>
+  <div class="stmt">かなり、<br><span class="em">具体的です</span>。</div>
+</section>
+
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 3：コンテンツの海外売上</span><span class="brand"></span></div>
+  <div class="h-main">2033年に、海外売上を20兆円にする</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">政府が基準にする2023年</div><div class="v">約5.8兆円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s2"><div class="era">2024年の推計</div><div class="v">6兆円超</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2033年 目標</div><div class="v">20兆円</div></div>
+  </div>
+  <div class="foot-note">10年足らずで、3倍以上にしよう、という目標です</div>
+</section>
+
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 3：その中心にいるのがゲーム</span><span class="brand"></span></div>
+  <div class="h-main">ゲームだけで、12兆円まで伸ばす</div>
+  <div class="h-sub">ゲームは、日本のコンテンツの海外売上のおよそ6割を占める最大の分野です</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">いま</div><div class="v" style="font-size:38px;">3兆円台の半ば</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2033年</div><div class="v">12兆円</div></div>
+  </div>
+  <div class="foot-note">こちらも、いまの3倍以上。日本のコンテンツを、輸出で稼ぐ主要な産業にしようとしています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：では、なぜ僕がこの分野を選んだのか</span><span class="brand"></span></div>
+  <div class="lead">では、なぜ僕がこの分野を選んだのか</div>
+  <div class="stmt">日本のIPは<span class="em">寿命が異常に長く</span>、<br>海外での人気も<span class="em">圧倒的に高い</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：IPとは</span><span class="brand"></span></div>
+  <div class="lead">IPというのは</div>
+  <div class="stmt">キャラクターや作品そのものの、<br><span class="em">権利</span>のことです。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：日本のIP</span><span class="brand"></span></div>
+  <div class="h-main">たとえば、こうしたIPです</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctext" style="font-size:26px;line-height:1.9;">マリオ<br>ゼルダ<br>ポケモン<br>ハローキティ</div></div>
+    <div class="card c2"><div class="ctext" style="font-size:26px;line-height:1.9;">ガンダム<br>ドラゴンボール<br>モンスターハンター</div></div>
+    <div class="card c3"><div class="ctext" style="font-size:26px;line-height:1.9;">バイオハザード<br>ストリートファイター<br>ゴジラ</div></div>
+  </div>
+  <div class="foot-bar">1本のヒットで終わったものが1つもなく、<span class="em">新作が出るたびに、過去の作品まで一緒に売れています</span></div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：売り方が1つではない</span><span class="brand"></span></div>
+  <div class="h-main">同じ1つのIPから、何度も収益を取れます</div>
+  <div class="chain">
+    <div class="node">ゲームで出す<br>映像にする</div>
+    <div class="arr">→</div>
+    <div class="node">玩具にする<br>使用料を取る</div>
+    <div class="arr">→</div>
+    <div class="node">テーマパーク<br>スマホゲーム<br>コラボ</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">何年か経ったら<br>もう一度売り直す</div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：たとえばカプコン</span><span class="brand"></span></div>
+  <div class="h-main">バイオハザードとモンスターハンターを作っている会社</div>
+  <div class="h-sub">公式の資料によると、2026年時点で</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">バイオハザード</div><div class="cd">シリーズ累計</div></div><div class="body"><div class="lbl">世界での販売本数</div><div class="val">2億本超</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">モンスターハンター</div><div class="cd">シリーズ累計</div></div><div class="body"><div class="lbl">世界での販売本数</div><div class="val">1億本超</div></div></div>
+  </div>
+  <div class="foot-note">昔の作品をデジタルで売り続けることが、そのまま利益になっています</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 3：アニメと漫画でも、同じことが起きている</span><span class="brand"></span></div>
+  <div class="h-main">海外の市場のほうが、国内より大きい</div>
+  <div class="h-sub">2024年のアニメ産業の市場規模は、過去最高の3兆8,000億円超（日本動画協会）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:230px;">約1兆7,000億円</div><div class="cap">国内の市場</div></div>
+    <div class="vb orange"><div class="bar" style="height:285px;">2兆1,000億円超</div><div class="cap">海外の市場</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：もう、その段階ではない</span><span class="brand"></span></div>
+  <div class="lead">日本のアニメは</div>
+  <div class="stmt">もう「海外でも人気があります」<br>という段階では<span class="emr">ありません</span>。</div>
+  <div class="note">海外の市場のほうが、国内より大きくなっています</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：分かりやすいのが、鬼滅の刃</span><span class="brand"></span></div>
+  <div class="lead">週刊少年ジャンプの漫画がアニメになり、映画になりました</div>
+  <div class="h-main">2025年に公開された『無限城編 第一章』は</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">2025年 世界の興行収入</div><div class="mfig">5<span class="u">位</span></div><div class="msub">その年に世界で公開された映画、全体の中で</div></div>
+  </div>
+  <div class="note">日本の映画の中で5位、ではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：どこまで来たのか</span><span class="brand"></span></div>
+  <div class="lead">日本の漫画が、アニメを通して世界に広がって</div>
+  <div class="stmt">ハリウッドの映画と<br><span class="em">同じ場所で戦う</span>ところまで<br>来ています。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ここで、海外と比べてみます</span><span class="brand"></span></div>
+  <div class="lead">正直に言えば</div>
+  <div class="stmt">会社の規模では、<br><span class="emr">まったく勝てません</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：海外との比較</span><span class="brand"></span></div>
+  <div class="badge navy">負けているところと、勝っているところ</div>
+  <div class="h-main">それでも、日本に勝ち筋があります</div>
+  <div class="cols">
+    <div class="box right"><div class="name">負けている</div><div class="cap">ディズニー、ネットフリックス</div><div class="big">資本力と配信網</div><div class="div"></div><div class="strong">資本力でも、世界への配信網でも、<br>日本の会社は完全に負けています</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">勝っている</div><div class="cap">日本の勝ち筋</div><div class="big">IPの寿命</div><div class="div"></div><div class="strong">かけた制作費に対して、<br>IPが生き続ける期間が長い</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：もう1つの追い風</span><span class="brand"></span></div>
+  <div class="lead">そしてもう1つ、この分野には追い風があります。円安です</div>
+  <div class="stmt">円安になるほど、<br>円に直したときの売上と利益は<br><span class="em">大きくなります</span>。</div>
+  <div class="note">ゲームもアニメも音楽も、海外ではドルやユーロで売るからです</div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：円安の効き方</span><span class="brand"></span></div>
+  <div class="lead">たとえば、海外で70ドルのゲームが売れたとします</div>
+  <div class="h-main">値上げをしていないのに、円換算の金額が増える</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1ドル140円なら</div><div class="c-v">9,800円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">1ドル150円なら</div><div class="c-v">10,500円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">同じ70ドルでも</div><div class="r-v">+700円</div></div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：実際の数字で見ると</span><span class="brand"></span></div>
+  <div class="h-main">海外で稼ぐ比率が高いほど、影響は大きくなります</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">任天堂</div><div class="cd">海外売上の比率</div></div><div class="body"><div class="lbl">売上のうち海外が</div><div class="val">7割以上</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">カプコン</div><div class="cd">為替の感応度</div></div><div class="body"><div class="lbl">為替が1円動くだけで</div><div class="val">利益に数億円</div></div></div>
+  </div>
+  <div class="foot-note">映画の興行収入も、音楽の配信も、キャラクターの使用料も、海外で稼ぐほど同じ恩恵を受けます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ただし、全部がプラスではありません</span><span class="brand"></span></div>
+  <div class="lead">ゲーム機の部品を海外から仕入れている任天堂やソニーグループは</div>
+  <div class="stmt">円安になると、<br>仕入れのコストが<span class="emr">上がります</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：円安の恩恵が大きいのは</span><span class="brand"></span></div>
+  <div class="lead">デジタルで配信するゲームや、キャラクターの使用料のように</div>
+  <div class="stmt">海外の売上が大きく、<br>追加のコストが小さいビジネスほど、<br><span class="em">恩恵は大きくなります</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：では、実際の株価はどうだったのか</span><span class="brand"></span></div>
+  <div class="lead">日本のゲームとIPの代表的な10社を、同じ金額ずつ持ったと仮定して計算してみます</div>
+  <div class="stmt">2015年末から2025年末までの、<br><span class="em">10年間</span>です。</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 3：10社をまとめて持っていたら</span><span class="brand"></span></div>
+  <div class="h-main">同じ10年で、ここまで差がつきました</div>
+  <div class="h-sub">2015年末 → 2025年末（配当を含まない、株価だけの比較）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:150px;">2.64倍</div><div class="cap">日経平均</div><div class="sub">年率 10.2%</div></div>
+    <div class="vb orange"><div class="bar" style="height:306px;">5.39倍</div><div class="cap">ゲーム・IP 10社</div><div class="sub">年率 18.3%</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：この差の意味</span><span class="brand"></span></div>
+  <div class="lead">この10社をまとめて持っていたら、日経平均のおよそ2倍になっていた計算です</div>
+  <div class="stmt">年率の差は、<span class="em">8ポイント</span>ほど。</div>
+  <div class="note">1年で見ればわずかな差ですが、10年積み重なると、倍率でここまで開きます</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：いちばん伸びた会社</span><span class="brand"></span></div>
+  <div class="lead">個別に見ると、いちばん伸びたのはカプコンでした</div>
+  <div class="h-main">10年で、ここまで伸びています</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">カプコン（2015年末 → 2025年末）</div><div class="mfig">8.50<span class="u">倍</span></div><div class="msub">10社の中で最大</div></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：この数字の注意点</span><span class="brand"></span></div>
+  <div class="h-main">ただし、この数字には注意点があります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">仮定の計算</div><div class="ctext">10社を、同じ金額ずつ<br>持ったと仮定した場合の数字</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">配当を含まない</div><div class="ctext">株価だけの比較です</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">勝った会社だけではない</div><div class="ctext">勝った会社だけを<br>並べているわけでもありません</div></div>
+  </div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 3：ここが大事なところ</span><span class="brand"></span></div>
+  <div class="h-main">同じ10社の中に、この差が並んでいます</div>
+  <div class="h-sub">2015年末 → 2025年末（配当を含まない、株価だけの比較）</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:300px;">8.50倍</div><div class="cap">カプコン</div></div>
+    <div class="vb"><div class="bar" style="height:59px;"></div><div class="cap">セガサミー<br>ホールディングス</div><div class="sub">1.68倍</div></div>
+    <div class="vb"><div class="bar" style="height:28px;"></div><div class="cap">スクウェア・エニックス</div><div class="sub">0.78倍（年率 −2.5%）</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：分野で買う話ではない</span><span class="brand"></span></div>
+  <div class="lead">「日本のコンテンツだから買っておけばいい」という話では、まったくありません</div>
+  <div class="stmt">同じ分野の中で、<br>この差は<span class="emr">10倍以上</span>です。</div>
+  <div class="note">スクウェア・エニックスは、10年かけて減っています</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：では、この差はどこから生まれたのか</span><span class="brand"></span></div>
+  <div class="badge navy">強いのは、分野そのものではありません</div>
+  <div class="h-main">同じ分野の中で、何が明暗を分けたのか</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">伸びた会社</div><div class="cap">こういう会社</div><div class="big">繰り返し売れる</div><div class="div"></div><div class="strong">IPを、複数の作品で、複数の地域で、<br>複数の媒体で、繰り返し売れる会社</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">報われなかった会社</div><div class="cap">こういう会社</div><div class="big">1本に左右される</div><div class="div"></div><div class="strong">大型タイトル1本の当たり外れに<br>業績が左右される会社</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：ここからは、いま起きていること</span><span class="brand"></span></div>
+  <div class="lead">ここまでは10年の話。ですが、いま起きていることのほうが、もっと大事かもしれません</div>
+  <div class="h-main">7月16日から8月14日までの、およそ1か月</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">主要10社の騰落率（単純平均）</div><div class="mfig">+15.6<span class="u">%</span></div><div class="msub">10社のうち、9社が上昇</div></div>
+  </div>
+</section>
+
+<section class="slide t-rank compact">
+  <div class="hdr"><span class="sec">Section 3：この1か月で、はっきり戻した</span><span class="brand"></span></div>
+  <div class="h-main">ゲーム・IP 主要10社の騰落率（7月16日 → 8月14日）</div>
+  <div class="rows">
+    <div class="row"><div class="nm">バンダイナムコホールディングス</div><div class="pct up">+32.3%</div></div>
+    <div class="row"><div class="nm">カプコン</div><div class="pct up">+27.5%</div></div>
+    <div class="row"><div class="nm">任天堂</div><div class="pct up">+25.7%</div></div>
+    <div class="row"><div class="nm">コナミグループ</div><div class="pct up">+20.7%</div></div>
+    <div class="row"><div class="nm">スクウェア・エニックス</div><div class="pct up">+17.3%</div></div>
+    <div class="row"><div class="nm">ソニーグループ</div><div class="pct up">+13.8%</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：では、なぜそれまで売られていたのか</span><span class="brand"></span></div>
+  <div class="lead">ここが、今日いちばんお伝えしたいところです</div>
+  <div class="stmt">では、なぜそれまで<br><span class="emr">売られていた</span>のか。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：理由は2つ</span><span class="brand"></span></div>
+  <div class="h-main">理由は、2つあります</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">各社それぞれの事情</div><div class="ctext">会社ごとに<br>抱えていた不安があった</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">AI半導体への集中</div><div class="ctext">こちらのほうが、<br>大きい理由です</div></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：理由①　任天堂の事情</span><span class="brand"></span></div>
+  <div class="h-main">期待が高くなりすぎたところに、不安が重なりました</div>
+  <div class="chain">
+    <div class="node">新しいゲーム機への<br>期待が高すぎた</div>
+    <div class="arr">＋</div>
+    <div class="node danger">本体の値上げ<br>大きなタイトル不足</div>
+    <div class="arr">＋</div>
+    <div class="node danger">メモリの価格上昇で<br>製造コストの心配</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：理由①　ソニーグループの事情</span><span class="brand"></span></div>
+  <div class="lead">プレイステーション5が成熟してきたところに、メモリの値上がりが重なりました</div>
+  <div class="stmt">5月の時点では、今期のゲーム事業の売上は<br>前の年より<span class="emr">6%減る</span>、<br>という見通しを自分で出しています。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：理由②　こちらのほうが大きい</span><span class="brand"></span></div>
+  <div class="lead">そして2つ目。こちらのほうが大きい理由です</div>
+  <div class="stmt">お金が、<br><span class="emr">AI半導体に集中していました</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：この1年ほど続いていた関係</span><span class="brand"></span></div>
+  <div class="h-main">限られたお金の、奪い合いでした</div>
+  <div class="chain">
+    <div class="node">AIと半導体に<br>関わる会社に<br>資金が流れ込む</div>
+    <div class="arr">→</div>
+    <div class="node danger">その分、ゲームや<br>コンテンツの会社から<br>お金が抜けていく</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbeaea);border-color:#e6bcbe;">AI半導体が上がると、ゲーム・コンテンツが下がる</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：決算①　7月28日 カプコン</span><span class="brand"></span></div>
+  <div class="lead">7月の終わりから流れが変わります。きっかけは決算でした</div>
+  <div class="h-main">本業で稼いだ利益、営業利益が大きく増えました</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">営業利益（前年比）</div><div class="mfig">+66.9<span class="u">%</span></div><div class="msub">410億円</div></div>
+    <div class="metric navy"><div class="mlbl">新作の販売本数</div><div class="mfig">250<span class="u">万本超</span></div><div class="msub">昔の作品も伸びた</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：決算①　業界全体に広がった買い</span><span class="brand"></span></div>
+  <div class="lead">その翌日、7月29日</div>
+  <div class="h-main">カプコン1社ではありませんでした</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">ゲーム・エンタメの会社のうち</div><div class="mfig">約7<span class="u">割</span></div><div class="msub">翌日に上昇。業界全体に買いが広がった</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：決算②　7月31日 ソニーグループ</span><span class="brand"></span></div>
+  <div class="lead">利益が市場の予想を上回りました</div>
+  <div class="h-main">今年度の見通しを、引き上げています</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">今年度の営業利益の見通し</div><div class="mfig">+8<span class="u">%</span></div><div class="msub">上方修正</div></div>
+  </div>
+  <div class="note">しかも、今期に必要なメモリはすでに確保できていることも示されました</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ただし、メモリの問題は消えていません</span><span class="brand"></span></div>
+  <div class="lead">心配されていたコストの問題は、少なくとも今期は、思ったほどではありませんでした</div>
+  <div class="stmt">ただし、ソニーが確保できたのは、<br><span class="emr">今期の分です</span>。</div>
+  <div class="note">AI向けの需要が強いままで、値段がいつ下がるのかは、まだ読めません。ここは、いまも続いている問題です</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 3：決算③　8月6日 任天堂</span><span class="brand"></span></div>
+  <div class="h-main">市場の予想の、倍を超えました</div>
+  <div class="h-sub">営業利益は前の年より150.5%増えて、1,426億円</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:148px;">703億円</div><div class="cap">市場の予想</div></div>
+    <div class="vb orange"><div class="bar" style="height:300px;">1,426億円</div><div class="cap">実際の営業利益</div><div class="sub">前の年より +150.5%</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：市場が思っていたこと</span><span class="brand"></span></div>
+  <div class="lead">市場が「メモリが高くなって、ゲーム会社の利益は苦しいはずだ」と思っていたところに</div>
+  <div class="stmt">思っていたよりはるかに強い数字が、<br><span class="em">出てきました</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：いちばん大事な変化</span><span class="brand"></span></div>
+  <div class="badge">ここが、いちばん大事な変化です</div>
+  <div class="h-main">AI半導体との関係が、変わりはじめています</div>
+  <div class="cols">
+    <div class="box left"><div class="name">これまで</div><div class="cap">限られたお金の奪い合い</div><div class="big">下がっていた</div><div class="div"></div><div class="strong">AI半導体が上がると、<br>ゲーム・コンテンツが下がる</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">ところが今は</div><div class="cap">同時に上がれるようになった</div><div class="big">下がらない</div><div class="div"></div><div class="strong">AI半導体が上がっても、<br>ゲーム・コンテンツが下がらなくなってきた</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：これが意味すること</span><span class="brand"></span></div>
+  <div class="lead">これは、株価が戻ったというだけの話ではありません</div>
+  <div class="stmt">1か所に集まっていたお金が、<br><span class="em">広がりはじめています</span>。</div>
+  <div class="note">国の成長戦略が複数の分野に張られていることと、この動きは、方向が一致しています</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：ただし、全部が上がったわけではない</span><span class="brand"></span></div>
+  <div class="lead">10社の中で、下げた会社もあります</div>
+  <div class="h-main">唯一、下げていたのがKADOKAWAでした</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">KADOKAWA（7月16日 → 8月14日）</div><div class="mfig">−4.2<span class="u">%</span></div><div class="msub">10社のうち、下げたのはこの1社だけ</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：覚えておいてほしい動き</span><span class="brand"></span></div>
+  <div class="lead">サンリオは、この1か月で見れば5.4%上がっています</div>
+  <div class="stmt">ただ、その途中で、<br>1日に<span class="emr">18%下げる場面</span>が<br>ありました。</div>
+  <div class="note">8月10日に決算を出した直後です</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 3：サンリオの決算の中身</span><span class="brand"></span></div>
+  <div class="h-main">中身は、決して悪くありません</div>
+  <div class="h-sub">営業利益は前の年より11.1%増加。売上も市場の予想を上回りました。それでも、1日18%下げました</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:270px;">224.4億円</div><div class="cap">実際の営業利益</div><div class="sub">前の年より +11.1%</div></div>
+    <div class="vb"><div class="bar" style="height:282px;">234億円</div><div class="cap">市場が見ていた数字</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：これが、さきほどの考え方です</span><span class="brand"></span></div>
+  <div class="lead">増えたけれど、期待には届かなかった。見るべきは、業績が良いかどうかではありません</div>
+  <div class="stmt">業績が、すでに株価に入っている<br><span class="em">期待を上回るかどうか</span>です。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：3つの立場を分けて考える</span><span class="brand"></span></div>
+  <div class="h-main">同じ「ゲーム株」でも、負っているリスクがまったく違います</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">開発会社</div><div class="ctext">自分でゲームを作って売る。<br>当たれば大きいが、<br>開発費が先に出ていく。<br><b>ヒットのリスクを、<br>まるごと自分で負う立場</b></div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">IPを持っている会社</div><div class="ctext">サンリオが代表例。<br>世界中の企業にキャラクターを<br>使わせ、使用料を受け取る。<br><b>使われる場所が増えるほど、<br>収益が積み上がっていく立場</b></div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">プラットフォーム</div><div class="ctext">プレイステーションのように、<br>他社のソフトが売れるたびに<br>手数料が入る。<br><b>誰が当てても<br>収益になる立場</b></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：IPを持つ会社の負担</span><span class="brand"></span></div>
+  <div class="lead">自分たちでIPを育てる費用はかかります</div>
+  <div class="stmt">ですが、ライセンス先の開発費や製造費まで、<br>自分で負担する必要は<span class="em">ありません</span>。</div>
+  <div class="note">任天堂は、ハードもソフトも自分で作るので、この3つを1社で兼ねています</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：立場が違えば、見るべき数字も変わる</span><span class="brand"></span></div>
+  <div class="h-main">だから、見るべき数字も変わります</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">開発会社なら</div><div class="ctext">次のタイトルの中身</div></div>
+    <div class="card c2"><div class="ctitle">IPを持つ会社なら</div><div class="ctext">そのIPが何年、<br>いくつの媒体で<br>使われているか</div></div>
+    <div class="card c3"><div class="ctitle">プラットフォームなら</div><div class="ctext">その場所を通る<br>取引の量</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：この分野の季節の癖</span><span class="brand"></span></div>
+  <div class="lead">もう1つ、この分野には季節の癖があります</div>
+  <div class="stmt">ゲームやコンテンツの株は、<br><span class="em">夏前から買われやすい</span>傾向があります。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：材料が、この時期に集中する</span><span class="brand"></span></div>
+  <div class="h-main">材料が、この時期に集中するからです</div>
+  <div class="chain">
+    <div class="node">5月〜6月<br>大きなタイトルが<br>発表される</div>
+    <div class="arr">→</div>
+    <div class="node">7月〜8月<br>決算が出る</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">9月<br>東京ゲームショウで<br>出展作品が公開される</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">今年の東京ゲームショウは、9月17日から21日までの5日間</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：イベントの前と、後</span><span class="brand"></span></div>
+  <div class="badge navy">当日に突然買われる、というより</div>
+  <div class="h-main">株価が動きやすいのは、イベントの前です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">8月〜9月前半</div><div class="cap">イベントの前</div><div class="big">先回り</div><div class="div"></div><div class="strong">新作への期待を先回りする形で、<br>株価が動くことが多い</div></div>
+    <div class="vsmark">→</div>
+    <div class="box right"><div class="name">イベント開始後</div><div class="cap">十分に上がった銘柄は</div><div class="big">材料の出尽くし</div><div class="div"></div><div class="strong">「材料が出尽くした」と見なされて、<br>利益確定の売りが出ることもある</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：2024年に実際に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">2024年には、東京ゲームショウの直前にカプコン、バンダイナムコ、コナミなどが高値を更新しました</div>
+  <div class="stmt">そして、イベントが終わったあとに<br><span class="emr">売りが出た銘柄</span>もありました。</div>
+  <div class="note">もちろん、毎年必ず同じ動きになるわけではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：そのうえで、僕の考え</span><span class="brand"></span></div>
+  <div class="lead">今年はすでに、任天堂もカプコンもバンダイナムコも、大きく戻したあとです</div>
+  <div class="stmt">上がったところを無理に追いかけるより、<br>僕なら<span class="em">出尽くしで売られたところ</span>を狙います。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：なぜ、そこを狙うのか</span><span class="brand"></span></div>
+  <div class="lead">イベントが終わったあとも、業績も、成長の道筋も、何も変わっていない</div>
+  <div class="stmt">それなのに下がるのであれば、<br>そこはむしろ<span class="em">買い場になる可能性</span>があると<br>思っています。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：まとめ</span><span class="brand"></span></div>
+  <div class="h-main">僕がこの分野を1つ目に選んだ理由</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">設備がいらない</div><div class="ctext">大きな設備がいらないのに、<br>世界に売れる</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">すでに勝っている</div><div class="ctext">日本がすでに勝っていて、<br>IPは何十年も生き続ける</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">海外のほうが大きい</div><div class="ctext">アニメは、海外の市場のほうが<br>国内より大きくなっている</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ただし</span><span class="brand"></span></div>
+  <div class="lead">ただし、ここは分けて考えてください</div>
+  <div class="stmt">分野が伸びることと、<br>どの会社を持つかは、<br><span class="emr">まったく別の話</span>です。</div>
+  <div class="note">ここは、あとでもう一度お話しします</div>
+</section>
+
+<!-- ================= ⑤-2 エネルギー（102–145） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 4 / 9</span><span class="bar"></span><span>僕が選んだ3つの分野</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">2つ目は、エネルギー</div><div class="rule"></div><div class="desc">どの電源が勝つのかを、当てにいかなくていい分野</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：脱炭素の話ではありません</span><span class="brand"></span></div>
+  <div class="lead">エネルギーと聞くと、太陽光や風力を増やしましょう、という話だと思われるかもしれません</div>
+  <div class="stmt">でも、今回はそこが<br><span class="emr">本質ではありません</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：当たり前ではない、と分かった</span><span class="brand"></span></div>
+  <div class="h-main">海外からエネルギーを買い続けられることは、当たり前ではない</div>
+  <div class="chain">
+    <div class="node danger">ロシアによる<br>ウクライナへの侵攻</div>
+    <div class="arr">→</div>
+    <div class="node danger">2026年<br>中東の情勢と<br>ホルムズ海峡の混乱</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbeaea);border-color:#e6bcbe;">そのリスクが、もう一度、現実のものになりました</div>
+</section>
+
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 4：日本のエネルギーの前提</span><span class="brand"></span></div>
+  <div class="h-main">とくに原油は、中東への依存が大きい</div>
+  <div class="pbar">
+    <div class="seg main" style="width:90%;"><div class="p">9割以上</div><div class="l">中東からの輸入</div></div>
+    <div class="seg rest"><div class="l">その他</div></div>
+  </div>
+  <div class="note">日本は、エネルギーの資源の大部分を海外に頼っています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：海外で何かが起きれば</span><span class="brand"></span></div>
+  <div class="lead">電気代やガソリン代が上がるだけでは済みません。工場も、物流も止まります</div>
+  <div class="stmt">日本にとってエネルギーは、<br>環境の問題である以前に、<br><span class="emr">経済安全保障そのもの</span>です。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：国内では、逆の変化が起きている</span><span class="brand"></span></div>
+  <div class="badge navy">電気が要らなくなるどころか</div>
+  <div class="h-main">前提が、入れ替わりはじめています</div>
+  <div class="cols">
+    <div class="box left"><div class="name">これまで</div><div class="cap">長いあいだ、こう考えられてきた</div><div class="big">減っていく</div><div class="div"></div><div class="strong">人口が減り、省エネも進むので、<br>電気の使用量も減っていく</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">これから</div><div class="cap">前提が変わりはじめている</div><div class="big">増えていく</div><div class="div"></div><div class="strong">これから大量に必要になる<br>可能性が出てきた</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：全国の電力需要の見通し</span><span class="brand"></span></div>
+  <div class="lead">全国の電力の需給や送電網を広域的に調整する、電力広域的運営推進機関、OCCTO</div>
+  <div class="h-main">2026年1月に出した見通しでは、増えていく想定です</div>
+  <div class="metrics">
+    <div class="metric"><div class="mlbl">2025年度 → 2035年度の伸び率</div><div class="mfig">年 +0.5<span class="u">%</span></div><div class="msub">全国の電力需要（年平均）</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：0.5%は、小さいのか</span><span class="brand"></span></div>
+  <div class="lead">0.5%なんて、ほとんど増えていないのでは。そう思われるかもしれません。数字だけを見れば、そのとおりです</div>
+  <div class="stmt">ただ、電力の世界では、<br>この0.5%の<span class="em">意味が大きい</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：なぜ、0.5%の意味が大きいのか</span><span class="brand"></span></div>
+  <div class="badge navy">需要が減る世界と、増える世界</div>
+  <div class="h-main">同じ「古い発電所を止める」でも、意味が変わります</div>
+  <div class="cols">
+    <div class="box left"><div class="name">需要が減る世界</div><div class="cap">これまで</div><div class="big">余力が残る</div><div class="div"></div><div class="strong">古い発電所を止めても、<br>ある程度の余力が残ります</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">需要が増える世界</div><div class="cap">これから</div><div class="big">話が変わる</div><div class="div"></div><div class="strong">止めた分を、<br>どこかで埋めなければならない</div></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：供給の側は、読み切れない</span><span class="brand"></span></div>
+  <div class="h-main">そこに需要まで増えれば、投資が必要になります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">古い火力</div><div class="ctext">これから少しずつ<br>止まっていく</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">太陽光・風力</div><div class="ctext">天候によって<br>発電量が変わる</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">原子力</div><div class="ctext">どこまで動くのかも、<br>読み切れない</div></div>
+  </div>
+  <div class="foot-bar">発電設備だけでなく、電気を運ぶ<span class="em">送電網や変電所</span>にも、大きな投資が必要になります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：その増える需要は、どこから来るのか</span><span class="brand"></span></div>
+  <div class="lead">では、その増える需要は、どこから来るのか</div>
+  <div class="stmt">大きな理由の1つが、<br><span class="em">データセンターと半導体の工場</span>です。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：なぜ電気が要るのか</span><span class="brand"></span></div>
+  <div class="h-main">AIを動かすには、膨大な計算が必要になります</div>
+  <div class="chain">
+    <div class="node">AIを動かす</div>
+    <div class="arr">→</div>
+    <div class="node">膨大な計算が<br>必要になる</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">計算をする場所＝<br>データセンターが<br>大量の電気を使う</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">さらに、日本国内では半導体工場の新設や増設も進んでいます</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：需要の綱引き</span><span class="brand"></span></div>
+  <div class="badge navy">減る需要と、増える需要</div>
+  <div class="h-main">新しい需要が、上回りはじめています</div>
+  <div class="cols">
+    <div class="box left"><div class="name">減っていく需要</div><div class="cap">これまでの前提</div><div class="big">人口減・省エネ</div><div class="div"></div><div class="strong">人口の減少や省エネによって<br>減っていく分</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">増える需要</div><div class="cap">新しく積み上がる分</div><div class="big">AI・データセンター<br>半導体工場</div><div class="div"></div><div class="strong">この新しい需要が、<br>減る分を上回りはじめている</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-stack">
+  <div class="hdr"><span class="sec">Section 4：国の長期のエネルギー計画</span><span class="brand"></span></div>
+  <div class="h-main">2040年度に向けた、電源の組み合わせ</div>
+  <div class="h-sub">再生可能エネルギーだけを増やす計画ではありません</div>
+  <div class="sbar">
+    <div class="seg a" style="width:45%;"><div class="sn">再生可能エネルギー</div><div class="sv">40〜50%</div></div>
+    <div class="seg b" style="width:20%;"><div class="sn">原子力</div><div class="sv">約20%</div></div>
+    <div class="seg c" style="width:35%;"><div class="sn">火力</div><div class="sv">30〜40%</div></div>
+  </div>
+  <div class="total">複数の電源を組み合わせて、<span class="em">増えていく需要</span>に対応する</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：官民投資ロードマップ</span><span class="brand"></span></div>
+  <div class="lead">今回の官民投資ロードマップでも</div>
+  <div class="h-main">たとえば洋上風力には、この金額が並んでいます</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">洋上風力</div><div class="mfig">5兆1,000<span class="u">億円</span></div><div class="msub">官民投資ロードマップ</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：僕が注目しているのは、2つ</span><span class="brand"></span></div>
+  <div class="lead">そのうえで</div>
+  <div class="stmt">僕が注目しているのは、<br><span class="em">2つあります</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：注目①　設備を売る会社</span><span class="brand"></span></div>
+  <div class="h-main">電気を作り、運び、制御するための設備</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">作る</div><div class="ctext">発電所で使われる<br>大型のタービン</div></div>
+    <div class="card c2"><div class="ctitle">運ぶ・変える</div><div class="ctext">電圧を変える変圧器<br>電気を効率よく変換する<br>パワー半導体</div></div>
+    <div class="card c3"><div class="ctitle">制御する</div><div class="ctext">送電網を<br>制御する設備</div></div>
+  </div>
+  <div class="foot-bar">太陽光が増えても必要。原子力が動いても必要。火力を建て替えても必要。<span class="em">データセンターが増えても必要です</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：当てにいかなくていい</span><span class="brand"></span></div>
+  <div class="lead">つまり、どの発電方式が最後に勝つのかを当てなくても</div>
+  <div class="stmt">電力の需要そのものが増えれば、<br>設備を売る会社には<br><span class="em">投資の需要が生まれます</span>。</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 4：設備を売る会社の10年</span><span class="brand"></span></div>
+  <div class="h-main">この10年の株価は、こうなっています</div>
+  <div class="h-sub">2015年末 → 2025年末（配当を含まない、株価だけの比較）</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:300px;">7.1倍</div><div class="cap">日立製作所</div><div class="sub">送配電・デジタルの制御・原子力</div></div>
+    <div class="vb"><div class="bar" style="height:194px;">4.6倍</div><div class="cap">富士電機</div><div class="sub">電力の変換装置・パワー半導体</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：3つ目の基準に当てはまる</span><span class="brand"></span></div>
+  <div class="lead">さきほどお伝えした3つ目の基準、すでに企業の売上や利益になりはじめているかどうか</div>
+  <div class="stmt">これに、いちばんはっきり当てはまるのが<br><span class="em">エネルギー</span>です。</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 4：一方で、これまでの電力会社は</span><span class="brand"></span></div>
+  <div class="h-main">同じ10年でも、まったく違いました</div>
+  <div class="h-sub">2015年末 → 2025年末（配当を含まない、株価だけの比較）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:285px;">0.94倍</div><div class="cap">東京電力ホールディングス</div><div class="sub">ほぼ横ばい</div></div>
+    <div class="vb"><div class="bar" style="height:221px;">0.73倍</div><div class="cap">J-POWER</div><div class="sub">下がっている</div></div>
+  </div>
+  <div class="foot-bar">この10年は、電気を売る会社よりも、<span class="em">電力の設備を売る会社</span>のほうが、市場ではるかに高く評価されてきました</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：ただし、ここからが大事なところ</span><span class="brand"></span></div>
+  <div class="lead">僕は、これからの10年も同じだとは限らないと思っています</div>
+  <div class="stmt">電力会社が苦しかった大きな前提が、<br><span class="em">変わりはじめている</span>からです。</div>
+  <div class="note">「日本の電力の需要は減っていく」という状況そのものが、変わりはじめています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：注目②　電力会社</span><span class="brand"></span></div>
+  <div class="lead">だから2つ目に注目しているのが、電力会社です</div>
+  <div class="stmt">中でも、<br><span class="em">九州電力</span>と<span class="em">関西電力</span>です。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：まず九州電力</span><span class="brand"></span></div>
+  <div class="h-main">九州では、半導体に関わる企業の集積が急速に進んでいます</div>
+  <div class="chain">
+    <div class="node">TSMCの熊本工場<br>をはじめ</div>
+    <div class="arr">→</div>
+    <div class="node">半導体に関わる<br>企業の集積</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">データセンターの<br>進出まで増えれば<br>大量の電力が必要</div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：九州電力だけが言っている話ではない</span><span class="brand"></span></div>
+  <div class="h-main">公的な資料でも、すでに前提として扱われています</div>
+  <div class="grid g2">
+    <div class="card c3"><div class="ctitle">OCCTOの供給計画</div><div class="ctext">九州では、データセンターや<br>半導体工場の新増設による需要が、<br>はっきり織り込まれている</div></div>
+    <div class="card c4"><div class="ctitle">経済産業省</div><div class="ctext">九州を、原子力や再生可能エネルギーといった<br>脱炭素の電源が<br>比較的豊富な地域として取り上げている</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：九州電力自身が想定していること</span><span class="brand"></span></div>
+  <div class="lead">半導体工場やデータセンターの集積がさらに進んだ場合</div>
+  <div class="h-main">2034年度の電力需要は、こうなるというシナリオです</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">2025年度と比べて</div><div class="mfig">+2〜3<span class="u">割</span></div><div class="msub">2034年度の電力需要（会社が想定するシナリオ）</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：ただし、必ずそうなるわけではありません</span><span class="brand"></span></div>
+  <div class="lead">もちろん、必ず2割、3割増えるという意味ではありません。集積が順調に進んだ場合の話です</div>
+  <div class="stmt">ただ、電力会社自身がここまで想定するようになったこと自体が、<br><span class="em">これまでとの大きな違い</span>です。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：九州電力のもう1つの特徴</span><span class="brand"></span></div>
+  <div class="lead">そして九州電力には、もう1つ特徴があります。原子力です</div>
+  <div class="h-main">玄海原発と川内原発を合わせて</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">再稼働している原子力</div><div class="mfig">4<span class="u">基</span></div><div class="msub">玄海原発・川内原発</div></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：なぜ、そこが効いてくるのか</span><span class="brand"></span></div>
+  <div class="h-main">データセンターは、晴れている昼間だけ動けばいいわけではありません</div>
+  <div class="chain">
+    <div class="node">24時間365日<br>安定して大量の<br>電力が必要</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">だからこそ<br>安定して大量に供給できる<br>電源の価値が上がる</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：この組み合わせ</span><span class="brand"></span></div>
+  <div class="lead">半導体工場が増える。データセンターが増える。電力の需要が増える。そして、それを安定して支える原子力を持っている</div>
+  <div class="stmt">この組み合わせは、<br>これまでの九州電力には<br><span class="em">なかった話</span>です。</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：もう1社が、関西電力</span><span class="brand"></span></div>
+  <div class="h-main">原子力の設備を、多く持っている会社です</div>
+  <div class="h-sub">野村證券の投資情報でも、原子力の活用が重要になるとして、関連する企業の1つに名前が挙げられています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">原子力の設備</div><div class="cd">現在</div></div><div class="body"><div class="lbl">保有している基数</div><div class="val">7基</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">新しい原子力</div><div class="cd">三菱重工などと</div></div><div class="body"><div class="lbl">開発への取り組み</div><div class="val2">新しいタイプの<br>原子力発電所</div></div></div>
+    <div class="col"><div class="top"><div class="nm">関西圏</div><div class="cd">大阪を中心に</div></div><div class="body"><div class="lbl">立地の条件</div><div class="val2">データセンターの<br>集積が進む地域</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：ただし、電力株なら何でもいいわけではない</span><span class="brand"></span></div>
+  <div class="h-main">電力株が安く評価されていることには、きちんと理由があります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">原発の停止</div><div class="ctext">停止すれば、<br>火力を増やす必要がある</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">燃料の価格</div><div class="ctext">価格が上がれば、<br>利益は圧迫される</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">巨額の設備投資</div><div class="ctext">設備を維持し、<br>更新し続ける必要がある</div></div>
+  </div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 4：どこまで期待が乗っているか</span><span class="brand"></span></div>
+  <div class="h-main">どこまで期待が乗っているか</div>
+  <div class="h-sub">株価が、これから1年で稼ぐ利益の何倍まで買われているか。これを予想PERといいます</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:56px;"></div><div class="cap">九州電力</div><div class="sub">約7倍</div></div>
+    <div class="vb"><div class="bar" style="height:72px;"></div><div class="cap">関西電力</div><div class="sub">約9倍</div></div>
+    <div class="vb orange"><div class="bar" style="height:320px;">40〜50倍</div><div class="cap">AI半導体には</div><div class="sub">こう評価されている会社もある</div></div>
+  </div>
+  <div class="foot-bar">もちろん、事業の中身も成長率も違うので、<span class="em">単純に比べることはできません</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：それでも、と思うところ</span><span class="brand"></span></div>
+  <div class="lead">AIによって電力の需要が増えるという未来が、これだけ注目されているのに</div>
+  <div class="stmt">その電力を供給する側には、<br>まだそこまでの<span class="em">期待が乗っていない</span>。</div>
+  <div class="note">ここには、再評価の余地が残っている可能性があります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：期待どおりには進んでいない場所</span><span class="brand"></span></div>
+  <div class="lead">まず、誤解のないようにお伝えしておきます。世界が洋上風力をやめ始めた、という話ではありません</div>
+  <div class="stmt">ドイツもイギリスも中国も、<br>導入の目標そのものは、<br><span class="em">いまも掲げています</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：何が起きたのか</span><span class="brand"></span></div>
+  <div class="h-main">採算が、厳しくなりました</div>
+  <div class="chain">
+    <div class="node danger">資材の値上がり</div>
+    <div class="arr">＋</div>
+    <div class="node danger">金利の上昇</div>
+    <div class="arr">→</div>
+    <div class="node danger">採算が厳しくなり<br>世界各地で<br>計画の延期や見直し</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：日本でも、同じことが起きました</span><span class="brand"></span></div>
+  <div class="lead">三菱商事を中心とする企業の連合が、秋田県と千葉県で進めていた大規模な洋上風力の事業から</div>
+  <div class="stmt"><span class="emr">撤退しています</span>。</div>
+  <div class="note">ここでは円安も重なって、採算を確保するのが難しくなりました</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：金額が出ていても</span><span class="brand"></span></div>
+  <div class="lead">政府は、それでも洋上風力に5兆1,000億円規模の官民投資を見込んでいます。ですが、大型の風車そのものでは、日本の企業は欧州や中国の会社に大きく出遅れています</div>
+  <div class="stmt">金額が出ていても、その風車を<br>日本の会社が作るわけでは<span class="emr">ありません</span>。</div>
+  <div class="note">だから僕は、洋上風力そのものを無条件に評価するつもりはありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：まとめ</span><span class="brand"></span></div>
+  <div class="lead">エネルギーは、どの電源が勝つのかを当てにいく分野ではありません</div>
+  <div class="stmt"><span class="em">当てにいかなくていい</span>。<br>それが、この分野の<br>いちばんの強みです。</div>
+  <div class="note">太陽光が増えても、原子力が動いても、火力を建て替えても、需要が増えるかぎり、発電設備と送電網への投資は必要になります</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：僕が注目している2つ</span><span class="brand"></span></div>
+  <div class="h-main">そのうえで僕が注目しているのは、この2つです</div>
+  <div class="grid g2">
+    <div class="card c2"><div class="cno">1</div><div class="ctitle">設備を売る会社</div><div class="ctext">日立や富士電機のように、<br>どの電源が増えても<br>必要になる設備を売る会社</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">電力会社</div><div class="ctext">九州電力や関西電力のように、<br>AIと半導体による需要の増加と、<br>原子力の安定した稼働という<br>追い風を受けられる可能性のある会社</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：僕1人の予想ではありません</span><span class="brand"></span></div>
+  <div class="lead">データセンターと半導体工場による電力需要の増加は、OCCTOや経済産業省の資料で、すでに前提として扱われています</div>
+  <div class="stmt">AIそのものを追いかけるのではなく、<br>AIを動かすために<span class="em">絶対に必要になるもの</span>を見る。</div>
+  <div class="note">ここが、僕がエネルギーを2つ目に選んだ理由です</div>
+</section>
+
+<!-- ================= ⑤-3 宇宙（143–191） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 5 / 9</span><span class="bar"></span><span>僕が選んだ3つの分野</span></div>
+  <div class="numbox">05</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">3つ目は、宇宙</div><div class="rule"></div><div class="desc">いちばん先の話で、まだ十分に利益になっていない分野。だからこそ、国が入っています</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ここまでの2つとは、性格が違います</span><span class="brand"></span></div>
+  <div class="lead">ここまでの2つとは、性格がかなり違います</div>
+  <div class="stmt">いちばん先の話で、<br>まだ十分に<span class="emr">利益になっていない</span>分野です。</div>
+  <div class="note">だからこそ、国が入っています</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：宇宙は、もう夢の話ではありません</span><span class="brand"></span></div>
+  <div class="h-main">こうしたことの多くが、すでに衛星に頼っています</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">見る</div><div class="ctext">海の上で<br>何が起きているかを見る</div></div>
+    <div class="card c2"><div class="ctitle">つなぐ</div><div class="ctext">遠く離れた場所と<br>通信する</div></div>
+    <div class="card c3"><div class="ctitle">知る</div><div class="ctext">自分がいる位置を<br>正確に知る</div></div>
+    <div class="card c4"><div class="ctitle">つかむ</div><div class="ctext">災害のときに、上から<br>被害の状況をつかむ</div></div>
+  </div>
+  <div class="foot-bar">電力や通信と同じで、<span class="em">社会を支えるインフラ</span>になりつつあります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：なぜ国がお金を入れるのか</span><span class="brand"></span></div>
+  <div class="lead">儲かるかどうかより先に</div>
+  <div class="stmt"><span class="em">無いと困る</span>。</div>
+  <div class="note">国がお金を入れているのは、そういう分野だからです</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：まず、金額から見ます</span><span class="brand"></span></div>
+  <div class="lead">今回の官民投資ロードマップでは、ロケットや人工衛星、月面の探査まで合わせて</div>
+  <div class="h-main">2040年度までに、およそ14兆3,000億円</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">宇宙（2040年度まで）</div><div class="mfig">14.3<span class="u">兆円</span></div><div class="msub">ロケット・人工衛星・月面の探査</div></div>
+    <div class="metric"><div class="mlbl">成長戦略の全体に占める割合</div><div class="mfig">3.9<span class="u">%</span></div><div class="msub">全体は370兆円超</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：金額そのものは</span><span class="brand"></span></div>
+  <div class="lead">3分野の中で見ると</div>
+  <div class="stmt">金額そのものは、<br><span class="emr">大きくありません</span>。</div>
+</section>
+
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 5：政府が描いている絵</span><span class="brand"></span></div>
+  <div class="h-main">日本の宇宙の市場を、こう伸ばしていく</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">2020年ごろ</div><div class="v">約4兆円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s2"><div class="era">2030年ごろ</div><div class="v">8兆円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2040年ごろ</div><div class="v">15兆円</div></div>
+  </div>
+  <div class="foot-note">年率にすると、7%前後で伸びていく計算になります</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 5：ここで、都合の悪い数字をお見せします</span><span class="brand"></span></div>
+  <div class="h-main">過去の実績は、まったくそうなっていません</div>
+  <div class="h-sub">国内の宇宙機器の売上高</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:255px;">3,377億円</div><div class="cap">2015年度</div></div>
+    <div class="vb"><div class="bar" style="height:300px;">約3,980億円</div><div class="cap">2022年度</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：7年かけて、どれだけ伸びたか</span><span class="brand"></span></div>
+  <div class="lead">2015年度から2022年度まで</div>
+  <div class="h-main">年平均で、これだけしか伸びていません</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">国内の宇宙機器の売上高（年平均）</div><div class="mfig">2.37<span class="u">%</span></div><div class="msub">7年間の平均</div></div>
+  </div>
+  <div class="note">しかも、毎年伸びているわけでもありません。この7年のあいだに、前の年より減った年が3回あります</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：政府の絵と、実績</span><span class="brand"></span></div>
+  <div class="badge">この差は、ごまかしようがありません</div>
+  <div class="h-main">描いている絵と、これまでの実績</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">政府が描く絵</div><div class="cap">2040年ごろに向けて</div><div class="big">年 7%前後</div><div class="div"></div><div class="strong">4兆円 → 8兆円 → 15兆円</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">これまでの実績</div><div class="cap">2015年度 → 2022年度</div><div class="big">年 2.37%</div><div class="div"></div><div class="strong">しかも、減った年が3回ある</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：では、なぜ僕がこの分野を選んだのか</span><span class="brand"></span></div>
+  <div class="lead">では、なぜ僕がこの分野を選んだのか</div>
+  <div class="stmt">この差そのものに、<br><span class="em">答えがあるからです</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：2.37%は、何を測っていたのか</span><span class="brand"></span></div>
+  <div class="lead">まず、さきほどの2.37%という数字が、何を測っていたのかを見てください</div>
+  <div class="stmt">あれは、ロケットや衛星といった<br>「<span class="em">機器を作る</span>」部分の売上高です。<br>いま価値が移りつつあるのは、そこではありません。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：変わったこと①　宇宙に行くコスト</span><span class="brand"></span></div>
+  <div class="lead">ここ数年で、大きく2つのことが変わりました。1つ目は、宇宙に行くコストです</div>
+  <div class="h-main">野村證券によると、2025年の実績はこうです</div>
+  <div class="metrics">
+    <div class="metric"><div class="mlbl">世界で成功した打ち上げ</div><div class="mfig">316<span class="u">回</span></div><div class="msub">2025年</div></div>
+    <div class="metric navy"><div class="mlbl">軌道に投入された衛星など</div><div class="mfig">4,517<span class="u">機</span></div><div class="msub">10年前の、およそ20倍</div></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 5：背景にあるもの</span><span class="brand"></span></div>
+  <div class="h-main">宇宙に設備を置くこと自体が、現実的な投資になりました</div>
+  <div class="chain">
+    <div class="node">政府が民間企業に<br>打ち上げを<br>任せるようになった</div>
+    <div class="arr">→</div>
+    <div class="node">打ち上げの値段が<br>大きく下がった</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">宇宙に設備を置くことが<br>現実的な投資に</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：変わったこと②</span><span class="brand"></span></div>
+  <div class="lead">そして2つ目。日本にとっては、こちらのほうが大きい変化です</div>
+  <div class="stmt">政府の<span class="em">買い方</span>が、<br>変わりました。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：買い方が、どう変わったのか</span><span class="brand"></span></div>
+  <div class="badge navy">2025年12月、防衛省が事業者を選定しました</div>
+  <div class="h-main">「衛星コンステレーションの整備・運営等事業」</div>
+  <div class="cols">
+    <div class="box left"><div class="name">これまで</div><div class="cap">補助金の形</div><div class="big">技術の実証</div><div class="div"></div><div class="strong">国が補助金を出して、<br>企業が技術を実証する。<br>補助金がなくなったあと、<br>生きていけるのかが分からない</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">今回</div><div class="cap">三菱電機を代表とするグループ</div><div class="big">5年間の<br>サービス契約</div><div class="div"></div><div class="strong">画像のデータ、地上設備の運用、<br>全体の管理まで含めて、<br>民間がサービスとして提供する</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 5：政府の立場が変わった</span><span class="brand"></span></div>
+  <div class="lead">この契約は、衛星を買う契約ではありません</div>
+  <div class="h-main">政府が言う言葉が、変わりました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまで</div><div class="c-v">衛星を作ってください</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">これから</div><div class="r-v">情報を、5年間買います</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：1つ目の基準に当てはまる</span><span class="brand"></span></div>
+  <div class="lead">さきほどお伝えした1つ目の基準、国がお金を配るだけで終わらないかどうか</div>
+  <div class="stmt">3つの分野の中で、これが<br><span class="em">いちばんはっきり当てはまる</span>のが宇宙です。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：すでに数字に出はじめています</span><span class="brand"></span></div>
+  <div class="lead">QPS研究所。電波で地上を撮る衛星の会社です</div>
+  <div class="h-main">2027年5月期の会社計画では</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">営業利益</div><div class="mfig">初の黒字</div><div class="msub">2027年5月期 会社計画</div></div>
+  </div>
+</section>
+
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 5：QPS研究所の売上の中身</span><span class="brand"></span></div>
+  <div class="h-main">売上100億円のうち、70億円以上を防衛省の事業が占める</div>
+  <div class="pbar">
+    <div class="seg main" style="width:70%;"><div class="p">70億円以上</div><div class="l">さきほどの防衛省の事業</div></div>
+    <div class="seg rest"><div class="p">30億円弱</div><div class="l">その他</div></div>
+  </div>
+  <div class="note">会社がそう説明しています</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：Synspective</span><span class="brand"></span></div>
+  <div class="lead">こちらも、電波で地上を撮る衛星の会社です。防衛省の事業に入っています</div>
+  <div class="h-main">すでに契約が決まっている仕事、受注残が</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">受注残（2026年6月末の時点）</div><div class="mfig">1,217<span class="u">億円</span></div><div class="msub">もう決まっている仕事</div></div>
+  </div>
+  <div class="note">「将来こういう市場があるはずだ」という話ではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ここは、はっきり否定しておきます</span><span class="brand"></span></div>
+  <div class="lead">ここまで聞くと、宇宙はもう儲かる産業になった、と思われるかもしれません</div>
+  <div class="stmt">そこは、はっきり<br><span class="emr">否定しておきます</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 5：QPS研究所の中身</span><span class="brand"></span></div>
+  <div class="h-main">最終的な利益は黒字。ただし、本業は赤字です</div>
+  <div class="chain">
+    <div class="node">2026年5月期<br>最終的な利益<br>11億5,000万円の黒字</div>
+    <div class="arr">←</div>
+    <div class="node">営業の外で<br>17億円を超える<br>補助金などを計上</div>
+    <div class="arr">＝</div>
+    <div class="node danger">本業の営業損益は<br>8億3,000万円の<br>赤字</div>
+  </div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 5：ほかの会社も見てみます</span><span class="brand"></span></div>
+  <div class="h-main">本業だけを見れば、まだ赤字の会社が多いところです</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">Synspective</div><div class="cd">直近 1〜3月</div></div><div class="body"><div class="lbl">営業損失</div><div class="val">約16億円</div><div class="lbl">最終損失</div><div class="val2">約17億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">Astroscale</div><div class="cd">2026年4月期</div></div><div class="body"><div class="lbl">営業損失</div><div class="val">約100億円</div><div class="lbl">原価を引いた利益</div><div class="val2">ようやくわずかにプラス</div></div></div>
+  </div>
+  <div class="foot-bar">Astroscaleは、宇宙にある衛星を点検したり、片付けたりする会社です</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：それでも、段階は変わりはじめています</span><span class="brand"></span></div>
+  <div class="lead">SBI証券は2026年4月のレポートで、こう整理しています</div>
+  <div class="stmt">宇宙ビジネスが、研究開発の段階から、<br><span class="em">実用化と事業化の局面へ移った</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ただし、意味を取り違えないこと</span><span class="brand"></span></div>
+  <div class="lead">ただし、これは「もう儲かることが分かった」という意味ではありません</div>
+  <div class="stmt">どのやり方なら採算に乗るのかを、<br><span class="em">見極める段階</span>に入った。</div>
+  <div class="note">僕は、そう見るのがいちばん正確だと思っています</div>
+</section>
+
+<section class="slide numviz t-stack">
+  <div class="hdr"><span class="sec">Section 5：政府の試算も、同じ方向を向いています</span><span class="brand"></span></div>
+  <div class="h-main">2040年ごろの宇宙経済は、およそ15兆円</div>
+  <div class="h-sub">内閣府の試算。気象や防災、農業や物流で、衛星から取れる情報をサービスに変えていく部分が大きい</div>
+  <div class="sbar">
+    <div class="seg b" style="width:22%;"><div class="sn" style="font-size:21px;">宇宙に直接関わる産業</div><div class="sv" style="font-size:21px;">約3兆4,000億円</div></div>
+    <div class="seg a" style="width:78%;"><div class="sn">宇宙の技術を地上で使う産業</div><div class="sv">約11兆8,000億円</div></div>
+  </div>
+  <div class="total">価値が大きいのは、<span class="em">地上で使う側</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：価値が広がっていく先</span><span class="brand"></span></div>
+  <div class="lead">つまり、価値が広がっていく先は</div>
+  <div class="stmt">宇宙そのものよりも、<br>その技術を<span class="em">地上のサービスに変えるところ</span>です。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：では、日本はどこで勝つのか</span><span class="brand"></span></div>
+  <div class="h-main">いちばん分かりやすいのが、地球観測です</div>
+  <div class="h-sub">QPS研究所やSynspectiveが手がけている、電波で地上を撮る衛星</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">夜でも撮れる</div><div class="ctext">光がなくても<br>観測できる</div></div>
+    <div class="card c2"><div class="ctitle">雲があっても撮れる</div><div class="ctext">天候に左右されない</div></div>
+    <div class="card c3"><div class="ctitle">日本と相性がいい</div><div class="ctext">災害の多い日本と、<br>相性のいい技術</div></div>
+  </div>
+  <div class="foot-bar">QPS研究所は、この衛星を<span class="em">2028年5月までに24機</span>まで増やす計画を出しています</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 5：技術の失敗は、現実に起きています</span><span class="brand"></span></div>
+  <div class="h-main">日本の基幹ロケット、H3で起きたこと</div>
+  <div class="chain">
+    <div class="node danger">2025年12月<br>H3の8号機が<br>打ち上げに失敗</div>
+    <div class="arr">→</div>
+    <div class="node danger">次の9号機の<br>打ち上げも<br>いったん延期</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">2026年8月<br>原因を調べて対策<br>9号機は打ち上げに成功</div>
+  </div>
+  <div class="release">失敗すれば、予定は遅れます。ただ、いまは再開している。これが、正確な状況です</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：そして、世界との差</span><span class="brand"></span></div>
+  <div class="lead">スペースXのスターリンクは、2026年の時点で</div>
+  <div class="h-main">軌道上の衛星が、この規模です</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">軌道上の衛星</div><div class="mfig">約1万<span class="u">機</span></div><div class="msub">2026年時点</div></div>
+  </div>
+  <div class="note">日本が同じ規模を作り直すのは、どう考えても合理的ではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ただ、ここで大事なことがあります</span><span class="brand"></span></div>
+  <div class="lead">これは「スペースXに負ける日本」対「日本の国産ロケット」という話ではありません</div>
+  <div class="stmt">実際、日本の宇宙企業は、<br><span class="em">スペースXを使ってきました</span>。</div>
+  <div class="note">QPS研究所の衛星も、月着陸船を開発しているispaceの機体も、スペースXのファルコン9で打ち上げられています</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：いちばん合理的なやり方</span><span class="brand"></span></div>
+  <div class="badge navy">短期と長期で、やることが違います</div>
+  <div class="h-main">使うことと、持っておくこと</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">短期</div><div class="cap">いま衛星を増やすなら</div><div class="big">スペースXを使う</div><div class="div"></div><div class="strong">安くて回数の多いスペースXを使って<br>衛星を増やす</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">長期</div><div class="cap">そのうえで</div><div class="big">保険として持つ</div><div class="div"></div><div class="strong">国内から打ち上げられる能力を、<br>保険として持っておく</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：では、なぜその保険が要るのか</span><span class="brand"></span></div>
+  <div class="lead">衛星を運ぶたびに海外に頼み、日本が見たい場所の画像も海外から買う。その状態では、世界の情勢が大きく変わったときに、必要なときに使える保証がありません</div>
+  <div class="stmt">さきほどエネルギーのところでお伝えした、<br><span class="em">海外から安定して買い続けられるとはかぎらない</span>、<br>という話と同じ構図です。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：政府が目指している打ち上げ能力</span><span class="brand"></span></div>
+  <div class="lead">2030年代の前半までに、官民を合わせて</div>
+  <div class="h-main">国内に、この能力を持とうとしています</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">国内で打ち上げられる能力</div><div class="mfig">年30<span class="u">回程度</span></div><div class="msub">2030年代の前半までに</div></div>
+  </div>
+  <div class="note">毎年30回打ち上げる、ではなく、必要なときに打ち上げられる状態にしておく、という目標です</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 5：いちばん注意していただきたいこと</span><span class="brand"></span></div>
+  <div class="h-main">この分野には、まだ赤字の会社が多くあります</div>
+  <div class="h-sub">ispace（月面への輸送や、月に着陸する船を開発している会社）2027年3月期 会社計画</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:58px;"></div><div class="cap">売上高</div><div class="sub">33億円</div></div>
+    <div class="vb orange"><div class="bar" style="height:310px;">177億円</div><div class="cap">営業損失</div><div class="sub">売上の5倍を超える赤字</div></div>
+  </div>
+  <div class="foot-bar">こういう会社は追加でお金を集める必要が出ます。そのとき、株式が増えて<span class="em">1株あたりの価値が薄まる可能性</span>があります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：先に知っておいてほしいこと</span><span class="brand"></span></div>
+  <div class="lead">もう1つ、この分野を持つなら、先に知っておいてほしいことがあります</div>
+  <div class="stmt">値動きが、<br><span class="emr">とにかく激しい</span>。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：数字だけを見れば</span><span class="brand"></span></div>
+  <div class="lead">7月17日から8月17日までの、およそ1か月</div>
+  <div class="h-main">QPS研究所は、順調に上がったように見えます</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">QPS研究所（1か月の騰落率）</div><div class="mfig">+14.7<span class="u">%</span></div><div class="msub">7月17日 → 8月17日</div></div>
+  </div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：ですが、途中を見てください</span><span class="brand"></span></div>
+  <div class="badge">騰落率だけでは、足りません</div>
+  <div class="h-main">同じ1か月の中で、これだけ振れています</div>
+  <div class="cols">
+    <div class="box left"><div class="name">1か月の結果</div><div class="cap">始まりと終わりだけを見ると</div><div class="big">+14.7%</div><div class="div"></div><div class="strong">数字だけを見れば、<br>順調に上がったように見える</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">その途中</div><div class="cap">安値から高値までの幅</div><div class="big">41.2%</div><div class="div"></div><div class="strong">7月29日に1,351円まで売られて、<br>8月には1,908円まで戻している</div></div>
+  </div>
+  <div class="foot-note">1か月では14.7%しか上がっていないのに、その途中では、これだけ振れているということです</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：日々の値動きも計算してみました</span><span class="brand"></span></div>
+  <div class="lead">QPS研究所は1日あたり</div>
+  <div class="h-main">この分野では、珍しくない水準です</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">1日あたりの値動き</div><div class="mfig">約4.8<span class="u">%</span></div><div class="msub">1日に5%前後動いても、珍しくありません</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：では、なぜここまで荒れるのか</span><span class="brand"></span></div>
+  <div class="lead">理由は、さきほどの話と裏表です。この分野の会社は、いまの利益で評価されていません</div>
+  <div class="stmt">受注残と、将来の売上と、<br>黒字になる確率を<br><span class="em">かけ合わせたもの</span>で評価されています。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：だから、両側に大きく振れます</span><span class="brand"></span></div>
+  <div class="badge navy">評価の土台が、将来の姿だから</div>
+  <div class="h-main">1つのニュースで、5年後、10年後の姿が書き換わる</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">上に振れる</div><div class="cap">こういうとき</div><div class="big">大きな受注</div><div class="div"></div><div class="strong">5年後、10年後の姿が一気に<br>書き換わって、株価が跳ねる</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">下に振れる</div><div class="cap">こういうとき</div><div class="big">延期・失敗・増資</div><div class="div"></div><div class="strong">打ち上げの延期、<br>ミッションの失敗、増資、<br>黒字化が後ろにずれる</div></div>
+  </div>
+  <div class="foot-note">そのどれか1つで、同じだけ下に振れます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：荒れている、本当の理由</span><span class="brand"></span></div>
+  <div class="lead">つまり、夢だけで上がっているから荒れているのではありません</div>
+  <div class="stmt">夢から業績へ<span class="em">移っている途中</span>だから、<br>荒れています。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：だからこそ、覚悟が要ります</span><span class="brand"></span></div>
+  <div class="lead">1日で5%動いたくらいで一喜一憂していたら、まず持ち続けられません</div>
+  <div class="stmt">自分が信じた会社を、多少の上下は無視して、<br><span class="em">握り続けられるかどうか</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：できないなら</span><span class="brand"></span></div>
+  <div class="lead">それができないなら</div>
+  <div class="stmt">この分野は、<br><span class="emr">分野ごと見送るほうがいい</span>と、<br>僕は思っています。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：握り続けるために必要なこと</span><span class="brand"></span></div>
+  <div class="lead">そして、握り続けるために必要なのが、毎日の株価ではなく、別の数字を見ることです</div>
+  <div class="stmt">宇宙は、株価を当てにいく分野ではありません。<br><span class="em">見るべき数字が決まっている</span>分野です。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：見るべき数字</span><span class="brand"></span></div>
+  <div class="h-main">この数字が動き始めているかどうか</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">打ち上げ回数</div><div class="ctext">年間に<br>何回打ち上げたか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">受注残</div><div class="ctext">受注残が<br>増えているか</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">政府以外の売上</div><div class="ctext">政府以外からの売上が<br>増えているか</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">増資</div><div class="ctext">増資を<br>していないか</div></div>
+  </div>
+  <div class="foot-bar">それが、この分野を見るときの、<span class="em">いちばん確かな方法</span>だと思っています</div>
+</section>
+
+<!-- ================= ⑤-3.5 エネルギーと宇宙は、実はつながっている（192–200） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 6 / 9</span><span class="bar"></span><span>3つの分野のつながり</span></div>
+  <div class="numbox">06</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">エネルギーと宇宙は、<br>実はつながっている</div><div class="rule"></div><div class="desc">重なり方は3つ。技術、需要、そして会社</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：後半の2つは、重なっています</span><span class="brand"></span></div>
+  <div class="lead">ここまで、3つの分野を別々にお話ししてきました</div>
+  <div class="stmt">ですが、エネルギーと宇宙は、<br><span class="em">かなり重なっています</span>。</div>
+  <div class="note">重なり方は、3つあります</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 6：重なり①　技術</span><span class="brand"></span></div>
+  <div class="h-main">地上の発電設備でも、宇宙の衛星でも、同じものが要ります</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">電気をつくる・ためる</div><div class="ctext">太陽電池<br>蓄電池</div></div>
+    <div class="card c2"><div class="ctitle">電気を変える</div><div class="ctext">電気を変換する<br>半導体</div></div>
+    <div class="card c3"><div class="ctitle">支える技術</div><div class="ctext">熱を逃がす仕組み<br>軽い材料</div></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 6：重なり②　需要</span><span class="brand"></span></div>
+  <div class="h-main">衛星から地上を見るサービスは、災害の監視だけではありません</div>
+  <div class="chain">
+    <div class="node">発電所・送電網<br>パイプライン<br>海の上の設備</div>
+    <div class="arr">→</div>
+    <div class="node">上から見張る<br>メタンや二酸化炭素の<br>漏れも分かる</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">エネルギーへの投資が増えるほど、衛星のデータを買う人が増えます</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 6：重なり③　会社が、同じ</span><span class="brand"></span></div>
+  <div class="h-main">1社の中に、複数の国策テーマが同居しています</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">三菱重工</div><div class="ctext">H3ロケットを作る会社であり、<br>原子力発電所と<br>大型のガスタービンを作る会社</div></div>
+    <div class="card c2"><div class="ctitle">IHI</div><div class="ctext">ロケットの推進装置、<br>航空機のエンジン、<br>エネルギーの機器</div></div>
+    <div class="card c3"><div class="ctitle">三菱電機</div><div class="ctext">衛星を作りながら、<br>電力のインフラも<br>手がけている</div></div>
+  </div>
+  <div class="foot-bar">日本の重工業と電機の会社は、<span class="em">これが強みになっています</span></div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：三菱重工の1か月</span><span class="brand"></span></div>
+  <div class="lead">三菱重工は、この1か月で上がっています</div>
+  <div class="h-main">ただし、これは宇宙だけの結果ではありません</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">三菱重工（1か月の騰落率）</div><div class="mfig">+16.7<span class="u">%</span></div><div class="msub">防衛の予算も、ガスタービンも、原子力も、航空も、同時に効いています</div></div>
+  </div>
+  <div class="note">押し上げる材料が、1つではなく、いくつもある、ということです</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：1社で、複数の分野にまたがれる</span><span class="brand"></span></div>
+  <div class="lead">つまり、こういう会社を1社持つだけで、複数の国策テーマにまたがって関われます</div>
+  <div class="stmt">どれか1つの分野が思ったより伸びなくても、<br><span class="em">他が支えてくれます</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：大きな会社と、専門の会社</span><span class="brand"></span></div>
+  <div class="badge navy">乗り方が、まったく違います</div>
+  <div class="h-main">広く乗るのか、深く乗るのか</div>
+  <div class="cols">
+    <div class="box left"><div class="name">大きな会社</div><div class="cap">三菱重工、IHI、三菱電機</div><div class="big">広く乗れる</div><div class="div"></div><div class="strong">複数の分野に、広く乗れる</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box bluebox"><div class="name">専門の会社</div><div class="cap">QPS研究所、Synspective、Astroscale、ispace</div><div class="big">深く乗る</div><div class="div"></div><div class="strong">その分野が伸びるかどうかに、<br>まるごと乗ることになる。<br>だから、激しい値動きになる</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：どちらを選ぶか</span><span class="brand"></span></div>
+  <div class="lead">大きな会社を持てば、複数の分野に広く乗れる。専門の会社を持てば、その分野に深く乗れる</div>
+  <div class="stmt">どちらが正解ということは、<br><span class="em">ありません</span>。</div>
+</section>
+
+<!-- ================= ⑤ まとめ｜3つは、同じ1つの話（201–208） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 7 / 9</span><span class="bar"></span><span>3つを、一度まとめます</span></div>
+  <div class="numbox">07</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">3つは、<br>同じ1つの話</div><div class="rule"></div><div class="desc">時間軸が3つ並んでいて、共通していることが1つあります</div></div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：3つの分野</span><span class="brand"></span></div>
+  <div class="h-main">ここで、3つを一度まとめます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">コンテンツ産業</div><div class="ctext">日本がすでに世界で<br>勝っている分野。<br>大きな設備がいらないのに、<br>海外に売れる。<br>しかもIPが、何十年も生き続ける</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">エネルギー</div><div class="ctext">いま目の前で起きている変化。<br>電力が減る前提から、<br>増える前提に変わった。<br>どの電源が増えても、<br>設備を売る側に発注が来る</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">宇宙</div><div class="ctext">これからの話。<br>政府が最初の顧客になって、<br>ようやく利益になる道筋が<br>見えはじめた</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：時間軸が、3つ並んでいます</span><span class="brand"></span></div>
+  <div class="lead">3つを並べると、こうなります</div>
+  <div class="stmt"><span class="em">すでに勝っている</span>。<br><span class="em">いま起きている</span>。<br><span class="em">これから来る</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：共通していること</span><span class="brand"></span></div>
+  <div class="lead">そして、共通していることが1つあります</div>
+  <div class="stmt">どれも、政府が<br><span class="em">需要そのものを作りにいっている場所</span>だ、<br>ということです。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：やり方は違いますが</span><span class="brand"></span></div>
+  <div class="h-main">分野ごとに、やり方は違います</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">ゲームなら</div><div class="ctext">海外への展開と、<br>知的財産の保護</div></div>
+    <div class="card c2"><div class="ctitle">エネルギーなら</div><div class="ctext">電源と<br>送電網の計画</div></div>
+    <div class="card c3"><div class="ctitle">宇宙なら</div><div class="ctext">5年間<br>データを買うという契約</div></div>
+  </div>
+  <div class="foot-bar">どれも国が、<span class="em">買う側か、市場を作る側</span>に回っています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：ここで、最初の話に戻ります</span><span class="brand"></span></div>
+  <div class="lead">日本の30年の問題は、企業が儲からなかったことではありませんでした</div>
+  <div class="stmt">企業が、日本の将来の需要を<br><span class="emr">信じられなかったこと</span>でした。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：その需要を、いま</span><span class="brand"></span></div>
+  <div class="lead">その需要を</div>
+  <div class="stmt">政府がいま、<br><span class="em">自分で作りにいっています</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：だから僕は</span><span class="brand"></span></div>
+  <div class="lead">だから僕は、こう思っています</div>
+  <div class="stmt">この3つの分野は、<br>ここから<span class="em">まだ上がる</span>。</div>
+</section>
+
+<!-- ================= ⑥ 新NISAで買うなら、何を参考にすればいいのか（209–240） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 8 / 9</span><span class="bar"></span><span>買い方の話</span></div>
+  <div class="numbox">08</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">新NISAで買うなら、<br>何を参考にすればいいのか</div><div class="rule"></div><div class="desc">3つの分野に関係するETFを4本。ただし、その前に確認したいことがあります</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：じゃあ、どの会社を買えばいいのか</span><span class="brand"></span></div>
+  <div class="lead">1社ずつ選ぶとなると、決算を読んで、受注残を追って、他の会社と比べる必要があります</div>
+  <div class="stmt">そこまでの時間は取れない、<br>という方のほうが<span class="em">多いと思います</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：その場合の選択肢</span><span class="brand"></span></div>
+  <div class="lead">その場合の選択肢が</div>
+  <div class="stmt"><span class="em">ETF</span>です。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：ETFとは</span><span class="brand"></span></div>
+  <div class="h-main">複数の会社の株などを、まとめて買える商品です</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">まとめて買える</div><div class="ctext">複数の会社の株などを、<br>1つにまとめた商品</div></div>
+    <div class="card c2"><div class="ctitle">普通の株と同じように</div><div class="ctext">証券取引所に上場していて、<br>証券コードを入れて<br>売買できる</div></div>
+    <div class="card c3"><div class="ctitle">分散できる</div><div class="ctext">特定の1社が大きく下がったときの<br>影響を抑えやすくなる</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：先に、お伝えしておきます</span><span class="brand"></span></div>
+  <div class="lead">今回の3つの分野に関係するもので、日本の証券会社から買えるETFを</div>
+  <div class="stmt"><span class="em">4本</span>ご紹介します。</div>
+  <div class="note">4本とも、新NISAの成長投資枠で買えます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ただ、その前に</span><span class="brand"></span></div>
+  <div class="lead">ただ、その前に</div>
+  <div class="stmt">1つ、<span class="em">確認させてください</span>。</div>
+  <div class="note">すでに持っているもので、足りているのか</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：オルカンの中身</span><span class="brand"></span></div>
+  <div class="lead">世界中に分散しているんだから、日本の成長分野も含まれているのでは、と思うかもしれません</div>
+  <div class="h-main">オルカンには、たしかに日本株も入っています</div>
+  <div class="metrics">
+    <div class="metric navy"><div class="mlbl">オルカンに占める日本株の比率</div><div class="mfig">約5<span class="u">%</span></div><div class="msub">しかも中身は、大型と中型の会社が中心です</div></div>
+  </div>
+  <div class="note">今回お話しした宇宙の会社のような、これから伸びる小さな会社まで、十分に拾えているわけではありません</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：米国の指数はどうか</span><span class="brand"></span></div>
+  <div class="lead">S&amp;P500には、そもそも日本の会社は入りません</div>
+  <div class="stmt">NASDAQ100は外国の会社も対象になりますが、<br>日本のゲーム会社や電力会社や宇宙の会社を、<br><span class="emr">まとめて持てる指数ではありません</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：さきほどの話とつながります</span><span class="brand"></span></div>
+  <div class="lead">日本のコンテンツは、ディズニーやネットフリックスに、会社の規模では勝てない。それでもIPが長く生き続けるという、別の強みがある</div>
+  <div class="stmt">その強みを持っている会社は、<br>米国の指数の中には<span class="emr">入っていません</span>。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：つまり</span><span class="brand"></span></div>
+  <div class="lead">オルカンやS&amp;P500を持っているだけでは、今回の17分野への比率は、かなり薄いということです</div>
+  <div class="stmt">ここに強く関わりたいのであれば、<br>個別株か、テーマ型のETFを、<br><span class="em">別枠で持つ必要があります</span>。</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：コンテンツなら、586A</span><span class="brand"></span></div>
+  <div class="h-main">NEXT FUNDS 日経エンタメ・コンテンツ株指数連動型上場投信</div>
+  <div class="h-sub">さきほどお伝えした4本を、順番に見ていきます</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">586A</div><div class="cd">証券コード</div></div><div class="body"><div class="lbl">まとめて買える会社</div><div class="val">20社</div><div class="tag">日本の主要なエンタメ・コンテンツ</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">最低の金額</div><div class="cd">8月14日の終値 256.3円</div></div><div class="body"><div class="lbl">10口単位なので</div><div class="val">約2,563円</div><div class="tag">から買えます</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">上場</div><div class="cd">2026年6月</div></div><div class="body"><div class="lbl">純資産</div><div class="val2">約29億5,000万円</div><div class="lbl">信託報酬</div><div class="val2">年 0.385%</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：586Aの中身</span><span class="brand"></span></div>
+  <div class="h-main">日本の主要なエンタメとコンテンツの会社、20社</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctext" style="font-size:24px;line-height:1.9;">任天堂<br>ソニーグループ<br>バンダイナムコ<br>ホールディングス<br>カプコン</div></div>
+    <div class="card c2"><div class="ctext" style="font-size:24px;line-height:1.9;">コナミ<br>スクウェア・エニックス<br>セガサミー<br>サンリオ</div></div>
+    <div class="card c3"><div class="ctext" style="font-size:24px;line-height:1.9;">KADOKAWA<br>東映アニメーション<br>東宝<br>タカラトミー　など</div></div>
+  </div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 8：ここで、さきほどの数字を思い出してください</span><span class="brand"></span></div>
+  <div class="h-main">どちらも、この20社に入っています</div>
+  <div class="h-sub">2015年末 → 2025年末（配当を含まない、株価だけの比較）</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:300px;">8.50倍</div><div class="cap">カプコン</div></div>
+    <div class="vb"><div class="bar" style="height:28px;"></div><div class="cap">スクウェア・エニックス</div><div class="sub">0.78倍</div></div>
+  </div>
+  <div class="foot-bar">1社を選べば、この差をまるごと背負います。<span class="em">20社まとめてなら、その差は薄まります</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：宇宙なら、513A</span><span class="brand"></span></div>
+  <div class="lead">グローバルX 防衛テック-日本株式ETF。証券コードは513Aです</div>
+  <div class="stmt">先にお伝えしておきますが、<br>日本には「宇宙だけ」のETFが<span class="emr">ありません</span>。</div>
+  <div class="note">このETFの名前も、宇宙ではなく防衛です</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：513Aの中身</span><span class="brand"></span></div>
+  <div class="h-main">ですが、中身を見ると、宇宙の会社が入っています</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">重工の会社</div><div class="ctext">三菱重工<br>川崎重工<br>IHI</div></div>
+    <div class="card c2"><div class="ctitle">電機</div><div class="ctext">NEC</div></div>
+    <div class="card c3"><div class="ctitle">宇宙の会社</div><div class="ctext">衛星通信のスカパーJSAT<br>宇宙のゴミを片付ける<br>アストロスケール　など</div></div>
+  </div>
+  <div class="foot-bar">いま宇宙と防衛は、衛星の通信でも情報の収集でも重なっています。<span class="em">現状では、これがいちばん近い商品です</span></div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：513Aの数字</span><span class="brand"></span></div>
+  <div class="h-main">4本の中では、いちばん始めやすい商品です</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">最低の金額</div><div class="cd">8月14日の終値 918円</div></div><div class="body"><div class="lbl">1口から買えるので</div><div class="val">1,000円弱</div><div class="tag">から始められます</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">純資産</div><div class="cd">4本の中で最大</div></div><div class="body"><div class="lbl">集まっているお金</div><div class="val">約230億6,000万円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">信託報酬</div><div class="cd">4本の中でいちばん高い</div></div><div class="body"><div class="lbl">持っている間ずっと</div><div class="val">年 0.649%</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：エネルギーは、2本に分かれます</span><span class="brand"></span></div>
+  <div class="lead">ここが少し複雑です</div>
+  <div class="stmt">エネルギーのETFは、資源側と電力側で、<br><span class="emr">まったく別物</span>です。</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：1本目が1618</span><span class="brand"></span></div>
+  <div class="h-main">NEXT FUNDS エネルギー資源上場投信</div>
+  <div class="h-sub">中身は、石油や天然ガスを掘って、精製して、供給する会社です</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">代表的な中身</div><div class="cd">資源の側</div></div><div class="body"><div class="lbl">こうした会社が入っています</div><div class="val2">ENEOS<br>INPEX<br>出光興産</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">1618</div><div class="cd">8月14日の終値</div></div><div class="body"><div class="lbl">1口から買えます</div><div class="val">34,200円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">コストと規模</div><div class="cd">1618</div></div><div class="body"><div class="lbl">純資産</div><div class="val2">約37億円</div><div class="lbl">信託報酬</div><div class="val2">年 0.352%</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：1618は、なぜ意味があるのか</span><span class="brand"></span></div>
+  <div class="h-main">さきほどお伝えしたとおり、日本は原油の9割以上を中東から買っています</div>
+  <div class="chain">
+    <div class="node danger">中東で何かが起きて<br>原油が上がる</div>
+    <div class="arr">→</div>
+    <div class="node danger">電気代もガソリン代も上がり<br>日本の会社の多くは<br>コストが増える</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">ところが、油田やガス田を持つ<br>INPEXのような会社は<br>利益が出やすくなる</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：1618の性格</span><span class="brand"></span></div>
+  <div class="lead">つまり1618は、日本株の多くが痛む場面で、逆に動く可能性がある商品です</div>
+  <div class="stmt">値上がりを狙うというより、<br><span class="em">保険に近い性格</span>だと思っています。</div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：2本目が1627</span><span class="brand"></span></div>
+  <div class="h-main">NEXT FUNDS 電力・ガス上場投信</div>
+  <div class="h-sub">中身は、電気やガスを作って、家庭や工場やデータセンターに届ける会社です</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">代表的な中身</div><div class="cd">電力の側</div></div><div class="body"><div class="lbl">こうした会社が入っています</div><div class="val2">関西電力<br>中部電力<br>東京ガス</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">1627</div><div class="cd">8月14日の終値</div></div><div class="body"><div class="lbl">1口から買えます</div><div class="val">11,490円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">コストと規模</div><div class="cd">1627</div></div><div class="body"><div class="lbl">純資産</div><div class="val2">約33億4,000万円</div><div class="lbl">信託報酬</div><div class="val2">年 0.352%</div></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：今回の話に近いのは、1627</span><span class="brand"></span></div>
+  <div class="lead">AIでデータセンターが増えて、電力の需要が増える</div>
+  <div class="stmt">この流れに直接つながるのは、<br>資源よりも<span class="em">電力の側</span>だからです。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：1627の中身</span><span class="brand"></span></div>
+  <div class="lead">さきほど、九州電力と関西電力の話をしました。1627には、その2社に加えて、中部電力や東京ガスなど、電力とガスの主な会社が入っています</div>
+  <div class="stmt">1社を選びきれないなら、<br><span class="em">まとめて持つ</span>、という形になります。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ただし</span><span class="brand"></span></div>
+  <div class="lead">ただし</div>
+  <div class="stmt">僕は、1627がここから上がるとは<br><span class="emr">言いません</span>。</div>
+  <div class="note">電力の需要が増えるという見立てに、いちばん直接乗る商品がこれだ、とお伝えしているだけです</div>
+</section>
+
+<section class="slide t-rank compact">
+  <div class="hdr"><span class="sec">Section 8：選ぶときに見るところ①　信託報酬</span><span class="brand"></span></div>
+  <div class="h-main">持っている間、ずっとかかるコストです</div>
+  <div class="h-sub">長く持つほど、この差は効いてきます</div>
+  <div class="rows">
+    <div class="row"><div class="nm">513A（防衛テック）</div><div class="pct up">0.649%</div></div>
+    <div class="row"><div class="nm">586A（エンタメ・コンテンツ）</div><div class="pct up">0.385%</div></div>
+    <div class="row"><div class="nm">1618（エネルギー資源）</div><div class="pct up">0.352%</div></div>
+    <div class="row"><div class="nm">1627（電力・ガス）</div><div class="pct up">0.352%</div></div>
+  </div>
+  <div class="foot-bar"><span class="em">513Aだけ、ほぼ倍です</span></div>
+</section>
+
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：選ぶときに見るところ②　純資産の大きさ</span><span class="brand"></span></div>
+  <div class="h-main">集まっているお金が少ないと、どうなるか</div>
+  <div class="h-sub">売買しづらくなったり、運用が続けられなくなったりすることがあります</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">513A</div><div class="cd">防衛テック</div></div><div class="body"><div class="lbl">純資産</div><div class="val">約230億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">586A ／ 1618 ／ 1627</div><div class="cd">残りの3本</div></div><div class="body"><div class="lbl">純資産</div><div class="val">30億円前後</div></div></div>
+  </div>
+  <div class="foot-note">大小そのものより、「少なすぎないか」を見るための項目です</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：選ぶときに見るところ③　中身</span><span class="brand"></span></div>
+  <div class="lead">名前ではなく、実際に何が入っているのかを必ず見てください</div>
+  <div class="stmt">513Aが宇宙ではなく防衛という名前なのが、<br><span class="em">いい例です</span>。</div>
+  <div class="note">名前で判断すると、思っていたものと違うものを買うことになります</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：最後に、はっきりお伝えしておきます</span><span class="brand"></span></div>
+  <div class="lead">ここで挙げた4本は、僕がおすすめしているわけではありません。こういう選択肢がある、という紹介です</div>
+  <div class="stmt">買うかどうかは、必ずご自身で調べて、<br>ご自身で判断してください。<br><span class="emr">投資は自己責任です</span>。</div>
+</section>
+
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：資産全体の中では、どれくらい持つか</span><span class="brand"></span></div>
+  <div class="badge navy">最後に、大きさの話をします</div>
+  <div class="h-main">この順番を、逆にしないでください</div>
+  <div class="cols">
+    <div class="box left"><div class="name">土台</div><div class="cap">まず、こちらが先</div><div class="big">分散と現預金</div><div class="div"></div><div class="strong">オルカンやS&amp;P500のような、<br>世界に広く分散された<br>インデックスと、現預金</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box bluebox"><div class="name">上乗せの枠</div><div class="cap">そのうえに</div><div class="big">今回の3分野</div><div class="div"></div><div class="strong">自分が理解できる範囲で、<br>今回のような分野を足していく</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：順番を逆にすると、どうなるか</span><span class="brand"></span></div>
+  <div class="lead">理解できる範囲を超えて足すと、さきほどの1日5%の値動きに耐えられなくなります</div>
+  <div class="stmt">そうなると、<br>いちばん下がったところで<br><span class="emr">手放すことになります</span>。</div>
+</section>
+
+<!-- ================= ⑦ 失われた30年は、なぜもう来ないと言えるのか（241–269） ================= -->
+
+<section class="slide t-section">
+  <div class="topic"><span>PART 9 / 9</span><span class="bar"></span><span>最後に、いちばん大きい話</span></div>
+  <div class="numbox">09</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">失われた30年は、<br>なぜもう来ないと言えるのか</div><div class="rule"></div><div class="desc">政府の側ではなく、企業の側を見ます</div></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：政府がやる気でも、それだけでは足りない</span><span class="brand"></span></div>
+  <div class="lead">ここまで僕は、政府が需要そのものを作りにいっている、とお伝えしてきました</div>
+  <div class="stmt">ですが、企業が動かなければ、<br>結局は<span class="emr">同じことの繰り返し</span>です。</div>
+  <div class="note">だから最後に、企業の側を見ます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：いま日本で起きていること</span><span class="brand"></span></div>
+  <div class="lead">海外の投資家が買っているから、とだけ考えると、いちばん大事なところを見落とします</div>
+  <div class="stmt">日本企業の<span class="em">儲け方</span>と、<br><span class="em">儲けたお金の使い方</span>が、<br>変わりはじめています。</div>
+  <div class="note">僕は、ここが失われた30年との最大の違いだと思っています</div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 9：まず、儲け方が変わりました</span><span class="brand"></span></div>
+  <div class="h-main">利益が、前の年から大きく増えました</div>
+  <div class="h-sub">財務省の調査。2026年1月から3月、前の年の同じ時期との比較（金融と保険を除く）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:102px;">+14.6%</div><div class="cap">全産業</div><div class="sub">金融・保険を除く</div></div>
+    <div class="vb orange"><div class="bar" style="height:320px;">+42.9%</div><div class="cap">製造業</div><div class="sub">過去最高</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ここは、はっきり言っておきます</span><span class="brand"></span></div>
+  <div class="lead">この利益には、円安の影響があります</div>
+  <div class="stmt">さきほどコンテンツのところでお伝えしたとおり、<br>海外で稼ぐ会社にとって、<br>円安は<span class="em">大きな追い風</span>です。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ただ、円安だけではありません</span><span class="brand"></span></div>
+  <div class="lead">最近の決算を見ると</div>
+  <div class="stmt">値上げをして、それが売上に乗り、数量も落ちず、<br>コストの改善も進んだことで、<br><span class="em">利益を伸ばしている会社が増えています</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：昔の日本とは、まったく違います</span><span class="brand"></span></div>
+  <div class="h-main">デフレの時代、この悪循環が長いあいだ続きました</div>
+  <div class="chain">
+    <div class="node danger">値上げを<br>極端に恐れる</div>
+    <div class="arr">→</div>
+    <div class="node danger">利益が<br>増えない</div>
+    <div class="arr">→</div>
+    <div class="node danger">給料も<br>上げられない</div>
+    <div class="arr">→</div>
+    <div class="node danger">消費も<br>増えない</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：いまは、どうなっているか</span><span class="brand"></span></div>
+  <div class="lead">いまは、原材料費や人件費が上がれば、それを販売価格に乗せる会社が増えています</div>
+  <div class="stmt">日銀も、企業の値段の決め方が、<br>デフレの時期とは<span class="em">変わってきている</span>と<br>分析しています。</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 9：そして、賃金も動いています</span><span class="brand"></span></div>
+  <div class="lead">2026年の春闘では</div>
+  <div class="h-main">3年続けて、5%台になりました</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">2026年 春闘の平均賃上げ率</div><div class="mfig">5.01<span class="u">%</span></div><div class="msub">2024年、2025年、2026年と3年連続で5%台</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ただし、これは言っておきます</span><span class="brand"></span></div>
+  <div class="lead">もちろん、これで全員の生活が楽になった、という話ではありません。物価も上がっています</div>
+  <div class="stmt">ただ、この仕組みが動きはじめていること自体が、<br>デフレの時代とは<span class="em">まったく違います</span>。</div>
+  <div class="note">値上げをして、売上を増やして、利益を増やして、その一部を賃金に回す</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：そして、儲けたお金の使い方</span><span class="brand"></span></div>
+  <div class="lead">ここが、いちばん大事なところです</div>
+  <div class="stmt">以前の日本企業は、利益を出しても、<br>現金としてため込む傾向がありました。<br>いまは、そこに<span class="em">圧力がかかっています</span>。</div>
+</section>
+
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：大きなきっかけの1つ</span><span class="brand"></span></div>
+  <div class="h-main">東京証券取引所が、上場している会社に求めるようになったこと</div>
+  <div class="chain">
+    <div class="node danger">利益を出して<br>現金を持っている<br>だけでは足りない</div>
+    <div class="arr">→</div>
+    <div class="node">そのお金で<br>会社を成長させる<br>設備に投資する<br>他の会社を買う</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">それでも余るなら<br>配当や自社株買いで<br>株主に返す</div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：自社株買いとは</span><span class="brand"></span></div>
+  <div class="lead">会社が、市場に出回っている自分の会社の株を、自分で買い戻すことです</div>
+  <div class="stmt">買い戻した分だけ株の数が減るので、<br>利益が同じでも、<br><span class="em">1株あたりの取り分は増えます</span>。</div>
+  <div class="note">だから、株主への還元の方法の1つとして使われます</div>
+</section>
+
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 9：実際、急に増えています</span><span class="brand"></span></div>
+  <div class="lead">日本企業の自社株買いは</div>
+  <div class="h-main">2026年は、8月の時点ですでに</div>
+  <div class="metrics">
+    <div class="metric up"><div class="mlbl">発表された金額（2026年・8月時点）</div><div class="mfig">20兆円超</div><div class="msub">日本企業の自社株買い</div></div>
+  </div>
+</section>
+
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 9：僕がいちばん重要だと思っているもの</span><span class="brand"></span></div>
+  <div class="h-main">国内の設備投資が、過去最高の水準になりました</div>
+  <div class="h-sub">内閣府。日本の名目の設備投資、年率に直した金額</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:286px;">約105兆円</div><div class="cap">バブル期（1991年）</div><div class="sub">これまでの最高</div></div>
+    <div class="vb orange"><div class="bar" style="height:300px;">約110兆円</div><div class="cap">2025年1〜3月</div><div class="sub">過去最高の水準</div></div>
+  </div>
+  <div class="foot-bar">日銀の調査を見ると、<span class="em">2026年度の設備投資の計画も、プラス</span>です</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：何にお金を使っているのか</span><span class="brand"></span></div>
+  <div class="h-main">使い道を見ると、方向がはっきりします</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctitle">つくる場所</div><div class="ctext">半導体の工場<br>データセンター</div></div>
+    <div class="card c2"><div class="ctitle">人手を補う</div><div class="ctext">人手を減らすための設備<br>ソフトウェア</div></div>
+    <div class="card c3"><div class="ctitle">次を仕込む</div><div class="ctext">研究開発</div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：つまり</span><span class="brand"></span></div>
+  <div class="lead">日本企業は、儲かるようになっただけではありません</div>
+  <div class="stmt">その利益を、日本国内に<br><span class="em">もう一度投資しはじめています</span>。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：17分野は、その受け皿です</span><span class="brand"></span></div>
+  <div class="h-main">17の戦略分野に並んでいるもの</div>
+  <div class="grid">
+    <div class="card c1"><div class="ctext" style="font-size:26px;line-height:1.9;">AIと半導体<br>エネルギー<br>防衛</div></div>
+    <div class="card c2"><div class="ctext" style="font-size:26px;line-height:1.9;">宇宙<br>造船<br>バイオ</div></div>
+    <div class="card c3"><div class="ctext" style="font-size:26px;line-height:1.9;">そして<br>コンテンツ</div></div>
+  </div>
+  <div class="foot-bar">2040年度までに想定されている官民の国内投資額は、累計で<span class="em">370兆円</span>を超えます</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：370兆円の中身</span><span class="brand"></span></div>
+  <div class="lead">ここで大事なのは、この370兆円が、政府が税金で出す金額ではない、ということです</div>
+  <div class="stmt">企業の設備投資を含めた、<br><span class="em">官民あわせての数字</span>です。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：別々の話ではありません</span><span class="brand"></span></div>
+  <div class="lead">さきほどお伝えした設備投資の増加と、この370兆円は、別々の話ではありません</div>
+  <div class="stmt">企業がすでに動かしはじめているお金が、<br>この計画の中に<span class="em">入っています</span>。</div>
+  <div class="note">そのうえで政府は、2040年度の国内投資額を、年間250兆円にするという目標も掲げています</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：だから僕は、こう思っています</span><span class="brand"></span></div>
+  <div class="lead">17の戦略分野を、単なる補助金の政策だとは思っていません</div>
+  <div class="stmt">日本企業が持っている巨額の利益と現金を、<br>もう一度、国内の成長投資へ向かわせるための<br><span class="em">受け皿</span>です。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：ただし、これだけは言っておきます</span><span class="brand"></span></div>
+  <div class="h-main">都合の悪いことも、最後に置いておきます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">景気後退も暴落もある</div><div class="ctext">これからも景気の後退はあります。<br>株価の暴落もあるでしょう</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">全部は成功しない</div><div class="ctext">政策がすべて成功する保証もありません。<br>17の分野の中でも、成功する産業と<br>失敗する産業は、当然出てきます</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">もう割安ではない</div><div class="ctext">いまの日本株は、<br>もう圧倒的に割安な市場では<br>ありません</div></div>
+  </div>
+  <div class="foot-bar">「日本株なら何を買っても上がる」という話では、<span class="em">まったくありません</span></div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：それでも、大きく違うことがあります</span><span class="brand"></span></div>
+  <div class="lead">それでも</div>
+  <div class="stmt">失われた30年を作った<span class="em">仕組みそのもの</span>が、<br>変わりはじめています。</div>
+</section>
+
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：何が変わりはじめているのか</span><span class="brand"></span></div>
+  <div class="h-main">変わりはじめているのは、この3つです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">お金の使い道</div><div class="ctext">利益を出しても<br>国内に投資しない日本から、<br><b>利益を設備と人材と研究開発と<br>株主に回す日本へ</b></div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">政府の役割</div><div class="ctext">政府が将来の方向を<br>示せなかった時代から、<br><b>政府が先に需要を作り、<br>民間のお金を呼び込む時代へ</b></div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">前提そのもの</div><div class="ctext">デフレを前提に<br>経営する日本から、<br><b>賃金も物価も企業の利益も<br>増えることを前提にする日本へ</b></div></div>
+  </div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：少なくとも、言えること</span><span class="brand"></span></div>
+  <div class="lead">失われた30年とまったく同じ理由で、日本がもう一度30年間停滞する</div>
+  <div class="stmt">その可能性は、<br>以前より<span class="em">大きく下がっている</span>と<br>思っています。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：僕がそう考えている、最大の理由</span><span class="brand"></span></div>
+  <div class="lead">僕が「失われた30年は二度とこない」と考えている最大の理由は、株価が最高値を更新したからではありません</div>
+  <div class="stmt">日本企業の儲け方と、日本国内へのお金の流れそのものが、<br>30年前とは<span class="em">変わりはじめているから</span>です。</div>
+</section>
+
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：今回、触れなかった分野について</span><span class="brand"></span></div>
+  <div class="lead">今回は3つの分野に絞ってお話ししましたが、17の分野の中でいちばん投資額が大きいのは、AIと半導体です</div>
+  <div class="stmt">こちらについては、<br>僕のチャンネルの過去動画で<br><span class="em">かなり解説しています</span>。</div>
+  <div class="note">良ければご覧ください</div>
+</section>
+
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 9：最後に、1つお願いがあります</span><span class="brand"></span></div>
+  <div class="h-main">この3つの中で、どこを見ていますか</div>
+  <div class="rows">
+    <div class="row"><div class="no">1</div><div class="t">コンテンツ</div><div class="d">ゲーム・アニメ・漫画</div></div>
+    <div class="row"><div class="no">2</div><div class="t">エネルギー</div><div class="d">電力の設備と、電力会社</div></div>
+    <div class="row"><div class="no">3</div><div class="t">宇宙</div><div class="d">衛星と、地上のサービス</div></div>
+  </div>
+  <div class="cta">すでに投資している分野、これから投資しようと考えている分野を、ぜひコメント欄で教えてください</div>
+</section>
+
+<section class="slide t-closing">
+  <div class="big">今回の動画は、<br><span class="em">以上となります</span>。</div>
+  <div class="sub">少しでも参考になったと思っていただけたら、とても励みになります</div>
+  <div class="tags">
+    <div class="tg">高評価</div>
+    <div class="tg">チャンネル登録</div>
+    <div class="tg">コメント</div>
+  </div>
+</section>
+</body>
+</html>
