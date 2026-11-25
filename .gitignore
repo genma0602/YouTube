@@ -24,3 +24,7 @@ venv/
 *.avi
 *.wav
 *.mp3
+
+# GitHub の100MB上限を超えるスライドPDF（PNGは別途コミット済み・PDFは再生成できる）
+channels/投資系/スライド/米中間選挙/米中間選挙.pdf
+channels/投資系/スライド/電力増強/電力増強.pdf
