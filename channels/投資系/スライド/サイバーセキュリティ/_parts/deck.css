@@ -1,0 +1,38 @@
+/* ===== サイバーセキュリティ・デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* ---- 見出しがヘッダー帯（53px）に食い込む型の上余白を足す（光電融合で踏んだ落とし穴）
+   t-cards 48px / t-vs 50px / t-stats 58px は中身が上寄せで
+   padding-top がそのまま開始位置になるため、見出しが帯に重なる。
+   t-text・t-flow・numviz・t-agenda・t-numline・t-steps は縦中央寄せなので対象外 ---- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---- 攻撃の6段階の帯（このデッキの背骨。13枚で使い回す） ---- */
+.t-stage{display:flex;flex-direction:column;justify-content:center;padding:70px 46px 0;}
+.t-stage .h-main{margin:0 0 20px;}
+.t-stage .h-sub{margin:0 0 36px;}
+.t-stage .lead{font-size:26px;color:#69727c;font-weight:600;text-align:center;margin-bottom:26px;position:relative;padding-top:26px;}
+.t-stage .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-stage .note{text-align:center;font-size:24px;color:#7a828c;font-weight:600;margin-top:40px;line-height:1.7;}
+
+.stagemap{display:flex;gap:10px;justify-content:center;align-items:stretch;}
+.stagemap .st{flex:1;background:#eef2f7;color:#7c8798;border:1px solid var(--line);border-radius:14px;
+  padding:22px 6px;text-align:center;font-size:30px;font-weight:800;line-height:1.25;box-shadow:var(--shadow-sm);}
+.stagemap .st .n{display:block;font-size:19px;font-weight:700;opacity:.8;margin-bottom:8px;}
+.stagemap .st.on{background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;border-color:transparent;}
+.stagemap .st.on2{background:linear-gradient(150deg,var(--orange),var(--orange2));color:#fff;border-color:transparent;}
+
+/* 9社の工程マップ（段階の下に企業名を置く） */
+.stagemap.map .st{font-size:25px;padding:18px 6px;}
+.stagemap.map .st .n{font-size:17px;}
+.stagemap .co{display:block;font-size:17px;font-weight:700;line-height:1.3;margin-top:10px;
+  background:#fff;color:#1b3157;border-radius:8px;padding:7px 4px;}
+.stagemap .st.on .co,.stagemap .st.on2 .co{background:rgba(255,255,255,.16);color:#fff;}
+.stagemap .co.none{background:transparent;color:#aeb6c0;font-weight:600;}
+
+/* 6枠の外に置く注記（工程で分かれない企業） */
+.t-stage .outside{display:flex;gap:16px;justify-content:center;margin-top:34px;}
+.t-stage .outside .ob{background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);
+  border-radius:12px;padding:16px 26px;font-size:23px;font-weight:700;color:var(--navy);box-shadow:var(--shadow-sm);}
+.t-stage .outside .ob b{color:#cf820f;}

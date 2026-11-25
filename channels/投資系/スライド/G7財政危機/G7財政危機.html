@@ -1,0 +1,3268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>G7財政危機</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:50px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 32px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:42px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:18px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:26px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 0;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:60px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:44px;}
+.t-port .bars{display:flex;flex-direction:column;gap:28px;max-width:1000px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:26px;font-weight:800;color:var(--navy);width:250px;}
+.t-port .brow .track{flex:1;height:54px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:300px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:50px;font-weight:800;color:var(--navy);}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:340px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* ===== industry chips map ===== */
+.t-chips{display:flex;flex-direction:column;justify-content:center;padding:56px 60px 0;}
+.t-chips .h-main{margin:0 0 12px;}
+.t-chips .h-sub{margin-bottom:32px;}
+.t-chips .groups{display:flex;gap:24px;justify-content:center;align-items:stretch;}
+.t-chips .grp{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px 28px;text-align:center;}
+.t-chips .grp.g-a{border-top:6px solid var(--blue);} .t-chips .grp.g-b{border-top:6px solid var(--orange);} .t-chips .grp.g-c{border-top:6px solid var(--green);}
+.t-chips .grp .gh{font-size:23px;font-weight:800;margin-bottom:18px;}
+.t-chips .grp.g-a .gh{color:var(--blue);} .t-chips .grp.g-b .gh{color:#cf820f;} .t-chips .grp.g-c .gh{color:var(--green);}
+.t-chips .chip{display:inline-block;margin:6px;padding:11px 18px;border-radius:26px;background:#eef2f7;color:var(--navy);font-size:19px;font-weight:700;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+
+/* ===== G7財政危機・デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* ---- 見出しがヘッダー帯に食い込む型の上余白（アンソロピック版と同じ直し） ---- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---- ユーザー支給の画像スライド（画像に見出しと説明が入っているので帯は付けない） ---- */
+.t-image{background:#0f1c33;}
+.t-image::after{display:none;}
+.t-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ---- 3つのルールの帯（このデッキの背骨） ---- */
+.t-map{display:flex;flex-direction:column;justify-content:center;padding:70px 48px 0;}
+.t-map .h-main{margin:0 0 34px;}
+.flowmap{display:flex;gap:14px;justify-content:center;align-items:stretch;}
+.flowmap .fm{flex:1;background:#eef2f7;color:#7c8798;border:1px solid var(--line);border-radius:16px;
+  padding:24px 10px 22px;text-align:center;font-size:36px;font-weight:800;line-height:1.25;box-shadow:var(--shadow-sm);}
+.flowmap .fm .n{display:block;font-size:20px;font-weight:700;opacity:.8;margin-bottom:8px;}
+.flowmap .fm .s{display:block;font-size:24px;font-weight:700;margin-top:14px;line-height:1.45;opacity:.95;}
+.flowmap .fm.on{background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;border-color:transparent;}
+.flowmap .fm.done{background:#dfe7f2;color:#40557a;}
+.flowmap .fm .s.ng{color:#d9534f;opacity:1;}
+.flowmap .fm.on .s.ng{color:#ffb4a8;}
+.flowmap .fm .s.ok{color:#2a7d4f;opacity:1;}
+.flowmap .fm.on .s.ok{color:#a8e6c1;}
+/* 帯の下に置く国名・企業名 */
+.t-map .coname{margin:40px auto 0;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow);padding:24px 50px;min-width:720px;}
+.t-map .coname .cn{font-size:56px;font-weight:800;color:var(--navy);line-height:1.15;}
+.t-map .coname .cc{font-size:28px;font-weight:700;color:#7a828c;margin-top:10px;}
+.t-map .note{text-align:center;font-size:26px;color:#7a828c;font-weight:600;margin-top:34px;line-height:1.6;}
+
+/* ---- 5枚・4枚のカードは文字を少し小さく ---- */
+.t-cards .grid.g5 .card .ctitle{font-size:30px !important;line-height:1.35;}
+.t-cards .grid.g4 .card .ctitle{font-size:34px !important;line-height:1.35;}
+.t-cards .grid.g5 .card,.t-cards .grid.g4 .card{padding-left:12px;padding-right:12px;}
+.t-cards .grid.g5 .ctext,.t-cards .grid.g4 .ctext{font-size:20px;}
+
+</style>
+</head>
+<body>
+
+<!-- ========== p01_intro（12枚） ========== -->
+<!-- タイトル -->
+<section class="slide t-title">
+  <div class="kicker">G7の財政と、日本国債</div>
+  <div class="big">G7で、本当に<br><span class="em">財政破綻に近い国</span>はどこか</div>
+  <div class="lead">借金の多さではなく、3つのルールでG7を見ていきます</div>
+</section>
+
+<!-- 日本経済が30年ぶりに動 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">いま、日本の国債で起きていること</div>
+  <div class="stmt">日本経済が30年ぶりに動き出し、<br><span class="em">海外の機関投資家</span>が、<br>日本国債を買い集め始めました。</div>
+</section>
+
+<!-- 日本国債に、利息が付くよ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">日本国債に、利息が付くようになりました</div>
+  <div class="h-sub">ゼロ金利の時代には、無かったことです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">賃上げ</div><div class="ctext">働く人の賃金が上がり始めた</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">設備投資</div><div class="ctext">企業がお金を使い始めた</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">国債に利息</div><div class="ctext">日本国債にも利息が付く</div></div>
+  </div>
+</section>
+
+<!-- でも、こう聞いてきた方が -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">でも、こう聞いてきた方が多いと思います</div>
+  <div class="grid g5" style="grid-template-columns:repeat(5,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">赤字は<br>G7で最悪</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">ギリシャより<br>悪い</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">借金はGDPの<br>2倍で世界一</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">次に破綻<br>するのは日本</div></div>
+    <div class="card c1"><div class="cno">5</div><div class="ctitle">年金も<br>もらえるか<br>分からない</div></div>
+  </div>
+</section>
+
+<!-- 不安になるのは、【当然】 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">そう聞くと</div>
+  <div class="stmt">不安になるのは、<span class="em">当然</span>です。</div>
+</section>
+
+<!-- この動画で答えを出します -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="badge navy">2つの問い</div>
+  <div class="h-main">この動画で答えを出します</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">なぜ買うのか</div><div class="cap">借金が世界一の国の国債を</div><div class="big">海外の投資家</div></div>
+    <div class="vsmark">？</div>
+    <div class="box left"><div class="name">どこなのか</div><div class="cap">本当に破綻に近いのは</div><div class="big">G7の中で</div></div>
+  </div>
+</section>
+
+<!-- G7の7か国の中で、最初 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">結論から言います</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">G7の7か国の中で、最初に「この国は破綻しない」と分かるのは</div>
+      <div class="mfig">日本</div>
+      <div class="msub">そして、いちばん危ないのは、別の国です</div>
+    </div>
+  </div>
+</section>
+
+<!-- いちばん危ないのは、
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">国の借金は、多い順に危ないのではありません</div>
+  <div class="stmt">いちばん危ないのは、<br><span class="em">別の国</span>です。</div>
+  <div class="note">どこなのかは、7か国を見ながら確かめていきます</div>
+</section>
+
+<!-- 見るのは、3つです -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">見るのは、3つです</div>
+  <div class="h-sub">この3つでG7を見ていくと、そういう答えになります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">誰に<br>借りているか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">何の通貨で<br>借りているか</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">どれだけ速く<br>直せるか</div><div class="ctext">投資家が買わなくなったとき</div></div>
+  </div>
+</section>
+
+<!-- 今日の流れ -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">今日の流れ</div>
+  <div class="chain">
+    <div class="node">G7を<br>1つずつ見る</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">決算に出ている<br>日本企業を3社</div>
+    <div class="arr">→</div>
+    <div class="node">新NISAでの<br>持ち方</div>
+  </div>
+  <div class="release">海外の機関投資家も買い集めている企業です</div>
+</section>
+
+<!-- 「日本の借金はGDPの2 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">見終わるころには</div>
+  <div class="stmt">「日本の借金はGDPの2倍」と聞いても、<br><span class="em">何を先に見ればいいか</span>を、<br>自分で判定できるようになります。</div>
+</section>
+
+<!-- ここまで踏み込んで解説し -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="badge navy">あまり表に出てこない、不都合な話</div>
+  <div class="h-main">ここまで踏み込んで解説します</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">年金</div><div class="cap">日本の年金は</div><div class="big">破綻するのか</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">国債</div><div class="cap">将来の世代への</div><div class="big">ツケなのか</div></div>
+  </div>
+</section>
+
+<!-- ========== p02_kangaekata（10枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 2：国の借金は、多い順に危ないのではありません</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 2 / 16</span><span class="bar"></span><span>考え方</span></div>
+  <div class="numbox">2</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">国の借金は、<br>多い順に危ない<br>のではありません</div><div class="rule"></div><div class="desc">財政破綻とは何か。どこを見ればいいのか</div></div>
+</section>
+
+<!-- でも、経済全体を見て
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：国の借金は、多い順に危ないのではありません</span><span class="brand"></span></div>
+  <div class="lead">早く儲かる銘柄を教えてほしい、と思う方もいると思います</div>
+  <div class="stmt">でも、経済全体を見て<br><span class="em">連想ゲーム</span>ができないと、<br>株で儲かることはできません。</div>
+</section>
+
+<!-- 銘柄の名前ではなく、
+ジ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：国の借金は、多い順に危ないのではありません</span><span class="brand"></span></div>
+  <div class="lead">だから先に</div>
+  <div class="stmt">銘柄の名前ではなく、<br>ジャンジャン儲かるための<br><span class="em">考え方</span>のほうを解説します。</div>
+</section>
+
+<!-- 財政破綻とは -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：国の借金は、多い順に危ないのではありません</span><span class="brand"></span></div>
+  <div class="lead">まず、国の財政破綻とは何か</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">財政破綻とは</div>
+      <div class="mfig" style="font-size:96px">払えなくなること</div>
+      <div class="msub">国が借りたお金の利息や元本を、約束の日に。借金の額が大きいこと、そのものではありません</div>
+    </div>
+  </div>
+</section>
+
+<!-- 本当に問題なのは、信用が -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：国の借金は、多い順に危ないのではありません</span><span class="brand"></span></div>
+  <div class="h-main">本当に問題なのは、信用が失われることです</div>
+  <div class="chain">
+    <div class="node">足りない分を<br>国債で借りる</div>
+    <div class="arr">→</div>
+    <div class="node">信用が<br>失われる</div>
+    <div class="arr">→</div>
+    <div class="node">買う人が<br>いなくなる</div>
+    <div class="arr">→</div>
+    <div class="node danger">借金を<br>返せなくなる</div>
+  </div>
+</section>
+
+<!-- 2015年のギリシャで、 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 2：国の借金は、多い順に危ないのではありません</span><span class="brand"></span></div>
+  <div class="h-main">2015年のギリシャで、起きたこと</div>
+  <div class="h-sub">IMF＝各国にお金を貸す国際機関</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">銀行が一時閉鎖</div><div class="ctext">政府への信用が揺らぎ、人々が預金を引き出し続けた</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">IMFへの返済ができない</div><div class="ctext">実際に、返済が止まりました</div></div>
+  </div>
+</section>
+
+<!-- 帯：買い手がいなくなる国 -->
+<section class="slide t-map">
+  <div class="hdr"><span class="sec">Section 2：国の借金は、多い順に危ないのではありません</span><span class="brand"></span></div>
+  <div class="h-main">買い手がいなくなる国と、ならない国の違い</div>
+  <div class="flowmap">
+    <div class="fm"><span class="n">1</span>誰に借りているか</div>
+    <div class="fm"><span class="n">2</span>何の通貨で<br>借りているか</div>
+    <div class="fm"><span class="n">3</span>どれだけ速く<br>直せるか</div>
+  </div>
+  <div class="note">この3つのルールで、G7を見ていきます</div>
+</section>
+
+<!-- 画像：01_g7_kuni -->
+<section class="slide t-image"><img src="img/01_g7_kuni.png" alt="G7の7か国"></section>
+
+<!-- 画像：02_nihon_gyakusetsu -->
+<section class="slide t-image"><img src="img/02_nihon_gyakusetsu.png" alt="日本国債の逆説"></section>
+
+<!-- この矛盾が、
+【誰に借り -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：国の借金は、多い順に危ないのではありません</span><span class="brand"></span></div>
+  <div class="lead">借金がいちばん多い国が、いちばん安い金利で借りられている</div>
+  <div class="stmt">この矛盾が、<br><span class="em">誰に借りているか</span>で解けます。</div>
+</section>
+
+<!-- ========== p03_dare（21枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 3：誰に借りているか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 3 / 16</span><span class="bar"></span><span>1つ目のルール</span></div>
+  <div class="numbox">3</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">誰に借りているか</div><div class="rule"></div><div class="desc">日本は、破綻する側ではありません</div></div>
+</section>
+
+<!-- 日本の国債の持ち主 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 3：日本の国債は、誰が持っているのか</span><span class="brand"></span></div>
+  <div class="lead">では、日本の国債を、誰が持っているのか</div>
+  <div class="h-main">日本の国債の持ち主</div>
+  <div class="pbar">
+    <div class="seg main" style="width:87%"><span class="p">87%</span><span class="l">国内</span></div>
+    <div class="seg rest"><span class="p">13%</span><span class="l">海外の投資家</span></div>
+  </div>
+</section>
+
+<!-- 国内の持ち主 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：日本の国債は、誰が持っているのか</span><span class="brand"></span></div>
+  <div class="h-main">国内の持ち主</div>
+  <div class="h-sub">いちばん大きな持ち主が、日銀です</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">銀行</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">保険会社</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">年金</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">日銀</div><div class="ctext">いちばん大きな持ち主</div></div>
+  </div>
+</section>
+
+<!-- 【円を出せる】機関です。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：日本の国債は、誰が持っているのか</span><span class="brand"></span></div>
+  <div class="lead">日銀は</div>
+  <div class="stmt"><span class="em">円を出せる</span>機関です。</div>
+</section>
+
+<!-- 日本の国債は、買い手がい -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：日本の国債は、誰が持っているのか</span><span class="brand"></span></div>
+  <div class="h-main">日本の国債は、買い手がいなくならない</div>
+  <div class="chain">
+    <div class="node">破綻するのは<br>買い手が<br>いなくなったとき</div>
+    <div class="arr">→</div>
+    <div class="node">日本のいちばん<br>大きな買い手は<br>円を出せる日銀</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">お金の出どころは<br>無くならない</div>
+  </div>
+</section>
+
+<!-- 円で借りている先進国の国 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：日本の国債は、誰が持っているのか</span><span class="brand"></span></div>
+  <div class="lead">財務省自身も、2002年に海外の格付け会社に伝えています</div>
+  <div class="stmt">円で借りている先進国の国債が<br>返せなくなることは、<br><span class="em">考えられない</span>。</div>
+</section>
+
+<!-- 帯：ここで、日本は破綻す -->
+<section class="slide t-map">
+  <div class="hdr"><span class="sec">Section 3：日本の国債は、誰が持っているのか</span><span class="brand"></span></div>
+  <div class="h-main">ここで、日本は破綻する側ではないと分かります</div>
+  <div class="flowmap">
+    <div class="fm on"><span class="n">1</span>誰に借りているか<span class="s ok">日本＝国内が87%</span></div>
+    <div class="fm"><span class="n">2</span>何の通貨で<br>借りているか</div>
+    <div class="fm"><span class="n">3</span>どれだけ速く<br>直せるか</div>
+  </div>
+  <div class="coname"><div class="cn">日本</div><div class="cc">破綻する側ではありません</div></div>
+</section>
+
+<!-- 日本の国債を買うお金は、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：国内も海外も、買いが増えています</span><span class="brand"></span></div>
+  <div class="lead">ここからが、いまの話です</div>
+  <div class="stmt">日本の国債を買うお金は、<br>減るどころか、<br><span class="em">増えています</span>。</div>
+</section>
+
+<!-- 日本の投資家は2024年 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：国内も海外も、買いが増えています</span><span class="brand"></span></div>
+  <div class="lead">まず、日本のお金です</div>
+  <div class="stmt">日本の投資家は2024年の時点で、<br>フランスの国債を<br><span class="em">売り越して</span>いました。</div>
+  <div class="note">買った額より、売った額のほうが多い状態です</div>
+</section>
+
+<!-- 2026年4〜8月　日本 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：国内も海外も、買いが増えています</span><span class="brand"></span></div>
+  <div class="lead">そのお金が、国内に戻りました</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">2026年4〜8月　日本の銀行と保険会社の日本国債の買い越し</div>
+      <div class="mfig">5.4<span class="u">兆円</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- フランスの国債を売って、 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：国内も海外も、買いが増えています</span><span class="brand"></span></div>
+  <div class="h-main">フランスの国債を売って、日本国債に移した例もあります</div>
+  <div class="chain">
+    <div class="node">2026年10月2日<br>三井住友DSの<br>債券ファンド</div>
+    <div class="arr">→</div>
+    <div class="node danger">フランス国債を<br>すべて売る</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">ドイツ国債と<br>日本国債へ</div>
+  </div>
+  <div class="release">理由は、フランスの財政不安です</div>
+</section>
+
+<!-- 欧州の政治と財政の不安か -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：国内も海外も、買いが増えています</span><span class="brand"></span></div>
+  <div class="lead">アメリカの大手運用会社、ステート・ストリート</div>
+  <div class="stmt">欧州の政治と財政の不安から、<br>日本国債が<span class="em">避難先の1つ</span>として<br>見られ始めている。</div>
+  <div class="note">フランスを中心とする欧州の不安を挙げています</div>
+</section>
+
+<!-- 国債の名前は、お金を返す -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：国内も海外も、買いが増えています</span><span class="brand"></span></div>
+  <div class="h-main">国債の名前は、お金を返すまでの年数です</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">10年国債</div><div class="ctext">10年後にお金を返す国債</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">20年国債</div><div class="ctext">20年後にお金を返す国債</div></div>
+  </div>
+</section>
+
+<!-- 国が出す額に対して、集ま -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：国内も海外も、買いが増えています</span><span class="brand"></span></div>
+  <div class="lead">2026年10月20日　20年国債の入札</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">国が出す額に対して、集まった買い注文の倍率</div>
+      <div class="mfig">5.84<span class="u">倍</span></div>
+      <div class="msub">20年国債としては、過去最高でした</div>
+    </div>
+  </div>
+</section>
+
+<!-- 世界の投資家が見ているも -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：国内も海外も、買いが増えています</span><span class="brand"></span></div>
+  <div class="h-main">世界の投資家が見ているもの</div>
+  <div class="h-sub">借金の大きさだけで、国債の安全を判断しているわけではありません</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">政治の安定</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">財政を直せるか</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">何の通貨で<br>借りているか</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">金利が<br>いくらか</div></div>
+  </div>
+</section>
+
+<!-- 画像：03_france_demo -->
+<section class="slide t-image"><img src="img/03_france_demo.png" alt="フランスで抗議デモが拡大"></section>
+
+<!-- 財政が揺れる国では、街も -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：財政が揺れる国では、街も揺れる</span><span class="brand"></span></div>
+  <div class="h-main">財政が揺れる国では、街も揺れます</div>
+  <div class="chain">
+    <div class="node">予算の<br>削減案</div>
+    <div class="arr">→</div>
+    <div class="node">争点はいつも<br>年金</div>
+    <div class="arr">→</div>
+    <div class="node">予算が<br>通らない</div>
+    <div class="arr">→</div>
+    <div class="node danger">国債が<br>さらに売られる</div>
+  </div>
+</section>
+
+<!-- そういう時代に、政府も企 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：財政が揺れる国では、街も揺れる</span><span class="brand"></span></div>
+  <div class="h-main">そういう時代に、政府も企業も家庭も増やす支出</div>
+  <div class="h-sub">安全への支出です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">警備</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">監視カメラ</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">入退室の管理</div></div>
+  </div>
+</section>
+
+<!-- 2022年7月、安倍元首 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：財政が揺れる国では、街も揺れる</span><span class="brand"></span></div>
+  <div class="lead">これは、フランスだけの話ではありません</div>
+  <div class="stmt">2022年7月、安倍元首相の銃撃事件の日、<br>東京の株式市場で<br><span class="em">買われた業種</span>があります。</div>
+  <div class="note">何かが起きたとき、お金が最初に向かう先です</div>
+</section>
+
+<!-- 安全への支出はもう、
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：財政が揺れる国では、街も揺れる</span><span class="brand"></span></div>
+  <div class="lead">そして</div>
+  <div class="stmt">安全への支出はもう、<br><span class="em">日本の企業の決算</span>に出ています。</div>
+</section>
+
+<!-- その【1社目】を、見てい -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：財政が揺れる国では、街も揺れる</span><span class="brand"></span></div>
+  <div class="lead">ここから</div>
+  <div class="stmt">その<span class="em">1社目</span>を、見ていきます。</div>
+</section>
+
+<!-- ========== p04_alsok（27枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：1社目 ALSOK</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4 / 16</span><span class="bar"></span><span>1社目</span></div>
+  <div class="numbox">4</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">1社目 ALSOK</div><div class="rule"></div><div class="desc">安全への支出で稼ぐ側｜国内の警備の契約で稼ぐ企業</div></div>
+</section>
+
+<!-- 証券コード 2331 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：1社目 ALSOK（2331）</span><span class="brand"></span></div>
+  <div class="lead">1社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">証券コード 2331</div>
+      <div class="mfig" style="font-size:130px">ALSOK</div>
+      <div class="msub">国内の警備の企業です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 画像：04_alsok_jigyou -->
+<section class="slide t-image"><img src="img/04_alsok_jigyou.png" alt="ALSOKの事業"></section>
+
+<!-- 2026年3月期の決算 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：売上が8%増えた年に、利益は2割増えました</span><span class="brand"></span></div>
+  <div class="h-main">2026年3月期の決算</div>
+  <div class="h-sub">売上の伸びより、利益の伸びのほうが大きい</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">売上</div><div class="cd">前の期より +8.2%</div></div><div class="body"><div class="lbl">金額</div><div class="val2">5,970億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">前の期より +16.7%</div></div><div class="body"><div class="lbl">金額</div><div class="val2">469億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">純利益</div><div class="cd">前の期より +22.7%</div></div><div class="body"><div class="lbl">金額</div><div class="val2">332億円</div></div></div>
+  </div>
+</section>
+
+<!-- 利益の伸びは、売上の伸び -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：売上が8%増えた年に、利益は2割増えました</span><span class="brand"></span></div>
+  <div class="badge navy">2026年3月期</div>
+  <div class="h-main">利益の伸びは、売上の伸びの約3倍です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">売上</div><div class="cap">前の期より</div><div class="big">+8.2%</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">純利益</div><div class="cap">前の期より</div><div class="big">+22.7%</div></div>
+  </div>
+</section>
+
+<!-- 理由は、値上げです -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：売上が8%増えた年に、利益は2割増えました</span><span class="brand"></span></div>
+  <div class="h-main">理由は、値上げです</div>
+  <div class="chain">
+    <div class="node">人件費が<br>上がる</div>
+    <div class="arr">→</div>
+    <div class="node">警備料金に<br>乗せる</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">月々の契約なので<br>客が簡単には<br>離れない</div>
+  </div>
+</section>
+
+<!-- 安全への支出は、
+【値段 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：売上が8%増えた年に、利益は2割増えました</span><span class="brand"></span></div>
+  <div class="lead">警備は人の仕事。ふつうは人件費が利益を削ります</div>
+  <div class="stmt">安全への支出は、<br><span class="em">値段が上がっても<br>削られにくい</span>支出です。</div>
+</section>
+
+<!-- 2026年4〜6月も、同 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：売上が8%増えた年に、利益は2割増えました</span><span class="brand"></span></div>
+  <div class="h-main">2026年4〜6月も、同じです</div>
+  <div class="h-sub">売上の伸びより、利益の伸びのほうが大きい</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">売上</div><div class="cd">前の年の同じ時期より</div></div><div class="body"><div class="lbl">伸び</div><div class="val2">+3.4%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">前の年の同じ時期より</div></div><div class="body"><div class="lbl">伸び</div><div class="val2">+15.4%</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">純利益</div><div class="cd">前の年の同じ時期より</div></div><div class="body"><div class="lbl">伸び</div><div class="val2">+25.8%</div></div></div>
+  </div>
+</section>
+
+<!-- 営業利益 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：売上が8%増えた年に、利益は2割増えました</span><span class="brand"></span></div>
+  <div class="lead">今期の会社予想</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">営業利益</div>
+      <div class="mfig">557<span class="u">億円</span></div>
+      <div class="msub">前の期より18.8%増。会社四季報も、増益の方向で見ています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 守る範囲を、
+【火災にも -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る範囲を、火災にも広げています</span><span class="brand"></span></div>
+  <div class="lead">ALSOKは</div>
+  <div class="stmt">守る範囲を、<br><span class="em">火災にも</span>広げています。</div>
+</section>
+
+<!-- 画像：05_alsok_dry_chemical -->
+<section class="slide t-image"><img src="img/05_alsok_dry_chemical.png" alt="ALSOKと日本ドライケミカル"></section>
+
+<!-- 自社株買い -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：守る範囲を、火災にも広げています</span><span class="brand"></span></div>
+  <div class="lead">8月には</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">自社株買い</div>
+      <div class="mfig">約100<span class="u">億円</span></div>
+      <div class="msub">すでに終えています</div>
+    </div>
+  </div>
+</section>
+
+<!-- その1つが、
+【この企業 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：海外の運用会社が、持つ理由を公開しています</span><span class="brand"></span></div>
+  <div class="lead">冒頭で、海外の機関投資家も買い集めている銘柄、とお話ししました</div>
+  <div class="stmt">その1つが、<br><span class="em">この企業</span>です。</div>
+</section>
+
+<!-- 日本株の部門が2025年 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：海外の運用会社が、持つ理由を公開しています</span><span class="brand"></span></div>
+  <div class="lead">オービスという海外の運用会社があります</div>
+  <div class="stmt">日本株の部門が2025年9月に、<br>ALSOKを持つ理由を<br><span class="em">公開</span>しました。</div>
+</section>
+
+<!-- オービスが挙げた、持つ理 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：海外の運用会社が、持つ理由を公開しています</span><span class="brand"></span></div>
+  <div class="h-main">オービスが挙げた、持つ理由は3つです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">値上げできる</div><div class="ctext">人件費が上がっても、値上げで吸収できる</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">続く収入</div><div class="ctext">契約から、毎月入ってくる</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">お金が多い</div><div class="ctext">借金を引いた現金と株や債券＝時価総額の2割</div></div>
+  </div>
+</section>
+
+<!-- だから、
+【株主に返す余 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：海外の運用会社が、持つ理由を公開しています</span><span class="brand"></span></div>
+  <div class="lead">お金を持ちすぎている</div>
+  <div class="stmt">だから、<br><span class="em">株主に返す余地</span>がある、<br>という見方です。</div>
+</section>
+
+<!-- オービスの日本株の運用で -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：海外の運用会社が、持つ理由を公開しています</span><span class="brand"></span></div>
+  <div class="lead">2026年4月末の時点で</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">オービスの日本株の運用で、ALSOKに入れているお金</div>
+      <div class="mfig">3.2<span class="u">%</span></div>
+      <div class="msub">運用しているお金のうち</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2026年2月の時点で、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：海外の運用会社が、持つ理由を公開しています</span><span class="brand"></span></div>
+  <div class="lead">モルガン・スタンレーMUFG証券も</div>
+  <div class="stmt">2026年2月の時点で、<br>評価は<span class="em">強気</span>です。</div>
+</section>
+
+<!-- 見ているのは、荒れた日に -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：海外の運用会社が、持つ理由を公開しています</span><span class="brand"></span></div>
+  <div class="badge navy">海外の投資家が見ているもの</div>
+  <div class="h-main">見ているのは、荒れた日に買われるかではない</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">見ている</div><div class="cap">値上げ・続く収入・お金の余裕</div><div class="big">この3つ</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">見ていない</div><div class="cap">荒れた日に</div><div class="big">買われるか</div></div>
+  </div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="h-sub">ROE＝株主から預かったお金で、どれだけ効率よく利益を出したか</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">ROE</div><div class="cd">前の期は7.9%</div></div><div class="body"><div class="lbl">2026年3月期</div><div class="val2">9.2%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約57%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">手元の現金と預金</div><div class="cd">借入金を引いても約350億円</div></div><div class="body"><div class="lbl"></div><div class="val2">約880億円</div></div></div>
+  </div>
+</section>
+
+<!-- 株価（1月5日 → 10 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 4：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">株価（1月5日 → 10月20日の終値）</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">1,236.5円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月20日</div><div class="c-v">1,216円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">ほぼ横ばい</div></div>
+  </div>
+</section>
+
+<!-- 株価と利益が、逆を向いて -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：財務と株価</span><span class="brand"></span></div>
+  <div class="badge navy">利益が2割増えたあいだに</div>
+  <div class="h-main">株価と利益が、逆を向いています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">利益</div><div class="cap">純利益</div><div class="big">2割増</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">株価</div><div class="cap">年初から</div><div class="big">横ばい</div></div>
+  </div>
+</section>
+
+<!-- 株価の水準（今期の会社予 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">株価の水準（今期の会社予想で見て）</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約15.9倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約1.53倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">配当利回り</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約2.7%</div></div></div>
+  </div>
+</section>
+
+<!-- 注意点は1つ。海外は、ま -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：ただし、海外はまだ赤字です</span><span class="brand"></span></div>
+  <div class="h-main">注意点は1つ。海外は、まだ赤字です</div>
+  <div class="h-sub">タイ、ベトナム、インドネシア、インドなど、アジアでも警備をしています</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">海外の売上</div><div class="cd">2026年3月期</div></div><div class="body"><div class="lbl"></div><div class="val2">280億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">海外の営業損益</div><div class="cd">2026年3月期</div></div><div class="body"><div class="lbl">赤字が広がった</div><div class="val2">−11億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">4〜6月</div><div class="cd">売上は11%増</div></div><div class="body"><div class="lbl"></div><div class="val2">赤字は縮小</div></div></div>
+  </div>
+</section>
+
+<!-- 次の決算は、2026年1 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：ただし、海外はまだ赤字です</span><span class="brand"></span></div>
+  <div class="h-main">次の決算は、2026年11月10日です</div>
+  <div class="chain">
+    <div class="node">11月10日の<br>決算</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">警備料金の<br>値上げが<br>続いているか</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">海外の赤字が<br>縮んでいるか</div>
+  </div>
+  <div class="release">ALSOKを持っている方は、この2つを見てください</div>
+</section>
+
+<!-- 見るべきものは、株価では -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：ただし、海外はまだ赤字です</span><span class="brand"></span></div>
+  <div class="lead">株価が横ばいのあいだに利益が増え続けているなら</div>
+  <div class="stmt">見るべきものは、株価ではなく<br><span class="em">決算のほう</span>です。</div>
+</section>
+
+<!-- 安全への支出は、世界では -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：ただし、海外はまだ赤字です</span><span class="brand"></span></div>
+  <div class="lead">ALSOKが契約を増やすと、もう1つ、売上が増える企業があります</div>
+  <div class="stmt">安全への支出は、世界では<br><span class="em">どこで</span>増えているのか。</div>
+  <div class="note">残りの2社は、G7を全部見てから紹介します。先に、アメリカです</div>
+</section>
+
+<!-- ========== p05_america（15枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 5：何の通貨で借りているか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 5 / 16</span><span class="bar"></span><span>2つ目のルール</span></div>
+  <div class="numbox">5</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">何の通貨で<br>借りているか</div><div class="rule"></div><div class="desc">アメリカは、ドルで借りているから破綻しません</div></div>
+</section>
+
+<!-- その【答え】です。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：毎年の赤字がいちばん大きいのは、アメリカです</span><span class="brand"></span></div>
+  <div class="lead">冒頭の「財政赤字はG7で最悪」</div>
+  <div class="stmt">その<span class="em">答え</span>です。</div>
+</section>
+
+<!-- 画像：06_america_akaji -->
+<section class="slide t-image"><img src="img/06_america_akaji.png" alt="毎年の赤字がいちばん大きい国はアメリカ"></section>
+
+<!-- 利払い -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：毎年の赤字がいちばん大きいのは、アメリカです</span><span class="brand"></span></div>
+  <div class="lead">2026年9月までの1年間に、アメリカ政府が借金の利息として払った額</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">利払い</div>
+      <div class="mfig" style="font-size:110px">1兆1,400億<span class="u">ドル</span></div>
+      <div class="msub">日本円で、およそ180兆円です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 利払いも、桁が違います -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：毎年の赤字がいちばん大きいのは、アメリカです</span><span class="brand"></span></div>
+  <div class="h-main">利払いも、桁が違います</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">医療保険より多い</div><div class="ctext">高齢者向けの医療保険に使った額より多い</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">軍事費より大きい</div><div class="ctext">軍事費の全体よりも大きい</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">5ドルに1ドル</div><div class="ctext">集めるお金の5ドルに1ドルが、利払いに消える</div></div>
+  </div>
+</section>
+
+<!-- いちばん危ないのは、
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：毎年の赤字がいちばん大きいのは、アメリカです</span><span class="brand"></span></div>
+  <div class="lead">ここまで聞くと</div>
+  <div class="stmt">いちばん危ないのは、<br><span class="em">アメリカ</span>に見えると思います。</div>
+</section>
+
+<!-- 帯：ところが、アメリカも -->
+<section class="slide t-map">
+  <div class="hdr"><span class="sec">Section 5：それでも、ドルで借りているから破綻しません</span><span class="brand"></span></div>
+  <div class="h-main">ところが、アメリカも破綻する側ではありません</div>
+  <div class="flowmap">
+    <div class="fm"><span class="n">1</span>誰に借りているか</div>
+    <div class="fm on"><span class="n">2</span>何の通貨で<br>借りているか<span class="s ok">アメリカ＝ドル建て</span></div>
+    <div class="fm"><span class="n">3</span>どれだけ速く<br>直せるか</div>
+  </div>
+  <div class="coname"><div class="cn">アメリカ</div><div class="cc">借金は、ドル建てです</div></div>
+</section>
+
+<!-- 2つ目のルール。何の通貨 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 5：それでも、ドルで借りているから破綻しません</span><span class="brand"></span></div>
+  <div class="h-main">2つ目のルール。何の通貨で借りているか</div>
+  <div class="chain">
+    <div class="node">アメリカの借金は<br>ドル建て</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">FRBは<br>ドルを出せる</div>
+  </div>
+  <div class="release">FRB＝日本でいえば、日銀にあたる機関です</div>
+</section>
+
+<!-- ドルを出せるのはアメリカ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：それでも、ドルで借りているから破綻しません</span><span class="brand"></span></div>
+  <div class="lead">FRBの一部、セントルイス連銀は、はっきり書いています</div>
+  <div class="stmt">ドルを出せるのはアメリカ政府だけ。<br>だから、<span class="em">払えなくなることはない</span>。</div>
+  <div class="note">ユーロを自分で出せなかったギリシャとは、ここが違います</div>
+</section>
+
+<!-- 中央銀行がその通貨を出す -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：それでも、ドルで借りているから破綻しません</span><span class="brand"></span></div>
+  <div class="badge navy">自分の国の通貨で借りている国</div>
+  <div class="h-main">中央銀行がその通貨を出す気がある限り</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">お金を用意できる</div><div class="cap">中央銀行が</div><div class="big">通貨を出す</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">代償</div><div class="cap">通貨の</div><div class="big">価値が下がる</div></div>
+  </div>
+</section>
+
+<!-- 帯：どちらも、破綻する側 -->
+<section class="slide t-map">
+  <div class="hdr"><span class="sec">Section 5：それでも、ドルで借りているから破綻しません</span><span class="brand"></span></div>
+  <div class="h-main">どちらも、破綻する側ではありません</div>
+  <div class="flowmap">
+    <div class="fm on"><span class="n">1</span>誰に借りているか<span class="s ok">日本</span></div>
+    <div class="fm on"><span class="n">2</span>何の通貨で<br>借りているか<span class="s ok">アメリカ</span></div>
+    <div class="fm"><span class="n">3</span>どれだけ速く<br>直せるか</div>
+  </div>
+</section>
+
+<!-- アメリカには、
+【債務上 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ただし、アメリカには落とし穴があります</span><span class="brand"></span></div>
+  <div class="lead">このルールが成り立つのは、借金を続けることを自分で認めている場合だけです</div>
+  <div class="stmt">アメリカには、<br><span class="em">債務上限</span>という決まりがあります。</div>
+  <div class="note">国が借りてよい金額の上限を、法律で決めているものです</div>
+</section>
+
+<!-- アメリカの政府の借金 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 5：ただし、アメリカには落とし穴があります</span><span class="brand"></span></div>
+  <div class="h-main">アメリカの政府の借金</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">2026年8月</div><div class="cd">政府の借金</div></div><div class="body"><div class="lbl"></div><div class="val2">40兆ドル超</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">上限まで</div><div class="cd">法律で決めた上限</div></div><div class="body"><div class="lbl"></div><div class="val2">あと約1兆ドル</div></div></div>
+    <div class="col "><div class="top"><div class="nm">上限に届く</div><div class="cd">いまのペースで増えると</div></div><div class="body"><div class="lbl"></div><div class="val2">2027年</div></div></div>
+  </div>
+</section>
+
+<!-- それでも議会が上限の引き -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 5：ただし、アメリカには落とし穴があります</span><span class="brand"></span></div>
+  <div class="h-main">それでも議会が上限の引き上げを拒み続けたら</div>
+  <div class="chain">
+    <div class="node">上限に<br>届く</div>
+    <div class="arr">→</div>
+    <div class="node">財務長官の<br>やりくりで<br>半年〜9か月</div>
+    <div class="arr">→</div>
+    <div class="node">議会が<br>拒み続ける</div>
+    <div class="arr">→</div>
+    <div class="node danger">払えるのに<br>払えなくなる</div>
+  </div>
+</section>
+
+<!-- アメリカ自身が、
+【それ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ただし、アメリカには落とし穴があります</span><span class="brand"></span></div>
+  <div class="lead">ドルを出せる国が、ドルを出せなくなる唯一の道は</div>
+  <div class="stmt">アメリカ自身が、<br><span class="em">それを選ぶこと</span>です。</div>
+  <div class="note">次は、ドイツです。海外の投資家が半分持っていて、通貨はユーロです</div>
+</section>
+
+<!-- ========== p06_doitsu_canada（20枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 6：借金が少ないドイツと、2つの数字を持つカナダ</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 6 / 16</span><span class="bar"></span><span>ドイツとカナダ</span></div>
+  <div class="numbox">6</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">借金が少ないドイツと、<br>2つの数字を持つカナダ</div><div class="rule"></div><div class="desc">ルールで見ると危ないのに、破綻しない国</div></div>
+</section>
+
+<!-- 帯：ドイツは、2つのルー -->
+<section class="slide t-map">
+  <div class="hdr"><span class="sec">Section 6：ドイツは、2つのルールで見ると危ない側です</span><span class="brand"></span></div>
+  <div class="h-main">ドイツは、2つのルールで見ると危ない側です</div>
+  <div class="flowmap">
+    <div class="fm on"><span class="n">1</span>誰に借りているか<span class="s ng">海外が約半分</span></div>
+    <div class="fm on"><span class="n">2</span>何の通貨で<br>借りているか<span class="s ng">ユーロ＝自分で出せない</span></div>
+    <div class="fm"><span class="n">3</span>どれだけ速く<br>直せるか</div>
+  </div>
+  <div class="coname"><div class="cn">ドイツ</div></div>
+</section>
+
+<!-- 理由は、
+【借金の少なさ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ドイツは、2つのルールで見ると危ない側です</span><span class="brand"></span></div>
+  <div class="lead">ところが、ドイツも破綻する側ではありません</div>
+  <div class="stmt">理由は、<br><span class="em">借金の少なさ</span>です。</div>
+</section>
+
+<!-- 画像：07_doitsu_dake -->
+<section class="slide t-image"><img src="img/07_doitsu_dake.png" alt="借金が経済より小さいのはドイツだけ"></section>
+
+<!-- 格付けも、
+【最高の水準 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ドイツは、2つのルールで見ると危ない側です</span><span class="brand"></span></div>
+  <div class="lead">ドイツには、疑う理由がほとんどありません</div>
+  <div class="stmt">格付けも、<br><span class="em">最高の水準</span>です。</div>
+  <div class="note">格付け＝国や企業がお金を返せるかを、専門の会社が点数のように評価したもの</div>
+</section>
+
+<!-- だから、2026年10月 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 6：ドイツは、2つのルールで見ると危ない側です</span><span class="brand"></span></div>
+  <div class="h-main">だから、2026年10月</div>
+  <div class="chain">
+    <div class="node">フランスの<br>国債から<br>出たお金</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">まっすぐ<br>ドイツの国債へ</div>
+  </div>
+</section>
+
+<!-- 画像：08_doitsu_toushi -->
+<section class="slide t-image"><img src="img/08_doitsu_toushi.png" alt="ドイツは投資を広げ始めました"></section>
+
+<!-- 2026年の成長率の見通 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：借金がいちばん少ない国が、借金を増やし始めました</span><span class="brand"></span></div>
+  <div class="lead">ここで、日本です</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">2026年の成長率の見通し（日本）</div>
+      <div class="mfig">0.7<span class="u">%</span></div>
+      <div class="msub">G7の中で下から2番目。下にいるのは、フランスだけです</div>
+    </div>
+  </div>
+</section>
+
+<!-- これは、
+【認めるべきこ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：借金がいちばん少ない国が、借金を増やし始めました</span><span class="brand"></span></div>
+  <div class="lead">破綻する側ではない国が、成長率で下から2番目にいる</div>
+  <div class="stmt">これは、<br><span class="em">認めるべきこと</span>です。</div>
+</section>
+
+<!-- いちばんもったいないのは -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：借金がいちばん少ない国が、借金を増やし始めました</span><span class="brand"></span></div>
+  <div class="badge navy">僕はそう考えています</div>
+  <div class="h-main">いちばんもったいないのは、どちらか</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">ドイツ</div><div class="cap">借金が少ない国が</div><div class="big">投資を増やす</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">もったいない</div><div class="cap">借金を心配して</div><div class="big">投資を絞る</div></div>
+  </div>
+</section>
+
+<!-- カナダの借金には、2つの -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：カナダの借金には、2つの数字があります</span><span class="brand"></span></div>
+  <div class="badge navy">次は、カナダです</div>
+  <div class="h-main">カナダの借金には、2つの数字があります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">全部合わせると</div><div class="cap">国と地方の政府</div><div class="big">111%</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">資産を引くと</div><div class="cap">政府の金融資産を</div><div class="big">10%</div></div>
+  </div>
+  <div class="note" style="text-align:center;font-size:22px;color:#7a828c;margin-top:18px;">経済の大きさに対する割合。差し引いた数字は、G7でいちばん少なくなります</div>
+</section>
+
+<!-- どちらも、IMFが出して -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：カナダの借金には、2つの数字があります</span><span class="brand"></span></div>
+  <div class="lead">カナダの政府は、公的年金のために巨大な資産を運用しています</div>
+  <div class="stmt">どちらも、IMFが出している<br><span class="em">公式の数字</span>です。</div>
+</section>
+
+<!-- カナダドルで借りているの -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：カナダの借金には、2つの数字があります</span><span class="brand"></span></div>
+  <div class="lead">しかも</div>
+  <div class="stmt">カナダドルで借りているので、<br><span class="em">通貨でも</span>問題ありません。</div>
+</section>
+
+<!-- 日本の借金にも、
+【2つ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の借金にも、2つの数字があります</span><span class="brand"></span></div>
+  <div class="lead">冒頭の「借金はGDPの2倍で世界一」の話に、ここで戻ります</div>
+  <div class="stmt">日本の借金にも、<br><span class="em">2つの数字</span>があります。</div>
+</section>
+
+<!-- 政府の金融資産を引くと、 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：日本の借金にも、2つの数字があります</span><span class="brand"></span></div>
+  <div class="badge navy">日本の借金（経済の大きさに対して）</div>
+  <div class="h-main">政府の金融資産を引くと、1.4倍まで下がります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">国と地方の合計</div><div class="cap">いつも引き合いに出される</div><div class="big">2倍</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">資産を引くと</div><div class="cap">政府の金融資産を</div><div class="big">1.4倍</div></div>
+  </div>
+</section>
+
+<!-- 政府が資産を持っているこ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の借金にも、2つの数字があります</span><span class="brand"></span></div>
+  <div class="lead">IMFも、日本の国債の危険度を評価するとき</div>
+  <div class="stmt">政府が資産を持っていることを、<br><span class="em">安心材料の1つ</span>に挙げています。</div>
+</section>
+
+<!-- 借金の話には、いつも
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の借金にも、2つの数字があります</span><span class="brand"></span></div>
+  <div class="lead">日本の借金は世界一、と聞いてきた方は</div>
+  <div class="stmt">借金の話には、いつも<br><span class="em">数字が2つ</span>あります。</div>
+</section>
+
+<!-- カナダの首相は、【マーク -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の借金にも、2つの数字があります</span><span class="brand"></span></div>
+  <div class="lead">そして、カナダの首相の言葉が、次の国につながります</div>
+  <div class="stmt">カナダの首相は、<span class="em">マーク・カーニー</span>。<br>前は、イギリスの<br>中央銀行の総裁でした。</div>
+</section>
+
+<!-- イギリスは、海外の投資家 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の借金にも、2つの数字があります</span><span class="brand"></span></div>
+  <div class="lead">2016年に、カーニーが警告しています</div>
+  <div class="stmt">イギリスは、海外の投資家に<br>お金を借り続けないと<br><span class="em">回らない国</span>だ。</div>
+</section>
+
+<!-- その6年後、
+【実際にそ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の借金にも、2つの数字があります</span><span class="brand"></span></div>
+  <div class="lead">その投資家たちは、イギリスが不安になれば、いつでも引き上げられます</div>
+  <div class="stmt">その6年後、<br><span class="em">実際にそうなりました</span>。</div>
+</section>
+
+<!-- ========== p07_igirisu（33枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 7：どれだけ速く直せるか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 7 / 16</span><span class="bar"></span><span>3つ目のルール</span></div>
+  <div class="numbox">7</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">どれだけ速く<br>直せるか</div><div class="rule"></div><div class="desc">イギリスは、27日で直しました</div></div>
+</section>
+
+<!-- 画像：09_igirisu_3eigyoubi -->
+<section class="slide t-image"><img src="img/09_igirisu_3eigyoubi.png" alt="イギリスで何が起きたのか"></section>
+
+<!-- ここから、連鎖が起きまし -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 7：3営業日で、金利が跳ね上がりました</span><span class="brand"></span></div>
+  <div class="h-main">ここから、連鎖が起きました</div>
+  <div class="chain">
+    <div class="node">年金基金は<br>国債を担保に<br>借りていた</div>
+    <div class="arr">→</div>
+    <div class="node">金利が上がり<br>担保が足りない</div>
+    <div class="arr">→</div>
+    <div class="node">現金を作るため<br>国債を売る</div>
+    <div class="arr">→</div>
+    <div class="node danger">値段が<br>さらに下がる</div>
+  </div>
+</section>
+
+<!-- 売りが、
+【売りを呼びま -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：3営業日で、金利が跳ね上がりました</span><span class="brand"></span></div>
+  <div class="lead">売れば値段はさらに下がり、また売らなければならない</div>
+  <div class="stmt">売りが、<br><span class="em">売りを呼びました</span>。</div>
+</section>
+
+<!-- 5日目に中央銀行、27日 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 7：5日目に中央銀行、27日目に首相</span><span class="brand"></span></div>
+  <div class="h-main">5日目に中央銀行、27日目に首相</div>
+  <div class="chain">
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">5日目<br>イングランド銀行が<br>買い支え</div>
+    <div class="arr">→</div>
+    <div class="node">10日目<br>減税を<br>取り下げ</div>
+    <div class="arr">→</div>
+    <div class="node">27日目<br>首相が辞任</div>
+  </div>
+  <div class="release">イングランド銀行＝日本でいえば、日銀にあたる機関です</div>
+</section>
+
+<!-- 画像：10_igirisu_27nichi -->
+<section class="slide t-image"><img src="img/10_igirisu_27nichi.png" alt="発表から27日で首相辞任"></section>
+
+<!-- 帯：ここで、3つ目のルー -->
+<section class="slide t-map">
+  <div class="hdr"><span class="sec">Section 7：投資家が買わなくなってから、直すまでの速さ</span><span class="brand"></span></div>
+  <div class="h-main">ここで、3つ目のルールです</div>
+  <div class="flowmap">
+    <div class="fm"><span class="n">1</span>誰に借りているか</div>
+    <div class="fm"><span class="n">2</span>何の通貨で<br>借りているか</div>
+    <div class="fm on"><span class="n">3</span>どれだけ速く<br>直せるか<span class="s ok">イギリス＝1か月で直した</span></div>
+  </div>
+  <div class="coname"><div class="cn">イギリス</div><div class="cc">投資家が買わなくなったとき、政府がどれだけ速く直せるか</div></div>
+</section>
+
+<!-- だから、同じ速さで直して -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：投資家が買わなくなってから、直すまでの速さ</span><span class="brand"></span></div>
+  <div class="lead">投資家が国を見限るのには、数日しかかからないことがあります</div>
+  <div class="stmt">だから、同じ速さで直して<br><span class="em">信用を取り戻せるか</span>が<br>決め手になります。</div>
+</section>
+
+<!-- イギリスは、1か月で直し -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 7：投資家が買わなくなってから、直すまでの速さ</span><span class="brand"></span></div>
+  <div class="h-main">イギリスは、1か月で直しました</div>
+  <div class="chain">
+    <div class="node">中央銀行が<br>時間を稼ぐ</div>
+    <div class="arr">→</div>
+    <div class="node">政治が<br>原因を取り除く</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">原因を作った<br>政治家が辞める</div>
+  </div>
+</section>
+
+<!-- イギリスの10年国債の金 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：投資家が買わなくなってから、直すまでの速さ</span><span class="brand"></span></div>
+  <div class="lead">2026年10月の時点で</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">イギリスの10年国債の金利</div>
+      <div class="mfig">5.4<span class="u">%</span></div>
+      <div class="msub">G7でいちばん高く、2022年の危機のときより高い水準です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 同じ上昇が、何か月もかけ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：投資家が買わなくなってから、直すまでの速さ</span><span class="brand"></span></div>
+  <div class="badge navy">ただし今回は</div>
+  <div class="h-main">同じ上昇が、何か月もかけてゆっくり進んでいます</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">2022年</div><div class="cap">上がり方</div><div class="big">3営業日</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">今回</div><div class="cap">上がり方</div><div class="big">何か月も</div></div>
+  </div>
+  <div class="note" style="text-align:center;font-size:22px;color:#7a828c;margin-top:18px;">そのあいだ、市場が止まることはありませんでした</div>
+</section>
+
+<!-- 金利は高い。それでも、イ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：投資家が買わなくなってから、直すまでの速さ</span><span class="brand"></span></div>
+  <div class="lead">いまの政権は、借金のルールを守ると、文書で約束しています</div>
+  <div class="stmt">金利は高い。それでも、イギリスは<br><span class="em">破綻する側ではありません</span>。</div>
+</section>
+
+<!-- ポンドは自分で出せる。そ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：ただし、自国通貨でも市場は壊れます</span><span class="brand"></span></div>
+  <div class="lead">自分の国の通貨で借りていれば安全、と安心した方もいると思います</div>
+  <div class="stmt">ポンドは自分で出せる。それでも、<br>2022年の市場は<span class="em">壊れました</span>。</div>
+  <div class="note">国が元本を踏み倒したわけではありません</div>
+</section>
+
+<!-- この2つは、別の話です -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：ただし、自国通貨でも市場は壊れます</span><span class="brand"></span></div>
+  <div class="badge navy">国債の値段が急に動けば、それを大量に持つ年金や銀行は揺れます</div>
+  <div class="h-main">この2つは、別の話です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">破綻するか</div><div class="cap">国が</div><div class="big">払えるかどうか</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">値段が動くか</div><div class="cap">金利が動いて</div><div class="big">資産が動くか</div></div>
+  </div>
+</section>
+
+<!-- 2022年9月　日経平均 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：ただし、自国通貨でも市場は壊れます</span><span class="brand"></span></div>
+  <div class="lead">その揺れは、日本にも届きました</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">2022年9月　日経平均</div>
+      <div class="mfig">−7.7<span class="u">%</span></div>
+      <div class="msub">イギリスだけが原因ではありません</div>
+    </div>
+  </div>
+</section>
+
+<!-- 東京も、
+【無傷ではいら -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：ただし、自国通貨でも市場は壊れます</span><span class="brand"></span></div>
+  <div class="lead">世界の国債市場が揺れた月に</div>
+  <div class="stmt">東京も、<br><span class="em">無傷ではいられませんでした</span>。</div>
+</section>
+
+<!-- 日本でも、
+【同じこと】 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">ここで、当然の疑問が出ます</div>
+  <div class="stmt">日本でも、<br><span class="em">同じこと</span>は起きるのか。</div>
+</section>
+
+<!-- 画像：11_nihon_onaji -->
+<section class="slide t-image"><img src="img/11_nihon_onaji.png" alt="日本でも同じことは起きるのか"></section>
+
+<!-- イギリスの危機を広げた仕 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="badge navy">ところが</div>
+  <div class="h-main">イギリスの危機を広げた仕組みが、日本には無い</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">イギリス</div><div class="cap">年金基金が借金をして国債を持ち</div><div class="big">売らされた</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">日本</div><div class="cap">年金の運用に</div><div class="big">広がっていない</div></div>
+  </div>
+</section>
+
+<!-- 日本のトラスショックは
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">さきほどのステート・ストリートも、2026年1月の時点で</div>
+  <div class="stmt">日本のトラスショックは<br>「<span class="em">市場の動揺</span>であって、<br>仕組みの危機ではない」。</div>
+</section>
+
+<!-- 金利が上がる厳しい前提で -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">日銀も2026年4月の報告書で</div>
+  <div class="stmt">金利が上がる厳しい前提でも、<br>国内の金融機関は総じて<br><span class="em">十分な自己資本</span>を持つ。</div>
+</section>
+
+<!-- 日本には、揺れを和らげる -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="h-main">日本には、揺れを和らげるものがあります</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">87%は国内</div><div class="ctext">明治安田生命のような保険会社が買い手</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">対外純資産</div><div class="ctext">約562兆円</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">経常収支は黒字</div><div class="ctext">2026年上半期で約17.4兆円</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">満期まで約9年</div><div class="ctext">平均の年数が長い</div></div>
+  </div>
+</section>
+
+<!-- イギリスは2022年、海 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="badge navy">海外とのお金のやりとり全体の収支、経常収支</div>
+  <div class="h-main">イギリスは2022年、海外に借りている側でした</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">日本</div><div class="cap">2026年上半期</div><div class="big">黒字</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">イギリス</div><div class="cap">2022年</div><div class="big">赤字</div></div>
+  </div>
+</section>
+
+<!-- 金利が上がっても、すでに -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">国債の満期までの年数が、平均でおよそ9年と長い</div>
+  <div class="stmt">金利が上がっても、すでに出した国債の<br><span class="em">利払いが一度に</span><br>増えるわけではありません。</div>
+</section>
+
+<!-- トラス政権がやったことと -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="badge navy">もう1つ、分けて考えたいことがあります</div>
+  <div class="h-main">トラス政権がやったことと、日本で議論されていること</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">日本 2026年</div><div class="cap">物価2%前後</div><div class="big">成長への投資</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">トラス政権</div><div class="cap">物価10%の最中</div><div class="big">恒久減税</div></div>
+  </div>
+  <div class="note" style="text-align:center;font-size:22px;color:#7a828c;margin-top:18px;">日本で議論されているのは、電力網や半導体への投資。トラス政権は、財源の説明が無い恒久減税でした</div>
+</section>
+
+<!-- 何に使って、
+【生産する -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">借金が増えるかどうかではなく</div>
+  <div class="stmt">何に使って、<br><span class="em">生産する力が増えるか</span>で<br>評価する。</div>
+  <div class="note">ドイツのところでお話ししたのと、同じ見方です</div>
+</section>
+
+<!-- 【無条件に】
+安全ではあ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">ただし</div>
+  <div class="stmt"><span class="em">無条件に</span><br>安全ではありません。</div>
+</section>
+
+<!-- 気をつけるところ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="h-main">気をつけるところ</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">含み損</div><div class="ctext">金利が上がれば、地方銀行や信用金庫に、過去に買った国債の含み損</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">日銀以外の買い手</div><div class="ctext">日銀は買い入れを減らしていて、ほかの買い手の力が前より大事に</div></div>
+  </div>
+</section>
+
+<!-- 国債の金利が上がったとい -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt">国債の金利が上がったというニュースを、<br>すぐに<span class="em">トラスショック</span>と<br>結びつけないでください。</div>
+</section>
+
+<!-- 見分けるのは、金利が上が -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="h-main">見分けるのは、金利が上がった理由です</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">成長や物価</span><span class="d">成長や物価で、上がったのか</span></div>
+    <div class="row"><span class="no">2</span><span class="t">財政への不信</span><span class="d">財政への不信で、上がったのか</span></div>
+    <div class="row"><span class="no">3</span><span class="t">売りの連鎖</span><span class="d">売りが売りを呼ぶ連鎖が、起きているのか</span></div>
+  </div>
+</section>
+
+<!-- この3つは、
+【別の話】 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">金利が上がった理由</div>
+  <div class="stmt">この3つは、<br><span class="em">別の話</span>です。</div>
+</section>
+
+<!-- 【重要な施設を守る支出】 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">市場が壊れる国、街が揺れる国で</div>
+  <div class="stmt"><span class="em">重要な施設を守る支出</span>が<br>増えています。</div>
+</section>
+
+<!-- どちらも、
+【残った2か -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：では、日本で同じことは起きるのか</span><span class="brand"></span></div>
+  <div class="lead">それを受ける日本の企業と、フランスから出たお金の行き先</div>
+  <div class="stmt">どちらも、<br><span class="em">残った2か国</span>を見てから<br>答えます。</div>
+</section>
+
+<!-- ========== p08_itaria_france（33枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 8：残った2か国｜イタリアとフランス</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 8 / 16</span><span class="bar"></span><span>イタリアとフランス</span></div>
+  <div class="numbox">8</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">残った2か国｜<br>イタリアとフランス</div><div class="rule"></div><div class="desc">数字ではイタリア。3つのルールでは逆</div></div>
+</section>
+
+<!-- ところが、3つのルールで -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：数字だけなら、危ないのはイタリアです</span><span class="brand"></span></div>
+  <div class="badge navy">借金の数字だけを見ると</div>
+  <div class="h-main">ところが、3つのルールで見ると逆の答えになります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">数字だけなら</div><div class="cap">借金が多い・格付けが低い</div><div class="big">イタリア</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">3つのルールなら</div><div class="cap">答えは</div><div class="big">逆になる</div></div>
+  </div>
+</section>
+
+<!-- 画像：12_itaria_france_dare -->
+<section class="slide t-image"><img src="img/12_itaria_france_dare.png" alt="イタリアとフランスの国債の持ち主"></section>
+
+<!-- 日本の投資家が、
+【フラ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：誰に借りているか</span><span class="brand"></span></div>
+  <div class="lead">さきほどの話を、思い出してください</div>
+  <div class="stmt">日本の投資家が、<br><span class="em">フランス国債を売り越して</span><br>いました。</div>
+</section>
+
+<!-- その投資家が
+【静かに引 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：誰に借りているか</span><span class="brand"></span></div>
+  <div class="lead">フランスは、海外の投資家に頼っていて</div>
+  <div class="stmt">その投資家が<br><span class="em">静かに引き上げ始めていた</span><br>国です。</div>
+</section>
+
+<!-- 画像：13_euro_ecb -->
+<section class="slide t-image"><img src="img/13_euro_ecb.png" alt="どちらもユーロで借りている"></section>
+
+<!-- それを【一度経験】してい -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：2011年、イタリアは中央銀行から手紙を受け取りました</span><span class="brand"></span></div>
+  <div class="lead">そして、イタリアは</div>
+  <div class="stmt">それを<span class="em">一度経験</span>しています。</div>
+</section>
+
+<!-- 2011年、投資家がイタ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：2011年、イタリアは中央銀行から手紙を受け取りました</span><span class="brand"></span></div>
+  <div class="h-main">2011年、投資家がイタリアの国債を売り始めました</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">借金は経済の1.2倍</div><div class="ctext">問題は多さだけではない</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">長く成長していない</div><div class="ctext">支え続けられるのかを疑われた</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">ギリシャが飛び火</div><div class="ctext">ギリシャの危機が広がった</div></div>
+  </div>
+</section>
+
+<!-- 信用の不安は、こうして膨 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：2011年、イタリアは中央銀行から手紙を受け取りました</span><span class="brand"></span></div>
+  <div class="h-main">信用の不安は、こうして膨らみました</div>
+  <div class="chain">
+    <div class="node">国債が<br>売られる</div>
+    <div class="arr">→</div>
+    <div class="node">金利が<br>上がる</div>
+    <div class="arr">→</div>
+    <div class="node">借金の負担が<br>増える</div>
+    <div class="arr">→</div>
+    <div class="node danger">それを見て<br>さらに売る</div>
+  </div>
+</section>
+
+<!-- 画像：14_itaria_tegami -->
+<section class="slide t-image"><img src="img/14_itaria_tegami.png" alt="2011年8月のECBからの手紙"></section>
+
+<!-- 2011年11月　イタリ -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：2011年、イタリアは中央銀行から手紙を受け取りました</span><span class="brand"></span></div>
+  <div class="lead">それでも投資家は売り続けました</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">2011年11月　イタリアの10年国債の金利</div>
+      <div class="mfig">7.5<span class="u">%近く</span></div>
+      <div class="msub">一時、ここまで上がりました</div>
+    </div>
+  </div>
+</section>
+
+<!-- そのあと、起きたこと -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：2011年、イタリアは中央銀行から手紙を受け取りました</span><span class="brand"></span></div>
+  <div class="h-main">そのあと、起きたこと</div>
+  <div class="chain">
+    <div class="node">首相が<br>辞任</div>
+    <div class="arr">→</div>
+    <div class="node">4日後<br>選挙で選ばれて<br>いない経済学者が<br>首相に</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">3週間後<br>年金を減らす<br>改革が決まる</div>
+  </div>
+</section>
+
+<!-- それでも予算は、中央銀行 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：2011年、イタリアは中央銀行から手紙を受け取りました</span><span class="brand"></span></div>
+  <div class="lead">イタリアは、一度も支払いを止めていません</div>
+  <div class="stmt">それでも予算は、中央銀行の手紙の<br><span class="em">条件に合わせて</span><br>作られるようになりました。</div>
+</section>
+
+<!-- 貸している側が -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：2011年、イタリアは中央銀行から手紙を受け取りました</span><span class="brand"></span></div>
+  <div class="lead">大きな国の財政破綻は、ここから始まります</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">貸している側が</div>
+      <div class="mfig" style="font-size:84px">予算を決め始める</div>
+      <div class="msub">国の予算を、です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 【直す速さ】です。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="lead">3つ目の</div>
+  <div class="stmt"><span class="em">直す速さ</span>です。</div>
+</section>
+
+<!-- イタリアは、直せる国です -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="h-main">イタリアは、直せる国です</div>
+  <div class="h-sub">投資家が見方を変えると、政府も同じ週に動く国です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">同じ政権が続く</div><div class="ctext">2022年10月から</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">利息を除くと黒字</div><div class="ctext">ほとんどの年が黒字</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">同じ週に動いた</div><div class="ctext">2026年10月、防衛費のための借り入れを減らした</div></div>
+  </div>
+</section>
+
+<!-- フランスは、直せない国で -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="h-main">フランスは、直せない国です</div>
+  <div class="h-sub">直すには、議会で予算を通さなければなりません</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">黒字の年が無い</div><div class="ctext">利息を除いても、黒字だった年がほとんど無い</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">51年連続の赤字</div><div class="ctext">利息を含めると、1974年から</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">議会を通す必要</div><div class="ctext">直すには予算を通さなければならない</div></div>
+  </div>
+</section>
+
+<!-- フランスの首相が代わった -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="lead">2024年の初めから</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">フランスの首相が代わった数</div>
+      <div class="mfig">5<span class="u">人</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2026年9月には、赤字 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="lead">予算は、採決を通さずに強行する形でしか成立していません</div>
+  <div class="stmt">2026年9月には、赤字が<br><span class="em">また広がる</span>ことを<br>政府が認めました。</div>
+</section>
+
+<!-- 自分たちで作った案を、自 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="badge navy">2026年10月、政府の予算案を書き換えた修正案</div>
+  <div class="h-main">自分たちで作った案を、自分たちで否決しました</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">賛成</div><div class="cap">議員たちの採決</div><div class="big">3</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">反対</div><div class="cap">議員たちの採決</div><div class="big">31</div></div>
+  </div>
+  <div class="note" style="text-align:center;font-size:22px;color:#7a828c;margin-top:18px;">直す方向すら、まとまっていません</div>
+</section>
+
+<!-- この差が、信用の差です -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="badge navy">同じユーロで借りているのに</div>
+  <div class="h-main">この差が、信用の差です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">イタリア</div><div class="cap">10年国債の金利</div><div class="big">4.6%</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">フランス</div><div class="cap">10年国債の金利</div><div class="big">4.9%</div></div>
+  </div>
+</section>
+
+<!-- 帯：3つのルールの3つと -->
+<section class="slide t-map">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="h-main">3つのルールの3つとも、フランスだけが危ない側です</div>
+  <div class="flowmap">
+    <div class="fm on"><span class="n">1</span>誰に借りているか<span class="s ng">イタリア：国内が2/3<br>フランス：海外が半分超</span></div>
+    <div class="fm on"><span class="n">2</span>何の通貨で<br>借りているか<span class="s ng">どちらもユーロ<br>ECBだけが動ける</span></div>
+    <div class="fm on"><span class="n">3</span>どれだけ速く<br>直せるか<span class="s ng">イタリア：同じ週に動く<br>フランス：まとまらない</span></div>
+  </div>
+</section>
+
+<!-- G7の中でいちばん危ない -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：直せるイタリアと、直せないフランス</span><span class="brand"></span></div>
+  <div class="lead">だから、僕はこう見ています</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">G7の中でいちばん危ないのは</div>
+      <div class="mfig" style="font-size:130px">フランス</div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 画像：15_france_kyusai -->
+<section class="slide t-image"><img src="img/15_france_kyusai.png" alt="フランスは救済できないほど大きい"></section>
+
+<!-- 受け入れても、拒んでも -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：フランスは、救済できないほど大きい</span><span class="brand"></span></div>
+  <div class="badge navy">2011年のイタリアと同じ手紙を受け取ったら</div>
+  <div class="h-main">受け入れても、拒んでも</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">受け入れれば</div><div class="cap">フランスの予算を</div><div class="big">他人が決める</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">拒めば</div><div class="cap">どうなるか</div><div class="big">？</div></div>
+  </div>
+</section>
+
+<!-- お金を貸している側の要求 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：フランスは、救済できないほど大きい</span><span class="brand"></span></div>
+  <div class="lead">さきほどの2015年のギリシャも</div>
+  <div class="stmt">お金を貸している側の要求を<br>国民投票にかけた2日後に、<br><span class="em">銀行が閉まりました</span>。</div>
+</section>
+
+<!-- 1週間分の生活費 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：フランスは、救済できないほど大きい</span><span class="brand"></span></div>
+  <div class="lead">年金を受け取る人たちが、銀行の前に列を作りました</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">1週間分の生活費</div>
+      <div class="mfig">120<span class="u">ユーロ</span></div>
+      <div class="msub">日本円で2万円ほどを受け取るために</div>
+    </div>
+  </div>
+</section>
+
+<!-- フランスの国債に、
+【買 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ただし、買い手がいなくなったわけではありません</span><span class="brand"></span></div>
+  <div class="lead">ここで、1つ正直に言います</div>
+  <div class="stmt">フランスの国債に、<br><span class="em">買い手がいなくなったわけでは</span><br>ありません。</div>
+</section>
+
+<!-- 買い手は、います -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：ただし、買い手がいなくなったわけではありません</span><span class="brand"></span></div>
+  <div class="h-main">買い手は、います</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">10月の入札</div><div class="ctext">国債売りがいちばん激しかった月でも、募集を大きく上回る買い注文</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">4〜6月</div><div class="ctext">海外の投資家がフランス国債を買い越していた</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">2027年の計画</div><div class="ctext">過去最高の額を借りる計画も、満期の借り換えを含む</div></div>
+  </div>
+</section>
+
+<!-- そのたびに、より高い金利 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：ただし、買い手がいなくなったわけではありません</span><span class="brand"></span></div>
+  <div class="badge navy">つまり、危ないというのは</div>
+  <div class="h-main">そのたびに、より高い金利を要求されています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">こういう意味</div><div class="cap">借りるときの金利が</div><div class="big">上がっていく</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">ではない</div><div class="cap">明日</div><div class="big">払えなくなる</div></div>
+  </div>
+</section>
+
+<!-- フランスが揺れれば、フラ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：ただし、買い手がいなくなったわけではありません</span><span class="brand"></span></div>
+  <div class="h-main">フランスが揺れれば、フランスだけでは済みません</div>
+  <div class="h-sub">残りの6か国は、全部つながっています</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">フランスの銀行</div><div class="ctext">イタリアにいちばん多くお金を貸している</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">ドイツの投資家</div><div class="ctext">フランス国債を大量に持っている</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">イギリスの銀行</div><div class="ctext">どの国よりもフランスに貸している</div></div>
+  </div>
+</section>
+
+<!-- 【日本の投資家だけ】が、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ただし、買い手がいなくなったわけではありません</span><span class="brand"></span></div>
+  <div class="lead">その中で</div>
+  <div class="stmt"><span class="em">日本の投資家だけ</span>が、<br>2024年から<br>手を引いていました。</div>
+</section>
+
+<!-- では、【日本の年金】と比 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ただし、買い手がいなくなったわけではありません</span><span class="brand"></span></div>
+  <div class="lead">そのフランスで、予算の争いの中心にあるのが、年金です</div>
+  <div class="stmt">では、<span class="em">日本の年金</span>と比べて、<br>どうなのか。</div>
+</section>
+
+<!-- ========== p09_nenkin（21枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 9：年金で見ると、フランスと日本の差がはっきりします</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 9 / 16</span><span class="bar"></span><span>年金</span></div>
+  <div class="numbox">9</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">年金で見ると、<br>フランスと日本の差が<br>はっきりします</div><div class="rule"></div><div class="desc">日本の年金は、破綻するのか</div></div>
+</section>
+
+<!-- フランスは、日本より大き -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：赤字を減らそうとすれば、年金に手が伸びます</span><span class="brand"></span></div>
+  <div class="badge navy">年金への支出（経済の大きさに対して）</div>
+  <div class="h-main">フランスは、日本より大きい</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">日本</div><div class="cap">経済の大きさに対して</div><div class="big">9.2%</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">フランス</div><div class="cap">経済の大きさに対して</div><div class="big">13.4%</div></div>
+  </div>
+</section>
+
+<!-- 赤字を減らそうとすれば、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：赤字を減らそうとすれば、年金に手が伸びます</span><span class="brand"></span></div>
+  <div class="lead">国の予算の中でこれだけ大きいので</div>
+  <div class="stmt">赤字を減らそうとすれば、<br>必ず<span class="em">年金に手が伸びます</span>。</div>
+</section>
+
+<!-- 保険料を払う人が、減って -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：赤字を減らそうとすれば、年金に手が伸びます</span><span class="brand"></span></div>
+  <div class="badge navy">フランス：年金を受け取る1人に対して、保険料を払っている人</div>
+  <div class="h-main">保険料を払う人が、減っています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">1990年</div><div class="cap">払っている人</div><div class="big">4人以上</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">2025年</div><div class="cap">払っている人</div><div class="big">2.5人</div></div>
+  </div>
+</section>
+
+<!-- フランスは、直したものを -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：直したものを、戻しました</span><span class="brand"></span></div>
+  <div class="h-main">フランスは、直したものを戻しました</div>
+  <div class="chain">
+    <div class="node">2023年<br>62歳→64歳へ<br>上げる改革</div>
+    <div class="arr">→</div>
+    <div class="node">反対が<br>広がる</div>
+    <div class="arr">→</div>
+    <div class="node danger">2025年<br>2028年1月まで<br>引き上げを停止</div>
+  </div>
+</section>
+
+<!-- イタリアとフランス -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：直したものを、戻しました</span><span class="brand"></span></div>
+  <div class="badge navy">これが、どれだけ速く直せるか、の差です</div>
+  <div class="h-main">イタリアとフランス</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">イタリア</div><div class="cap">2011年</div><div class="big">3週間で削った</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">フランス</div><div class="cap">2年上げた年齢を</div><div class="big">戻した</div></div>
+  </div>
+</section>
+
+<!-- 公的年金で足りると思って -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 9：直したものを、戻しました</span><span class="brand"></span></div>
+  <div class="lead">フランスでは</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">公的年金で足りると思っていない人</div>
+      <div class="mfig">7割超</div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 画像：16_nenkin_fukahoushiki -->
+<section class="slide t-image"><img src="img/16_nenkin_fukahoushiki.png" alt="日本の年金は破綻するのか"></section>
+
+<!-- 画像：17_nenkin_tsumitatekin -->
+<section class="slide t-image"><img src="img/17_nenkin_tsumitatekin.png" alt="日本の年金の積立金"></section>
+
+<!-- 画像：18_nenkin_torikuzushi -->
+<section class="slide t-image"><img src="img/18_nenkin_torikuzushi.png" alt="318兆円を取り崩して年金を払っているのか"></section>
+
+<!-- 直す仕組みが、
+【法律で -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：直す仕組みが、法律で決まっています</span><span class="brand"></span></div>
+  <div class="lead">そして</div>
+  <div class="stmt">直す仕組みが、<br><span class="em">法律で</span>決まっています。</div>
+</section>
+
+<!-- 2004年の改革で上限を -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 9：直す仕組みが、法律で決まっています</span><span class="brand"></span></div>
+  <div class="lead">会社員の厚生年金の保険料の率</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">2004年の改革で上限を決め、2017年から固定</div>
+      <div class="mfig">18.3<span class="u">%</span></div>
+      <div class="msub">これ以上は上がりません</div>
+    </div>
+  </div>
+</section>
+
+<!-- 日本の年金を直す仕組み -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：直す仕組みが、法律で決まっています</span><span class="brand"></span></div>
+  <div class="h-main">日本の年金を直す仕組み</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">5年に1回の見直し</div><div class="ctext">人口と賃金と運用を見直す</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">100年先を確かめる</div><div class="ctext">100年先までの収支を確かめる</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">自動で抑える</div><div class="ctext">給付の伸びは、自動で抑える決まり</div></div>
+  </div>
+</section>
+
+<!-- 日本は、揉めなくても直る -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：直す仕組みが、法律で決まっています</span><span class="brand"></span></div>
+  <div class="badge navy">年金を直すとき</div>
+  <div class="h-main">日本は、揉めなくても直るように作ってあります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">日本</div><div class="cap">決まりに沿って</div><div class="big">自動で直る</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">フランス</div><div class="cap">年齢を2年上げるだけで</div><div class="big">国が揺れた</div></div>
+  </div>
+</section>
+
+<!-- 年金でも、日本は -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 9：直す仕組みが、法律で決まっています</span><span class="brand"></span></div>
+  <div class="lead">つまり</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">年金でも、日本は</div>
+      <div class="mfig" style="font-size:84px">破綻する側ではない</div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 【無条件では】
+ありませ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ただし、無条件ではありません</span><span class="brand"></span></div>
+  <div class="lead">ただし</div>
+  <div class="stmt"><span class="em">無条件では</span><br>ありません。</div>
+</section>
+
+<!-- 国の計算の中には、2つの -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：ただし、無条件ではありません</span><span class="brand"></span></div>
+  <div class="badge navy">どちらになるかを決めるのは、賃金と投資です</div>
+  <div class="h-main">国の計算の中には、2つの試算があります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">伸びれば</div><div class="cap">賃金が物価より伸びる（2037年度）</div><div class="big">月24万円</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">止まれば</div><div class="cap">国民年金の積立金が尽きる</div><div class="big">2059年度</div></div>
+  </div>
+  <div class="note" style="text-align:center;font-size:22px;color:#7a828c;margin-top:18px;">夫婦2人の標準的な年金は、物価を差し引いても、月22.6万円から24万円に増える試算です</div>
+</section>
+
+<!-- 制度が消えるわけではあり -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ただし、無条件ではありません</span><span class="brand"></span></div>
+  <div class="lead">成長が止まったままなら</div>
+  <div class="stmt">制度が消えるわけではありませんが、<br><span class="em">受け取る額は下がります</span>。</div>
+</section>
+
+<!-- どちらになるかを決めるの -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：ただし、無条件ではありません</span><span class="brand"></span></div>
+  <div class="h-main">どちらになるかを決めるのは、賃金と投資です</div>
+  <div class="chain">
+    <div class="node">企業が<br>投資をする</div>
+    <div class="arr">→</div>
+    <div class="node">生産性が<br>上がる</div>
+    <div class="arr">→</div>
+    <div class="node">賃金が<br>上がる</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">保険料の<br>収入が増える</div>
+  </div>
+  <div class="release">企業の利益が増えれば、積立金が持っている株の価値も上がります</div>
+</section>
+
+<!-- 【同じところ】に
+着きま -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ただし、無条件ではありません</span><span class="brand"></span></div>
+  <div class="lead">借金が少ないドイツが、借金を増やして投資を始めた理由と</div>
+  <div class="stmt"><span class="em">同じところ</span>に<br>着きます。</div>
+</section>
+
+<!-- フランスから出たお金は、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：ただし、無条件ではありません</span><span class="brand"></span></div>
+  <div class="lead">では</div>
+  <div class="stmt">フランスから出たお金は、<br><span class="em">どこへ</span>逃げたのか。</div>
+</section>
+
+<!-- ========== p10_okane（11枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 10：お金は、どこへ逃げたのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 10 / 16</span><span class="bar"></span><span>お金の行き先</span></div>
+  <div class="numbox">10</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">お金は、<br>どこへ逃げたのか</div><div class="rule"></div><div class="desc">フランスから出たお金の行き先</div></div>
+</section>
+
+<!-- 世界中のお金が、
+【アメ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：前回は、アメリカの国債に逃げました</span><span class="brand"></span></div>
+  <div class="lead">2010年代の初め、欧州の債務危機のとき</div>
+  <div class="stmt">世界中のお金が、<br><span class="em">アメリカの国債</span>に逃げました。</div>
+</section>
+
+<!-- アメリカの10年国債の金 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 10：前回は、アメリカの国債に逃げました</span><span class="brand"></span></div>
+  <div class="h-main">アメリカの10年国債の金利（欧州の債務危機のとき）</div>
+  <div class="row">
+    <div class="card"><div class="c-l">危機の前</div><div class="c-v">4%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">そのあと</div><div class="c-v">1.4%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">金利が下がった</div><div class="r-v">それだけ買われた</div></div>
+  </div>
+</section>
+
+<!-- 長いあいだ、それが
+【当 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：前回は、アメリカの国債に逃げました</span><span class="brand"></span></div>
+  <div class="lead">世界で何かが起きれば、アメリカの国債が買われる</div>
+  <div class="stmt">長いあいだ、それが<br><span class="em">当たり前</span>でした。</div>
+</section>
+
+<!-- 画像：19_okane_doitsu_doru -->
+<section class="slide t-image"><img src="img/19_okane_doitsu_doru.png" alt="お金が向かったのはドイツの国債とドル"></section>
+
+<!-- 【崩れ始めています】。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：今回は、3回とも逃げませんでした</span><span class="brand"></span></div>
+  <div class="lead">何かが起きればアメリカの国債、という当たり前が</div>
+  <div class="stmt"><span class="em">崩れ始めています</span>。</div>
+</section>
+
+<!-- 【日本の国債と円】にも、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：日本の国債と、円が買われました</span><span class="brand"></span></div>
+  <div class="lead">そして、同じ月に</div>
+  <div class="stmt"><span class="em">日本の国債と円</span>にも、<br>お金が向かいました。</div>
+</section>
+
+<!-- お金が日本に戻る方向に、 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 10：日本の国債と、円が買われました</span><span class="brand"></span></div>
+  <div class="h-main">お金が日本に戻る方向に、動いています</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">20年国債の入札</div><div class="ctext">過去最高の買い注文が入った</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">円も買われた</div><div class="ctext">入札と同じ日に</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">米国債の残高が減少</div><div class="ctext">日本の投資家の残高。2026年4〜8月</div></div>
+  </div>
+</section>
+
+<!-- 政治不安が続いたときに、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：日本の国債と、円が買われました</span><span class="brand"></span></div>
+  <div class="lead">この動画で見ているのは</div>
+  <div class="stmt">政治不安が続いたときに、<br><span class="em">売上と利益が増え続ける</span><br>企業です。</div>
+</section>
+
+<!-- 3社の役割 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 10：日本の国債と、円が買われました</span><span class="brand"></span></div>
+  <div class="h-main">3社の役割</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">1社目 ALSOK</div><div class="ctext">国内の警備の契約が増える側</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">2社目</div><div class="ctext">世界の重要な施設に、監視カメラを納める側</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">3社目</div><div class="ctext">その設備を、建物に入れる側</div></div>
+  </div>
+</section>
+
+<!-- 国の借金は、
+【何で返し -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：日本の国債と、円が買われました</span><span class="brand"></span></div>
+  <div class="lead">その前に、冒頭で後回しにした、不都合な話をします</div>
+  <div class="stmt">国の借金は、<br><span class="em">何で返している</span>のか。</div>
+</section>
+
+<!-- ========== p11_karikae（22枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 11：国の借金は、何で返しているのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 11 / 16</span><span class="bar"></span><span>不都合な話</span></div>
+  <div class="numbox">11</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">国の借金は、<br>何で返しているのか</div><div class="rule"></div><div class="desc">満期が来た国債を、国はどうしているのか</div></div>
+</section>
+
+<!-- 画像：20_manki_nande -->
+<section class="slide t-image"><img src="img/20_manki_nande.png" alt="満期が来た国債を国は何で返しているのか"></section>
+
+<!-- 画像：21_manki_600oku -->
+<section class="slide t-image"><img src="img/21_manki_600oku.png" alt="満期の日に実際に何が起きているのか"></section>
+
+<!-- 2026年度に満期を迎え -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 11：満期が来た日に、何が起きているのか</span><span class="brand"></span></div>
+  <div class="lead">割合も出ています（財務省の試算）</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">2026年度に満期を迎える約150兆円のうち、新しい国債で返す割合</div>
+      <div class="mfig">88<span class="u">%</span></div>
+      <div class="msub">およそ88%を、新しい国債で返す計画です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 税金などで返すのは、残り -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 11：満期が来た日に、何が起きているのか</span><span class="brand"></span></div>
+  <div class="badge navy">2026年度に満期を迎える国債の返し方</div>
+  <div class="h-main">税金などで返すのは、残りの1割強です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">新しい国債</div><div class="cap">借り換えで返す</div><div class="big">約88%</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">税金など</div><div class="cap">国の予算から返す</div><div class="big">1割強</div></div>
+  </div>
+</section>
+
+<!-- 画像：22_karikae_18chodoru -->
+<section class="slide t-image"><img src="img/22_karikae_18chodoru.png" alt="先進国の国債の78%は借り換え"></section>
+
+<!-- 国債を60年かけて現金で -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：世界中の国が、同じことをしています</span><span class="brand"></span></div>
+  <div class="lead">むしろ、日本には変わった決まりがあります</div>
+  <div class="stmt">国債を60年かけて現金で返していく、<br><span class="em">60年償還ルール</span>です。</div>
+</section>
+
+<!-- 主要な先進国で、
+こうい -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：世界中の国が、同じことをしています</span><span class="brand"></span></div>
+  <div class="lead">2023年に、当時の財務大臣が記者会見で認めたとおり</div>
+  <div class="stmt">主要な先進国で、<br>こういう決まりを持っている国は<br><span class="em">ほかにありません</span>。</div>
+</section>
+
+<!-- 60年償還ルールの中身 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 11：世界中の国が、同じことをしています</span><span class="brand"></span></div>
+  <div class="h-main">60年償還ルールの中身</div>
+  <div class="chain">
+    <div class="node">毎年、残っている<br>借金の1.6%を<br>積み立てる</div>
+    <div class="arr">→</div>
+    <div class="node">借金は<br>借り換えで<br>残り続ける</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">60年たっても<br>返せるのは<br>元本の56%ほど</div>
+  </div>
+</section>
+
+<!-- 毎年、返済のために予算に -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 11：世界中の国が、同じことをしています</span><span class="brand"></span></div>
+  <div class="lead">それでも日本は</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">毎年、返済のために予算に積んでいる額</div>
+      <div class="mfig">約18<span class="u">兆円</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 借り換えのほうは、同じだ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 11：世界中の国が、同じことをしています</span><span class="brand"></span></div>
+  <div class="badge navy">ここが、引っかかるところです</div>
+  <div class="h-main">借り換えのほうは、同じだけ説明されていません</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">実際</div><div class="cap">満期の国債の</div><div class="big">9割近く借換</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">一般向けの説明</div><div class="cap">強調されるのは</div><div class="big">税金と負担</div></div>
+  </div>
+</section>
+
+<!-- 税金で返していると思って -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：世界中の国が、同じことをしています</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt">税金で返していると思っている方が、<br><span class="em">多いわけです</span>。</div>
+</section>
+
+<!-- 満期のたびに、
+【新しい -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：国の借金は、回し続けるものです</span><span class="brand"></span></div>
+  <div class="lead">国の借金は、いつか税金で完済する日が来るものではありません</div>
+  <div class="stmt">満期のたびに、<br><span class="em">新しい買い手</span>に<br>置き換わっていくものです。</div>
+</section>
+
+<!-- 危ないのは、残高の大きさ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 11：国の借金は、回し続けるものです</span><span class="brand"></span></div>
+  <div class="badge navy">だとすれば</div>
+  <div class="h-main">危ないのは、残高の大きさではありません</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">危ない</div><div class="cap">新しい国債を</div><div class="big">買い手がいない</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">危なくない</div><div class="cap">それだけでは</div><div class="big">残高の大きさ</div></div>
+  </div>
+</section>
+
+<!-- ここで、
+【答えが出ます -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：国の借金は、回し続けるものです</span><span class="brand"></span></div>
+  <div class="lead">将来の世代へのツケなのか、という問いも</div>
+  <div class="stmt">ここで、<br><span class="em">答えが出ます</span>。</div>
+</section>
+
+<!-- 次の世代に渡るのは、借金 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 11：国の借金は、回し続けるものです</span><span class="brand"></span></div>
+  <div class="h-main">次の世代に渡るのは、借金だけではありません</div>
+  <div class="h-sub">借り換えで回り続ける借金と一緒に、そのお金で作ったものも渡ります</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">借金</div><div class="ctext">借り換えで回り続ける</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">電力網</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">工場</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">技術</div></div>
+  </div>
+</section>
+
+<!-- 【そのため】です。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：国の借金は、回し続けるものです</span><span class="brand"></span></div>
+  <div class="lead">ドイツが借金を増やして投資を始めたのは</div>
+  <div class="stmt"><span class="em">そのため</span>です。</div>
+</section>
+
+<!-- 帯：3つのルールは、どれ -->
+<section class="slide t-map">
+  <div class="hdr"><span class="sec">Section 11：国の借金は、回し続けるものです</span><span class="brand"></span></div>
+  <div class="h-main">3つのルールは、どれも同じところを見ていました</div>
+  <div class="flowmap">
+    <div class="fm on"><span class="n">1</span>誰に借りているか<span class="s ">買い手が<br>逃げるか</span></div>
+    <div class="fm on"><span class="n">2</span>何の通貨で<br>借りているか<span class="s ">中央銀行が<br>買い手になれるか</span></div>
+    <div class="fm on"><span class="n">3</span>どれだけ速く<br>直せるか<span class="s ">逃げた買い手が<br>戻ってくるか</span></div>
+  </div>
+</section>
+
+<!-- 3つのルールは、どれも -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 11：国の借金は、回し続けるものです</span><span class="brand"></span></div>
+  <div class="lead">3つとも</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">3つのルールは、どれも</div>
+      <div class="mfig" style="font-size:84px">買い手が残るか</div>
+      <div class="msub">の話でした</div>
+    </div>
+  </div>
+</section>
+
+<!-- 冒頭の話に、戻ります -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 11：冒頭の話に、戻ります</span><span class="brand"></span></div>
+  <div class="h-main">冒頭の話に、戻ります</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ギリシャより<br>悪い</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">赤字は<br>G7で最悪</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">借金は<br>世界一</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">次は日本</div></div>
+  </div>
+</section>
+
+<!-- 前提が違うから、
+【怖さ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：冒頭の話に、戻ります</span><span class="brand"></span></div>
+  <div class="lead">この4つは、どれも「借金はいつか税金で返すもの」という前提で出来ています</div>
+  <div class="stmt">前提が違うから、<br><span class="em">怖さの順番</span>も違います。</div>
+</section>
+
+<!-- ここからは、
+【残りの2 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：冒頭の話に、戻ります</span><span class="brand"></span></div>
+  <div class="lead">国の話は、ここまでです</div>
+  <div class="stmt">ここからは、<br><span class="em">残りの2社</span>です。</div>
+</section>
+
+<!-- ========== p12_canon（25枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 12：2社目 キヤノン</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 12 / 16</span><span class="bar"></span><span>2社目</span></div>
+  <div class="numbox">12</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">2社目 キヤノン</div><div class="rule"></div><div class="desc">世界の重要施設を守る側｜世界の監視カメラの企業</div></div>
+</section>
+
+<!-- 証券コード 7751 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：2社目 キヤノン（7751）</span><span class="brand"></span></div>
+  <div class="lead">2社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">証券コード 7751</div>
+      <div class="mfig" style="font-size:130px">キヤノン</div>
+      <div class="msub">世界の監視カメラの企業でもあります</div>
+    </div>
+  </div>
+</section>
+
+<!-- 画像：23_canon_betsu -->
+<section class="slide t-image"><img src="img/23_canon_betsu.png" alt="キヤノンのもう1つの顔"></section>
+
+<!-- 監視カメラの企業を、グル -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 12：2社目 キヤノン（7751）</span><span class="brand"></span></div>
+  <div class="h-main">監視カメラの企業を、グループに持っています</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">Axis</div><div class="ctext">スウェーデンの監視カメラ企業</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">Milestone</div><div class="ctext">監視カメラの映像を管理するソフト</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">BriefCam</div><div class="ctext">AIで映像を解析する</div></div>
+  </div>
+</section>
+
+<!-- この3社で、キヤノンのグ -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 12：2社目 キヤノン（7751）</span><span class="brand"></span></div>
+  <div class="h-main">この3社で、キヤノンのグループでそろいます</div>
+  <div class="chain">
+    <div class="node">カメラを<br>置く</div>
+    <div class="arr">→</div>
+    <div class="node">映像を<br>まとめる</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">AIで人や車を<br>探す</div>
+  </div>
+</section>
+
+<!-- 監視カメラの事業の売上 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：監視カメラの売上は、今年17%増の予想です</span><span class="brand"></span></div>
+  <div class="h-main">監視カメラの事業の売上</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2025年</div><div class="c-v">約4,294億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年の会社予想</div><div class="c-v">約5,035億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">伸び</div><div class="r-v">+17.3%</div></div>
+  </div>
+</section>
+
+<!-- 監視カメラの売上（前の年 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：監視カメラの売上は、今年17%増の予想です</span><span class="brand"></span></div>
+  <div class="lead">2026年4〜6月だけを見ると</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">監視カメラの売上（前の年の同じ時期と比べて）</div>
+      <div class="mfig">+24.8<span class="u">%</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 建物が増えれば、
+【カメ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：監視カメラの売上は、今年17%増の予想です</span><span class="brand"></span></div>
+  <div class="lead">伸びている理由は、データセンターや商業用の不動産の大型案件</div>
+  <div class="stmt">建物が増えれば、<br><span class="em">カメラも増える</span>。</div>
+  <div class="note">キヤノン自身が、理由としてこう挙げています</div>
+</section>
+
+<!-- 監視カメラが全社に占める -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：監視カメラの売上は、今年17%増の予想です</span><span class="brand"></span></div>
+  <div class="lead">全社の売上は、4兆8,000億円の予想</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">監視カメラが全社に占める割合</div>
+      <div class="mfig">約1割</div>
+      <div class="msub">全部ではありません。ただ、その1割が、いちばん速く伸びています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 監視カメラの売上を、地域 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 12：監視カメラの売上は、今年17%増の予想です</span><span class="brand"></span></div>
+  <div class="lead">その1割が、いちばん速く伸びています</div>
+  <div class="h-main">監視カメラの売上を、地域で分けると</div>
+  <div class="pbar">
+    <div class="seg main" style="width:89%"><span class="p">約9割</span><span class="l">米州57%＋欧州・中東・アフリカ32%</span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">日本など</span></div>
+  </div>
+</section>
+
+<!-- それを直接受ける日本の企 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：9割が、アメリカと欧州です</span><span class="brand"></span></div>
+  <div class="lead">フランスの、欧州の、アメリカの重要な施設を守る支出が増えるなら</div>
+  <div class="stmt">それを直接受ける日本の企業は、<br><span class="em">この1社</span>です。</div>
+  <div class="note">フランスで暴動が起きた月の話です</div>
+</section>
+
+<!-- パロアルトネットワークス -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：9割が、アメリカと欧州です</span><span class="brand"></span></div>
+  <div class="lead">2026年8月、Axisが参加しました</div>
+  <div class="stmt">パロアルトネットワークスの、<br><span class="em">重要な施設を守る</span><br>共同の取り組みです。</div>
+  <div class="note">パロアルトネットワークス＝アメリカ最大のサイバーセキュリティ企業</div>
+</section>
+
+<!-- カメラで守る側と、ネット -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 12：9割が、アメリカと欧州です</span><span class="brand"></span></div>
+  <div class="badge navy">一緒に売る形です</div>
+  <div class="h-main">カメラで守る側と、ネットワークを守る側</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">Axis</div><div class="cap">建物を</div><div class="big">カメラで守る</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">パロアルト</div><div class="cap">ネットワークを</div><div class="big">守る</div></div>
+  </div>
+  <div class="note" style="text-align:center;font-size:22px;color:#7a828c;margin-top:18px;">アメリカとカナダには、顧客向けの拠点も新しく開いています</div>
+</section>
+
+<!-- 全社の営業利益 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：全社の利益も、増えています</span><span class="brand"></span></div>
+  <div class="h-main">全社の営業利益</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2024年12月期</div><div class="c-v">約2,798億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2025年12月期</div><div class="c-v">約4,554億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">増え方</div><div class="r-v">6割増</div></div>
+  </div>
+</section>
+
+<!-- 全社の数字 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：全社の利益も、増えています</span><span class="brand"></span></div>
+  <div class="h-main">全社の数字</div>
+  <div class="h-sub">2026年の上期は、営業利益が7.6%増でした</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">純利益</div><div class="cd">2025年12月期</div></div><div class="body"><div class="lbl"></div><div class="val2">約3,321億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">2026年の会社予想</div></div><div class="body"><div class="lbl"></div><div class="val2">4,650億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">純利益</div><div class="cd">2026年の会社予想</div></div><div class="body"><div class="lbl"></div><div class="val2">3,400億円</div></div></div>
+  </div>
+</section>
+
+<!-- 株主への還元も厚い -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：全社の利益も、増えています</span><span class="brand"></span></div>
+  <div class="h-main">株主への還元も厚い</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自社株買い</div><div class="cd">2026年9月までに終了</div></div><div class="body"><div class="lbl"></div><div class="val2">約2,000億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">年間の配当予想</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">160円</div></div></div>
+    <div class="col "><div class="top"><div class="nm">配当利回り</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約3.3%</div></div></div>
+  </div>
+</section>
+
+<!-- モルガン・スタンレーMU -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：全社の利益も、増えています</span><span class="brand"></span></div>
+  <div class="lead">海外の証券会社も、この企業を強気で見ています</div>
+  <div class="stmt">モルガン・スタンレーMUFG証券と、<br><span class="em">シティグループ</span>です。</div>
+  <div class="note">海外の大手の運用会社も、株を持っています</div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約57%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">手元の現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約5,860億円</div></div></div>
+    <div class="col "><div class="top"><div class="nm">ROE</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">9.7%</div></div></div>
+  </div>
+</section>
+
+<!-- ただし、その6割近くは、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：財務と株価</span><span class="brand"></span></div>
+  <div class="lead">借金は約8,160億円あって、現金より多い</div>
+  <div class="stmt">ただし、その6割近くは、<br><span class="em">金融子会社の借入</span>です。</div>
+  <div class="note">顧客に機器をリースする子会社の借入で、リース料として戻ってくるお金に対応しています</div>
+</section>
+
+<!-- 株価（1月5日 → 10 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">株価（1月5日 → 10月20日）</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">4,730円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月20日</div><div class="c-v">4,807円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">わずかにプラス</div></div>
+  </div>
+</section>
+
+<!-- 株価の水準（今期の会社予 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">株価の水準（今期の会社予想で見て）</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約12.1倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約1.17倍</div></div></div>
+  </div>
+</section>
+
+<!-- 注意点は1つ。円高は逆風 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：ただし、円高は逆風です</span><span class="brand"></span></div>
+  <div class="h-main">注意点は1つ。円高は逆風です</div>
+  <div class="h-sub">売上の8割が海外です</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">1円の円高で</div><div class="cd">ドル</div></div><div class="body"><div class="lbl">営業利益</div><div class="val2">約15億円減</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">1円の円高で</div><div class="cd">ユーロ</div></div><div class="body"><div class="lbl">営業利益</div><div class="val2">約15億円減</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">合わせて</div><div class="cd"></div></div><div class="body"><div class="lbl">営業利益</div><div class="val2">約30億円減</div></div></div>
+  </div>
+</section>
+
+<!-- 株価の全体は、プリンター -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：ただし、円高は逆風です</span><span class="brand"></span></div>
+  <div class="lead">世界が荒れて円が買われる日は、監視カメラの需要が増える一方で、円高が利益を削ります</div>
+  <div class="stmt">株価の全体は、プリンターや医療機器の<br><span class="em">業績と為替</span>で動きます。</div>
+  <div class="note">監視カメラは、全社の1割です</div>
+</section>
+
+<!-- キヤノンを持っている方は -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 12：ただし、円高は逆風です</span><span class="brand"></span></div>
+  <div class="h-main">キヤノンを持っている方は</div>
+  <div class="chain">
+    <div class="node">2026年10月27日<br>の決算</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">監視カメラの<br>売上の伸び率</div>
+  </div>
+  <div class="release">17%増の予想に対して、どこまで来ているか。全社の数字より、そこです</div>
+</section>
+
+<!-- 1社目のALSOKが契約 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：ただし、円高は逆風です</span><span class="brand"></span></div>
+  <div class="lead">3社目は、その監視カメラや入退室の設備を、実際に建物に入れる側です</div>
+  <div class="stmt">1社目のALSOKが契約を増やすと、<br><span class="em">この企業の売上</span>が増えます。</div>
+</section>
+
+<!-- ========== p13_secure（23枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 13：3社目 セキュア</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 13 / 16</span><span class="bar"></span><span>3社目</span></div>
+  <div class="numbox">13</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">3社目 セキュア</div><div class="rule"></div><div class="desc">設備を入れる側｜AIカメラと入退室の設備を、建物に入れる企業</div></div>
+</section>
+
+<!-- 証券コード 4264 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 13：3社目 セキュア（4264）</span><span class="brand"></span></div>
+  <div class="lead">3社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">証券コード 4264</div>
+      <div class="mfig" style="font-size:130px">セキュア</div>
+      <div class="msub">初めて聞く方が多いと思います</div>
+    </div>
+  </div>
+</section>
+
+<!-- 企業や官公庁の建物に、設 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 13：3社目 セキュア（4264）</span><span class="brand"></span></div>
+  <div class="h-main">企業や官公庁の建物に、設備を入れる企業です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">監視カメラ</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">顔認証</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">入退室の管理</div></div>
+  </div>
+</section>
+
+<!-- 売上の6割が、監視カメラ -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 13：3社目 セキュア（4264）</span><span class="brand"></span></div>
+  <div class="lead">売上の中身</div>
+  <div class="h-main">売上の6割が、監視カメラです</div>
+  <div class="pbar">
+    <div class="seg main" style="width:60%"><span class="p">6割</span><span class="l">監視カメラ</span></div>
+    <div class="seg rest"><span class="p">4割</span><span class="l">入退室の管理・AI解析・設計と工事</span></div>
+  </div>
+</section>
+
+<!-- 3社のつながり -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 13：3社目 セキュア（4264）</span><span class="brand"></span></div>
+  <div class="h-main">3社のつながり</div>
+  <div class="chain">
+    <div class="node">ALSOKが<br>契約を取る</div>
+    <div class="arr">→</div>
+    <div class="node">キヤノンが<br>カメラを作る</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">セキュアが<br>建物に入れて<br>動かす</div>
+  </div>
+</section>
+
+<!-- 2026年の上期（1〜6 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：上期の営業利益は、ほぼ2倍です</span><span class="brand"></span></div>
+  <div class="h-main">2026年の上期（1〜6月）</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">売上</div><div class="cd">前の年より +24.5%</div></div><div class="body"><div class="lbl">金額</div><div class="val2">41.1億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益</div><div class="cd">前の年より +99.8%</div></div><div class="body"><div class="lbl">金額</div><div class="val2">2.31億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">伸び方</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">ほぼ2倍</div></div></div>
+  </div>
+</section>
+
+<!-- 伸びている事業 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：上期の営業利益は、ほぼ2倍です</span><span class="brand"></span></div>
+  <div class="h-main">伸びている事業</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">入退室の管理</div><div class="cd">前の年より</div></div><div class="body"><div class="lbl">伸び</div><div class="val2">+44.6%</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">映像のAI解析</div><div class="cd">前の年より</div></div><div class="body"><div class="lbl">伸び</div><div class="val2">+56.9%</div></div></div>
+  </div>
+</section>
+
+<!-- 営業利益 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 13：上期の営業利益は、ほぼ2倍です</span><span class="brand"></span></div>
+  <div class="h-main">営業利益</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の期</div><div class="c-v">3.26億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今期の会社予想</div><div class="c-v">6.2億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">こちらも</div><div class="r-v">ほぼ2倍</div></div>
+  </div>
+</section>
+
+<!-- 【連想ゲーム】です。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：売上の3分の1は、ALSOK向けです</span><span class="brand"></span></div>
+  <div class="lead">ここで</div>
+  <div class="stmt"><span class="em">連想ゲーム</span>です。</div>
+</section>
+
+<!-- 22.3億円が、ALSO -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 13：売上の3分の1は、ALSOK向けです</span><span class="brand"></span></div>
+  <div class="lead">セキュアの2025年の売上 68.4億円のうち</div>
+  <div class="h-main">22.3億円が、ALSOK向けでした</div>
+  <div class="pbar">
+    <div class="seg main" style="width:33%"><span class="p">32.5%</span><span class="l">ALSOK向け</span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">そのほかの顧客</span></div>
+  </div>
+</section>
+
+<!-- ALSOKの契約の増え方 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 13：売上の3分の1は、ALSOK向けです</span><span class="brand"></span></div>
+  <div class="h-main">ALSOKの契約の増え方が、そのまま売上になります</div>
+  <div class="chain">
+    <div class="node">ALSOKが<br>警備の契約を<br>増やす</div>
+    <div class="arr">→</div>
+    <div class="node">現場にカメラや<br>入退室の設備</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">それを納めるのが<br>セキュア</div>
+  </div>
+</section>
+
+<!-- 2026年は、買収が3件 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 13：官公庁の顧客を、買収で足しています</span><span class="brand"></span></div>
+  <div class="h-main">2026年は、買収が3件続いています</div>
+  <div class="chain">
+    <div class="node">4月<br>TOUCH TO GO<br>無人のレジ</div>
+    <div class="arr">→</div>
+    <div class="node">7月<br>テスコムジャパン<br>防犯カメラの機器</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">10月<br>日東通信<br>約14億円・実行12月</div>
+  </div>
+</section>
+
+<!-- 安全への支出が増える側に -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：官公庁の顧客を、買収で足しています</span><span class="brand"></span></div>
+  <div class="lead">日東通信は、官公庁や重要な施設の通信工事と保守をしている企業です</div>
+  <div class="stmt">安全への支出が増える側に、<br><span class="em">顧客と工事の力</span>を<br>足しています。</div>
+</section>
+
+<!-- この企業を調べている証券 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：海外の投資家は、まだ見ていません</span><span class="brand"></span></div>
+  <div class="lead">正直にお伝えします</div>
+  <div class="stmt">この企業を調べている証券会社は、<br>国内にも海外にも<br><span class="em">ほとんどありません</span>。</div>
+  <div class="note">アナリストの評価はゼロ。海外の大手の運用会社が持っている記録も、確認できません</div>
+</section>
+
+<!-- 小さすぎて、
+【まだ見ら -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：海外の投資家は、まだ見ていません</span><span class="brand"></span></div>
+  <div class="lead">冒頭の「海外の機関投資家が買い集めている銘柄」には、入りません</div>
+  <div class="stmt">小さすぎて、<br><span class="em">まだ見られていない</span><br>企業です。</div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約50%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">借金を引いた現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約14億円</div></div></div>
+    <div class="col "><div class="top"><div class="nm">ROE</div><div class="cd">前の期</div></div><div class="body"><div class="lbl"></div><div class="val2">約9%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価（1月5日 → 10 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 13：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">株価（1月5日 → 10月20日）</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">1,462円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月20日</div><div class="c-v">1,326円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">9.4%下落</div></div>
+  </div>
+</section>
+
+<!-- 業績と株価の差が、3社で -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 13：財務と株価</span><span class="brand"></span></div>
+  <div class="badge navy">3社の中で、いちばん下がっている株です</div>
+  <div class="h-main">業績と株価の差が、3社でいちばん大きい企業です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">利益</div><div class="cap">今期の会社予想</div><div class="big">2倍に向かう</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">株価</div><div class="cap">年初から</div><div class="big">1割下落</div></div>
+  </div>
+  <div class="note" style="text-align:center;font-size:22px;color:#7a828c;margin-top:18px;">10月19日には、年初来の安値をつけました</div>
+</section>
+
+<!-- 株価の水準（今期の会社予 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：財務と株価</span><span class="brand"></span></div>
+  <div class="h-main">株価の水準（今期の会社予想で見て）</div>
+  <div class="h-sub">利益を、人と買収に回している段階です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約19.6倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約2.1倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">配当</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">なし</div></div></div>
+  </div>
+</section>
+
+<!-- 上期に稼いだのは、37% -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 13：ただし、今期の計画はまだ達成していません</span><span class="brand"></span></div>
+  <div class="lead">注意点は1つ。今期の営業利益6.2億円のうち</div>
+  <div class="h-main">上期に稼いだのは、37%です</div>
+  <div class="pbar">
+    <div class="seg main" style="width:37%"><span class="p">37%</span><span class="l">上期 2.31億円</span></div>
+    <div class="seg rest"><span class="p">63%</span><span class="l">下期で稼ぐ計画</span></div>
+  </div>
+</section>
+
+<!-- 頭に入れておくこと -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 13：ただし、今期の計画はまだ達成していません</span><span class="brand"></span></div>
+  <div class="h-main">頭に入れておくこと</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">まだ達成していない</div><div class="ctext">セキュアは、下期に案件が集中すると説明</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">買収の負担</div><div class="ctext">買収を借金で賄うので、その負担も下期から</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">売り買いが少ない日</div><div class="ctext">小型の株です</div></div>
+  </div>
+</section>
+
+<!-- 次の決算は、2026年1 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 13：ただし、今期の計画はまだ達成していません</span><span class="brand"></span></div>
+  <div class="h-main">次の決算は、2026年11月12日です</div>
+  <div class="chain">
+    <div class="node">11月12日の<br>決算</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">下期の<br>進み具合</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">入退室の<br>管理の伸び</div>
+  </div>
+  <div class="release">セキュアを持っている方は、この2つを見てください</div>
+</section>
+
+<!-- この差をどう見るかが、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：ただし、今期の計画はまだ達成していません</span><span class="brand"></span></div>
+  <div class="lead">株価がいちばん下がっている企業で、利益がいちばん伸びている</div>
+  <div class="stmt">この差をどう見るかが、<br><span class="em">この企業の見方</span>です。</div>
+  <div class="note">では、この3社をどう持つか。新NISAの話です</div>
+</section>
+
+<!-- ========== p14_nisa（14枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 14：新NISAなら、どう持つか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 14 / 16</span><span class="bar"></span><span>新NISA</span></div>
+  <div class="numbox">14</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">新NISAなら、<br>どう持つか</div><div class="rule"></div><div class="desc">3社が入っているETFと、その比率</div></div>
+</section>
+
+<!-- 警備や監視カメラに特化し -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 14：3社をまとめて持てるETFは、ありません</span><span class="brand"></span></div>
+  <div class="lead">先に、結論です</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">警備や監視カメラに特化して、3社をまとめて持てるETFは</div>
+      <div class="mfig" style="font-size:96px">日本には無い</div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- この3社は基本的に、
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：3社をまとめて持てるETFは、ありません</span><span class="brand"></span></div>
+  <div class="lead">3社のどれかが入っているETFは3本。どれも主役は別で、3社の比率は小さい</div>
+  <div class="stmt">この3社は基本的に、<br><span class="em">1社ずつ持つもの</span>だと<br>思ってください。</div>
+  <div class="note">3本とも、新NISAの成長投資枠で買えます</div>
+</section>
+
+<!-- 証券コード -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="lead">1本目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">証券コード</div>
+      <div class="mfig">1626</div>
+      <div class="msub">情報通信とサービスの業種をまとめたETFです</div>
+    </div>
+  </div>
+</section>
+
+<!-- 1626の中身 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="h-main">1626の中身</div>
+  <div class="h-sub">国内の警備という意味では、3本でいちばん近い</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">ALSOK</div><div class="cd">1626の中身</div></div><div class="body"><div class="lbl">比率</div><div class="val2">約0.3%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">セコム</div><div class="cd">1626の中身</div></div><div class="body"><div class="lbl"></div><div class="val2">入っている</div></div></div>
+  </div>
+</section>
+
+<!-- 出来高が少ない日があるの -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="lead">ただし主役は、通信やサービスの大企業です</div>
+  <div class="stmt">出来高が少ない日があるので、<br>まとまった金額は<br><span class="em">値段を指定して注文</span>してください。</div>
+  <div class="note">出来高＝売り買いされる量</div>
+</section>
+
+<!-- 証券コード -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="lead">2本目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">証券コード</div>
+      <div class="mfig">1698</div>
+      <div class="msub">日本の高配当株のETFです</div>
+    </div>
+  </div>
+</section>
+
+<!-- 1698の中身 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="h-main">1698の中身</div>
+  <div class="h-sub">規模も、3本でいちばん大きい</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">キヤノン</div><div class="cd">1698の中身</div></div><div class="body"><div class="lbl">比率</div><div class="val2">約4.7%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">3本の中で</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">いちばん大きい比率</div></div></div>
+  </div>
+</section>
+
+<!-- これは配当の高い株を集め -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="lead">ただし</div>
+  <div class="stmt">これは配当の高い株を集めたETFで、<br><span class="em">監視カメラのETFではありません</span>。</div>
+</section>
+
+<!-- 証券コード -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="lead">3本目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">証券コード</div>
+      <div class="mfig">2516</div>
+      <div class="msub">東証グロース250。国内の小型の成長株をまとめたETFです</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2516の中身 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="h-main">2516の中身</div>
+  <div class="h-sub">ここは正直に言います</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">セキュア</div><div class="cd">2516の中身</div></div><div class="body"><div class="lbl">比率</div><div class="val2">約0.05%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">株価が2倍でも</div><div class="cd">このETFへの効き目</div></div><div class="body"><div class="lbl"></div><div class="val2">約0.05ポイント</div></div></div>
+  </div>
+</section>
+
+<!-- 比率と純資産は変わるので -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 14：3本のETFと、3社の比率</span><span class="brand"></span></div>
+  <div class="badge navy">コスト</div>
+  <div class="h-main">比率と純資産は変わるので、買う前に確かめる</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">1698</div><div class="cap">3本の中で</div><div class="big">0.308%</div></div>
+    <div class="vsmark">〜</div>
+    <div class="box left"><div class="name">2516</div><div class="cap">3本の中で</div><div class="big">0.55%</div></div>
+  </div>
+  <div class="note" style="text-align:center;font-size:22px;color:#7a828c;margin-top:18px;">3本とも、中身の比率と純資産は変わります。買う前に最新の月次レポートで確かめてください</div>
+</section>
+
+<!-- 積み立ての土台は、そのま -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 14：土台は変えず、上乗せで考えます</span><span class="brand"></span></div>
+  <div class="h-main">積み立ての土台は、そのままでいいと思います</div>
+  <div class="chain">
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">土台は<br>オルカンや<br>S&amp;P500</div>
+    <div class="arr">＋</div>
+    <div class="node">1社を追えるなら<br>個別株で</div>
+    <div class="arr">／</div>
+    <div class="node">不安なら<br>1698でキヤノンを<br>分散</div>
+  </div>
+  <div class="release">ALSOKとセキュアは、ETFでは比率が小さすぎるので、持つなら個別株です</div>
+</section>
+
+<!-- 選ぶときに見るのは、3つ -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 14：土台は変えず、上乗せで考えます</span><span class="brand"></span></div>
+  <div class="h-main">選ぶときに見るのは、3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">コスト</span><span class="d">コストが低いか</span></div>
+    <div class="row"><span class="no">2</span><span class="t">規模</span><span class="d">規模が十分で、売り買いが薄くないか</span></div>
+    <div class="row"><span class="no">3</span><span class="t">買えるか</span><span class="d">自分の証券会社で買えるか</span></div>
+  </div>
+  <div class="cta">何を取りたいかを先に。警備の契約か、世界の監視カメラか、設備を入れる側か</div>
+</section>
+
+<!-- ========== p15_tachiba（9枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 15：立場別の答えと、荒れた日にやらないこと</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 15 / 16</span><span class="bar"></span><span>立場別</span></div>
+  <div class="numbox">15</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">立場別の答えと、<br>荒れた日にやらないこと</div><div class="rule"></div><div class="desc">持っている方、これから買う方、積み立てだけの方</div></div>
+</section>
+
+<!-- 株価ではなく、
+【決算】 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：立場ごとに、やることは違います</span><span class="brand"></span></div>
+  <div class="lead">持っている方は</div>
+  <div class="stmt">株価ではなく、<br><span class="em">決算</span>を見てください。</div>
+  <div class="note">3社とも、株価と利益が逆を向いています</div>
+</section>
+
+<!-- 次の決算 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 15：立場ごとに、やることは違います</span><span class="brand"></span></div>
+  <div class="h-main">次の決算</div>
+  <div class="chain">
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">キヤノン<br>10月27日</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">ALSOK<br>11月10日</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">セキュア<br>11月12日</div>
+  </div>
+</section>
+
+<!-- これから買う方は、利益が -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 15：立場ごとに、やることは違います</span><span class="brand"></span></div>
+  <div class="h-main">これから買う方は、利益が増えた理由を確かめてから</div>
+  <div class="h-sub">理由が違えば、続き方も違います</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">値上げ</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">案件</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">買収</div></div>
+  </div>
+</section>
+
+<!-- 急いでこの3社を買う必要 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：立場ごとに、やることは違います</span><span class="brand"></span></div>
+  <div class="lead">積み立てだけの方は</div>
+  <div class="stmt">急いでこの3社を買う必要は<br><span class="em">ありません</span>。</div>
+  <div class="note">11月の決算で、安全への支出が本当に利益になっているかを見てから考えても、遅くはありません</div>
+</section>
+
+<!-- 2022年7月、事件の日 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：荒れた日に、やらないこと</span><span class="brand"></span></div>
+  <div class="lead">さきほど、名前を出さなかった業種の話です</div>
+  <div class="stmt">2022年7月、事件の日に買われたのは、<br>クラウド型の監視カメラの企業、<br><span class="em">セーフィー</span>でした。</div>
+</section>
+
+<!-- セーフィーの株価 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 15：荒れた日に、やらないこと</span><span class="brand"></span></div>
+  <div class="h-main">セーフィーの株価</div>
+  <div class="h-sub">その年は、大幅安で終わっています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">事件の日</div><div class="cd">1日で</div></div><div class="body"><div class="lbl"></div><div class="val2">+16.2%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">出来高</div><div class="cd">ふだんの</div></div><div class="body"><div class="lbl"></div><div class="val2">4.4倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">翌日</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">−2.2%</div></div></div>
+  </div>
+</section>
+
+<!-- 跳ねた日の買いは、
+【短 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：荒れた日に、やらないこと</span><span class="brand"></span></div>
+  <div class="lead">暴動や事件の見出しで、小型の警備株を追わないでください</div>
+  <div class="stmt">跳ねた日の買いは、<br><span class="em">短期のお金</span>です。</div>
+  <div class="note">見るのは、出来高がふだんの何倍に跳ねたかと、20日後の株価です</div>
+</section>
+
+<!-- 見る数字は、3つです -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 15：荒れた日に、やらないこと</span><span class="brand"></span></div>
+  <div class="h-main">見る数字は、3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">入札の倍率</span><span class="d">20年国債と30年国債の入札の倍率</span></div>
+    <div class="row"><span class="no">2</span><span class="t">金利の差</span><span class="d">フランスとドイツの金利の差</span></div>
+    <div class="row"><span class="no">3</span><span class="t">決算の日付</span><span class="d">3社の次の決算の日付</span></div>
+  </div>
+</section>
+
+<!-- ========== p16_shime（5枚） ========== -->
+<!-- 僕のチャンネルの過去動画 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：締め</span><span class="brand"></span></div>
+  <div class="lead">国の借金と金利の話は</div>
+  <div class="stmt">僕のチャンネルの過去動画でも<br><span class="em">詳しく解説</span>していますので、<br>良ければご覧ください。</div>
+</section>
+
+<!-- 締め -->
+<section class="slide t-closing">
+  <div class="big">今回の動画は、以上です。</div>
+  <div class="sub">少しでも参考になったと思っていただけたら、高評価とチャンネル登録、そしてハイプボタンで応援していただけると、とても励みになります。</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span><span class="tg">⚡ ハイプボタン</span></div>
+</section>
+
+<!-- 少しでも参考になった点が -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：締め</span><span class="brand"></span></div>
+  <div class="lead">投資をするうえで</div>
+  <div class="stmt">少しでも参考になった点があれば、<br>ぜひ<span class="em">コメント欄</span>で<br>教えてください。</div>
+</section>
+
+<!-- 【楽しみに】しています。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：締め</span><span class="brand"></span></div>
+  <div class="lead">皆さんの声を</div>
+  <div class="stmt"><span class="em">楽しみに</span>しています。</div>
+</section>
+
+<!-- 締め -->
+<section class="slide t-closing">
+  <div class="big">それではまた、次の動画でお会いしましょう。</div>
+  <div class="sub">ご視聴いただき、ありがとうございました。</div>
+</section>
+
+</body>
+</html>

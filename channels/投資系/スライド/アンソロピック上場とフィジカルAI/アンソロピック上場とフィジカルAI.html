@@ -1,0 +1,2424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>アンソロピック上場とフィジカルAI</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:50px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 32px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:42px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:18px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:26px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 0;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:60px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:44px;}
+.t-port .bars{display:flex;flex-direction:column;gap:28px;max-width:1000px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:26px;font-weight:800;color:var(--navy);width:250px;}
+.t-port .brow .track{flex:1;height:54px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:300px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:50px;font-weight:800;color:var(--navy);}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:340px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* ===== industry chips map ===== */
+.t-chips{display:flex;flex-direction:column;justify-content:center;padding:56px 60px 0;}
+.t-chips .h-main{margin:0 0 12px;}
+.t-chips .h-sub{margin-bottom:32px;}
+.t-chips .groups{display:flex;gap:24px;justify-content:center;align-items:stretch;}
+.t-chips .grp{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px 28px;text-align:center;}
+.t-chips .grp.g-a{border-top:6px solid var(--blue);} .t-chips .grp.g-b{border-top:6px solid var(--orange);} .t-chips .grp.g-c{border-top:6px solid var(--green);}
+.t-chips .grp .gh{font-size:23px;font-weight:800;margin-bottom:18px;}
+.t-chips .grp.g-a .gh{color:var(--blue);} .t-chips .grp.g-b .gh{color:#cf820f;} .t-chips .grp.g-c .gh{color:var(--green);}
+.t-chips .chip{display:inline-block;margin:6px;padding:11px 18px;border-radius:26px;background:#eef2f7;color:var(--navy);font-size:19px;font-weight:700;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+
+/* ===== アンソロピック上場とフィジカルAI・デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* ---- 見出しがヘッダー帯に食い込む型の上余白（アンソロピック版と同じ直し） ---- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---- ユーザー支給の画像スライド（画像に見出しと説明が入っているので帯は付けない） ---- */
+.t-image{background:#0f1c33;}
+.t-image::after{display:none;}
+.t-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ---- 5枚・4枚のカードは文字を少し小さく ---- */
+.t-cards .grid.g5 .card .ctitle{font-size:30px !important;line-height:1.35;}
+.t-cards .grid.g4 .card .ctitle{font-size:34px !important;line-height:1.35;}
+.t-cards .grid.g5 .card,.t-cards .grid.g4 .card{padding-left:12px;padding-right:12px;}
+.t-cards .grid.g5 .ctext,.t-cards .grid.g4 .ctext{font-size:20px;}
+
+/* ---- 棒が2〜3本の縦棒は、幅を広げて数字を切らさない ---- */
+.t-vbars .vcols.wide .vb .bar{width:270px;font-size:30px;}
+
+/* ---- 階段の箱は2行が入る高さに ---- */
+.t-steps .step.s1{height:240px;}
+.t-steps .step.s2{height:285px;}
+.t-steps .step.s3{height:335px;}
+.t-steps .step .v{line-height:1.25;}
+
+/* ---- この企画：画面いっぱいに使う（数字と本文を大きく、縦は中央に） ---- */
+.h-main,.h-sub,.t-text .lead,.t-text .note,.t-stats .val2,.t-cards .ctitle,.t-cards .ctext{text-wrap:balance;}
+.t-stats,.t-cards{display:flex;flex-direction:column;justify-content:center;padding-top:70px;padding-bottom:10px;}
+.t-stats .h-sub,.t-cards .h-sub{font-size:26px;line-height:1.45;margin-bottom:30px;}
+.t-stats .col .top{padding:22px 14px;}
+.t-stats .col .top .nm{font-size:31px;line-height:1.25;}
+.t-stats .col .top .cd{font-size:24px;font-weight:700;margin-top:4px;}
+.t-stats .col .body{min-height:230px;padding:24px 14px;}
+.t-stats .col .lbl{font-size:24px;}
+.t-stats .col .val2{font-size:60px;line-height:1.2;margin:0;}
+.t-cards .card{justify-content:center;padding:30px 20px;}
+.t-cards .card .ctitle{font-size:36px;line-height:1.35;}
+.t-cards .card .ctext{font-size:26px;line-height:1.5;}
+.t-vs{display:flex;flex-direction:column;justify-content:center;padding-bottom:10px;}
+.t-vs .badge{align-self:center;font-size:22px;}
+.t-vs .box{padding:30px 26px;min-height:300px;justify-content:center;}
+.t-vs .box .name{font-size:34px;}
+.t-vs .box .cap{font-size:24px;line-height:1.35;margin-top:12px;}
+.t-vs .box .big{font-size:50px;line-height:1.25;margin-top:8px;}
+.t-text .lead{font-size:30px;line-height:1.45;}
+.t-text .note{font-size:27px;line-height:1.55;}
+.t-flow .node{font-size:31px;}
+.t-flow .release{font-size:29px;line-height:1.45;}
+.t-agenda .row .t{font-size:34px;}
+.numviz .msub{font-size:27px;line-height:1.45;}
+.numviz .lead,.t-prop .lead{font-size:28px;line-height:1.45;text-wrap:balance;}
+.t-metric .mlbl{font-size:26px;}
+/* 文節の途中で折り返さない */
+.h-main,.h-sub,.t-text .lead,.t-text .note,.t-stats .val2,.t-stats .nm,.t-stats .cd,.t-cards .ctitle,.t-cards .ctext,.numviz .lead,.numviz .msub,.t-flow .release,.t-vs .note,.t-vs .cap{word-break:auto-phrase;}
+.t-closing .sub{padding:0 90px;line-height:1.55;text-wrap:balance;word-break:auto-phrase;}
+
+/* ---- 縦棒：棒と見出しが重ならないように（日本株底打ち） ---- */
+.t-vbars .vcols{height:auto;min-height:300px;}
+.t-vbars .vb .cap{min-height:34px;white-space:nowrap;}
+.t-vbars .vb .bar{white-space:nowrap;}
+.t-vbars .vcols:not(.wide){gap:48px;}
+.t-vbars .vcols:not(.wide) .vb .bar{width:190px;font-size:27px;}
+/* ---- 4列の数値 ---- */
+.t-stats .cols:has(> .col:nth-child(4)) .val2{font-size:52px;}
+
+</style>
+</head>
+<body>
+
+<!-- ========== p01_intro（9枚） ========== -->
+<!-- タイトル -->
+<section class="slide t-title">
+  <div class="big">アンソロピックの上場が<br>日本株を<span class="em">押し上げる</span></div>
+  <div class="lead">AIがここまで発展したことで、日本のフィジカルAIが世界一になる可能性が出てきました</div>
+</section>
+
+<!-- AIがロボットの体を持っ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">フィジカルAIというのは</div>
+  <div class="stmt">AIがロボットの体を持って、<br><span class="em">現実の世界</span>で<br>作業をすることです。</div>
+</section>
+
+<!-- とはいえ、上場の日に株価 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">とはいえ、上場の日に株価が崩れました</div>
+  <div class="h-sub">AIの期待をいちばん集めた企業が上場した、その日に崩れたわけです</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">アメリカの株</div><div class="cd">Anthropicが上場した日</div></div><div class="body"><div class="lbl">主な指数がそろって</div><div class="val2">2%超<br>下落</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">日経平均</div><div class="cd">次の日</div></div><div class="body"><div class="lbl"></div><div class="val2">3,000円超<br>下落</div></div></div>
+  </div>
+</section>
+
+<!-- そう考えてしまうのは当然 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="badge navy">不安になっている方が多いと思います</div>
+  <div class="h-main">そう考えてしまうのは当然です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">AIは</div><div class="cap"></div><div class="big">もう<br>終わりなのか</div></div>
+    <div class="vsmark">？</div>
+    <div class="box left"><div class="name">持ち株は</div><div class="cap"></div><div class="big">いったん<br>売るべきか</div></div>
+  </div>
+</section>
+
+<!-- オルカンやS&P500の -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">新NISAで積み立て投資をしている方にも、関係のある話です</div>
+  <div class="stmt">オルカンやS&amp;P500の<br>中身の上位には、<br><span class="em">AIの企業</span>が並んでいます。</div>
+</section>
+
+<!-- 結論からお伝えします -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">結論からお伝えします</div>
+  <div class="chain">
+    <div class="node">株価の調整は<br>途中で<br>何度も起きる</div>
+    <div class="arr">→</div>
+    <div class="node">業績と技術が<br>本物なら<br>戻ったことが多い</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">崩れたのは<br>AIの需要<br>ではない</div>
+  </div>
+  <div class="release">僕はそう見ています。その理由は、このあとすぐお話しします</div>
+</section>
+
+<!-- 今回お話しする内容 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">今回お話しする内容</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">上場の日に、なぜ株が急落したのか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">過去のイノベーションは何年続いたのか</span><span class="d">電気もインターネットも何十年。生成AIはまだ4年目</span></div>
+    <div class="row"><span class="no">3</span><span class="t">AIの次に来る、フィジカルAI</span><span class="d">腕周りの部品で、日本の企業は世界の上位にいます</span></div>
+  </div>
+  <div class="cta">前半でお話しする下げの見方は、後半で、日本の企業にそのまま当てはめていきます</div>
+</section>
+
+<!-- 各社の決算資料をもとに、 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">各社の決算資料をもとに、世界中から注文が来ている日本の企業を<span class="em">5社</span>解説します</div>
+  <div class="grid g5" style="grid-template-columns:repeat(5,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ロボットの<br>本体</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">腕を曲げる<br>関節の部品</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">まっすぐ<br>正確に<br>動かす部品</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">手首や指に<br>入る<br>小さな歯車</div></div>
+    <div class="card c1"><div class="cno">5</div><div class="ctitle">指先の<br>軸受と<br>センサー</div></div>
+  </div>
+</section>
+
+<!-- AIの悪いニュースで
+株 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">見終わるころには</div>
+  <div class="stmt">AIの悪いニュースで<br>株が下がったとき、<br>AIの終わりの話なのか、<br><span class="em">長い成長の途中の揺れ</span>なのかを、<br>ご自分で分けられます。</div>
+  <div class="note">今から投資を始める方にも参考になるはずなので、ぜひご覧ください</div>
+</section>
+
+<!-- ========== p02_kyuraku（17枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 2 / 17</span><span class="bar"></span><span>急落</span></div>
+  <div class="numbox">2</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">急落の原因は、<br>AIの需要では<br>ありません</div><div class="rule"></div><div class="desc">上場の日の急落</div></div>
+</section>
+
+<!-- 経済全体を見て
+【連想ゲ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="lead">良い銘柄だけをお伝えしても、</div>
+  <div class="stmt">経済全体を見て<br><span class="em">連想ゲーム</span>ができないと、<br>意味がありません。</div>
+</section>
+
+<!-- 良い銘柄ではなく、
+皆さ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="lead">だから、</div>
+  <div class="stmt">良い銘柄ではなく、<br>皆さんの投資人生に役立つ<br><span class="em">考え方</span>を先に解説します。</div>
+</section>
+
+<!-- Anthropicが上場 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="h-main">Anthropicが上場した日に、なぜ株が急落したのか｜要因は3つあります</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">上場に資金が移って、そのあと利益確定の売りが出た</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">半導体のAMDに、悪い報道が2つ出た</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">AIへの投資を支えているお金の回り方が、疑われた</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- Anthropicの株は -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="lead">1つ目は、短い話です｜大きな上場では、手持ちのAIや半導体の株を売って資金を作り、初日に値上がりした分を確定する売りも出ます</div>
+  <div class="stmt">Anthropicの株は、<br>売り出したときの価格より<br><span class="em">高い値段</span>で<br>初日を終えています。</div>
+  <div class="note">上場そのものは、失敗していません</div>
+</section>
+
+<!-- この日のAMDの株 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="lead">2つ目が、AMDです｜AI向けの半導体でNVIDIAと競争しているアメリカの企業</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">この日のAMDの株</div>
+      <div class="mfig">約8<span class="u">%下落</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- きっかけは、2つの報道で -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="h-main">きっかけは、2つの報道です</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">中国の企業の件</div><div class="ctext">アメリカが輸出を規制している中国の企業が、規制されたあともAMDの新しいソフトウェアを使っていたのではないか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">買い手の資金繰り</div><div class="ctext">借り入れの保証や出資の約束で、自社の半導体を買いやすくしている、という指摘</div></div>
+  </div>
+</section>
+
+<!-- 画像：01_hunterbrook -->
+<section class="slide t-image"><img src="img/01_hunterbrook.png" alt="ハンターブルックは普通の報道機関ではない"></section>
+
+<!-- AMDの株が下がれば
+利 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="lead">つまり</div>
+  <div class="stmt">AMDの株が下がれば<br>利益が出る立場の機関が、<br><span class="em">悪い材料</span>を<br>世の中に出した。</div>
+</section>
+
+<!-- AMDが法律に違反したと -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="lead">AMDは、事業のやり方や取引の関係が誤って伝えられていると反論し、アメリカの輸出のルールは守っていると説明しています</div>
+  <div class="stmt">AMDが法律に違反したと<br><span class="em">決まった話では<br>ありません</span>。</div>
+  <div class="note">もちろん、空売りをしている側の調査だから中身は嘘だ、とも言えません</div>
+</section>
+
+<!--  -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="badge navy">だから今回の下げは、分けて見る必要があります</div>
+  <div class="h-main"></div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">業績が</div><div class="cap">悪くなった分の</div><div class="big">下げ</div></div>
+    <div class="vsmark">か</div>
+    <div class="box left"><div class="name">空売りの報道を</div><div class="cap">きっかけに</div><div class="big">反応しすぎた<br>下げ</div></div>
+  </div>
+</section>
+
+<!-- 3つ目が、いちばん大きな -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="h-main">3つ目が、いちばん大きな原因｜お金の回り方を、順番に追ってみます</div>
+  <div class="chain">
+    <div class="node">半導体や<br>クラウドの企業が<br>お金を出す</div>
+    <div class="arr">→</div>
+    <div class="node">AIの企業が<br>そのお金で<br>半導体を買う</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">売上が<br>半導体の企業に<br>戻る</div>
+  </div>
+  <div class="release">売上は確かに立っています。ところが、お金の出どころをたどると、半導体の企業自身に行き着く部分がある、ということです</div>
+</section>
+
+<!-- 上場の3日前に取り上げて -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="h-main">上場の3日前に取り上げていたのが、FRB（日本でいえば日銀）のマイケル・バー理事｜注意が要る3つ</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">AIの企業の借金が、急に増えている</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">半導体やクラウドの企業とAIの企業が、お互いにお金を出し合っている</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">リースや保証の契約が、複雑になっている</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 最後にAIを使う企業や個 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="badge navy">誤解のないように言うと、これは不正の話ではありません｜分かれ目は1つ</div>
+  <div class="h-main">最後にAIを使う企業や個人が払う利用料で、使ったお金を取り戻せるかどうか。市場は上場の日に、ここを見直し始めました</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">取り戻せるなら</div><div class="cap"></div><div class="big">成長を<br>速めるだけ</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">取り戻せないなら</div><div class="cap"></div><div class="big">借り入れに<br>頼り続ける</div></div>
+  </div>
+</section>
+
+<!-- AMDのデータセンター向 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="lead">つまり、疑われたのはお金の出どころで、AIの需要ではありません</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">AMDのデータセンター向けの売上（7〜9月・前の年から）</div>
+      <div class="mfig">ほぼ2<span class="u">倍</span></div>
+      <div class="msub">半導体が売れなくなったから株が下がった、という話とは違います</div>
+    </div>
+  </div>
+</section>
+
+<!-- では、なぜ日本株まで下が -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="h-main">では、なぜ日本株まで下がったのか</div>
+  <div class="chain">
+    <div class="node">アメリカの<br>半導体株が<br>下がる</div>
+    <div class="arr">→</div>
+    <div class="node">日本の装置・<br>電子部品・電線も<br>一緒に減らす</div>
+    <div class="arr">→</div>
+    <div class="node danger">先物や指数ごと<br>まとめて売る</div>
+  </div>
+  <div class="release">決算の良い企業まで、同じ日に下がります。日本の企業の業績が、その日に悪くなったのではありません</div>
+</section>
+
+<!-- 過去の技術革命でも
+同じ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：急落の原因は、AIの需要ではありません</span><span class="brand"></span></div>
+  <div class="lead">利益は伸びているのに、株価は下がる</div>
+  <div class="stmt">過去の技術革命でも<br>同じことがあったのかは、<br><span class="em">あとで解説</span>します。</div>
+  <div class="note">その前に、今回の売りがどのくらいの規模なのかを見ておきます</div>
+</section>
+
+<!-- ========== p03_kibo（9枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 3：今回のハイテク株の売りは、どのくらいの規模なのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 3 / 17</span><span class="bar"></span><span>売りの規模</span></div>
+  <div class="numbox">3</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">今回のハイテク株の売りは、<br>どのくらいの<br>規模なのか</div><div class="rule"></div><div class="desc">記録的な売り</div></div>
+</section>
+
+<!-- ハイテク株には、
+【記録 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：今回のハイテク株の売りの規模</span><span class="brand"></span></div>
+  <div class="lead">実は、Anthropicが上場する前から</div>
+  <div class="stmt">ハイテク株には、<br><span class="em">記録的な売り</span>が<br>出ていました。</div>
+</section>
+
+<!-- 11月6日までの1週間の -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：今回のハイテク株の売りの規模</span><span class="brand"></span></div>
+  <div class="lead">ゴールドマン・サックスが集計している、顧客のヘッジファンドの売り買い｜世界でもアメリカでも、いちばん売られた業種がハイテク</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">11月6日までの1週間のハイテク株の売り（2016年以降で）</div>
+      <div class="mfig">最大級</div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 減らしたのは、ヘッジファ -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：今回のハイテク株の売りの規模</span><span class="brand"></span></div>
+  <div class="h-main">減らしたのは、ヘッジファンドだけではありません｜バンク・オブ・アメリカの調査で、ハイテク株を多めに持っていると答えた運用担当者</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の月</div><div class="c-v">37%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">1か月後</div><div class="c-v">12%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">1か月の減らし方として</div><div class="r-v">2006年以来</div></div>
+  </div>
+</section>
+
+<!-- 画像：02_rule_uri -->
+<section class="slide t-image"><img src="img/02_rule_uri.png" alt="ファンドの決まりで売りが重なった"></section>
+
+<!-- アメリカの主なIT企業の -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：今回のハイテク株の売りの規模</span><span class="brand"></span></div>
+  <div class="lead">ところが、業績は逆を向いています｜同じ7月から9月の決算</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">アメリカの主なIT企業の利益（前の年から）</div>
+      <div class="mfig">+69<span class="u">%</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!--  -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：今回のハイテク株の売りの規模</span><span class="brand"></span></div>
+  <div class="badge navy">この2つが、同時に起きています</div>
+  <div class="h-main"></div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">売りは</div><div class="cap"></div><div class="big">記録的</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">業績は</div><div class="cap"></div><div class="big">絶好調</div></div>
+  </div>
+</section>
+
+<!-- 半年以内にAIの設備投資 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 3：今回のハイテク株の売りの規模</span><span class="brand"></span></div>
+  <div class="lead">弱気の見方が無いわけではありません｜さきほどの調査</div>
+  <div class="h-main">半年以内にAIの設備投資を減らす発表が出ると予想した運用担当者｜ただ、いま出ている決算の数字に、その兆しはまだ出ていません</div>
+  <div class="pbar">
+    <div class="seg main" style="width:50%"><span class="p">およそ半分</span><span class="l"></span></div>
+    <div class="seg rest"><span class="p"></span><span class="l"></span></div>
+  </div>
+</section>
+
+<!-- 日本にも、
+【注文が過去 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：今回のハイテク株の売りの規模</span><span class="brand"></span></div>
+  <div class="lead">売りは記録的で、業績は絶好調。これは、アメリカだけの話ではありません</div>
+  <div class="stmt">日本にも、<br><span class="em">注文が過去最高</span>になったのに、<br>年の初めより株価が<br>下がっている企業があります。</div>
+  <div class="note">あとで解説します</div>
+</section>
+
+<!-- ========== p04_nangoume（12枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか。今は、何合目なのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4 / 17</span><span class="bar"></span><span>何合目</span></div>
+  <div class="numbox">4</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">過去のイノベーションは<br>何年続いたのか。<br>今は、何合目なのか</div><div class="rule"></div><div class="desc">技術革命の長さ</div></div>
+</section>
+
+<!-- この不安には、
+過去の技 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="lead">AIはもう終わりなのか</div>
+  <div class="stmt">この不安には、<br>過去の技術革命が<br><span class="em">何年続いたのか</span>を見ると、<br>答えが出ます。</div>
+</section>
+
+<!-- まず、電気です｜アメリカ -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="h-main">まず、電気です｜アメリカの工場で使う動力のうち、電気の割合</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1900年</div><div class="c-v">1割未満</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">1930年</div><div class="c-v">約8割</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">世の中を変えるまで</div><div class="r-v">約50年</div></div>
+  </div>
+</section>
+
+<!-- 動力を電気に取り替えただ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="lead">なぜ、そんなに時間がかかったのか</div>
+  <div class="stmt">動力を電気に取り替えただけでは<br>生産は変わらず、<br><span class="em">工場を作り直してから</span><br>効果が出ました。</div>
+  <div class="note">機械の1台ずつにモーターを付けて、工場を作り直したためです</div>
+</section>
+
+<!-- インターネットも同じです -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="h-main">インターネットも同じです｜大きく育ったのは、バブルが崩れたあと</div>
+  <div class="h-sub">アメリカで使う人が大人の半分を超えたころにITバブルが崩れても、使う人は増え続けました。株価が崩れた年は、技術の終わりではなく、まだ途中でした</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">クラウド</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">ネット通販</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">動画の配信</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">SNS</div></div>
+  </div>
+</section>
+
+<!-- この流れを研究してきたの -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="h-main">この流れを研究してきたのが、経済学者のカルロタ・ペレスです</div>
+  <div class="h-sub">18世紀の産業革命から数えて</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">大きな技術革命</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">5回</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">1回の長さ</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">50〜60年</div></div></div>
+  </div>
+</section>
+
+<!-- どの回も、同じ順番で進ん -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="h-main">どの回も、同じ順番で進んでいます</div>
+  <div class="chain">
+    <div class="node">新しい技術へ<br>お金が<br>集まりすぎる</div>
+    <div class="arr">→</div>
+    <div class="node danger">途中で<br>調整が来る</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">技術が<br>経済全体に<br>広がる</div>
+  </div>
+  <div class="release">調整は、技術革命の途中で毎回起きてきたことです</div>
+</section>
+
+<!-- 仕事にAIを取り入れてい -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="lead">では、生成AIは今、どこにいるのか｜ChatGPTが出てから、まだ4年目。個人が使い始める速さは、パソコンやインターネットの最初のころより速いと言われています</div>
+  <div class="h-main">仕事にAIを取り入れているアメリカの企業（2025年の末・FRBの研究）</div>
+  <div class="pbar">
+    <div class="seg main" style="width:18%"><span class="p">約18%</span><span class="l"></span></div>
+    <div class="seg rest"><span class="p">残りの大半</span><span class="l">まだこれから</span></div>
+  </div>
+</section>
+
+<!-- 僕は、
+【まだ2合目】あ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="lead">山登りでいえば</div>
+  <div class="stmt">僕は、<br><span class="em">まだ2合目</span>あたりだと<br>見ています。</div>
+</section>
+
+<!-- 画像：03_gijutsu_owari -->
+<section class="slide t-image"><img src="img/03_gijutsu_owari.png" alt="今回の急落は、技術の終わりではない"></section>
+
+<!-- ここまでで、今回の下げの -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="h-main">ここまでで、今回の下げの正体が見えてきました</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">きっかけは、お金の回り方への疑い</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">売りは記録的・業績は絶好調</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">AIは、まだ2合目</span><span class="d"></span></div>
+  </div>
+  <div class="cta">では、残りの8合で何が起きるのか。ここからは、その話です</div>
+</section>
+
+<!-- 電気の話には、続きがあり -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：過去のイノベーションは何年続いたのか</span><span class="brand"></span></div>
+  <div class="h-main">電気の話には、続きがあります｜電気が本当に世の中を変えたのは、工場の機械の中に入ってから</div>
+  <div class="chain">
+    <div class="node">今のAIは<br>まだ<br>画面の中</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">工場や<br>ロボットの中で<br>現実の物を動かす</div>
+  </div>
+  <div class="release">その段階は、これから来ます。その動きは、もう始まっています。上場したばかりのAnthropicが、それを見せています</div>
+</section>
+
+<!-- ========== p05_zunou（10枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 5：生成AIは、ロボットの頭脳になり始めています</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 5 / 17</span><span class="bar"></span><span>頭脳</span></div>
+  <div class="numbox">5</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">生成AIは、<br>ロボットの頭脳に<br>なり始めています</div><div class="rule"></div><div class="desc">AIがロボットを動かす</div></div>
+</section>
+
+<!-- 文章を書くだけのものでは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：生成AIは、ロボットの頭脳になり始めています</span><span class="brand"></span></div>
+  <div class="lead">AnthropicのClaudeや、グーグルのGeminiのような生成AIは</div>
+  <div class="stmt">文章を書くだけのものでは<br>なくなってきました。<br><span class="em">ロボットの頭脳</span>として、<br>積まれ始めています。</div>
+</section>
+
+<!-- 画像：04_robot_demo -->
+<section class="slide t-image"><img src="img/04_robot_demo.png" alt="最新AIで、ロボットが実世界で作業を成功"></section>
+
+<!-- メーカーが違うロボットを -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：生成AIは、ロボットの頭脳になり始めています</span><span class="brand"></span></div>
+  <div class="lead">Anthropicは、頭脳とロボットをつなぐところにも手を広げています</div>
+  <div class="stmt">メーカーが違うロボットを、<br>同じやり方でAIにつなげる<br><span class="em">共通の規格</span>を公開しました。</div>
+  <div class="note">韓国のロボット企業が試験を始め、デンマークのロボット企業も対応を進めています。日本でも動いています</div>
+</section>
+
+<!-- 画像：05_hitachi -->
+<section class="slide t-image"><img src="img/05_hitachi.png" alt="日立製作所がAnthropicと戦略的提携"></section>
+
+<!-- 日本円で -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：生成AIは、ロボットの頭脳になり始めています</span><span class="brand"></span></div>
+  <div class="lead">そしてAnthropicは、今回の上場で過去最大の資金を集めました｜同時に受けた出資と合わせて、およそ1,054億ドル</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">日本円で</div>
+      <div class="mfig" style="font-size:120px">約16兆6,500<span class="u">億円</span></div>
+      <div class="msub">ロボット専用の予算は公表されていませんが、研究に使えるお金は大きく増えます</div>
+    </div>
+  </div>
+</section>
+
+<!-- AIに関節を直接動かさせ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：生成AIは、ロボットの頭脳になり始めています</span><span class="brand"></span></div>
+  <div class="badge navy">ところが、頭脳だけでは、ロボットの関節を1つずつ動かすことはできません｜Anthropicが7月に公表した研究</div>
+  <div class="h-main">AIに関節を直接動かさせると、作業はほとんど最後までできませんでした</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">関節を動かすのに要る指令</div><div class="cap">1秒あたり</div><div class="big">約83回</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">AIが出せた指令</div><div class="cap">1秒あたり</div><div class="big">0.2〜0.4回</div></div>
+  </div>
+</section>
+
+<!-- AIが賢くなるほど、動か -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：生成AIは、ロボットの頭脳になり始めています</span><span class="brand"></span></div>
+  <div class="badge navy">つまり、役割が分かれます</div>
+  <div class="h-main">AIが賢くなるほど、動かす側の技術が要るようになります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">AI</div><div class="cap"></div><div class="big">何をするかを<br>決める</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">ロボットの側</div><div class="cap"></div><div class="big">安全に速く<br>正確に動かす</div></div>
+  </div>
+</section>
+
+<!-- 日立との提携で、
+【その -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：生成AIは、ロボットの頭脳になり始めています</span><span class="brand"></span></div>
+  <div class="lead">その動かす側で、世界の上位にいるのが日本の企業です｜日本の特定のロボットにClaudeを積んだ、という発表はまだありません</div>
+  <div class="stmt">日立との提携で、<br><span class="em">その入口</span>は<br>できています。</div>
+  <div class="note">そしてグーグルとNVIDIAは、もう日本のロボット企業と組んでいます</div>
+</section>
+
+<!-- グーグルのAIを頭脳に積 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：生成AIは、ロボットの頭脳になり始めています</span><span class="brand"></span></div>
+  <div class="lead">1社目は</div>
+  <div class="stmt">グーグルのAIを頭脳に積んだ<br>ロボットを、<br><span class="em">2026年の12月</span>に<br>出荷する企業です。</div>
+</section>
+
+<!-- ========== p06_fanuc（19枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 6：ロボットの本体ファナック</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 6 / 17</span><span class="bar"></span><span>1社目</span></div>
+  <div class="numbox">6</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">ロボットの本体<br>ファナック</div><div class="rule"></div><div class="desc">証券コード 6954</div></div>
+</section>
+
+<!-- 画像：06_fanuc -->
+<section class="slide t-image"><img src="img/06_fanuc.png" alt="ファナック 証券コード6954"></section>
+
+<!-- 2026年4〜9月の決算 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="h-main">2026年4〜9月の決算</div>
+  <div class="h-sub">前の年の同じ期間から</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">売上</div><div class="cd">16.2%増</div></div><div class="body"><div class="lbl"></div><div class="val2">4,737億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益</div><div class="cd">35.7%増</div></div><div class="body"><div class="lbl"></div><div class="val2">1,167億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">純利益</div><div class="cd">41.0%増</div></div><div class="body"><div class="lbl"></div><div class="val2">1,126億円</div></div></div>
+  </div>
+</section>
+
+<!-- これを受けて、今期の予想 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="h-main">これを受けて、今期の予想を引き上げました</div>
+  <div class="h-sub">営業利益は、前の期より31%増える計算です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">1兆137億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">2,407億円</div></div></div>
+  </div>
+</section>
+
+<!-- 7月から9月の3か月で受 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="lead">なぜ伸びているのか</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">7月から9月の3か月で受けた注文（前の年から49%増）</div>
+      <div class="mfig">3,060<span class="u">億円</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 今の業績を引っ張っている -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="badge navy">いちばん伸びたのは、工作機械の制御装置の部門｜AI半導体やAIサーバー、データセンターの部品を加工する機械が、世界で増えています</div>
+  <div class="h-main">今の業績を引っ張っているのは、AIを載せたロボットより、AIを作るための設備のほうです</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">制御装置の部門</div><div class="cap">注文</div><div class="big">2.3倍</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">ロボットの部門</div><div class="cap">注文</div><div class="big">12.6%増</div></div>
+  </div>
+</section>
+
+<!-- 画像：07_fanuc_yousetsu -->
+<section class="slide t-image"><img src="img/07_fanuc_yousetsu.png" alt="グーグルのAIでAI溶接"></section>
+
+<!-- 画像：08_fanuc_nvidia -->
+<section class="slide t-image"><img src="img/08_fanuc_nvidia.png" alt="NVIDIAのAIでロボットがTシャツをたたむ"></section>
+
+<!-- アメリカは、ロボットを
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="lead">海外では、アメリカのミシガン州に新しい施設を作る計画｜9,000万ドル、日本円でおよそ142億円</div>
+  <div class="stmt">アメリカは、ロボットを<br>輸入に頼りすぎていることを、<br><span class="em">国の安全の問題</span>として<br>扱い始めています。</div>
+  <div class="note">現地で作れることが強みになります</div>
+</section>
+
+<!-- 財務です｜借金にほとんど -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="h-main">財務です｜借金にほとんど頼っていない企業です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">88.7%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約5,512億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期</div></div><div class="body"><div class="lbl"></div><div class="val2">9.3%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準</div>
+  <div class="h-sub">11月20日の終値で計算</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">20.4倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2.5倍</div></div></div>
+  </div>
+</section>
+
+<!-- 教える手間が減れば、これ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="badge navy">フィジカルAIとの関係です｜ファナックにとっての変化は、売り方が増えること</div>
+  <div class="h-main">教える手間が減れば、これまでロボットを入れられなかった小さな工場も、買い手になります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">これまで</div><div class="cap"></div><div class="big">1台売って<br>終わり</div></div>
+    <div class="vsmark">→</div>
+    <div class="box left"><div class="name">これから</div><div class="cap">AI溶接のように</div><div class="big">毎月の<br>利用料も</div></div>
+  </div>
+</section>
+
+<!-- 利用料の金額や契約の数は -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="lead">正直にお伝えすると</div>
+  <div class="stmt">利用料の金額や契約の数は、<br><span class="em">まだ開示されていません</span>。</div>
+  <div class="note">出荷が始まってからの数字で確かめる話です</div>
+</section>
+
+<!-- 国産のロボットと主要な部 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="lead">国も動いています｜高市早苗首相は11月12日、フィジカルAIの企業との意見交換で</div>
+  <div class="stmt">国産のロボットと主要な部品を、<br>研究から量産の拠点まで<br><span class="em">一貫して支援</span>する<br>必要があると話しました。</div>
+</section>
+
+<!-- ファナックの株を持ってい -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="lead">海外の機関投資家です｜大株主にはノルウェー政府の名前。ブラックロックの、企業統治に注目して銘柄を選ぶファンドでは、組み入れの上位8番目</div>
+  <div class="h-main">ファナックの株を持っている外国の法人など</div>
+  <div class="pbar">
+    <div class="seg main" style="width:51%"><span class="p">51.40%</span><span class="l">外国の法人など</span></div>
+    <div class="seg rest"><span class="p"></span><span class="l"></span></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日の終値</div><div class="c-v">6,304円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">11月20日の終値</div><div class="c-v">5,047円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">年初来</div><div class="r-v">約20%下落</div></div>
+  </div>
+</section>
+
+<!-- 10年で見ると -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="h-main">10年で見ると</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2016年の年末</div><div class="c-v">3,963円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今</div><div class="c-v">5,047円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">10年で</div><div class="r-v">約1.3倍</div></div>
+  </div>
+</section>
+
+<!-- 次の決算で見るところは3 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">AI溶接が予定どおり出荷されて、契約がどれだけ取れたか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">ロボットの部門の注文が、12.6%から伸びるか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">半導体や電子部品の調達が間に合うか</span><span class="d">注文は多くても、部品が足りずに納期が延びている、と経営陣は話しています</span></div>
+  </div>
+</section>
+
+<!-- その部品で
+【世界のおよ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ファナック 6954</span><span class="brand"></span></div>
+  <div class="lead">ところで、ロボットの腕を曲げる大きな関節には、別の企業の部品が入っています</div>
+  <div class="stmt">その部品で<br><span class="em">世界のおよそ6割</span>を持つ<br>日本の企業は、<br>あとで解説します。</div>
+  <div class="note">その前に、利益は伸びているのに株価は下がっている、という話です。過去の技術革命でも、同じことが起きていました</div>
+</section>
+
+<!-- ========== p07_rieki_kabuka（11枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 7：利益が伸びていても、株価は下がりました</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 7 / 17</span><span class="bar"></span><span>利益と株価</span></div>
+  <div class="numbox">7</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">利益が伸びていても、<br>株価は<br>下がりました</div><div class="rule"></div><div class="desc">過去の技術革命</div></div>
+</section>
+
+<!-- これは、今年のファナック -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：利益が伸びていても、株価は下がりました</span><span class="brand"></span></div>
+  <div class="lead">利益の予想を引き上げた年に、株価が下がる</div>
+  <div class="stmt">これは、今年のファナック<br>だけの話では<br><span class="em">ありません</span>。</div>
+  <div class="note">過去の技術革命でも、同じことが起きています</div>
+</section>
+
+<!-- 画像：09_apple2008 -->
+<section class="slide t-image"><img src="img/09_apple2008.png" alt="2008年のAppleも、業績好調でも株価は大きく下落"></section>
+
+<!-- iPhoneが売れなくな -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：利益が伸びていても、株価は下がりました</span><span class="brand"></span></div>
+  <div class="lead">同じ年のグーグルも、売上が3割増えたのに、株価は大きく下げています</div>
+  <div class="stmt">iPhoneが売れなくなったから<br>ではなく、<br>株を持っていられなくなった人が<br><span class="em">売ったから</span>下がりました。</div>
+</section>
+
+<!-- なぜ、こういうことが起き -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 7：利益が伸びていても、株価は下がりました</span><span class="brand"></span></div>
+  <div class="h-main">なぜ、こういうことが起きるのか｜株価は、2つのもので決まります</div>
+  <div class="chain">
+    <div class="node">企業が<br>稼ぐ利益</div>
+    <div class="arr">×</div>
+    <div class="node">投資家が<br>どれだけ<br>高く買うか</div>
+    <div class="arr">＝</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">株価</div>
+  </div>
+  <div class="release">利益が増えていても、不安が広がって、高く買う人が減れば、株価は下がります。利益が伸び続けている限り、不安が収まったときに株価が戻る土台は残っています</div>
+</section>
+
+<!--  -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：利益が伸びていても、株価は下がりました</span><span class="brand"></span></div>
+  <div class="badge navy">では、今回は2000年のITバブルと同じなのか｜違いは、お金を出している企業の中身</div>
+  <div class="h-main"></div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">2000年</div><div class="cap">アメリカで上場した企業</div><div class="big">8割が<br>赤字</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">いま</div><div class="cap">AIに投資している中心</div><div class="big">黒字の<br>大企業</div></div>
+  </div>
+</section>
+
+<!-- 純利益（652億ドル） -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：利益が伸びていても、株価は下がりました</span><span class="brand"></span></div>
+  <div class="lead">NVIDIAは、8月から10月の3か月だけで｜マイクロソフトも、グーグルも、アマゾンも、本業の利益からAIの設備にお金を出しています</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">純利益（652億ドル）</div>
+      <div class="mfig" style="font-size:120px">約10兆3,000<span class="u">億円</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 画像：10_cisco2000 -->
+<section class="slide t-image"><img src="img/10_cisco2000.png" alt="2000年もインターネットは本物だった"></section>
+
+<!-- 画像：11_kaifuku -->
+<section class="slide t-image"><img src="img/11_kaifuku.png" alt="下がった株は、どれくらいで戻ったのか"></section>
+
+<!-- お金の回り方は疑われてい -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：利益が伸びていても、株価は下がりました</span><span class="brand"></span></div>
+  <div class="badge navy">今回はどうか｜FRBが11月に公表した会合の記録</div>
+  <div class="h-main">お金の回り方は疑われていますが、金融危機が始まったという話にはなっていません</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">データセンター向けの社債</div><div class="cap"></div><div class="big">金利の上乗せが<br>広がっている</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">銀行の体力</div><div class="cap"></div><div class="big">保たれている</div></div>
+  </div>
+</section>
+
+<!-- 次は、AIの次に何が来る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：利益が伸びていても、株価は下がりました</span><span class="brand"></span></div>
+  <div class="lead">株価の見方は、これで決まりました</div>
+  <div class="stmt">次は、AIの次に何が来るのか。<br>答えは、<br><span class="em">フィジカルAI</span>です。</div>
+</section>
+
+<!-- ========== p08_physical_ai（13枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 8：次に来るのは、フィジカルAIです</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 8 / 17</span><span class="bar"></span><span>フィジカルAI</span></div>
+  <div class="numbox">8</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">次に来るのは、<br>フィジカルAIです</div><div class="rule"></div><div class="desc">日本と、国と、介護</div></div>
+</section>
+
+<!-- AIにとっての機械が、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：次に来るのは、フィジカルAIです</span><span class="brand"></span></div>
+  <div class="lead">フィジカルAIは、AIがロボットの体を持って、現実の世界で作業をすることでした｜電気は、工場の機械の中に入ってから世の中を変えました</div>
+  <div class="stmt">AIにとっての機械が、<br><span class="em">ロボット</span>です。</div>
+</section>
+
+<!-- 世界の産業用ロボットのう -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 8：次に来るのは、フィジカルAIです</span><span class="brand"></span></div>
+  <div class="lead">では、なぜ日本なのか｜AIの頭脳を作っているのはアメリカの企業ですが、工場で何年も止まらずに動く体を作ってきたのは、日本の企業です</div>
+  <div class="h-main">世界の産業用ロボットのうち、日本が作っている割合</div>
+  <div class="pbar">
+    <div class="seg main" style="width:38%"><span class="p">約38%</span><span class="l">日本</span></div>
+    <div class="seg rest"><span class="p"></span><span class="l"></span></div>
+  </div>
+</section>
+
+<!-- 画像：12_yaskawa -->
+<section class="slide t-image"><img src="img/12_yaskawa.png" alt="安川電機、GoogleのAIをロボットに搭載"></section>
+
+<!-- 画像：13_honebuto -->
+<section class="slide t-image"><img src="img/13_honebuto.png" alt="政府、フィジカルAIを成長の軸に"></section>
+
+<!-- 画像：14_jinkou_6bunya -->
+<section class="slide t-image"><img src="img/14_jinkou_6bunya.png" alt="なぜ今、フィジカルAIが必要なのか"></section>
+
+<!-- ただ、国が
+【どこにお金 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：次に来るのは、フィジカルAIです</span><span class="brand"></span></div>
+  <div class="lead">これは目標で、決まった売上ではありません</div>
+  <div class="stmt">ただ、国が<br><span class="em">どこにお金を出すつもりなのか</span>は、<br>ここから読めます。</div>
+</section>
+
+<!-- 頼れる相手は限られます｜ -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 8：次に来るのは、フィジカルAIです</span><span class="brand"></span></div>
+  <div class="lead">アメリカも、日本を必要としています｜アメリカ政府は2026年10月に、ロボットや産業機械を輸入に頼りすぎていることは国の安全に関わる、と正式に認めました。中国製のロボットに任せたくないからです</div>
+  <div class="h-main">頼れる相手は限られます｜これまでの産業用ロボットの世界のシェア</div>
+  <div class="pbar">
+    <div class="seg main" style="width:85%"><span class="p">約85%</span><span class="l">日本とヨーロッパの企業</span></div>
+    <div class="seg rest"><span class="p"></span><span class="l"></span></div>
+  </div>
+</section>
+
+<!-- 画像：15_kaigo -->
+<section class="slide t-image"><img src="img/15_kaigo.png" alt="介護こそフィジカルAIが必要なのに"></section>
+
+<!-- 画像：16_kaigo_kikai -->
+<section class="slide t-image"><img src="img/16_kaigo_kikai.png" alt="介護ロボットは、日本の大きな機会"></section>
+
+<!-- 画像：17_kaigo_kaigai -->
+<section class="slide t-image"><img src="img/17_kaigo_kaigai.png" alt="日本の介護ロボット、海外で導入が進む"></section>
+
+<!-- それでも、
+【求められて -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：次に来るのは、フィジカルAIです</span><span class="brand"></span></div>
+  <div class="lead">まだ大量に売れている段階ではなく、韓国や中国の企業も競争相手です</div>
+  <div class="stmt">それでも、<br><span class="em">求められている</span>のは<br>事実です。</div>
+</section>
+
+<!-- その力加減を測る、
+【直 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：次に来るのは、フィジカルAIです</span><span class="brand"></span></div>
+  <div class="lead">介護でいちばん要るのは、人の体を支えるときの力加減です</div>
+  <div class="stmt">その力加減を測る、<br><span class="em">直径9ミリのセンサー</span>を<br>作っている日本の企業も、<br>あとで解説します。</div>
+  <div class="note">工場でも同じで、ロボットの体の中でいちばん難しいのは、腕と手です。肩から指先まで、順番に見ていきます</div>
+</section>
+
+<!-- ========== p09_udemawari（12枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 9 / 17</span><span class="bar"></span><span>腕周り</span></div>
+  <div class="numbox">9</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">日本の腕周りは、<br>世界の上位に<br>います</div><div class="rule"></div><div class="desc">腕と手の難しさ</div></div>
+</section>
+
+<!-- ロボットで、なぜ腕と手が -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="h-main">ロボットで、なぜ腕と手がいちばん難しいのか｜人の手を思い浮かべてください</div>
+  <div class="h-sub">強い力と、やさしい力と、細かい動きを、同じ手で切り替えています</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">卵を<br>割らずに持つ</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">重い鍋を<br>つかむ</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">鍵を<br>鍵穴に差し込む</div></div>
+  </div>
+</section>
+
+<!-- これをロボットでやるには -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="h-main">これをロボットでやるには、指1本の中に詰め込まないといけません</div>
+  <div class="h-sub">力を強くすれば重くなり、動きが遅くなります。部品を増やせば、壊れる場所も増えます</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">モーター</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">歯車</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">軸受</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">センサー</div></div>
+  </div>
+</section>
+
+<!-- 小さく、軽く、強く、正確 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="lead">しかも、つかんだ瞬間に、滑りかけているのか、つぶれかけているのかを感じ取って、すぐに力を変える必要があります。カメラで見るだけでは分かりません</div>
+  <div class="stmt">小さく、軽く、強く、正確で、<br>しかも壊れない。<br>この全部を同時に求められるのが、<br><span class="em">腕と指先</span>です。</div>
+</section>
+
+<!-- 画像：18_honda_hand -->
+<section class="slide t-image"><img src="img/18_honda_hand.png" alt="ホンダのロボットの手"></section>
+
+<!-- 画像：19_panasonic -->
+<section class="slide t-image"><img src="img/19_panasonic.png" alt="パナソニック、指先の感覚を使うAI"></section>
+
+<!-- 中国やアメリカと比べてみ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="h-main">中国やアメリカと比べてみます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">アメリカ</div><div class="ctext">AIの頭脳で先を走っている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">中国</div><div class="ctext">安さと作る速さ。関節が22か所動く手を、およそ100万円から</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">日本</div><div class="ctext">何年も止まらずに、正確に動き続ける精密さと、壊れにくさ</div></div>
+  </div>
+</section>
+
+<!-- 精密さと壊れにくさは、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="lead">ここは、僕の見方です</div>
+  <div class="stmt">精密さと壊れにくさは、<br>日本が中国にもアメリカにも<br><span class="em">勝てるところ</span>です。</div>
+  <div class="note">工場のロボットは、1日止まれば大きな損になります。だから、値段より先に、壊れないことが求められます</div>
+</section>
+
+<!-- その精密さは、数字に出て -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="h-main">その精密さは、数字に出ています｜ロボットの腕を、肩から順に</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">肩や肘</div><div class="ctext">大きな関節に入る減速機。モーターの速い回転を、ゆっくりで力強い動きに</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">腕をまっすぐ動かすところ</div><div class="ctext">レールの上をなめらかに滑らせる部品</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">手首や指</div><div class="ctext">もっと小さくて軽い歯車</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">指先</div><div class="ctext">とても小さな軸受と、つかんだ力を測るセンサー</div></div>
+  </div>
+</section>
+
+<!-- 日本の企業は、
+世界の【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="lead">この4つの場所のそれぞれで</div>
+  <div class="stmt">日本の企業は、<br>世界の<span class="em">5割から6割</span>の<br>シェアを持つか、<br>首位にいます。</div>
+  <div class="note">完成したロボットをどの国の企業が作っても、中の部品には日本製が選ばれてきました。これが日本の強みです</div>
+</section>
+
+<!-- ここからの4社は、ここま -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="h-main">ここからの4社は、ここまでの話の答え合わせです｜見るところは3つ</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">注文は伸びているのか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">株価が下がっているなら、その理由は業績なのか、市場全体の売りなのか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">フィジカルAIは、もう売上になっているのか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- ファナックの話の最後に出 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：日本の腕周りは、世界の上位にいます</span><span class="brand"></span></div>
+  <div class="lead">では、肩と肘の関節から見ていきます</div>
+  <div class="stmt">ファナックの話の最後に出した、<br><span class="em">世界のおよそ6割</span>を持つ<br>企業です。</div>
+</section>
+
+<!-- ========== p10_nabtesco（19枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 10：肩と肘の減速機ナブテスコ</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 10 / 17</span><span class="bar"></span><span>2社目</span></div>
+  <div class="numbox">10</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">肩と肘の減速機<br>ナブテスコ</div><div class="rule"></div><div class="desc">証券コード 6268</div></div>
+</section>
+
+<!-- 画像：20_nabtesco -->
+<section class="slide t-image"><img src="img/20_nabtesco.png" alt="ナブテスコ、世界のロボットの関節部品"></section>
+
+<!-- 【ファナック】がいて、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="lead">大株主には</div>
+  <div class="stmt"><span class="em">ファナック</span>がいて、<br>株の3.20%を<br>持っています。</div>
+</section>
+
+<!-- 2026年1〜9月の決算 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">2026年1〜9月の決算｜ナブテスコは12月が決算の月です</div>
+  <div class="h-sub">前の年の同じ期間から</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">売上</div><div class="cd">14.4%増</div></div><div class="body"><div class="lbl"></div><div class="val2">2,508億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益</div><div class="cd">50.9%増</div></div><div class="body"><div class="lbl"></div><div class="val2">233億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">純利益</div><div class="cd">44.2%増</div></div><div class="body"><div class="lbl"></div><div class="val2">169億円</div></div></div>
+  </div>
+</section>
+
+<!-- 今期の予想 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">今期の予想</div>
+  <div class="h-sub">営業利益は、前の期より55.6%増える見通しです</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">3,440億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">326億円</div></div></div>
+  </div>
+</section>
+
+<!-- なぜ伸びているのか｜数が -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">なぜ伸びているのか｜数が売れて工場がよく回るようになり、値上げも通ったから</div>
+  <div class="h-sub">中国と韓国で、自動車を作るロボット向けが好調でした</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">1〜9月に受けた注文</div><div class="cd">22.9%増</div></div><div class="body"><div class="lbl"></div><div class="val2">2,893億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">減速機を含む部門</div><div class="cd">営業利益</div></div><div class="body"><div class="lbl"></div><div class="val2">90.6%増</div></div></div>
+  </div>
+</section>
+
+<!-- 工場は日本と中国に3つ -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">工場は日本と中国に3つ</div>
+  <div class="h-sub">主力の津工場には、まだ作れる余地があります</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">作れる数</div><div class="cd">合わせて年に</div></div><div class="body"><div class="lbl"></div><div class="val2">115万台</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">津工場の稼働率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">85%</div></div></div>
+  </div>
+</section>
+
+<!-- 画像：21_nabtesco_kogata -->
+<section class="slide t-image"><img src="img/21_nabtesco_kogata.png" alt="ナブテスコ、ロボットの小さな関節にも拡大"></section>
+
+<!-- 全体の売上から見ると、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="lead">ただ、小型の減速機の今年の売上の目標は2億円</div>
+  <div class="stmt">全体の売上から見ると、<br><span class="em">まだごく小さい</span><br>数字です。</div>
+  <div class="note">採用がいつ広がるかは買い手のロボット企業しだいだと、経営陣は話しています</div>
+</section>
+
+<!-- 財務です -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">財務です</div>
+  <div class="h-sub">ROEの今期は、予想で計算</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">61.6%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約851億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期→今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">5.6%→約9%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準と配当 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準と配当</div>
+  <div class="h-sub">11月20日の終値で計算</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">15.1倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">1.3倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">年82円の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">利回り2.6%</div></div></div>
+  </div>
+</section>
+
+<!-- ロボットの需要とは
+関係 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="lead">1つ、気をつける点があります｜2026年9月に、過去の決算の訂正を発表しました。関連会社の利益の計算に誤りがあったためです</div>
+  <div class="stmt">ロボットの需要とは<br>関係のない話ですが、<br><span class="em">管理の立て直し</span>は<br>見ておく必要があります。</div>
+</section>
+
+<!-- 画像：22_nabtesco_physical -->
+<section class="slide t-image"><img src="img/22_nabtesco_physical.png" alt="ナブテスコとフィジカルAIの関係"></section>
+
+<!-- 海外の機関投資家です｜外 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">海外の機関投資家です｜外国の法人などが、株の41.37%を持っています</div>
+  <div class="h-sub">保有のデータでは</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ブラックロック</div><div class="ctext">およそ5%</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">バンガード</div><div class="ctext">アメリカの運用会社・3.5%</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">ノルウェーの<br>政府系ファンド</div><div class="ctext">2%近く</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日の終値</div><div class="c-v">3,830円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">11月20日の終値</div><div class="c-v">3,105円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">年初来</div><div class="r-v">約19%下落</div></div>
+  </div>
+</section>
+
+<!-- 10年で見ると -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">10年で見ると</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2016年の年末</div><div class="c-v">2,719円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今</div><div class="c-v">3,105円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">10年で</div><div class="r-v">約1.1倍</div></div>
+  </div>
+</section>
+
+<!-- 理由は違いますが、さきほ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="badge navy">営業利益が5割増えた年に、株価は2割近く下がっています</div>
+  <div class="h-main">理由は違いますが、さきほどの2008年のAppleと、形は同じです</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">2008年のApple</div><div class="cap">純利益38%増</div><div class="big">株価は<br>大きく下落</div></div>
+    <div class="vsmark">＝</div>
+    <div class="box left"><div class="name">2026年のナブテスコ</div><div class="cap">営業利益5割増</div><div class="big">株価は<br>2割近く下落</div></div>
+  </div>
+</section>
+
+<!-- 次の決算で見るところは3 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">小型の減速機が、2億円の目標に届いたか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">ヒト型のロボット向けの減速機に、採用先が出てくるか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">減速機の注文が、伸び続けているか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 次は、腕を
+【まっすぐ正 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：ナブテスコ 6268</span><span class="brand"></span></div>
+  <div class="lead">関節が曲がるだけでは、腕は仕事ができません</div>
+  <div class="stmt">次は、腕を<br><span class="em">まっすぐ正確に</span>動かす<br>部品の企業です。</div>
+</section>
+
+<!-- ========== p11_thk（17枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 11：まっすぐ動かす部品THK</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 11 / 17</span><span class="bar"></span><span>3社目</span></div>
+  <div class="numbox">11</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">まっすぐ動かす部品<br>THK</div><div class="rule"></div><div class="desc">証券コード 6481</div></div>
+</section>
+
+<!-- 画像：23_thk -->
+<section class="slide t-image"><img src="img/23_thk.png" alt="THK LMガイドの世界首位"></section>
+
+<!-- 2026年1〜9月の決算 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">2026年1〜9月の決算｜THKも12月が決算の月です</div>
+  <div class="h-sub">前の年の同じ期間から</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">34.5%増</div></div><div class="body"><div class="lbl"></div><div class="val2">2,359億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">およそ3.9倍</div></div><div class="body"><div class="lbl"></div><div class="val2">377億円</div></div></div>
+  </div>
+</section>
+
+<!-- 売上に対する営業利益の割 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">売上に対する営業利益の割合</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v">5.6%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年1〜9月</div><div class="c-v">16.0%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">利益率</div><div class="r-v">大きく上昇</div></div>
+  </div>
+</section>
+
+<!-- これを受けて、今期の予想 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">これを受けて、今期の予想を引き上げています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">3,200億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">520億円</div></div></div>
+  </div>
+</section>
+
+<!-- 7月から9月に日本で受け -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="lead">なぜ伸びているのか｜AI向けの半導体を作る装置が世界で増えていて、その装置の中にTHKの部品が入るから</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">7月から9月に日本で受けた注文（前の年のおよそ2.3倍）</div>
+      <div class="mfig">495<span class="u">億円</span></div>
+      <div class="msub">アメリカも、台湾も、大きく伸びています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 直前の3か月と比べると、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="lead">中国は、前の年と比べれば2倍を超えていますが</div>
+  <div class="stmt">直前の3か月と比べると、<br><span class="em">少し減りました</span>。</div>
+  <div class="note">ここは次の決算で確かめるところです</div>
+</section>
+
+<!-- 2026年6月に、
+【自 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="lead">もう1つ、利益率が上がった理由があります</div>
+  <div class="stmt">2026年6月に、<br><span class="em">自動車向けの部品の事業</span>を<br>売却しました。</div>
+  <div class="note">利益の出にくかった事業を手放して、機械向けの部品に集中した形です</div>
+</section>
+
+<!-- そしてTHKは、ロボット -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">そしてTHKは、ロボットそのものも作り始めました｜人の上半身の形で、2本の腕を持ち、台車で動くロボット</div>
+  <div class="h-sub">人が離れた場所から動かして、その動きをAIに覚えさせる装置もあわせて作りました。まだ試作の段階で、量産や販売が決まった話ではありません</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">国産ロボットの開発の競争</div><div class="cd">国の事業の一環</div></div><div class="body"><div class="lbl"></div><div class="val2">7社から<br>4社に選ばれた</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">改良した機体の開発</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2027年3月<br>まで</div></div></div>
+  </div>
+</section>
+
+<!-- 財務です｜前の期は最終的 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">財務です｜前の期は最終的に赤字でした</div>
+  <div class="h-sub">ROEは、今期の予想で計算</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">55.5%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約1,183億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">約22%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準と配当｜ -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準と配当｜11月20日の終値で計算</div>
+  <div class="h-sub">今期の純利益には、事業を売却したときの利益が入っています。PERが低く見えるのはそのためで、毎年この利益が出るという意味ではありません</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">8.1倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">1.8倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">年195円の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">利回り4.6%</div></div></div>
+  </div>
+</section>
+
+<!-- THKの2つの道は、それ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="badge navy">フィジカルAIとの関係です｜AIはまだ2合目にいる、という話をしました</div>
+  <div class="h-main">THKの2つの道は、それをそのまま表しています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">半導体の装置の部品</div><div class="cap">AIの半導体を作る装置に入る道</div><div class="big">もう業績に<br>出ている</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">ロボットの体とデータ</div><div class="cap">体そのものと、AIに動きを教えるデータを集める道</div><div class="big">これから</div></div>
+  </div>
+</section>
+
+<!-- 海外の機関投資家です｜外 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">海外の機関投資家です｜外国の法人などが、株の30.62%を持っています。半年でおよそ1ポイント増えました</div>
+  <div class="h-sub">保有のデータでは</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ウエリントン</div><div class="ctext">アメリカの運用会社・およそ6%</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">ラザード</div><div class="ctext">5.7%</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日の終値</div><div class="c-v">4,048円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">11月20日の終値</div><div class="c-v">4,249円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">年初来</div><div class="r-v">約5%上昇</div></div>
+  </div>
+</section>
+
+<!-- 10年で見ると -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">10年で見ると</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2016年の年末</div><div class="c-v">2,586円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今</div><div class="c-v">4,249円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">10年で</div><div class="r-v">約1.6倍</div></div>
+  </div>
+</section>
+
+<!-- 次の決算で見るところは3 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">日本の注文が、495億円の水準を保てるか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">中国の注文が、もう一度増えるか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">改良したロボットの評価の結果</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 次は、手首や指の関節に入 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：THK 6481</span><span class="brand"></span></div>
+  <div class="lead">ここまでが、肩と肘と、まっすぐ動かすところでした｜腕の先に行くほど、部品は小さくなります</div>
+  <div class="stmt">次は、手首や指の関節に入る、<br><span class="em">小さな歯車</span>の企業です。</div>
+</section>
+
+<!-- ========== p12_harmonic（19枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 12：手首と指の減速機ハーモニック・ドライブ・システムズ</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 12 / 17</span><span class="bar"></span><span>4社目</span></div>
+  <div class="numbox">12</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">手首と指の減速機<br>ハーモニック・<br>ドライブ・システムズ</div><div class="rule"></div><div class="desc">証券コード 6324</div></div>
+</section>
+
+<!-- 画像：24_harmonic -->
+<section class="slide t-image"><img src="img/24_harmonic.png" alt="ハーモニック、ロボットの小さな関節を支える"></section>
+
+<!-- 2026年4〜9月の決算 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">2026年4〜9月の決算</div>
+  <div class="h-sub">前の年の利益がとても小さかったので、倍率は大きく出ています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">29.8%増</div></div><div class="body"><div class="lbl"></div><div class="val2">361億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">およそ9倍</div></div><div class="body"><div class="lbl"></div><div class="val2">42億円</div></div></div>
+  </div>
+</section>
+
+<!-- 売上に対する営業利益の割 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">売上に対する営業利益の割合</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v">1.7%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年4〜9月</div><div class="c-v">11.6%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">利益率</div><div class="r-v">戻った</div></div>
+  </div>
+</section>
+
+<!-- 今期の予想も引き上げてい -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">今期の予想も引き上げています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">780億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">102億円</div></div></div>
+  </div>
+</section>
+
+<!-- 4月から9月に受けた注文 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="lead">なぜ伸びているのか</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">4月から9月に受けた注文（70.7%増）</div>
+      <div class="mfig">503<span class="u">億円</span></div>
+      <div class="msub">過去最高になりました</div>
+    </div>
+  </div>
+</section>
+
+<!-- 注文が過去最高なのに、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="lead">売りの規模のところで予告した</div>
+  <div class="stmt">注文が過去最高なのに、<br>株価が下がっている企業が、<br><span class="em">ハーモニック・ドライブ・<br>システムズ</span>です。</div>
+</section>
+
+<!-- 小さくて正確に動く関節が -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="badge navy">産業用ロボット向けだけではありません</div>
+  <div class="h-main">小さくて正確に動く関節が要る場所が、いくつもの分野で同時に増えています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">半導体を作る装置向け</div><div class="cap">注文</div><div class="big">約2.5倍</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">医療向け</div><div class="cap">手術を支援するロボットなど・注文</div><div class="big">約2.9倍</div></div>
+  </div>
+</section>
+
+<!-- この企業の決算には、ほか -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">この企業の決算には、ほかの4社にない数字があります｜AIとヒト型のロボット向けの売上を、分けて開示</div>
+  <div class="h-sub">売上全体の3%ほどで、まだ小さい数字です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">4〜9月</div></div><div class="body"><div class="lbl"></div><div class="val2">12億円</div></div></div>
+    <div class="col "><div class="top"><div class="nm">注文</div><div class="cd">4〜9月</div></div><div class="body"><div class="lbl"></div><div class="val2">15億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">1年の計画</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">23億円</div></div></div>
+  </div>
+</section>
+
+<!-- フィジカルAIが、
+【も -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="lead">展示や実演ではなく、実際に売れた金額として出ている</div>
+  <div class="stmt">フィジカルAIが、<br><span class="em">もう売上になり始めている</span><br>証拠です。</div>
+</section>
+
+<!-- 画像：25_harmonic_hito -->
+<section class="slide t-image"><img src="img/25_harmonic_hito.png" alt="ハーモニック、ヒト型ロボット向けの開発を加速"></section>
+
+<!-- 財務です -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">財務です</div>
+  <div class="h-sub">ROEの今期は、予想で計算</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">73.2%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約218億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期→今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">2.0%→約9%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準と配当 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準と配当</div>
+  <div class="h-sub">11月20日の終値で計算</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">48.9倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">4.2倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">年28円の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">利回り0.8%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価は、利益と、その利益 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">株価は、利益と、その利益を投資家がどれだけ高く買うかで決まる、という話をしました</div>
+  <div class="chain">
+    <div class="node">企業が<br>稼ぐ利益</div>
+    <div class="arr">×</div>
+    <div class="node">投資家が<br>どれだけ<br>高く買うか</div>
+    <div class="arr">＝</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">株価</div>
+  </div>
+  <div class="release">PERは、5社の中でいちばん高くなっています。これからの利益の伸びを、すでに大きく見込んだ値段です。新しい製品が予定どおり出て、採用されるかどうかで、評価が変わります</div>
+</section>
+
+<!-- 海外の機関投資家です｜外 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">海外の機関投資家です｜外国の法人などが、株の32.91%を持っています</div>
+  <div class="h-sub">大株主にはノルウェー政府の名前があります。保有のデータでは</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ラザード</div><div class="ctext">アメリカの運用会社・およそ4%</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">ベイリー・ギフォード</div><div class="ctext">長く持つ運用で知られるイギリスの運用会社・およそ2%</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日の終値</div><div class="c-v">3,840円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">11月20日の終値</div><div class="c-v">3,722円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">年初来</div><div class="r-v">約3%下落</div></div>
+  </div>
+</section>
+
+<!-- 10年で見ると -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">10年で見ると</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2016年の年末</div><div class="c-v">2,896円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今</div><div class="c-v">3,722円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">10年で</div><div class="r-v">約1.3倍</div></div>
+  </div>
+</section>
+
+<!-- 次の決算で見るところは3 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">AIとヒト型のロボット向けの売上が、23億円の計画に届くか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">2027年3月の新しい製品が、予定どおり出るか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">過去最高になった注文が、売上に変わっていくか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 5本の指の手を一緒に作っ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：ハーモニック・ドライブ・システムズ 6324</span><span class="brand"></span></div>
+  <div class="lead">関節の歯車まで来ました｜残るのは、いちばん先の指先です</div>
+  <div class="stmt">5本の指の手を一緒に作った、<br><span class="em">もう1社</span>の企業です。</div>
+</section>
+
+<!-- ========== p13_minebea（21枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 13：指先の軸受とセンサーミネベアミツミ</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 13 / 17</span><span class="bar"></span><span>5社目</span></div>
+  <div class="numbox">13</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">指先の軸受とセンサー<br>ミネベアミツミ</div><div class="rule"></div><div class="desc">証券コード 6479</div></div>
+</section>
+
+<!-- 画像：26_minebea -->
+<section class="slide t-image"><img src="img/26_minebea.png" alt="ミネベアミツミ、小さな部品でロボットを支える"></section>
+
+<!-- 2026年4〜9月の決算 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">2026年4〜9月の決算</div>
+  <div class="h-sub">前の年の同じ期間から</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">売上</div><div class="cd">14.4%増</div></div><div class="body"><div class="lbl"></div><div class="val2">8,908億円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益</div><div class="cd">30.8%増</div></div><div class="body"><div class="lbl"></div><div class="val2">581億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">純利益</div><div class="cd">78.4%増</div></div><div class="body"><div class="lbl"></div><div class="val2">510億円</div></div></div>
+  </div>
+</section>
+
+<!-- 今期の予想も引き上げてい -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">今期の予想も引き上げています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">1兆7,300億円</div></div></div>
+    <div class="col "><div class="top"><div class="nm">営業利益</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">1,280億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">純利益</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">1,000億円</div></div></div>
+  </div>
+</section>
+
+<!-- いまの利益を支えているの -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="lead">なぜ伸びているのか</div>
+  <div class="stmt">いまの利益を支えているのは、<br><span class="em">ロボットではありません</span>。</div>
+  <div class="note">データセンターのサーバーを冷やすファンに入るベアリングや、データを保存する装置のモーターです</div>
+</section>
+
+<!-- AIの設備が増えるほど、 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">AIの設備が増えるほど、小さくて正確な回転の部品が出ていきます</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">ベアリングを中心にした部門</div><div class="cd">売上に対する営業利益の割合</div></div><div class="body"><div class="lbl"></div><div class="val2">24%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">本業で入ってきた現金</div><div class="cd">半年で・前の年の3倍超</div></div><div class="body"><div class="lbl"></div><div class="val2">742億円</div></div></div>
+  </div>
+</section>
+
+<!-- 崩れたのは、
+【AIの需 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="lead">最初に、こうお伝えしました</div>
+  <div class="stmt">崩れたのは、<br><span class="em">AIの需要ではない</span>。</div>
+  <div class="note">この数字が、その証拠の1つです</div>
+</section>
+
+<!-- 画像：27_minebea_hand -->
+<section class="slide t-image"><img src="img/27_minebea_hand.png" alt="ミネベアミツミ、ロボットの手を開発"></section>
+
+<!-- 画像：28_minebea_sensor -->
+<section class="slide t-image"><img src="img/28_minebea_sensor.png" alt="ミネベアミツミ、ロボットの指先センサー"></section>
+
+<!-- 手首まで含めた新しい手を -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="lead">2027年の1月には</div>
+  <div class="stmt">手首まで含めた新しい手を、<br><span class="em">アメリカの展示会</span>で<br>公開する予定です。</div>
+</section>
+
+<!-- 売り先も出てきています｜ -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">売り先も出てきています｜北米のヒト型ロボットの企業から注文が取れ始めた（社名や金額は非公表）。ヒト型のロボット向けの売上の構想</div>
+  <div class="steps">
+    <div class="step s2"><div class="era">2029年3月期</div><div class="v">約100<br>億円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2035年3月期</div><div class="v">約1,000<br>億円</div></div>
+  </div>
+</section>
+
+<!-- ヒト型のロボット1台に要 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="lead">これは構想で、決まった注文ではありません｜ただ、ミネベアミツミは、こう見ています</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">ヒト型のロボット1台に要るベアリング（手を除いた体だけで）</div>
+      <div class="mfig">120〜200<span class="u">個</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 財務です -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">財務です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">49.6%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約2,337億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期</div></div><div class="body"><div class="lbl"></div><div class="val2">11.0%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準と配当｜ -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準と配当｜11月20日の終値で計算</div>
+  <div class="h-sub">今期の純利益には、持っている株などの値上がり分が入っているので、PERは少し低めに出ています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">10.6倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">1.1倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">年60円の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">利回り2.3%</div></div></div>
+  </div>
+</section>
+
+<!-- 海外の機関投資家です｜外 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">海外の機関投資家です｜外国の法人などが、株のおよそ37.5%を持っています。ブラックロックは10月に出した報告書で</div>
+  <div class="row">
+    <div class="card"><div class="c-l">持ち分</div><div class="c-v">5.67%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">増やして</div><div class="c-v">5.70%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">ブラックロック</div><div class="r-v">買い増し</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日の終値</div><div class="c-v">3,190円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">11月20日の終値</div><div class="c-v">2,637円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">年初来</div><div class="r-v">約17%下落</div></div>
+  </div>
+</section>
+
+<!-- 10年で見ると -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">10年で見ると</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2016年の年末</div><div class="c-v">1,096円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今</div><div class="c-v">2,637円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">10年で</div><div class="r-v">約2.4倍</div></div>
+  </div>
+</section>
+
+<!-- 次の決算で見るところは3 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">北米の注文が、量産の注文に変わるか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">2027年1月に公開する、新しい手の出来</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">株などの値上がり分を除いた利益が、伸びているか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 肩から指先まで、
+ロボッ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="lead">これで5社です</div>
+  <div class="stmt">肩から指先まで、<br>ロボットの腕の中に、<br><span class="em">日本の企業の部品</span>が<br>並んでいます。</div>
+</section>
+
+<!-- 答え合わせをします｜見る -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="h-main">答え合わせをします｜見るところは3つでした</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">注文は伸びているのか</span><span class="d">5社とも、売上と利益は伸びていました</span></div>
+    <div class="row"><span class="no">2</span><span class="t">株価が下がっているなら、その理由は</span><span class="d">それでも5社のうち4社は、年の初めより株価が下がっています</span></div>
+    <div class="row"><span class="no">3</span><span class="t">フィジカルAIは、もう売上になっているのか</span><span class="d">分けて出しているのは、まだ1社。これから数字で確かめるところです</span></div>
+  </div>
+</section>
+
+<!-- 前半で見たアメリカと同じ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 13：ミネベアミツミ 6479</span><span class="brand"></span></div>
+  <div class="badge navy">売りは記録的で、業績は絶好調</div>
+  <div class="h-main">前半で見たアメリカと同じ形が、日本の企業でも起きていました</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">アメリカ</div><div class="cap">主なIT企業</div><div class="big">売りは記録的<br>利益は69%増</div></div>
+    <div class="vsmark">＝</div>
+    <div class="box left"><div class="name">日本</div><div class="cap">今回の5社</div><div class="big">4社が下落<br>5社とも増益</div></div>
+  </div>
+</section>
+
+<!-- ========== p14_innovation（12枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 14：イノベーションが起きなかったから、日本は成長しなかったのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 14 / 17</span><span class="bar"></span><span>イノベーション</span></div>
+  <div class="numbox">14</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">イノベーションが<br>起きなかったから、<br>日本は成長しなかったのか</div><div class="rule"></div><div class="desc">別の切り口</div></div>
+</section>
+
+<!-- 日本では起きなかったから -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：イノベーションと成長の順番</span><span class="brand"></span></div>
+  <div class="lead">部品は日本でも、頭脳を作っているのはアメリカではないか｜イノベーションは、アメリカや中国で起きる</div>
+  <div class="stmt">日本では起きなかったから、<br>日本経済は成長しなかった。<br><span class="em">よく聞く話</span>です。</div>
+  <div class="note">これは本当なのか。1つ、別の切り口を解説します</div>
+</section>
+
+<!--  -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 14：イノベーションと成長の順番</span><span class="brand"></span></div>
+  <div class="badge navy">順番が、逆かもしれません</div>
+  <div class="h-main"></div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">よく聞く話</div><div class="cap">イノベーションが</div><div class="big">起きなかったから<br>成長しなかった</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">別の見方</div><div class="cap">イノベーションが</div><div class="big">成長しなかったから<br>育たなかった</div></div>
+  </div>
+</section>
+
+<!-- 発明は、売れる見込みがあ -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 14：イノベーションと成長の順番</span><span class="brand"></span></div>
+  <div class="h-main">発明は、売れる見込みがあるところで増えます｜経済学者のダロン・アセモグルが、アメリカの薬で調べました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">ある病気の薬の市場が</div><div class="c-v">1%広がる</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">その分野の新しい薬が</div><div class="c-v">4〜6%増</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">発明を引き出したのは</div><div class="r-v">買う人の増加</div></div>
+  </div>
+</section>
+
+<!-- 画像：29_kigyou_umareru -->
+<section class="slide t-image"><img src="img/29_kigyou_umareru.png" alt="新しい企業は、どこから生まれるのか"></section>
+
+<!-- 大企業から仕事を受ける機 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：イノベーションと成長の順番</span><span class="brand"></span></div>
+  <div class="lead">日本の中小企業を調べた研究でも</div>
+  <div class="stmt">大企業から仕事を受ける機会が<br>多いほど、<br><span class="em">新しい企業</span>が<br>入りやすくなっていました。</div>
+</section>
+
+<!-- 景気の良い時に生まれた企 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：イノベーションと成長の順番</span><span class="brand"></span></div>
+  <div class="lead">この見方を裏付ける研究｜経済学者のペトル・セドラーチェクとヴィンセント・ステルクは、アメリカの企業を生まれた年ごとに分けて、その後を追いました</div>
+  <div class="stmt">景気の良い時に生まれた企業は、<br>何年たっても、<br><span class="em">雇っている人の数</span>が<br>多いままでした。</div>
+  <div class="note">生まれた時の景気が、その企業のその後の大きさまで左右していたということです</div>
+</section>
+
+<!-- 画像：30_kigyou_bunki -->
+<section class="slide t-image"><img src="img/30_kigyou_bunki.png" alt="なぜ新しい企業が生まれにくかったのか"></section>
+
+<!-- 画像：31_kigyou_riyuu -->
+<section class="slide t-image"><img src="img/31_kigyou_riyuu.png" alt="日本で新しい企業が育たなかった本当の理由"></section>
+
+<!-- 売れる市場がなければ、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：イノベーションと成長の順番</span><span class="brand"></span></div>
+  <div class="lead">もちろん、理由は成長だけではありません｜人口の減り方や、人が企業を移りにくい仕組みも関わっています</div>
+  <div class="stmt">売れる市場がなければ、<br>イノベーションは育ちにくい。<br><span class="em">多くの研究</span>が、<br>そろって示しています。</div>
+</section>
+
+<!-- では、今の日本はどうか｜ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 14：イノベーションと成長の順番</span><span class="brand"></span></div>
+  <div class="h-main">では、今の日本はどうか｜売れる市場が、生まれています</div>
+  <div class="h-sub">大企業が忙しくなれば、こぼれ落ちる仕事も、また増えていきます</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">デフレの時代を<br>抜け出した</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">人手が足りず<br>ロボットが要る</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">国が最初の<br>買い手になる</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">5社の注文が<br>大きく伸びた</div></div>
+  </div>
+</section>
+
+<!-- イノベーションは
+アメリ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：イノベーションと成長の順番</span><span class="brand"></span></div>
+  <div class="lead">新しい企業が育つ条件が、日本でそろい始めました</div>
+  <div class="stmt">イノベーションは<br>アメリカで起きるもの、と<br>決めつけるには、<br><span class="em">まだ早い</span>と僕は見ています。</div>
+</section>
+
+<!-- ========== p15_nisa（10枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 15 / 17</span><span class="bar"></span><span>新NISA</span></div>
+  <div class="numbox">15</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">新NISAで、<br>まとめて持つなら</div><div class="rule"></div><div class="desc">ETFと投資信託</div></div>
+</section>
+
+<!-- 株と同じように売り買いで -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="lead">新NISAの成長投資枠では</div>
+  <div class="stmt">株と同じように売り買いできる<br><span class="em">ETF</span>で、<br>5社のうち4社を<br>まとめて選べます。</div>
+</section>
+
+<!-- いちばん近いのは｜証券コ -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="h-main">いちばん近いのは｜証券コード2638 グローバルX ロボティクス＆AI-日本株式ETF</div>
+  <div class="h-sub">ファナック、THK、ナブテスコ、ハーモニック・ドライブ・システムズが上位に。残りにも、センサーのキーエンスや安川電機など、工場の自動化に関わる企業が並びます</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">4社を合わせた比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">およそ<br>4分の1</div></div></div>
+    <div class="col "><div class="top"><div class="nm">持っている間の費用</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">年0.649%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">選べる単位</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">1口から</div></div></div>
+  </div>
+</section>
+
+<!-- 気をつける点も、お伝えし -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="h-main">気をつける点も、お伝えします</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">AIのソフトウェアの企業も入っている</span><span class="d">腕や指先の部品だけに絞ったETFではありません</span></div>
+    <div class="row"><span class="no">2</span><span class="t">中身の比率は日々変わり、銘柄の入れ替えもある</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">純資産はおよそ80億円と大きくはない</span><span class="d">売り買いするときは、値段を指定する指値を使ってください</span></div>
+  </div>
+</section>
+
+<!-- このETFの上位には
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="lead">5社目のミネベアミツミは</div>
+  <div class="stmt">このETFの上位には<br><span class="em">入っていません</span>。</div>
+</section>
+
+<!-- 1625は半導体や家電の -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="badge navy">ミネベアミツミまで含めるなら／機械の企業を広く持つなら</div>
+  <div class="h-main">1625は半導体や家電の企業も多く、2社を合わせた比率は3%ほど。費用はどちらも年0.352%です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">1625</div><div class="cap">NEXT FUNDS 電機・精密上場投信</div><div class="big">ファナックと<br>ミネベアミツミ</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">1624</div><div class="cap">NEXT FUNDS 機械上場投信</div><div class="big">THKと<br>ナブテスコ</div></div>
+  </div>
+</section>
+
+<!-- ETFのほかに｜フィジカ -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="h-main">ETFのほかに｜フィジカルAIという名前が付いた投資信託</div>
+  <div class="h-sub">日本のロボットや、センサー、部品の企業を、運用の担当者が選ぶ形です。中身と費用を確かめてから考える商品です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">運用の開始</div><div class="cd">予定</div></div><div class="body"><div class="lbl"></div><div class="val2">11月30日</div></div></div>
+    <div class="col "><div class="top"><div class="nm">中身</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">未公表</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">費用</div><div class="cd">ETFより高い</div></div><div class="body"><div class="lbl"></div><div class="val2">年1.683%<br>以内</div></div></div>
+  </div>
+</section>
+
+<!-- 成長投資枠は、
+1年に【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="lead">使い方です</div>
+  <div class="stmt">成長投資枠は、<br>1年に<span class="em">240万円</span>まで。</div>
+</section>
+
+<!-- そこに、体を作る日本の企 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="badge navy">最初に、積み立て投資をしている方にも関係のある話だ、とお伝えしました</div>
+  <div class="h-main">そこに、体を作る日本の企業を足すかどうか。今回のETFは、そういう位置づけで見てください</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">オルカンやS&amp;P500</div><div class="cap">中身の上位に、アメリカのAIの企業</div><div class="big">頭脳の側は<br>もう持っている</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">今回のETF</div><div class="cap"></div><div class="big">体を作る<br>日本の企業</div></div>
+  </div>
+</section>
+
+<!-- 乗り換える話では
+【あり -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="lead">積み立てをやめて</div>
+  <div class="stmt">乗り換える話では<br><span class="em">ありません</span>。</div>
+</section>
+
+<!-- ========== p16_ketsuron（7枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 16：持ち株を、もう一度調べ直してみてください</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 16 / 17</span><span class="bar"></span><span>結論</span></div>
+  <div class="numbox">16</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">持ち株を、<br>もう一度<br>調べ直してみてください</div><div class="rule"></div><div class="desc">業績と技術</div></div>
+</section>
+
+<!-- 今回の急落も、
+【その1 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：持ち株を、もう一度調べ直してみてください</span><span class="brand"></span></div>
+  <div class="lead">大きな調整は、イノベーションの途中では起きうることです｜インターネットの時代にも起きました</div>
+  <div class="stmt">今回の急落も、<br><span class="em">その1つ</span>だと<br>僕は見ています。</div>
+</section>
+
+<!-- 株価は戻るどころか、
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：持ち株を、もう一度調べ直してみてください</span><span class="brand"></span></div>
+  <div class="lead">業績と技術が本物なら</div>
+  <div class="stmt">株価は戻るどころか、<br><span class="em">高値を抜く</span><br>かもしれません。</div>
+  <div class="note">過去には、そうなった企業がいくつもあります</div>
+</section>
+
+<!-- 今回の5社も、この10年 -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 16：持ち株を、もう一度調べ直してみてください</span><span class="brand"></span></div>
+  <div class="h-main">今回の5社も、この10年に何度も大きく下げましたが、5社とも10年前より上がっています</div>
+  <div class="h-sub">2016年の年末 → 11月20日の終値</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:92px">約1.1倍</div><div class="cap">ナブテスコ</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:108px">約1.3倍</div><div class="cap">ファナック</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:108px">約1.3倍</div><div class="cap">ハーモニック</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:133px">約1.6倍</div><div class="cap">THK</div><div class="sub"></div></div>
+    <div class="vb orange"><div class="bar" style="height:200px">約2.4倍</div><div class="cap">ミネベアミツミ</div><div class="sub"></div></div>
+  </div>
+  <div class="foot-bar">もちろん、これからの株価を約束できる人はいません</div>
+</section>
+
+<!-- ただ、見るところは、はっ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 16：持ち株を、もう一度調べ直してみてください</span><span class="brand"></span></div>
+  <div class="h-main">ただ、見るところは、はっきりしています｜この2つです</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">業績が<br>伸びているか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">技術が<br>本物か</div></div>
+  </div>
+</section>
+
+<!-- その肩から指先まで、
+世 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：持ち株を、もう一度調べ直してみてください</span><span class="brand"></span></div>
+  <div class="lead">日本の技術は、素晴らしいです｜AIの頭脳がどれだけ賢くなっても、現実の世界で物をつかむには、腕と手が要ります</div>
+  <div class="stmt">その肩から指先まで、<br>世界の上位にいる<br><span class="em">日本の企業</span>が<br>並んでいます。</div>
+</section>
+
+<!-- 業績が伸びていて、技術が -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 16：持ち株を、もう一度調べ直してみてください</span><span class="brand"></span></div>
+  <div class="badge navy">持ち株の企業を、もう一度調べ直してみてください｜株価が下がった理由は</div>
+  <div class="h-main">業績が伸びていて、技術が本物なら、短期の値動きに、びくびくする必要はありません</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">その企業の</div><div class="cap"></div><div class="big">業績なのか</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">それとも</div><div class="cap"></div><div class="big">市場全体が<br>売られただけ</div></div>
+  </div>
+</section>
+
+<!-- ========== p17_shime（4枚） ========== -->
+<!-- 僕のチャンネルの過去の動 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 17：締め</span><span class="brand"></span></div>
+  <div class="lead">AI半導体やTOPIX改革など、これからの株式市場に影響する話は</div>
+  <div class="stmt">僕のチャンネルの過去の動画でも<br><span class="em">解説</span>していますので、<br>良ければそちらもご覧ください。</div>
+</section>
+
+<!-- 締め -->
+<section class="slide t-closing">
+  <div class="big">今回の動画は、以上です。</div>
+  <div class="sub">参考になったと思っていただけたら、高評価とチャンネル登録、そしてハイプボタンで応援していただけると、とても励みになります。</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span><span class="tg">⚡ ハイプボタン</span></div>
+</section>
+
+<!-- 少しでも参考になった点が -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 17：締め</span><span class="brand"></span></div>
+  <div class="lead">投資をする上で</div>
+  <div class="stmt">少しでも参考になった点があれば<br><span class="em">コメント欄</span>で<br>是非教えてください。</div>
+  <div class="note">皆さんの声を楽しみにしています</div>
+</section>
+
+<!-- 締め -->
+<section class="slide t-closing">
+  <div class="big">それではまた、次の動画でお会いしましょう。</div>
+  <div class="sub">ご視聴いただき、ありがとうございました。</div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,3316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>サイバーセキュリティ</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:50px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 32px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:42px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:18px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:26px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 0;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:60px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:44px;}
+.t-port .bars{display:flex;flex-direction:column;gap:28px;max-width:1000px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:26px;font-weight:800;color:var(--navy);width:250px;}
+.t-port .brow .track{flex:1;height:54px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:300px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:50px;font-weight:800;color:var(--navy);}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:340px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* ===== industry chips map ===== */
+.t-chips{display:flex;flex-direction:column;justify-content:center;padding:56px 60px 0;}
+.t-chips .h-main{margin:0 0 12px;}
+.t-chips .h-sub{margin-bottom:32px;}
+.t-chips .groups{display:flex;gap:24px;justify-content:center;align-items:stretch;}
+.t-chips .grp{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px 28px;text-align:center;}
+.t-chips .grp.g-a{border-top:6px solid var(--blue);} .t-chips .grp.g-b{border-top:6px solid var(--orange);} .t-chips .grp.g-c{border-top:6px solid var(--green);}
+.t-chips .grp .gh{font-size:23px;font-weight:800;margin-bottom:18px;}
+.t-chips .grp.g-a .gh{color:var(--blue);} .t-chips .grp.g-b .gh{color:#cf820f;} .t-chips .grp.g-c .gh{color:var(--green);}
+.t-chips .chip{display:inline-block;margin:6px;padding:11px 18px;border-radius:26px;background:#eef2f7;color:var(--navy);font-size:19px;font-weight:700;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+
+/* ===== サイバーセキュリティ・デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* ---- 見出しがヘッダー帯（53px）に食い込む型の上余白を足す（光電融合で踏んだ落とし穴）
+   t-cards 48px / t-vs 50px / t-stats 58px は中身が上寄せで
+   padding-top がそのまま開始位置になるため、見出しが帯に重なる。
+   t-text・t-flow・numviz・t-agenda・t-numline・t-steps は縦中央寄せなので対象外 ---- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---- 攻撃の6段階の帯（このデッキの背骨。13枚で使い回す） ---- */
+.t-stage{display:flex;flex-direction:column;justify-content:center;padding:70px 46px 0;}
+.t-stage .h-main{margin:0 0 20px;}
+.t-stage .h-sub{margin:0 0 36px;}
+.t-stage .lead{font-size:26px;color:#69727c;font-weight:600;text-align:center;margin-bottom:26px;position:relative;padding-top:26px;}
+.t-stage .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-stage .note{text-align:center;font-size:24px;color:#7a828c;font-weight:600;margin-top:40px;line-height:1.7;}
+
+.stagemap{display:flex;gap:10px;justify-content:center;align-items:stretch;}
+.stagemap .st{flex:1;background:#eef2f7;color:#7c8798;border:1px solid var(--line);border-radius:14px;
+  padding:22px 6px;text-align:center;font-size:30px;font-weight:800;line-height:1.25;box-shadow:var(--shadow-sm);}
+.stagemap .st .n{display:block;font-size:19px;font-weight:700;opacity:.8;margin-bottom:8px;}
+.stagemap .st.on{background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;border-color:transparent;}
+.stagemap .st.on2{background:linear-gradient(150deg,var(--orange),var(--orange2));color:#fff;border-color:transparent;}
+
+/* 9社の工程マップ（段階の下に企業名を置く） */
+.stagemap.map .st{font-size:25px;padding:18px 6px;}
+.stagemap.map .st .n{font-size:17px;}
+.stagemap .co{display:block;font-size:17px;font-weight:700;line-height:1.3;margin-top:10px;
+  background:#fff;color:#1b3157;border-radius:8px;padding:7px 4px;}
+.stagemap .st.on .co,.stagemap .st.on2 .co{background:rgba(255,255,255,.16);color:#fff;}
+.stagemap .co.none{background:transparent;color:#aeb6c0;font-weight:600;}
+
+/* 6枠の外に置く注記（工程で分かれない企業） */
+.t-stage .outside{display:flex;gap:16px;justify-content:center;margin-top:34px;}
+.t-stage .outside .ob{background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);
+  border-radius:12px;padding:16px 26px;font-size:23px;font-weight:700;color:var(--navy);box-shadow:var(--shadow-sm);}
+.t-stage .outside .ob b{color:#cf820f;}
+
+</style>
+</head>
+<body>
+
+<!-- ========== p01_intro（14枚） ========== -->
+<!-- 001 タイトル -->
+<section class="slide t-title">
+  <div class="kicker">AI時代に、守る側にいる日本企業</div>
+  <div class="big">サイバーセキュリティが、<br><span class="em">AI投資の最後の主役</span>に<br>なるかもしれません</div>
+  <div class="lead">会社四季報の秋号と各社の決算をもとに、日本株9社を解説します</div>
+</section>
+
+<!-- 002 なぜ主役になりうるのか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">なぜ、いま主役になりうるのか</div>
+  <div class="stmt">AI時代に身を守るために、<br><span class="em">欠かせない技術</span>だからです。</div>
+</section>
+
+<!-- 003 ところが、漏洩が止まらない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">ところが</div>
+  <div class="stmt">大企業の情報漏洩が、<br><span class="em">止まりません。</span></div>
+</section>
+
+<!-- 004 漏れている中身 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="h-main">公表された中身を、並べてみます</div>
+  <div class="h-sub">どれも、ニュースで名前を見たことのある企業です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">アプリの<br>会員情報</div><div class="ctext">公式アプリの会員を管理するシステムに侵入された</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">予約サイトの<br>個人情報</div><div class="ctext">登録していた情報が、そのまま持ち出された</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">社員の<br>メールアドレス</div><div class="ctext">社内の情報が外に出て、別の攻撃の材料になる</div></div>
+  </div>
+</section>
+
+<!-- 005 1,000万件超 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">一度の公表で</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">漏洩した件数</div>
+      <div class="mfig">1,000万件<span class="u">超</span></div>
+      <div class="msub">一度の公表で、これだけの規模の漏洩も出ています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 006 9社ストップ高 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">この流れは、株式市場にも出ています</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">一日で</div>
+      <div class="mfig">9社<span class="u">そろってストップ高</span></div>
+      <div class="msub">サイバーセキュリティに関わる日本の企業の株が、同じ日に</div>
+    </div>
+  </div>
+</section>
+
+<!-- 007 分からないまま終わった -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">値動きだけは目に入ったけれど</div>
+  <div class="stmt">何が起きているのかは<br><span class="em">分からないまま</span>終わった。</div>
+  <div class="note">そういう方も、いると思います</div>
+</section>
+
+<!-- 008 迷いの二択 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="badge navy">迷いの二択</div>
+  <div class="h-main">ここで、迷いが2つに分かれます</div>
+  <div class="cols">
+    <div class="box left"><div class="name">見送る</div><div class="cap">もう上がってしまったから</div><div class="big">今から手を出さない</div><div class="div"></div><div class="small">値動きを見たあとで入るのは、いちばん不利になりやすい</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">見ていく</div><div class="cap">それでも</div><div class="big">ここから見ていく</div><div class="div"></div><div class="strong">この動画で、どちらかに決めます</div></div>
+  </div>
+</section>
+
+<!-- 009 先に答え -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">先に答えをお伝えします</div>
+  <div class="stmt">この分野は、これから先、<br><span class="em">もっと重要になっていきます。</span></div>
+</section>
+
+<!-- 010 遅くはない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt">これから見ていくのでも、<br><span class="em">遅くはありません。</span></div>
+  <div class="note">ただし、見方を1つ変える必要があります</div>
+</section>
+
+<!-- 011 第三の道 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="h-main">追いかけるのではなく、分けて見る</div>
+  <div class="chain">
+    <div class="node">上がった順に<br>追いかけない</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">サイバー攻撃の<br>どの工程を守っているか</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">そこを押さえてから<br>でも、間に合う</div>
+  </div>
+  <div class="release">これが第三の道です</div>
+</section>
+
+<!-- 012 急いで買う話ではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">正直にお伝えします</div>
+  <div class="stmt">一日でストップ高が9社並ぶ値動きは、<br><span class="em">普通ではありません。</span></div>
+  <div class="note">急いで買ってください、という話をするつもりはありません</div>
+</section>
+
+<!-- 013 品書き -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="h-main">今回お伝えするのは、3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">攻撃が起きる順番</span><span class="d">調べる、入る、権限を奪う、横に動く、探す、持ち出す</span></div>
+    <div class="row"><span class="no">2</span><span class="t">入口を守っている3社</span><span class="d">会社四季報の秋号と、各社の決算資料から</span></div>
+    <div class="row"><span class="no">3</span><span class="t">3つの数字と、残りの6社</span><span class="d">名前を知らない企業でも、自分で確かめられるように</span></div>
+  </div>
+  <div class="cta">合わせて9社です</div>
+</section>
+
+<!-- 014 約束 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">ニュースで企業の名前が出てきたときに</div>
+  <div class="stmt">攻撃の<span class="em">どこを守っている企業か</span>、<br>ご自分で見分けられるようになります。</div>
+</section>
+
+<!-- ========== p02_shishutsu（21枚） ========== -->
+<!-- 015 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 1：株より前に、支出が動いていた</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 1 / 10</span><span class="bar"></span><span>警察庁の統計と、3つの事例</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">株が動くより前から、<br>支出は増え続けていました</div><div class="rule"></div><div class="desc">お金が動き出したのは、あのストップ高の日ではありません</div></div>
+</section>
+
+<!-- 016 気のせいではありません -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：乗り遅れた気がした方へ</span><span class="brand"></span></div>
+  <div class="lead">あのストップ高の日に、乗り遅れた気がした</div>
+  <div class="stmt"><span class="em">気のせいではありません。</span></div>
+  <div class="note">あの日は、サイバーセキュリティに関わる企業が、まとめて買われました</div>
+</section>
+
+<!-- 017 動き出したのはあの日ではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：乗り遅れた気がした方へ</span><span class="brand"></span></div>
+  <div class="lead">ただ</div>
+  <div class="stmt">お金が動き出したのは、<br><span class="em">あの日ではありません。</span></div>
+</section>
+
+<!-- 018 ランサムウェア123件 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：警察庁の統計</span><span class="brand"></span></div>
+  <div class="lead">警察庁が2026年9月に公表した資料</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">2026年上半期に報告されたランサムウェアの被害</div>
+      <div class="mfig">123<span class="u">件</span></div>
+      <div class="msub">半期としては、過去最多でした</div>
+    </div>
+  </div>
+</section>
+
+<!-- 019 不審なアクセス5割増 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：警察庁の統計</span><span class="brand"></span></div>
+  <div class="lead">企業のネットワークをうかがう不審なアクセスも</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">前の年の同じ時期から</div>
+      <div class="mfig">5割<span class="u">増えた</span></div>
+      <div class="msub">狙われている件数そのものが、増えています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 020 ランサムウェアとは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：ランサムウェアとは</span><span class="brand"></span></div>
+  <div class="lead">ランサムウェアというのは</div>
+  <div class="stmt">データを暗号化して、<br><span class="em">元に戻したければ金を払え</span>と<br>要求する攻撃です。</div>
+  <div class="note">企業のパソコンやサーバーに入り込んで、業務に使っているデータを人質にします</div>
+</section>
+
+<!-- 021 攻撃を2つに分ける -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：攻撃の2つの型</span><span class="brand"></span></div>
+  <div class="badge">ここで分けておきます</div>
+  <div class="h-main">攻撃は、2つの型に分かれます</div>
+  <div class="cols">
+    <div class="box right"><div class="name">止める型</div><div class="cap">暗号化して</div><div class="big">業務そのものを<br>止める</div><div class="div"></div><div class="small">データを人質に取り、復旧できないようにする</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">盗む型</div><div class="cap">暗号化はせずに</div><div class="big">データだけを盗む</div><div class="div"></div><div class="strong">業務は止まらないので、気づきにくい</div></div>
+  </div>
+</section>
+
+<!-- 022 アサヒグループHD -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：攻撃の2つの型</span><span class="brand"></span></div>
+  <div class="lead">止める型を受けたのが、アサヒグループホールディングス</div>
+  <div class="stmt">受注から決算の作業まで、<br><span class="em">影響が出ました。</span></div>
+</section>
+
+<!-- 023 いま続いているのは盗む型 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：攻撃の2つの型</span><span class="brand"></span></div>
+  <div class="lead">そして</div>
+  <div class="stmt">いま日本で続いているのは、<br><span class="em">後ろの型</span>です。</div>
+  <div class="note">暗号化はせずに、データだけを持っていく型です</div>
+</section>
+
+<!-- 024 焼肉きんぐ -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：事例①　焼肉きんぐ</span><span class="brand"></span></div>
+  <div class="lead">さきほどの、一度の公表で1,000万件を超える漏洩</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">焼肉きんぐの公式アプリ</div>
+      <div class="mfig">1,000万件<span class="u">超</span></div>
+      <div class="msub">会員を管理するシステムに侵入されました</div>
+    </div>
+  </div>
+</section>
+
+<!-- 025 大和証券（委託先） -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：事例②　大和証券</span><span class="brand"></span></div>
+  <div class="h-main">破られたのは、大和証券ではありません</div>
+  <div class="chain">
+    <div class="node danger">業務を任せていた<br>委託先の企業</div>
+    <div class="arr">→</div>
+    <div class="node">大和証券の<br>顧客の情報が漏れた</div>
+  </div>
+  <div class="release">自社を固めても、任せた先が破られれば同じことになります</div>
+</section>
+
+<!-- 026 タイムズカー -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 1：事例③　タイムズカー</span><span class="brand"></span></div>
+  <div class="h-main">ご自分も、会員かもしれません</div>
+  <div class="h-sub">ウェブのシステムに侵入され、登録していた情報が持ち出された</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">対象</div><div class="cd">持ち出された範囲</div></div><div class="body"><div class="lbl">アカウント</div><div class="val2">およそ660万</div><div class="tag">登録していた情報</div></div></div>
+    <div class="col"><div class="top"><div class="nm">そのうち</div><div class="cd">中身が重いもの</div></div><div class="body"><div class="lbl">免許証の画像・住所の確認書類</div><div class="val2">160万件</div><div class="tag">書類そのものが流出</div></div></div>
+  </div>
+</section>
+
+<!-- 027 退会した人の分も7年間 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：事例③　タイムズカー</span><span class="brand"></span></div>
+  <div class="lead">退会した人の本人確認書類も</div>
+  <div class="stmt"><span class="em">7年間</span>、保存されていました。</div>
+  <div class="note">この管理のしかたが問題になっています</div>
+</section>
+
+<!-- 028 集団訴訟とパーク24 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：事例③　タイムズカー</span><span class="brand"></span></div>
+  <div class="h-main">漏れたあとに、何が起きたか</div>
+  <div class="chain">
+    <div class="node">退会した人の<br>書類も残っていた</div>
+    <div class="arr">→</div>
+    <div class="node danger">数万人規模の<br>集団訴訟が準備</div>
+    <div class="arr">→</div>
+    <div class="node danger">運営するパーク24の<br>株価も下がった</div>
+  </div>
+  <div class="release">情報システムの事故では、終わらなくなりました</div>
+</section>
+
+<!-- 029 投資の話につながる4つ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：ここが投資につながる</span><span class="brand"></span></div>
+  <div class="h-main">企業が失うものは、データだけではありません</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">信用</div><div class="ctext">取引先と利用者が、離れていく</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">損害賠償</div><div class="ctext">集団訴訟になれば、規模が読めない</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">対応の費用</div><div class="ctext">調査、復旧、連絡。全部に人とお金がかかる</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">株価</div><div class="ctext">報道が出た日に、そのまま下がる</div></div>
+  </div>
+</section>
+
+<!-- 030 削りにくい支出になった -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：ここが投資につながる</span><span class="brand"></span></div>
+  <div class="lead">だから、企業にとってセキュリティは</div>
+  <div class="stmt">景気が悪くなっても削りにくい、<br><span class="em">欠かせない支出</span>になりました。</div>
+</section>
+
+<!-- 031 生成AIでランサムウェア -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：警察庁の統計</span><span class="brand"></span></div>
+  <div class="lead">そして、警察庁の資料にもう一つ書かれています</div>
+  <div class="stmt"><span class="em">生成AIを使ってランサムウェアを作る</span>手口が、<br>すでに確認されました。</div>
+</section>
+
+<!-- 032 ここからは守る側が主役 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：守る側に移ります</span><span class="brand"></span></div>
+  <div class="lead">ここまでは、攻撃する側の話です</div>
+  <div class="stmt">ここからは、<span class="em">守る側が主役</span>です。</div>
+</section>
+
+<!-- 033 3社の予告 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：守る側の3社</span><span class="brand"></span></div>
+  <div class="h-main">守る側にいる日本の企業を、先に3社</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ソリトン<br>システムズ</div><div class="ctext">パスワードを盗まれても、登録された端末でなければログインできない仕組み</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">サイバーセキュリティ<br>クラウド</div><div class="ctext">ウェブサイトやアプリの入口で、不正な通信をはじく</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">FFRI<br>セキュリティ</div><div class="ctext">国の仕事で、まだ知られていない攻撃を研究している</div></div>
+  </div>
+</section>
+
+<!-- 034 3社の数字 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 1：守る側の3社</span><span class="brand"></span></div>
+  <div class="h-main">その3社が、いまこういう数字になっています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">ソリトンシステムズ</div><div class="cd">上期</div></div><div class="body"><div class="lbl">営業利益</div><div class="val2">2.2倍</div><div class="tag">前の年から</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">サイバーセキュリティクラウド</div><div class="cd">契約をやめる企業の割合</div></div><div class="body"><div class="lbl">解約した企業</div><div class="val2">1%を切る</div><div class="tag">ほぼ抜けない</div></div></div>
+    <div class="col"><div class="top"><div class="nm">FFRIセキュリティ</div><div class="cd">国に関わる売上</div></div><div class="body"><div class="lbl">官公庁などの売上</div><div class="val2">3割増</div><div class="tag">前の年から</div></div></div>
+  </div>
+</section>
+
+<!-- 035 その前に、順番を整理 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：その前に</span><span class="brand"></span></div>
+  <div class="lead">会社四季報の秋号と各社の決算資料をもとに、1社ずつ解説します</div>
+  <div class="stmt">ただ、その前に1つ整理しておきます。<br><span class="em">攻撃は、どういう順番で起きているのか。</span></div>
+</section>
+
+<!-- ========== p03_junban（28枚） ========== -->
+<!-- 036 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 2：攻撃の6つの段階</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 2 / 10</span><span class="bar"></span><span>この順番が、9社の並び順になります</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">攻撃は、どういう順番で<br>起きているのか</div><div class="rule"></div><div class="desc">侵入から持ち出しまで、6つの段階があります</div></div>
+</section>
+
+<!-- 037 前半3つ -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：6つの段階（前半）</span><span class="brand"></span></div>
+  <div class="h-main">まず、ここから始まります</div>
+  <div class="chain">
+    <div class="node">どこに弱点が<br>あるかを調べる</div>
+    <div class="arr">→</div>
+    <div class="node">その弱点から<br>中へ入る</div>
+    <div class="arr">→</div>
+    <div class="node danger">管理者の<br>権限を奪う</div>
+  </div>
+  <div class="release">ここまでが、入られるところです</div>
+</section>
+
+<!-- 038 後半3つ -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：6つの段階（後半）</span><span class="brand"></span></div>
+  <div class="h-main">入られたあとは、こう動きます</div>
+  <div class="chain">
+    <div class="node">社内を横に移動して<br>見られる範囲を広げる</div>
+    <div class="arr">→</div>
+    <div class="node">お金になる<br>データを探す</div>
+    <div class="arr">→</div>
+    <div class="node danger">それを<br>外へ持ち出す</div>
+  </div>
+  <div class="release">ここまで終わってから、脅しにかかります</div>
+</section>
+
+<!-- 039 6段階の全体図（このあと使い回す帯） -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 2：6つの段階</span><span class="brand"></span></div>
+  <div class="h-main">調べる、入る、権限を奪う、横に動く、探す、持ち出す</div>
+  <div class="stagemap">
+    <div class="st on"><span class="n">1</span>調べる</div>
+    <div class="st on"><span class="n">2</span>入る</div>
+    <div class="st on"><span class="n">3</span>権限を奪う</div>
+    <div class="st on"><span class="n">4</span>横に動く</div>
+    <div class="st on"><span class="n">5</span>探す</div>
+    <div class="st on"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">この6つです。これから出てくる企業は、全部この帯のどこかにいます</div>
+</section>
+
+<!-- 040 脅しは最後の工程 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：6つの段階</span><span class="brand"></span></div>
+  <div class="lead">暗号化して業務を止めるか、盗んだデータを公開すると言ってくるか</div>
+  <div class="stmt">どちらにしても、<br>脅しは<span class="em">最後の工程</span>です。</div>
+  <div class="note">つまり、脅された時点では、もう全部終わっています</div>
+</section>
+
+<!-- 041 手前で止める -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：6つの段階</span><span class="brand"></span></div>
+  <div class="lead">だから守る側は</div>
+  <div class="stmt"><span class="em">手前の工程で</span>止めなければいけません。</div>
+</section>
+
+<!-- 042 日本の企業の強み -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：6つの段階</span><span class="brand"></span></div>
+  <div class="lead">そして</div>
+  <div class="stmt">その手前を守る製品には、<br><span class="em">日本の企業の強み</span>があります。</div>
+</section>
+
+<!-- 043 9社の並び順になる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：6つの段階</span><span class="brand"></span></div>
+  <div class="lead">この6つの段階が</div>
+  <div class="stmt">このあと解説する<span class="em">9社の並び順</span>、<br>そのものになります。</div>
+  <div class="note">どの段階を守っているのか。それだけで、同じ「サイバーセキュリティ関連」でも中身がまったく変わります</div>
+</section>
+
+<!-- 044 侵入に気づけない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：気づけるのか</span><span class="brand"></span></div>
+  <div class="lead">では、入られたら気づけるのか</div>
+  <div class="stmt">侵入に、<span class="em">自分では気づけません。</span></div>
+</section>
+
+<!-- 045 タイムズカー 1日近く -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 2：気づけるのか</span><span class="brand"></span></div>
+  <div class="h-main">自社で検知できた、タイムズカーの場合</div>
+  <div class="row">
+    <div class="card"><div class="c-l">タイムズカー</div><div class="c-v">検知</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">侵入経路と攻撃元との</div><div class="c-v">通信を断ち切る</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">かかった時間</div><div class="r-v">1日近く</div></div>
+  </div>
+  <div class="note">これは、自社で検知できたケースです</div>
+</section>
+
+<!-- 046 山一電機 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：気づけるのか</span><span class="brand"></span></div>
+  <div class="lead">山一電機では、海外の子会社のサーバーが暗号化されました</div>
+  <div class="stmt">そのとき攻撃する側は、<br><span class="em">記録そのものを消していました。</span></div>
+  <div class="note">どこから入られたのかが、完全には特定できていません</div>
+</section>
+
+<!-- 047 大和証券 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：気づけるのか</span><span class="brand"></span></div>
+  <div class="lead">委託先が破られた大和証券も</div>
+  <div class="stmt">気づいたきっかけは自社ではなく、<br><span class="em">その委託先からの連絡</span>でした。</div>
+</section>
+
+<!-- 048 確かめてみてください -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：気づけるのか</span><span class="brand"></span></div>
+  <div class="lead">ご自分が使っているサービスから</div>
+  <div class="stmt">同じような連絡が来ていなかったか、<br><span class="em">確かめてみてください。</span></div>
+  <div class="note">思っているより、届いているものです</div>
+</section>
+
+<!-- 049 JIPDEC 1,100社 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：払っても戻らない</span><span class="brand"></span></div>
+  <div class="lead">JIPDECが2026年に行った調査</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">国内で聞いた企業の数</div>
+      <div class="mfig">1,100社<span class="u">あまり</span></div>
+      <div class="msub">被害を経験したかどうかを、まとめて聞いています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 050 半分近くが被害 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 2：払っても戻らない</span><span class="brand"></span></div>
+  <div class="lead">その1,100社あまりのうち</div>
+  <div class="h-main">半分近くが、ランサムウェアの被害を経験していました</div>
+  <div class="pbar">
+    <div class="seg main" style="width:46%"><span class="p">半分近く</span><span class="l">被害を経験した企業</span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">経験していない企業</span></div>
+  </div>
+  <div class="note">もう、珍しいことではなくなりました</div>
+</section>
+
+<!-- 051 払っても戻らない -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 2：払っても戻らない</span><span class="brand"></span></div>
+  <div class="h-main">そのうち、およそ4割が身代金を払っています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">被害を経験した企業のうち</div><div class="c-v">4割が払った</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">ところが、データを元に戻せたのは</div><div class="r-v">4割に届かない</div></div>
+  </div>
+  <div class="note">払っても戻らない。止まった業務は、その間ずっと止まったままです</div>
+</section>
+
+<!-- 052 IT費用ではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：払っても戻らない</span><span class="brand"></span></div>
+  <div class="lead">だから企業にとって、この支出は</div>
+  <div class="stmt">IT費用ではなく、<br><span class="em">事業を止めないための支出</span>になりました。</div>
+</section>
+
+<!-- 053 AIが入ると（もう1つの種類） -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：AIが入ると</span><span class="brand"></span></div>
+  <div class="lead">同じ警察庁の資料に、もう1つ書かれています</div>
+  <div class="stmt">入り込んだ端末の情報をAIに送って、<br><span class="em">何も操作していないのに不正な命令を実行させる。</span></div>
+  <div class="note">そういう新しい種類のものも、見つかっています</div>
+</section>
+
+<!-- 054 Anthropicの実験 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：AIが入ると</span><span class="brand"></span></div>
+  <div class="lead">AIがどこまでやれるのかは、AIを作っている側が調べています</div>
+  <div class="stmt">Anthropicの実験では、AIに専用の道具を持たせて、<br><span class="em">10のネットワークに攻撃をさせました。</span></div>
+</section>
+
+<!-- 055 結果 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 2：AIが入ると</span><span class="brand"></span></div>
+  <div class="h-main">その結果です</div>
+  <div class="h-sub">10のネットワークに対して</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">完全に侵入</div><div class="cd">10のうち</div></div><div class="body"><div class="lbl">中まで入られた</div><div class="val2">5つ</div><div class="tag">半分</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">部分的に侵入</div><div class="cd">10のうち</div></div><div class="body"><div class="lbl">途中まで入られた</div><div class="val2">4つ</div><div class="tag">合わせて9つ</div></div></div>
+  </div>
+</section>
+
+<!-- 056 道具の有無 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：AIが入ると</span><span class="brand"></span></div>
+  <div class="badge navy">同じAIで比べています</div>
+  <div class="h-main">分かれ目は、賢さではありませんでした</div>
+  <div class="cols">
+    <div class="box right"><div class="name">道具を持たせた</div><div class="cap">10のネットワークのうち</div><div class="big">9つに侵入</div><div class="div"></div><div class="small">5つは完全に、4つは部分的に</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">道具を持たせない</div><div class="cap">同じAIでも</div><div class="big">ほとんど失敗</div><div class="div"></div><div class="strong">危ないのは、賢いAIがあることではありません</div></div>
+  </div>
+</section>
+
+<!-- 057 AI＋道具＋権限 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：AIが入ると</span><span class="brand"></span></div>
+  <div class="h-main">この3つがそろったときに、攻撃の力が一気に上がります</div>
+  <div class="chain">
+    <div class="node">AI</div>
+    <div class="arr">＋</div>
+    <div class="node">道具</div>
+    <div class="arr">＋</div>
+    <div class="node">権限</div>
+    <div class="arr">→</div>
+    <div class="node danger">攻撃の力が<br>一気に上がる</div>
+  </div>
+  <div class="release">この組み合わせが、こんどは守る側の企業の中でも起きます</div>
+</section>
+
+<!-- 058 実際の攻撃 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：実際に起きた攻撃</span><span class="brand"></span></div>
+  <div class="lead">Anthropicは2025年9月、およそ30の組織を狙った攻撃を検知しました</div>
+  <div class="stmt">狙われたのは、<br><span class="em">技術、金融、化学、そして政府機関</span>です。</div>
+</section>
+
+<!-- 059 8〜9割をAIが実行 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：実際に起きた攻撃</span><span class="brand"></span></div>
+  <div class="lead">偵察、弱点探し、侵入、パスワードの取得、データの持ち出しまで</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">作業のうち</div>
+      <div class="mfig">8〜9割<span class="u">をAIが実行</span></div>
+      <div class="msub">人がやっていた工程が、そのままAIに移っています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 060 誰がやっていたのか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：実際に起きた攻撃</span><span class="brand"></span></div>
+  <div class="lead">そして、誰がやっていたのか</div>
+  <div class="stmt">Anthropicは、<span class="em">中国の国家的な支援を受けた</span><br>グループによるものだと、高い確度で評価しています。</div>
+  <div class="note">企業が相手ではなく、国が相手でした。日本がどう狙われているのかは、このあとお話しします</div>
+</section>
+
+<!-- 061 AIの工程を6段階に重ねる -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 2：AIが入ると</span><span class="brand"></span></div>
+  <div class="h-main">この順番を、最初にお伝えした6つの段階と並べてみてください</div>
+  <div class="stagemap">
+    <div class="st on"><span class="n">1</span>調べる</div>
+    <div class="st on"><span class="n">2</span>入る</div>
+    <div class="st on"><span class="n">3</span>権限を奪う</div>
+    <div class="st"><span class="n">4</span>横に動く</div>
+    <div class="st on"><span class="n">5</span>探す</div>
+    <div class="st on"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">ほとんど同じです。人がやっていた工程が、そのままAIに移っています</div>
+</section>
+
+<!-- 062 相手にできる企業の数が増える -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：AIが入ると</span><span class="brand"></span></div>
+  <div class="lead">人が1件ずつ手作業でやっていたことを、AIがまとめて進められる</div>
+  <div class="stmt">1人の攻撃者が相手にできる<br><span class="em">企業の数が、増えていきます。</span></div>
+</section>
+
+<!-- 063 入口の3社へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：次は入口の3社</span><span class="brand"></span></div>
+  <div class="lead">この6つの段階のどこを守るのか。それによって、企業の性格はまったく違います</div>
+  <div class="stmt">まずは、<span class="em">入られる前の入口</span>を<br>守っている3社から見ていきます。</div>
+</section>
+
+<!-- ========== p04_3sha（48枚） ========== -->
+<!-- 064 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 3：四季報で見る3社</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 3 / 10</span><span class="bar"></span><span>ソリトン・サイバーセキュリティクラウド・FFRI</span></div>
+  <div class="numbox">03</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">四季報で見る3社</div><div class="rule"></div><div class="desc">入られる前の入口を守っている、日本の企業です</div></div>
+</section>
+
+<!-- 065 見る数字と見ない数字 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：見る数字と、見ない数字</span><span class="brand"></span></div>
+  <div class="lead">その3社を見る前に</div>
+  <div class="stmt">見る数字と、見ない数字を<br><span class="em">決めておきます。</span></div>
+</section>
+
+<!-- 066 攻撃が増えたから売上が増える企業ではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：見る数字と、見ない数字</span><span class="brand"></span></div>
+  <div class="lead">攻撃が増えたから売上が増える、という企業ではありません</div>
+  <div class="stmt">見るのは、企業が毎年、<br><span class="em">予算をつけ続ける場所にいるか</span>どうかです。</div>
+</section>
+
+<!-- 067 やめ方ができない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：見る数字と、見ない数字</span><span class="brand"></span></div>
+  <div class="lead">セキュリティは、去年入れたものを今年やめる、という使い方をしません</div>
+  <div class="stmt">やめるとしても、<br><span class="em">何かに置き換えなければいけません。</span></div>
+</section>
+
+<!-- 068 続けて入ってくるお金 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：見る数字と、見ない数字</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt"><span class="em">続けて入ってくるお金</span>が<br>伸びているかどうかが、最初に来ます。</div>
+</section>
+
+<!-- 069 見ない数字＝PBR -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：見る数字と、見ない数字</span><span class="brand"></span></div>
+  <div class="badge navy">先に決めておきます</div>
+  <div class="h-main">逆に、見ない数字があります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">見る</div><div class="cap">毎年の予算に乗っているか</div><div class="big">続けて入るお金</div><div class="div"></div><div class="strong">伸びているかどうか</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">見ない</div><div class="cap">株価が、純資産の何倍まで買われているか</div><div class="big">PBR</div><div class="div"></div><div class="small">この業界では、当てになりません</div></div>
+  </div>
+</section>
+
+<!-- 070 PBRが当てにならない理由 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：見る数字と、見ない数字</span><span class="brand"></span></div>
+  <div class="h-main">価値のあるものが、帳簿に載らないからです</div>
+  <div class="chain">
+    <div class="node">PBRが基準にするのは<br>土地や工場</div>
+    <div class="arr">↔</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">この業界の価値は<br>技術・エンジニア・続く契約</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">純資産が小さく出て<br>PBRは自然に高くなる</div>
+  </div>
+  <div class="release">高いから割高、という読み方ができません</div>
+</section>
+
+<!-- 071 数字の出どころ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：数字の出どころ</span><span class="brand"></span></div>
+  <div class="lead">数字は、会社四季報の秋号と、各社の決算資料からです</div>
+  <div class="stmt">株価は、2026年最初の取引日である<br><span class="em">1月5日の終値と、10月7日の終値</span>を<br>比べています。</div>
+</section>
+
+<!-- 072 ソリトン 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="lead">1社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">パスワードを盗まれても、入れない</div>
+      <div class="mfig" style="font-size:84px">ソリトンシステムズ<span class="u" style="font-size:68px">　3040</span></div>
+      <div class="msub">勤め先が登録した端末からでなければ、社内のシステムに入れない仕組みを作っています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 073 ソリトン 段階 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="h-main">守っているのは、2番目の「入る」を止める場所</div>
+  <div class="stagemap">
+    <div class="st"><span class="n">1</span>調べる</div>
+    <div class="st on"><span class="n">2</span>入る</div>
+    <div class="st"><span class="n">3</span>権限を奪う</div>
+    <div class="st"><span class="n">4</span>横に動く</div>
+    <div class="st"><span class="n">5</span>探す</div>
+    <div class="st"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">攻撃の6つの段階でいうと、ここです</div>
+</section>
+
+<!-- 074 ソリトン 本人の確認 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="lead">やっているのは、本人の確認です。パスワードを強くする話ではありません</div>
+  <div class="stmt">正しいパスワードを入れただけでは、<br><span class="em">ログインさせません。</span></div>
+</section>
+
+<!-- 075 ソリトン 主力2つ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="h-main">主力は、この2つです</div>
+  <div class="grid g2">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">NetAttest EPS</div><div class="ctext">登録された端末かどうかを確かめて、社内のシステムに入れるかを決める</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">Soliton OneGate</div><div class="ctext">勤め先が登録した端末からでなければ、入れないようにする</div></div>
+  </div>
+  <div class="foot-bar">つまり、パスワードを盗まれても、<span class="em">盗んだ側は入れません</span></div>
+</section>
+
+<!-- 076 ソリトン 盗まれる前提 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="lead">この企業の強みは、ここです</div>
+  <div class="stmt"><span class="em">盗まれる前提</span>で作られています。</div>
+</section>
+
+<!-- 077 ソリトン VPN半分 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="lead">警察庁の資料から</div>
+  <div class="h-main">侵入の経路が特定できた事案のうち</div>
+  <div class="pbar">
+    <div class="seg main" style="width:50%"><span class="p">半分</span><span class="l">VPN機器から入られた</span></div>
+    <div class="seg rest"><span class="p">残り半分</span><span class="l">そのほかの経路</span></div>
+  </div>
+  <div class="note">VPN機器というのは、外から社内のネットワークに入るための出入口です</div>
+</section>
+
+<!-- 078 ソリトン そこが分かれ目 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="lead">そこを抜かれると、あとは中を横に移動されます</div>
+  <div class="stmt">盗んだIDとパスワードが、<br><span class="em">そのまま使えてしまうかどうか。</span></div>
+  <div class="note">ここが分かれ目になります</div>
+</section>
+
+<!-- 079 ソリトン 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">2026年12月期の上期</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">上期</div></div><div class="body"><div class="lbl">100億円を超えて</div><div class="val2">15%増</div><div class="tag">前の年から</div></div></div>
+    <div class="col"><div class="top"><div class="nm">営業利益</div><div class="cd">上期</div></div><div class="body"><div class="lbl">17億8,000万円</div><div class="val2">2.2倍</div><div class="tag">前の年から</div></div></div>
+  </div>
+</section>
+
+<!-- 080 ソリトン 15%と2.2倍 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="lead">売上は15%しか増えていないのに、利益が2.2倍</div>
+  <div class="stmt">ここが、この企業の<span class="em">今期の特徴</span>です。</div>
+</section>
+
+<!-- 081 ソリトン 上方修正と増配 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="h-main">通期の予想を、引き上げました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">営業利益の予想</div><div class="c-v">31億5,000万円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">引き上げ後</div><div class="c-v">39億円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">配当も</div><div class="r-v">60円→72円</div></div>
+  </div>
+  <div class="note">会社四季報の秋号では、来期の営業利益を41億円と見ています</div>
+</section>
+
+<!-- 082 ソリトン 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">2,043円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">2,841円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来で</div><div class="r-v">およそ4割</div></div>
+  </div>
+  <div class="note">利益の何倍まで買われているかで見ると、およそ20倍。配当利回りは2.5%ほどです</div>
+</section>
+
+<!-- 083 ソリトン いちばん動いている -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ソリトンシステムズ（3040）</span><span class="brand"></span></div>
+  <div class="lead">3社の中で</div>
+  <div class="stmt">いま業績が<span class="em">いちばん大きく動いている</span>のが、<br>この1社です。</div>
+</section>
+
+<!-- 084 CSC 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="lead">2社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">ウェブサイトの入口で、止める</div>
+      <div class="mfig" style="font-size:62px">サイバーセキュリティクラウド<span class="u" style="font-size:50px">　4493</span></div>
+      <div class="msub">入口に来る通信を見て、不正なものだけをはじいています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 085 CSC 段階 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="h-main">1番目と2番目を、まとめて止める場所です</div>
+  <div class="stagemap">
+    <div class="st on"><span class="n">1</span>調べる</div>
+    <div class="st on"><span class="n">2</span>入る</div>
+    <div class="st"><span class="n">3</span>権限を奪う</div>
+    <div class="st"><span class="n">4</span>横に動く</div>
+    <div class="st"><span class="n">5</span>探す</div>
+    <div class="st"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">攻撃する側は、まずウェブサイトに弱いところがないかを探します。その、探しに来る通信そのものをはじきます</div>
+</section>
+
+<!-- 086 CSC なぜ狙われるか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="lead">ウェブサイトやアプリには、外から誰でもアクセスできます</div>
+  <div class="stmt">だから、<span class="em">そこが狙われます。</span></div>
+</section>
+
+<!-- 087 CSC やっていること -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="lead">この企業がやっているのは</div>
+  <div class="stmt">その入口に来る通信を見て、<br><span class="em">不正なものだけをはじくこと</span>です。</div>
+</section>
+
+<!-- 088 CSC 主力2つ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="h-main">主力は、この2つです</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">攻撃遮断くん</div><div class="ctext">ウェブサイトの前に立って、通信を1つずつ判定する</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">WafCharm</div><div class="ctext">クラウド上のウェブサイトやアプリの入口を守る</div></div>
+  </div>
+  <div class="foot-bar">探しに来る通信そのものを、<span class="em">入口ではじきます</span></div>
+</section>
+
+<!-- 089 CSC 焼肉きんぐ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="lead">1,000万件を超える漏洩が出た焼肉きんぐのアプリも</div>
+  <div class="stmt">会員を管理するシステムに、<br><span class="em">入られています。</span></div>
+  <div class="note">ウェブやアプリの弱いところから入られた、という公表は、ほかにも続いています</div>
+</section>
+
+<!-- 090 CSC 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">2026年12月期の上期</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">上期</div></div><div class="body"><div class="lbl">27億7,000万円</div><div class="val2">15%増</div><div class="tag">前の年から</div></div></div>
+    <div class="col"><div class="top"><div class="nm">営業利益</div><div class="cd">上期</div></div><div class="body"><div class="lbl">6億1,900万円</div><div class="val2">30%増</div><div class="tag">前の年から</div></div></div>
+  </div>
+</section>
+
+<!-- 091 CSC 契約のお金 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="lead">ただ、この企業でいちばん見るところは、別にあります</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">続けて入ってくる契約のお金</div>
+      <div class="mfig">52億7,000万円</div>
+      <div class="msub">15.5%増えました</div>
+    </div>
+  </div>
+</section>
+
+<!-- 092 CSC 解約率0.95% -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="lead">そして、契約をやめた企業の割合</div>
+  <div class="h-main">0.95%。100社のうち、1社も抜けていません</div>
+  <div class="pbar">
+    <div class="seg main" style="width:5%"><span class="p" style="font-size:26px">0.95%</span></div>
+    <div class="seg rest"><span class="p">99%以上が、契約を続けている</span><span class="l">一度入れたら、やめない</span></div>
+  </div>
+  <div class="note">企業が毎年予算をつけ続ける場所にいるかどうか。その、いちばん分かりやすい数字です</div>
+</section>
+
+<!-- 093 CSC AWS世界7社 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="lead">アマゾンのクラウドで、公式に指定されている事業者は</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">世界で</div>
+      <div class="mfig">7社<span class="u">だけ</span></div>
+      <div class="msub">その7社に、日本からこの企業が入っています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 094 CSC AI診断 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="lead">AIを使ったサービスも出しています</div>
+  <div class="stmt">AIで作ったアプリの<br><span class="em">弱いところを診断する</span>ものです。</div>
+  <div class="note">会社四季報の秋号では、来期の営業利益を13億5,000万円と見ています</div>
+</section>
+
+<!-- 095 CSC 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">1,802円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">2,858円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来で</div><div class="r-v">6割近く</div></div>
+  </div>
+</section>
+
+<!-- 096 CSC PERの差 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：サイバーセキュリティクラウド（4493）</span><span class="brand"></span></div>
+  <div class="badge">利益の何倍まで買われているか</div>
+  <div class="h-main">同じテーマでも、差があります</div>
+  <div class="cols">
+    <div class="box left"><div class="name">ソリトンシステムズ</div><div class="cap">利益の何倍まで</div><div class="big">およそ20倍</div><div class="div"></div><div class="small">入口を守る、同じ側の企業</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">サイバーセキュリティ<br>クラウド</div><div class="cap">利益の何倍まで</div><div class="big">およそ33倍</div><div class="div"></div><div class="strong">1.6倍の差があります</div></div>
+  </div>
+</section>
+
+<!-- 097 FFRI 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="lead">3社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">まだ知られていない攻撃を相手にする</div>
+      <div class="mfig" style="font-size:92px">FFRIセキュリティ<span class="u" style="font-size:74px">　3692</span></div>
+      <div class="msub">研究も開発も日本でやっている、純国産の企業です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 098 FFRI 段階 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="h-main">この企業だけ、6つの段階の外にいます</div>
+  <div class="stagemap">
+    <div class="st"><span class="n">1</span>調べる</div>
+    <div class="st"><span class="n">2</span>入る</div>
+    <div class="st"><span class="n">3</span>権限を奪う</div>
+    <div class="st"><span class="n">4</span>横に動く</div>
+    <div class="st"><span class="n">5</span>探す</div>
+    <div class="st"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="outside"><div class="ob">相手にしているのは、<b>まだ知られていない攻撃</b>そのもの</div></div>
+  <div class="note">ここまでの2社は、知られている入口を守っていました</div>
+</section>
+
+<!-- 099 FFRI 主力 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="lead">主力はFFRI yarai</div>
+  <div class="stmt">見たことのないプログラムが何をしようとしているのか、<br><span class="em">振る舞いのほうから判定します。</span></div>
+</section>
+
+<!-- 100 FFRI ゼロデイとは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="lead">これが効くのは、ゼロデイと呼ばれる攻撃です</div>
+  <div class="stmt">弱いところが見つかっているのに、<br><span class="em">直すための修正プログラムがまだ出ていない</span>状態。</div>
+  <div class="note">直すものがないので、いつもの対策では止まりません</div>
+</section>
+
+<!-- 101 FFRI 純国産 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="lead">そして、この企業は純国産です。研究も開発も日本でやっています</div>
+  <div class="stmt">だから、<span class="em">官公庁と重要インフラ</span>の<br>仕事が中心になります。</div>
+</section>
+
+<!-- 102 FFRI 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">2026年3月期</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">2026年3月期</div></div><div class="body"><div class="lbl">年間の売上</div><div class="val2">43億4,800万円</div><div class="tag">実績</div></div></div>
+    <div class="col"><div class="top"><div class="nm">営業利益</div><div class="cd">2026年3月期</div></div><div class="body"><div class="lbl">年間の営業利益</div><div class="val2">13億6,400万円</div><div class="tag">実績</div></div></div>
+  </div>
+</section>
+
+<!-- 103 FFRI 四季報の見通し -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="h-main">会社四季報の秋号が見ている、営業利益</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">2026年3月期（実績）</div><div class="v" style="font-size:40px;white-space:nowrap">13億6,400万円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s2"><div class="era">今期</div><div class="v">16億円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">来期</div><div class="v" style="font-size:40px;white-space:nowrap">19億5,000万円</div></div>
+  </div>
+  <div class="foot-note">2年で4割以上増える見通しです</div>
+</section>
+
+<!-- 104 FFRI 直近の落ち込み -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="lead">ただし、今期の最初の3か月、2026年の4月から6月は</div>
+  <div class="stmt">売上がほぼ横ばいで、<br>営業利益は<span class="em">前の年を3割下回りました。</span></div>
+</section>
+
+<!-- 105 FFRI 国に関わる売上 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="h-main">一方で、国に関わる売上は3割増えています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">FFRI自身の計画</div><div class="c-v">15億7,600万円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">これを</div><div class="c-v">21億5,900万円へ</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">計画では</div><div class="r-v">37%増</div></div>
+  </div>
+  <div class="note">いま伸ばそうとしている場所と、利益が落ちた場所は別です</div>
+</section>
+
+<!-- 106 FFRI 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">7,180円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">8,460円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来で</div><div class="r-v">2割近く</div></div>
+  </div>
+</section>
+
+<!-- 107 3社のPER -->
+<section class="slide t-numline">
+  <div class="hdr"><span class="sec">Section 3：3社を並べる</span><span class="brand"></span></div>
+  <div class="h-main">利益の何倍まで買われているか</div>
+  <div class="scale">
+    <div class="mk" style="left:6%"><div class="val">およそ20倍</div><div class="dot"></div><div class="lab">ソリトンシステムズ</div></div>
+    <div class="mk" style="left:46%"><div class="val" style="color:var(--blue)">およそ33倍</div><div class="dot" style="background:var(--blue)"></div><div class="lab">サイバーセキュリティクラウド</div></div>
+    <div class="mk" style="left:92%"><div class="val" style="color:#d6850f">およそ60倍</div><div class="dot" style="background:#d6850f"></div><div class="lab">FFRIセキュリティ</div></div>
+  </div>
+  <div class="foot-note">この60倍が何を映しているのかは、このあと数字の話としてまとめます</div>
+</section>
+
+<!-- 108 FFRI 国の方針が変わった -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：FFRIセキュリティ（3692）</span><span class="brand"></span></div>
+  <div class="lead">国の仕事が増えるかどうかは、国の方針で決まります</div>
+  <div class="stmt">そして、<span class="em">その方針が変わりました。</span></div>
+</section>
+
+<!-- 109 3社に共通するもの -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：3社に共通しているもの</span><span class="brand"></span></div>
+  <div class="h-main">3社とも、侵入される前の入口にいます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">パスワードと端末</div><div class="ctext">ソリトンシステムズ</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">ウェブサイト</div><div class="ctext">サイバーセキュリティクラウド</div></div>
+    <div class="card c2"><div class="cno">3</div><div class="ctitle">まだ知られて<br>いない攻撃</div><div class="ctext">FFRIセキュリティ</div></div>
+  </div>
+  <div class="foot-bar">入口は、企業が<span class="em">いちばん先に予算をつける場所</span>です</div>
+</section>
+
+<!-- 110 入られたら間に合わない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：3社に共通しているもの</span><span class="brand"></span></div>
+  <div class="lead">入られてしまえば、そのあとの工程をどれだけ固めても間に合いません</div>
+  <div class="stmt">だから、<span class="em">ここの予算は後回しにされません。</span></div>
+  <div class="note">ご自分が勤めている企業や、持っている株の企業が、どの入口を使っているか。製品の名前で調べられます</div>
+</section>
+
+<!-- 111 来年も増えるのか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：ここから先が本題</span><span class="brand"></span></div>
+  <div class="lead">では、その予算は</div>
+  <div class="stmt">来年も再来年も、<span class="em">増えるのか。</span></div>
+  <div class="note">ここから先が本題です</div>
+</section>
+
+<!-- ========== p05_ai（20枚） ========== -->
+<!-- 112 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：AIが広がるほど</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4 / 10</span><span class="bar"></span><span>守る対象が増える、いちばん単純な理由</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">AIが広がるほど、<br>守るものが増えていきます</div><div class="rule"></div><div class="desc">攻撃する側だけでなく、守る側もAIを使います</div></div>
+</section>
+
+<!-- 113 3つが企業の中にそろう -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る相手が増える</span><span class="brand"></span></div>
+  <div class="lead">攻撃の力が一気に上がるのは、AIと道具と権限の3つがそろったときでした</div>
+  <div class="stmt">その3つが、こんどは<br><span class="em">企業の中にそろいます。</span></div>
+</section>
+
+<!-- 114 AIに渡す権限 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：守る相手が増える</span><span class="brand"></span></div>
+  <div class="h-main">企業がAIに仕事をさせようとすると</div>
+  <div class="h-sub">人の代わりに作業を進めてもらうなら、そのための権限が要ります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">メールを読む</div><div class="ctext">やり取りの中身に、そのまま触れる</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">ファイルを開く</div><div class="ctext">保存されている資料を、開いて読む</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">社内のデータを<br>見る</div><div class="ctext">顧客や取引の情報にも、手が届く</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">プログラムを<br>動かす</div><div class="ctext">自分で処理を実行できる</div></div>
+  </div>
+  <div class="foot-bar">ご自分の職場でも、<span class="em">もう始まっているかもしれません</span></div>
+</section>
+
+<!-- 115 守る相手が人間だけでなくなる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る相手が増える</span><span class="brand"></span></div>
+  <div class="lead">ここで何が変わるのか</div>
+  <div class="stmt">守らなければいけない相手が、<br><span class="em">人間の社員だけではなくなります。</span></div>
+</section>
+
+<!-- 116 社員とAIの違い -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：守る相手が増える</span><span class="brand"></span></div>
+  <div class="badge navy">1つ乗っ取られたとき</div>
+  <div class="h-main">動かせる範囲が、違います</div>
+  <div class="cols">
+    <div class="box left"><div class="name">社員のID</div><div class="cap">1つ乗っ取られても</div><div class="big">その人が<br>使えるものだけ</div><div class="div"></div><div class="small">範囲は、その社員の権限の中に収まる</div></div>
+    <div class="vsmark">／</div>
+    <div class="box right"><div class="name">AI</div><div class="cap">はじめから</div><div class="big">複数のシステムに<br>入れる</div><div class="div"></div><div class="small">仕事を進めるために、広い権限を持っている</div></div>
+  </div>
+</section>
+
+<!-- 117 確認する相手が増える -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 4：守る相手が増える</span><span class="brand"></span></div>
+  <div class="h-main">いま入ろうとしているのは誰なのか、を確認する相手</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまで</div><div class="c-v">社員の数</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">これから</div><div class="r-v">社員とAIの数</div></div>
+  </div>
+</section>
+
+<!-- 118 ソリトンがやっているのは、そこ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る相手が増える</span><span class="brand"></span></div>
+  <div class="lead">いま入ろうとしているのは誰なのか、を確認する仕組み</div>
+  <div class="stmt">ソリトンシステムズがやっているのは、<br><span class="em">まさにそこ</span>です。</div>
+</section>
+
+<!-- 119 AIが書いたアプリ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る対象が増える</span><span class="brand"></span></div>
+  <div class="lead">もう1つ、増えるものがあります</div>
+  <div class="stmt"><span class="em">AIが書いたアプリ</span>です。</div>
+</section>
+
+<!-- 120 作る数が増える -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：守る対象が増える</span><span class="brand"></span></div>
+  <div class="h-main">AIを使えば、作る速度が上がります</div>
+  <div class="chain">
+    <div class="node">作る速度が<br>上がる</div>
+    <div class="arr">→</div>
+    <div class="node">作る数が<br>増える</div>
+    <div class="arr">→</div>
+    <div class="node danger">弱いところがある<br>場所も増える</div>
+  </div>
+  <div class="release">サイバーセキュリティクラウドが診断を始めているのは、この流れです</div>
+</section>
+
+<!-- 121 支出が増えるいちばん単純な理由 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る対象が増える</span><span class="brand"></span></div>
+  <div class="lead">守る対象が増える</div>
+  <div class="stmt">これが、AIが普及すると<br>セキュリティの支出が増える、<br><span class="em">いちばん単純な理由</span>です。</div>
+</section>
+
+<!-- 122 守る側もAIを使う -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る側もAIを使う</span><span class="brand"></span></div>
+  <div class="lead">そして</div>
+  <div class="stmt">AIは、<span class="em">攻撃する側だけのもの</span>ではありません。</div>
+</section>
+
+<!-- 123 人がやっている作業 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：守る側もAIを使う</span><span class="brand"></span></div>
+  <div class="h-main">いま人がやっている作業を、思い出してください</div>
+  <div class="grid">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">あやしい通信を<br>探す</div><div class="ctext">大量の記録の中から、見つけ出す</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">被害の範囲を<br>調べる</div><div class="ctext">どこまで入られたのかを確かめる</div></div>
+    <div class="card c2"><div class="cno">3</div><div class="ctitle">直し方を<br>考える</div><div class="ctext">どう塞ぐかを決める</div></div>
+    <div class="card c2"><div class="cno">4</div><div class="ctitle">修正を<br>当てる</div><div class="ctext">実際に直して、塞ぐ</div></div>
+  </div>
+  <div class="foot-bar">どれも、<span class="em">順番の決まった作業</span>です。だから、AIが進められます</div>
+</section>
+
+<!-- 124 ソフトバンクGとOpenAI -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る側もAIを使う</span><span class="brand"></span></div>
+  <div class="lead">日本でも動いています。2026年6月16日の発表です</div>
+  <div class="stmt">ソフトバンクグループとOpenAIが、<br>システムの弱いところを見つけて<br><span class="em">修正までを自動で行うサービス</span>を発表しました。</div>
+  <div class="note">孫正義氏は、高度なAIを使ったサイバー攻撃は広く行われるようになる、と話しています</div>
+</section>
+
+<!-- 125 これ自体が新しい市場 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：守る側もAIを使う</span><span class="brand"></span></div>
+  <div class="h-main">この流れそのものが、新しい市場になります</div>
+  <div class="chain">
+    <div class="node">弱いところを<br>見つける</div>
+    <div class="arr">→</div>
+    <div class="node">直し方を<br>考える</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">修正を<br>当てる</div>
+  </div>
+  <div class="release">人がやっていた順番の作業が、そのまま商品になります</div>
+</section>
+
+<!-- 126 市場の見通し -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 4：市場の見通し</span><span class="brand"></span></div>
+  <div class="h-main">AIを使ったサイバーセキュリティの市場</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">2026年</div><div class="v">約7兆円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2034年</div><div class="v" style="font-size:44px;white-space:nowrap">約33.7兆円</div></div>
+  </div>
+  <div class="foot-note">調査会社のフォーチュン・ビジネス・インサイツの予測です</div>
+</section>
+
+<!-- 127 8年で5倍近く -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：市場の見通し</span><span class="brand"></span></div>
+  <div class="lead">2026年から2034年まで</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">8年で</div>
+      <div class="mfig">5倍<span class="u">近く</span></div>
+      <div class="msub">約7兆円から、約33.7兆円まで増える見通しです</div>
+    </div>
+  </div>
+</section>
+
+<!-- 128 全体とAI部分 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：市場の見通し</span><span class="brand"></span></div>
+  <div class="badge blue">伸び方が違います</div>
+  <div class="h-main">同じ業界でも、伸び方が分かれます</div>
+  <div class="cols">
+    <div class="box left"><div class="name">セキュリティ全体</div><div class="cap">同じ期間で</div><div class="big">2倍以上</div><div class="div"></div><div class="small">市場そのものも増える見通し</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">AIを使う部分</div><div class="cap">同じ期間で</div><div class="big">それより速い</div><div class="div"></div><div class="strong">安全に使うための仕組みが欠かせなくなるから</div></div>
+  </div>
+</section>
+
+<!-- 129 どちらの主役にもなる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：守る側もAIを使う</span><span class="brand"></span></div>
+  <div class="lead">攻撃する側がAIを使い、守る側もAIを使う</div>
+  <div class="stmt">日本で守る側の製品を作っている企業には、<br><span class="em">これが追い風になります。</span></div>
+</section>
+
+<!-- 130 気をつけること -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：ただし</span><span class="brand"></span></div>
+  <div class="lead">ただ、1つ気をつけることがあります</div>
+  <div class="stmt">AIそのものを作っている企業が、<br>この機能を<span class="em">標準で付けてくる可能性</span>があります。</div>
+  <div class="note">そうなると、いまお金を取れている機能が、無料で付いてくるものに変わります。この見方については、最後にもう一度触れます</div>
+</section>
+
+<!-- 131 では国はどうか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：次は国の話</span><span class="brand"></span></div>
+  <div class="lead">ここまでは、世界と企業の話です</div>
+  <div class="stmt">では、<span class="em">国はどうなのか。</span></div>
+</section>
+
+<!-- ========== p06_kuni（17枚） ========== -->
+<!-- 132 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 5：国が守り方を変えた</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 5 / 10</span><span class="bar"></span><span>サイバー対処能力強化法と、国が相手の攻撃</span></div>
+  <div class="numbox">05</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">10月1日から、<br>国が守り方を変えました</div><div class="rule"></div><div class="desc">対策から、義務に変わりました</div></div>
+</section>
+
+<!-- 133 法律が施行された -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：新しい法律</span><span class="brand"></span></div>
+  <div class="lead">2026年10月1日</div>
+  <div class="stmt">日本で新しい法律が施行されました。<br><span class="em">サイバー対処能力強化法</span>です。</div>
+</section>
+
+<!-- 134 正式な名前 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：新しい法律</span><span class="brand"></span></div>
+  <div class="lead">正式な名前は長いので、一度だけ言います</div>
+  <div class="stmt" style="font-size:44px">重要電子計算機に対する<br>不正な行為による被害の防止に関する法律</div>
+  <div class="note">成立したのは、その1年半前です。準備に時間をかけて、施行されました</div>
+</section>
+
+<!-- 135 変わること3つ -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 5：新しい法律</span><span class="brand"></span></div>
+  <div class="h-main">何が変わるのか。3つあります</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">通信の情報を分析</span><span class="d">国が、通信の情報を取得して分析できるようになる</span></div>
+    <div class="row"><span class="no">2</span><span class="t">実行される前に止める</span><span class="d">攻撃の兆候が見えた段階で、止めにいく（無害化）</span></div>
+    <div class="row"><span class="no">3</span><span class="t">行うのは警察と自衛隊</span><span class="d">独立した第三者機関の承認を得たうえで</span></div>
+  </div>
+  <div class="cta">受けてから対処するのでは、ありません</div>
+</section>
+
+<!-- 136 1つ目 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：新しい法律</span><span class="brand"></span></div>
+  <div class="lead">1つ目</div>
+  <div class="stmt">国が、<span class="em">通信の情報を取得して分析できる</span>ようになります。</div>
+</section>
+
+<!-- 137 2つ目 無害化 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 5：新しい法律</span><span class="brand"></span></div>
+  <div class="h-main">2つ目。これを無害化と呼びます</div>
+  <div class="chain">
+    <div class="node">攻撃の兆候が<br>見えた段階</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">攻撃に使われている<br>設備にアクセス</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">攻撃そのものを<br>成立させない</div>
+  </div>
+  <div class="release">実行される前に、止めにいきます</div>
+</section>
+
+<!-- 138 3つ目 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：新しい法律</span><span class="brand"></span></div>
+  <div class="lead">3つ目。その措置を行うのは</div>
+  <div class="stmt"><span class="em">警察と自衛隊</span>です。</div>
+  <div class="note">ただし、独立した第三者機関の承認を得たうえで行います</div>
+</section>
+
+<!-- 139 報告が義務になった事業者 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：企業の側も変わる</span><span class="brand"></span></div>
+  <div class="h-main">止まると社会が困る事業者には、報告が義務になりました</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">電力</div><div class="ctext">止まれば、生活がそのまま止まる</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">鉄道</div><div class="ctext">運行の仕組みが狙われる</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">通信</div><div class="ctext">ほかの全部が、この上に乗っている</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">金融</div><div class="ctext">お金の出入りが止まる</div></div>
+  </div>
+  <div class="foot-bar">ご自分の勤め先が、<span class="em">この対象に入っているかもしれません</span></div>
+</section>
+
+<!-- 140 対策から義務へ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：ここが大きく変わった</span><span class="brand"></span></div>
+  <div class="badge">投資の話として</div>
+  <div class="h-main">セキュリティの位置づけが、変わりました</div>
+  <div class="cols">
+    <div class="box left"><div class="name">これまで：対策</div><div class="cap">企業が自分の判断でやる</div><div class="big">削れる</div><div class="div"></div><div class="small">業績が悪くなれば、後回しにできた</div></div>
+    <div class="vsmark">→</div>
+    <div class="box bluebox"><div class="name">これから：義務</div><div class="cap">制度で求められる</div><div class="big">削れない</div><div class="div"></div><div class="strong">業績に関係なく、続く支出になります</div></div>
+  </div>
+</section>
+
+<!-- 141 日本も狙われている -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：相手が国だと</span><span class="brand"></span></div>
+  <div class="lead">AIを使った攻撃が、中国の国家的な支援を受けたグループによるものだとAnthropicが評価している、という話をしました</div>
+  <div class="stmt">日本も、<span class="em">狙われています。</span></div>
+</section>
+
+<!-- 142 MirrorFace -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 5：相手が国だと</span><span class="brand"></span></div>
+  <div class="h-main">MirrorFaceと呼ばれる、中国系とされる主体</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">期間</div><div class="cd">分析されている範囲</div></div><div class="body"><div class="lbl">この5年あまり</div><div class="val2">2019〜2024年</div><div class="tag">継続して</div></div></div>
+    <div class="col"><div class="top"><div class="nm">攻撃の件数</div><div class="cd">日本に対して</div></div><div class="body"><div class="lbl">分析された件数</div><div class="val2">200件超</div><div class="tag">政府・研究機関・先端技術</div></div></div>
+  </div>
+</section>
+
+<!-- 143 標的 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：相手が国だと</span><span class="brand"></span></div>
+  <div class="h-main">標的に含まれていたのは、ここです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">外務・防衛の<br>関係</div><div class="ctext">国の意思決定に直接つながる場所</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">JAXA</div><div class="ctext">宇宙に関わる技術そのもの</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">民間の<br>研究機関</div><div class="ctext">先端技術を扱う組織も、同じように狙われる</div></div>
+  </div>
+</section>
+
+<!-- 144 TraderTraitor -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 5：相手が国だと</span><span class="brand"></span></div>
+  <div class="h-main">北朝鮮の主体とされるTraderTraitor</div>
+  <div class="h-sub">日本の暗号資産の交換業者から盗まれたもの（FBIと日本の当局が公表）</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">盗まれた量</div><div class="cd">ビットコイン</div></div><div class="body"><div class="lbl">およそ</div><div class="val2">4,500枚</div><div class="tag">暗号資産</div></div></div>
+    <div class="col"><div class="top"><div class="nm">当時の価値</div><div class="cd">日本円にして</div></div><div class="body"><div class="lbl">規模は</div><div class="val2">400億円超</div><div class="tag">1回の被害で</div></div></div>
+  </div>
+</section>
+
+<!-- 145 条件が1つ増える -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：相手が国だと</span><span class="brand"></span></div>
+  <div class="badge navy">選ばれ方が変わります</div>
+  <div class="h-main">相手が国になると、条件が1つ増えます</div>
+  <div class="cols">
+    <div class="box left"><div class="name">企業どうしの競争</div><div class="cap">勝つのは</div><div class="big">安くて機能の<br>いい製品</div><div class="div"></div><div class="small">比べるのは、値段と中身</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box bluebox"><div class="name">相手が国の場合</div><div class="cap">そのうえで</div><div class="big">どこの国で<br>作られたか</div><div class="div"></div><div class="strong">ここが、条件に入ってきます</div></div>
+  </div>
+</section>
+
+<!-- 146 FFRIの純国産 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：相手が国だと</span><span class="brand"></span></div>
+  <div class="lead">国の仕事で、まだ知られていない攻撃を研究している企業の話をしました。FFRIセキュリティです</div>
+  <div class="stmt">研究も開発も日本でやっています。<br><span class="em">機能を並べて比べるだけでは出てこない強み</span>が、<br>ここにあります。</div>
+</section>
+
+<!-- 147 国が払う側に回った -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ここまでをまとめます</span><span class="brand"></span></div>
+  <div class="lead">制度ができて、報告が義務になって</div>
+  <div class="stmt">国が、<span class="em">払う側に回りました。</span></div>
+</section>
+
+<!-- 148 1社では足りない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：次は見分ける数字</span><span class="brand"></span></div>
+  <div class="lead">ただ、国と大企業が払う先は、1社では足りません</div>
+  <div class="stmt">攻撃の6つの段階ごとに、<br><span class="em">別の企業が要ります。</span></div>
+  <div class="note">その企業を並べる前に、見分ける数字を3つ渡します</div>
+</section>
+
+<!-- ========== p07_agatta（12枚） ========== -->
+<!-- 149 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 6：もう上がってしまったのでは</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 6 / 10</span><span class="bar"></span><span>アメリカの4社が答えになっています</span></div>
+  <div class="numbox">06</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">もう上がってしまったのでは、<br>という話</div><div class="rule"></div><div class="desc">テーマが伸びることと、その株が全部上がることは、別です</div></div>
+</section>
+
+<!-- 150 今から見ても遅いのでは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：この疑いに答えます</span><span class="brand"></span></div>
+  <div class="lead">ここまで聞いて、こう思った方もいると思います</div>
+  <div class="stmt">一日でストップ高が9社も並んだあとで、<br><span class="em">今から見ても遅いのではないか。</span></div>
+</section>
+
+<!-- 151 答えを先に -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：この疑いに答えます</span><span class="brand"></span></div>
+  <div class="lead">答えを先に言います</div>
+  <div class="stmt">テーマが伸びることと、<br>そのテーマの株が全部上がることは、<span class="em">別です。</span></div>
+</section>
+
+<!-- 152 米3社 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 6：アメリカを見ると</span><span class="brand"></span></div>
+  <div class="h-main">アメリカを見ると、はっきり分かります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">パロアルト<br>ネットワークス</div><div class="ctext">アメリカ最大のサイバーセキュリティ企業</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">クラウド<br>ストライク</div><div class="ctext">パソコンやサーバーを守る</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">フォーティネット</div><div class="ctext">通信機器に強い</div></div>
+  </div>
+</section>
+
+<!-- 153 3社は2倍超 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：アメリカを見ると</span><span class="brand"></span></div>
+  <div class="lead">この3社は</div>
+  <div class="stmt">年初から、株価が<span class="em">2倍を超えました。</span></div>
+</section>
+
+<!-- 154 ゼットスケーラーはマイナス -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：アメリカを見ると</span><span class="brand"></span></div>
+  <div class="lead">ところが</div>
+  <div class="stmt">ゼットスケーラーは、<br><span class="em">年初来でマイナス</span>です。</div>
+</section>
+
+<!-- 155 ゼットスケーラーの考え方 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：アメリカを見ると</span><span class="brand"></span></div>
+  <div class="lead">ゼットスケーラーは</div>
+  <div class="stmt">社内だから安全とは考えず、<br><span class="em">毎回本人を確認する</span>、<br>という考え方で知られている企業です。</div>
+  <div class="note">市場は同じように伸びていたのに、この1社だけ下がりました</div>
+</section>
+
+<!-- 156 何が違ったのか -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：何が違ったのか</span><span class="brand"></span></div>
+  <div class="badge navy">分かれ目</div>
+  <div class="h-main">違ったのは、売上の伸びではありません</div>
+  <div class="cols">
+    <div class="box left"><div class="name">売上の伸び</div><div class="cap">ゼットスケーラーも</div><div class="big">2割を超えて伸びた</div><div class="div"></div><div class="small">ここでは、差がついていません</div></div>
+    <div class="vsmark">／</div>
+    <div class="box right"><div class="name">分かれたのは</div><div class="cap">この2つのほう</div><div class="big">見通しと、<br>売っていく力</div><div class="div"></div><div class="small">この先どうなるか、と、売り広げられるか</div></div>
+  </div>
+</section>
+
+<!-- 157 市場と企業は別 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：何が違ったのか</span><span class="brand"></span></div>
+  <div class="lead">つまり</div>
+  <div class="stmt">市場が伸びているかどうかと、<br>その企業の株がどうなるかは、<span class="em">別の話</span>です。</div>
+</section>
+
+<!-- 158 モルガン・スタンレー -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：海外の見方</span><span class="brand"></span></div>
+  <div class="lead">アメリカの大手金融機関、モルガン・スタンレーは</div>
+  <div class="stmt">AIがソフトウェア企業を脅かす、という警戒が<br><span class="em">行き過ぎている</span>、と見ています。</div>
+  <div class="note">AIをめぐるセキュリティの不安は、むしろこうした企業の需要を支える側に働く。それが理由です</div>
+</section>
+
+<!-- 159 壊す側ではなく増やす側 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：海外の見方</span><span class="brand"></span></div>
+  <div class="lead">つまり</div>
+  <div class="stmt">AIはこの業界を壊す側ではなく、<br><span class="em">増やす側だ</span>、という見方です。</div>
+</section>
+
+<!-- 160 見られている3つ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 6：見られているところ</span><span class="brand"></span></div>
+  <div class="h-main">AIを載せていると言うだけでは、同じようには見られません</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">自分だけが<br>持っているデータ</div><div class="ctext">ほかの企業には集められないもの</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">政府や大企業<br>からの信用</div><div class="ctext">任せてもらえている実績そのもの</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">乗り換えるときの<br>手間</div><div class="ctext">やめにくさが、そのまま続く売上になる</div></div>
+  </div>
+  <div class="foot-bar">ここから先は、ご自分で見分ける必要があります。<span class="em">その見分け方を、数字にします</span></div>
+</section>
+
+<!-- ========== p08_suuji（18枚） ========== -->
+<!-- 161 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 7：この業界を見る3つの数字</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 7 / 10</span><span class="bar"></span><span>名前を知らない企業でも、自分で確かめられる</span></div>
+  <div class="numbox">07</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">この業界の株を見る、<br>3つの数字</div><div class="rule"></div><div class="desc">残りの6社に入る前に、見分ける数字を渡します</div></div>
+</section>
+
+<!-- 162 ここまでの復習 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 7：ここまで</span><span class="brand"></span></div>
+  <div class="h-main">攻撃の6つの段階と、入口を守る3社を見てきました</div>
+  <div class="stagemap map">
+    <div class="st on"><span class="n">1</span>調べる<span class="co">サイバーセキュリティ<br>クラウド</span></div>
+    <div class="st on"><span class="n">2</span>入る<span class="co">ソリトンシステムズ</span></div>
+    <div class="st"><span class="n">3</span>権限を奪う<span class="co none">―</span></div>
+    <div class="st"><span class="n">4</span>横に動く<span class="co none">―</span></div>
+    <div class="st"><span class="n">5</span>探す<span class="co none">―</span></div>
+    <div class="st"><span class="n">6</span>持ち出す<span class="co none">―</span></div>
+  </div>
+  <div class="outside"><div class="ob">6つの段階の外に、<b>FFRIセキュリティ</b>（まだ知られていない攻撃）</div></div>
+</section>
+
+<!-- 163 3つの数字 -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 7：3つの数字</span><span class="brand"></span></div>
+  <div class="h-main">残りの6社に入る前に、見分ける数字を3つ渡します</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">続けて入ってくるお金</span><span class="d">伸びているか。セットで、契約をやめた企業の割合</span></div>
+    <div class="row"><span class="no">2</span><span class="t">1社に、いくつ売れているか</span><span class="d">まとめて買われる側になれているか</span></div>
+    <div class="row"><span class="no">3</span><span class="t">期待が、どこまで入っているか</span><span class="d">利益の何倍まで買われているか</span></div>
+  </div>
+  <div class="cta">この3つがあれば、名前を知らない企業が出てきても、自分で確かめられます</div>
+</section>
+
+<!-- 164 1つ目 売って終わりではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：1つ目　続けて入るお金</span><span class="brand"></span></div>
+  <div class="lead">1つ目。セキュリティの製品は、売って終わりではありません</div>
+  <div class="stmt">毎年、<span class="em">契約でお金が入ります。</span></div>
+</section>
+
+<!-- 165 セットで見る数字 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：1つ目　続けて入るお金</span><span class="brand"></span></div>
+  <div class="lead">だから見るのは、その契約のお金が増えているかどうか</div>
+  <div class="stmt">セットで見る数字があります。<br><span class="em">契約をやめた企業の割合</span>です。</div>
+</section>
+
+<!-- 166 CSCの0.95% -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 7：1つ目　続けて入るお金</span><span class="brand"></span></div>
+  <div class="lead">ウェブサイトの入口を守っているサイバーセキュリティクラウドは</div>
+  <div class="h-main">100社のうち、1社も抜けていません</div>
+  <div class="pbar">
+    <div class="seg main" style="width:5%"><span class="p" style="font-size:26px">0.95%</span></div>
+    <div class="seg rest"><span class="p">99%以上が契約を続けている</span><span class="l">契約をやめた企業の割合</span></div>
+  </div>
+</section>
+
+<!-- 167 来年の売上はもう見えている -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：1つ目　続けて入るお金</span><span class="brand"></span></div>
+  <div class="badge blue">この形になっていれば</div>
+  <div class="h-main">2つをセットで見ます</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">契約のお金</div><div class="cap">前の年から</div><div class="big">15%増</div><div class="div"></div><div class="strong">入ってくるお金が増えている</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box bluebox"><div class="name">やめた企業</div><div class="cap">100社のうち</div><div class="big">ほぼいない</div><div class="div"></div><div class="strong">来年の売上は、もう見えています</div></div>
+  </div>
+</section>
+
+<!-- 168 やめる割合が高いと -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：1つ目　続けて入るお金</span><span class="brand"></span></div>
+  <div class="lead">逆に、やめる企業の割合が高い製品は</div>
+  <div class="stmt">毎年新しい取引先を取り続けないと、<br><span class="em">売上が維持できません。</span></div>
+  <div class="note">同じ業界でも、ここで差がつきます</div>
+</section>
+
+<!-- 169 2つ目 何社からも買っている -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：2つ目　1社にいくつ</span><span class="brand"></span></div>
+  <div class="h-main">企業はいま、セキュリティの製品を何社からも買っています</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">メールは<br>A社</div><div class="ctext">それぞれ別の企業から買っている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">パソコンは<br>B社</div><div class="ctext">窓口も、契約も、別々になる</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">クラウドは<br>C社</div><div class="ctext">管理する手間が、そのまま増える</div></div>
+  </div>
+  <div class="foot-bar">これを<span class="em">1社にまとめたい</span>、という動きがあります</div>
+</section>
+
+<!-- 170 まとめて買われる側 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：2つ目　1社にいくつ</span><span class="brand"></span></div>
+  <div class="lead">2つ目は、ここです</div>
+  <div class="stmt"><span class="em">まとめて買われる側</span>に<br>なれるかどうか。</div>
+  <div class="note">この動きは、まとめて任される側にとっては追い風になります</div>
+</section>
+
+<!-- 171 トレンドマイクロの数字 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：2つ目　1社にいくつ</span><span class="brand"></span></div>
+  <div class="h-main">残りの6社でいちばん大きい、トレンドマイクロの場合</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">1社あたり</div><div class="cd">すでに契約している企業</div></div><div class="body"><div class="lbl">使っている製品の種類</div><div class="val2">平均4.2種類</div><div class="tag">1社にいくつ</div></div></div>
+    <div class="col"><div class="top"><div class="nm">支払い</div><div class="cd">前の年から</div></div><div class="body"><div class="lbl">同じ取引先が払う金額</div><div class="val2">22%多い</div><div class="tag">増えている</div></div></div>
+  </div>
+</section>
+
+<!-- 172 新しい取引先を取らなくても -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：2つ目　1社にいくつ</span><span class="brand"></span></div>
+  <div class="lead">同じ取引先が、毎年使う種類を増やしていく</div>
+  <div class="stmt">この形になると、新しい取引先を取らなくても<br><span class="em">売上が伸びます。</span></div>
+</section>
+
+<!-- 173 3つ目 期待 -->
+<section class="slide t-numline">
+  <div class="hdr"><span class="sec">Section 7：3つ目　期待がどこまで</span><span class="brand"></span></div>
+  <div class="h-main">3つ目。入口の3社を、並べます</div>
+  <div class="scale">
+    <div class="mk" style="left:6%"><div class="val">20倍</div><div class="dot"></div><div class="lab">ソリトンシステムズ</div></div>
+    <div class="mk" style="left:46%"><div class="val" style="color:var(--blue)">33倍</div><div class="dot" style="background:var(--blue)"></div><div class="lab">サイバーセキュリティクラウド</div></div>
+    <div class="mk" style="left:92%"><div class="val" style="color:#d6850f">60倍</div><div class="dot" style="background:#d6850f"></div><div class="lab">FFRIセキュリティ</div></div>
+  </div>
+  <div class="foot-note">利益の何倍まで買われているか</div>
+</section>
+
+<!-- 174 3倍の差 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：3つ目　期待がどこまで</span><span class="brand"></span></div>
+  <div class="lead">同じテーマで、同じように入口を守っていて</div>
+  <div class="stmt"><span class="em">3倍の差</span>があります。</div>
+</section>
+
+<!-- 175 差は期待の差 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：3つ目　期待がどこまで</span><span class="brand"></span></div>
+  <div class="lead">この差は</div>
+  <div class="stmt">これから<span class="em">どれだけ伸びると思われているか</span>、<br>の差です。</div>
+</section>
+
+<!-- 176 届かなければ戻る -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 7：3つ目　期待がどこまで</span><span class="brand"></span></div>
+  <div class="h-main">60倍の企業には、前提がもう株価に入っています</div>
+  <div class="chain">
+    <div class="node">利益が大きく増える<br>という前提</div>
+    <div class="arr">→</div>
+    <div class="node">増え方が、その前提に<br>届かなければ</div>
+    <div class="arr">→</div>
+    <div class="node danger">入っていた分だけ<br>戻る</div>
+  </div>
+</section>
+
+<!-- 177 逆もある -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：3つ目　期待がどこまで</span><span class="brand"></span></div>
+  <div class="lead">逆もあります</div>
+  <div class="stmt">業績が伸びているのに、<br><span class="em">株価が年初来で下がっている企業</span>もあります。</div>
+  <div class="note">残りの6社の中に出てきます</div>
+</section>
+
+<!-- 178 3つ並べ直し -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：3つの数字</span><span class="brand"></span></div>
+  <div class="h-main">3つ、並べます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">続けて入ってくる<br>お金</div><div class="ctext">伸びているか。やめた企業の割合とセットで</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">1社に、いくつ<br>売れているか</div><div class="ctext">まとめて任される側にいるか</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">期待が、どこまで<br>入っているか</div><div class="ctext">利益の何倍まで買われているか</div></div>
+  </div>
+  <div class="foot-bar">全部を調べる必要はありません。気になった企業の<span class="em">決算の資料で、この3つだけ</span></div>
+</section>
+
+<!-- ========== p09_meibo（68枚） ========== -->
+<!-- 179 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 8：工程ごとに見る、残りの6社</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 8 / 10</span><span class="bar"></span><span>攻撃の段階の順に並べます</span></div>
+  <div class="numbox">08</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">工程ごとに見る、<br>残りの6社</div><div class="rule"></div><div class="desc">どの段階を守っているのかで、企業の性格が変わります</div></div>
+</section>
+
+<!-- 180 並べる順番 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 8：並べる順番</span><span class="brand"></span></div>
+  <div class="h-main">ここからの6社は、攻撃の段階の順に並べます</div>
+  <div class="stagemap">
+    <div class="st on"><span class="n">1</span>調べる</div>
+    <div class="st on"><span class="n">2</span>入る</div>
+    <div class="st on"><span class="n">3</span>権限を奪う</div>
+    <div class="st on"><span class="n">4</span>横に動く</div>
+    <div class="st on"><span class="n">5</span>探す</div>
+    <div class="st on"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">株価は、どれも年初からの動きです</div>
+</section>
+
+<!-- 181 BBSec 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：ブロードバンドセキュリティ（4398）</span><span class="brand"></span></div>
+  <div class="lead">1社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">入られる前に、弱いところを探す</div>
+      <div class="mfig" style="font-size:62px">ブロードバンドセキュリティ<span class="u" style="font-size:50px">　4398</span></div>
+      <div class="msub">攻撃される前に、自分で弱いところを見つけておく仕事です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 182 BBSec 段階 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 8：ブロードバンドセキュリティ（4398）</span><span class="brand"></span></div>
+  <div class="h-main">守っているのは、1番目の「調べる」の前段です</div>
+  <div class="stagemap">
+    <div class="st on"><span class="n">1</span>調べる</div>
+    <div class="st"><span class="n">2</span>入る</div>
+    <div class="st"><span class="n">3</span>権限を奪う</div>
+    <div class="st"><span class="n">4</span>横に動く</div>
+    <div class="st"><span class="n">5</span>探す</div>
+    <div class="st"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">攻撃する側が最初にやるのは、弱いところを調べることでした</div>
+</section>
+
+<!-- 183 BBSec 先に自分でやる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ブロードバンドセキュリティ（4398）</span><span class="brand"></span></div>
+  <div class="lead">この企業がやっているのは</div>
+  <div class="stmt">それを、<span class="em">先に自分でやってしまうこと</span>です。</div>
+</section>
+
+<!-- 184 BBSec 診断の流れ -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：ブロードバンドセキュリティ（4398）</span><span class="brand"></span></div>
+  <div class="h-main">セキュリティ診断と呼ばれる仕事です</div>
+  <div class="chain">
+    <div class="node">ウェブサイトや<br>システムを調べる</div>
+    <div class="arr">→</div>
+    <div class="node">弱いところを<br>見つける</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">どこを直せばいいかを<br>報告する</div>
+  </div>
+  <div class="release">攻撃される前に、見つけておきます</div>
+</section>
+
+<!-- 185 BBSec 数が増えるほど -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ブロードバンドセキュリティ（4398）</span><span class="brand"></span></div>
+  <div class="lead">攻撃される前に弱いところを見つけておく</div>
+  <div class="stmt">この工程は、攻撃の数が増えるほど<br><span class="em">欠かせなくなります。</span></div>
+</section>
+
+<!-- 186 BBSec 委託先 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ブロードバンドセキュリティ（4398）</span><span class="brand"></span></div>
+  <div class="lead">もう1つ、この企業が相手にしている場所があります。委託先です</div>
+  <div class="stmt">自社をどれだけ固めても、<br><span class="em">任せた先が破られれば同じこと</span>になります。</div>
+  <div class="note">顧客の情報が漏れた大和証券も、破られたのは業務を任せていた企業でした</div>
+</section>
+
+<!-- 187 BBSec 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：ブロードバンドセキュリティ（4398）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">2026年6月期</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">2026年6月期</div></div><div class="body"><div class="lbl">67億7,000万円</div><div class="val2">11%増</div><div class="tag">過去最高を更新</div></div></div>
+    <div class="col"><div class="top"><div class="nm">営業利益</div><div class="cd">2026年6月期</div></div><div class="body"><div class="lbl">5億1,000万円</div><div class="val2">ほぼ2倍</div><div class="tag">前の年から</div></div></div>
+  </div>
+</section>
+
+<!-- 188 BBSec 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：ブロードバンドセキュリティ（4398）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">1,431円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">2,322円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来で</div><div class="r-v">6割を超えました</div></div>
+  </div>
+</section>
+
+<!-- 189 カウリス 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="lead">2社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">不正なログインを、見つける</div>
+      <div class="mfig" style="font-size:120px">カウリス<span class="u" style="font-size:88px">　153A</span></div>
+      <div class="msub">ログインしようとしている相手が、いつもの利用者かどうかを判定します</div>
+    </div>
+  </div>
+</section>
+
+<!-- 190 カウリス 段階 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="h-main">守っている段階は、ソリトンと同じ2番目です</div>
+  <div class="stagemap">
+    <div class="st"><span class="n">1</span>調べる</div>
+    <div class="st on2"><span class="n">2</span>入る</div>
+    <div class="st"><span class="n">3</span>権限を奪う</div>
+    <div class="st"><span class="n">4</span>横に動く</div>
+    <div class="st"><span class="n">5</span>探す</div>
+    <div class="st"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">ただし、守り方が逆を向いています</div>
+</section>
+
+<!-- 191 カウリス 反対側から見る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="lead">パスワードを盗まれても、登録された端末からでなければ入れない。そういう仕組みの企業の話をしました</div>
+  <div class="stmt">カウリスは、同じ場所を<span class="em">反対側から</span>見ています。<br>入ろうとしている動きのほうを、見つけます。</div>
+</section>
+
+<!-- 192 カウリス 照らし合わせるもの -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="h-main">いつもの利用者かどうかを、ここで判定します</div>
+  <div class="grid">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">使っている端末</div><div class="ctext">いつもの機械から入っているか</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">つないでいる回線</div><div class="ctext">どこからつないでいるか</div></div>
+    <div class="card c2"><div class="cno">3</div><div class="ctitle">時間帯</div><div class="ctext">いつも使っている時間かどうか</div></div>
+  </div>
+  <div class="foot-bar">照らし合わせて、<span class="em">本人ではない可能性が高い動き</span>を止めます</div>
+</section>
+
+<!-- 193 カウリス 取引先 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="lead">取引先は</div>
+  <div class="stmt"><span class="em">金融機関が中心</span>です。</div>
+</section>
+
+<!-- 194 カウリス 2つのやり方 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="badge navy">同じ場所に、2つのやり方</div>
+  <div class="h-main">守っている段階は同じ。向きが逆です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">ソリトンシステムズ</div><div class="cap">入口の側から</div><div class="big">入れないようにする</div><div class="div"></div><div class="strong">登録された端末でなければ、入れない</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">カウリス</div><div class="cap">入ろうとする側を見て</div><div class="big">動きを見つける</div><div class="div"></div><div class="small">本人ではない可能性が高い動きを止める</div></div>
+  </div>
+</section>
+
+<!-- 195 カウリス 漏洩で出ていくもの -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="h-main">なぜこの工程に、仕事が増えているのか</div>
+  <div class="h-sub">漏洩で出ていくのは、この4つです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">氏名</div><div class="ctext">そのまま本人の確認に使われる</div></div>
+    <div class="card c1"><div class="cno">2</div><div class="ctitle">住所</div><div class="ctext">知っているから本物、と思わせる材料になる</div></div>
+    <div class="card c2"><div class="cno">3</div><div class="ctitle">電話番号</div><div class="ctext">連絡の入口になる</div></div>
+    <div class="card c3"><div class="cno">4</div><div class="ctitle">メールアドレス</div><div class="ctext">別のサービスのログインに、そのまま使える</div></div>
+  </div>
+</section>
+
+<!-- 196 カウリス 使い回し -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="h-main">1か所の漏洩が、別の場所の被害になります</div>
+  <div class="chain">
+    <div class="node">同じメールアドレスと<br>同じパスワード</div>
+    <div class="arr">→</div>
+    <div class="node">ほかのサービスでも<br>使っていた</div>
+    <div class="arr">→</div>
+    <div class="node danger">そのまま<br>ログインされる</div>
+  </div>
+  <div class="release">盗まれた情報が出回るかぎり、この工程には追い風が吹きます</div>
+</section>
+
+<!-- 197 カウリス 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">2026年12月期の中間期</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">中間期</div></div><div class="body"><div class="lbl">8億2,000万円</div><div class="val2">2割増</div><div class="tag">前の年から</div></div></div>
+    <div class="col"><div class="top"><div class="nm">営業利益</div><div class="cd">中間期</div></div><div class="body"><div class="lbl">2億8,000万円</div><div class="val2">3割近く増</div><div class="tag">前の年から</div></div></div>
+  </div>
+</section>
+
+<!-- 198 カウリス 6期連続最高益 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="lead">通期の予想も引き上げています。計画していなかった新しい取引先と、取引の量が増えた分です</div>
+  <div class="stmt">これで、<span class="em">6期連続の最高益</span>になります。</div>
+</section>
+
+<!-- 199 カウリス 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：カウリス（153A）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">1,183円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">2,267円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来で</div><div class="r-v">9割を超えました</div></div>
+  </div>
+  <div class="note">残りの6社の中で、いちばん上がっているのが、この企業です</div>
+</section>
+
+<!-- 200 セキュアヴェイル 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="lead">3社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">入られたあとに、気づく</div>
+      <div class="mfig" style="font-size:92px">セキュアヴェイル<span class="u" style="font-size:74px">　3042</span></div>
+      <div class="msub">社内のネットワークに残る記録を、24時間見張っています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 201 セキュアヴェイル 段階 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="h-main">守っているのは、4番目の「横に動く」です</div>
+  <div class="stagemap">
+    <div class="st"><span class="n">1</span>調べる</div>
+    <div class="st"><span class="n">2</span>入る</div>
+    <div class="st"><span class="n">3</span>権限を奪う</div>
+    <div class="st on"><span class="n">4</span>横に動く</div>
+    <div class="st"><span class="n">5</span>探す</div>
+    <div class="st"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">入られることを前提に、中での動きを見つける場所です</div>
+</section>
+
+<!-- 202 セキュアヴェイル 記録を見張る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="lead">この企業がやっているのは</div>
+  <div class="stmt"><span class="em">記録を見張ること</span>です。</div>
+</section>
+
+<!-- 203 セキュアヴェイル ログとは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="lead">社内のネットワークでは、誰がいつどこに接続したか、という記録が残ります。ログと呼ばれるものです</div>
+  <div class="stmt">攻撃する側が中に入って横に移動すると、<br><span class="em">その動きも記録に残ります。</span></div>
+  <div class="note">つまり、記録を見ていれば気づけます</div>
+</section>
+
+<!-- 204 セキュアヴェイル 24時間 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="lead">ただ、記録は膨大です。人が全部を見るのは無理があります</div>
+  <div class="stmt">そこを<span class="em">24時間、仕組みで見張る</span>のが、<br>この企業の仕事です。</div>
+</section>
+
+<!-- 205 セキュアヴェイル 2つの事例 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="badge">侵入に自分では気づけない</div>
+  <div class="h-main">さきほどの2つを、思い出してください</div>
+  <div class="cols">
+    <div class="box left"><div class="name">タイムズカー</div><div class="cap">検知してから</div><div class="big">1日近く</div><div class="div"></div><div class="small">通信を断ち切るまでに、それだけかかった</div></div>
+    <div class="vsmark">／</div>
+    <div class="box right"><div class="name">山一電機</div><div class="cap">攻撃する側が</div><div class="big">記録を消していた</div><div class="div"></div><div class="small">どこから入られたのかが、分からなくなった</div></div>
+  </div>
+</section>
+
+<!-- 206 セキュアヴェイル 外から見張る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="lead">記録を社内だけで持っていると、消されたときに追えません</div>
+  <div class="stmt">だから、記録を預けて<br><span class="em">外から見張ってもらう形</span>が増えています。</div>
+</section>
+
+<!-- 207 セキュアヴェイル 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">2026年3月期と、その次の3か月</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">2026年3月期</div></div><div class="body"><div class="lbl">12億8,000万円</div><div class="val2">11%増</div><div class="tag">前の年から</div></div></div>
+    <div class="col"><div class="top"><div class="nm">営業利益</div><div class="cd">2026年3月期</div></div><div class="body"><div class="lbl">1億1,000万円</div><div class="val2">3.2倍</div><div class="tag">前の年から</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">次の3か月</div><div class="cd">売上4割近く増</div></div><div class="body"><div class="lbl">営業利益は</div><div class="val2">黒字に転換</div><div class="tag">赤字から</div></div></div>
+  </div>
+</section>
+
+<!-- 208 セキュアヴェイル 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：セキュアヴェイル（3042）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">344円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">453円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来で</div><div class="r-v">3割を超えました</div></div>
+  </div>
+  <div class="note">売上は12億円台です。6社の中では、規模の小さい企業です</div>
+</section>
+
+<!-- 209 ZenmuTech 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="lead">4社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">盗まれても、読めなくする</div>
+      <div class="mfig" style="font-size:108px">ZenmuTech<span class="u" style="font-size:88px">　338A</span></div>
+      <div class="msub">持ち出されることを、前提にしている企業です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 210 ZenmuTech 段階 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="h-main">守っているのは、6つの段階のいちばん最後。正確には、その先です</div>
+  <div class="stagemap">
+    <div class="st"><span class="n">1</span>調べる</div>
+    <div class="st"><span class="n">2</span>入る</div>
+    <div class="st"><span class="n">3</span>権限を奪う</div>
+    <div class="st"><span class="n">4</span>横に動く</div>
+    <div class="st"><span class="n">5</span>探す</div>
+    <div class="st on2"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="outside"><div class="ob">持ち出された、<b>その先</b>に立っています</div></div>
+</section>
+
+<!-- 211 ZenmuTech もう一歩先 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="lead">ここまでの3社は、入られないようにするか、入られたことに気づくか、どちらかでした</div>
+  <div class="stmt">この企業は、<span class="em">そのもう一歩先</span>に立っています。</div>
+</section>
+
+<!-- 212 ZenmuTech 前提 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="lead">何を前提にしているのか</div>
+  <div class="stmt"><span class="em">持ち出されること</span>を、前提にしています。</div>
+</section>
+
+<!-- 213 ZenmuTech 秘密分散 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="h-main">やっているのは、秘密分散と呼ばれる方法です</div>
+  <div class="chain">
+    <div class="node">データを1か所に<br>まとめて置かない</div>
+    <div class="arr">→</div>
+    <div class="node">分けて、複数の<br>場所に保管する</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">一つ一つは、それだけ<br>では意味を持たない</div>
+  </div>
+  <div class="release">だから1か所を盗まれても、盗んだ側は中身を読めません</div>
+</section>
+
+<!-- 214 ZenmuTech この考え方は1社だけ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="lead">入られないようにするのではなく</div>
+  <div class="stmt">入られても、<span class="em">致命傷にしない。</span></div>
+  <div class="note">この6社で、この考え方で作っているのは、1社だけです</div>
+</section>
+
+<!-- 215 ZenmuTech タイムズカーの160万件 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="lead">タイムズカーでは、160万件で、運転免許証の画像や、住所を確認する書類そのものが流出しました</div>
+  <div class="stmt">読める形で保存されていたから、<br>流出が、<span class="em">そのまま被害になりました。</span></div>
+</section>
+
+<!-- 216 ZenmuTech 被害の中身が変わる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="lead">持ち出されたものが読めない形になっていれば</div>
+  <div class="stmt">流出した事実は残っても、<br><span class="em">被害の中身が変わります。</span></div>
+  <div class="note">ここが、この企業の存在理由です</div>
+</section>
+
+<!-- 217 ZenmuTech 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">2026年12月期の上期</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">上期</div></div><div class="body"><div class="lbl">前の年と比べて</div><div class="val2">ほぼ横ばい</div><div class="tag">上期</div></div></div>
+    <div class="col"><div class="top"><div class="nm">営業損益</div><div class="cd">上期</div></div><div class="body"><div class="lbl">1億円弱の</div><div class="val2">赤字</div><div class="tag">上期</div></div></div>
+  </div>
+</section>
+
+<!-- 218 ZenmuTech 中身 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="h-main">ただ、中身を見ると</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">秘密分散の売上</div><div class="cd">主力の部分</div></div><div class="body"><div class="lbl">前の年から</div><div class="val2">3割ほど増</div><div class="tag">伸びている</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">手元の現金</div><div class="cd">上期末</div></div><div class="body"><div class="lbl">持っている現金</div><div class="val2">8億6,100万円</div><div class="tag">当面の資金</div></div></div>
+    <div class="col"><div class="top"><div class="nm">会社四季報 秋号</div><div class="cd">今期</div></div><div class="body"><div class="lbl">営業利益は</div><div class="val2">黒字を見込む</div><div class="tag">今期</div></div></div>
+  </div>
+</section>
+
+<!-- 219 ZenmuTech 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">4,760円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">4,990円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来では</div><div class="r-v">わずかにプラス</div></div>
+  </div>
+</section>
+
+<!-- 220 ZenmuTech 期待 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ZenmuTech（338A）</span><span class="brand"></span></div>
+  <div class="lead">見る数字の3つ目は、期待がどこまで入っているかでした。利益の何倍まで買われているかで見ると、およそ45倍です</div>
+  <div class="stmt">株価がほとんど動いていないのに、<br><span class="em">期待が入っている</span>、という形になります。</div>
+  <div class="note">今期の予想の利益で計算した数字です。利益の額が、まだ小さいからです</div>
+</section>
+
+<!-- 221 デジタルアーツ 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="lead">5社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">学校と省庁を守る</div>
+      <div class="mfig" style="font-size:100px">デジタルアーツ<span class="u" style="font-size:80px">　2326</span></div>
+      <div class="msub">あやしいサイトやメールに、そもそも触れさせない仕組みです</div>
+    </div>
+  </div>
+</section>
+
+<!-- 222 デジタルアーツ 段階ではない -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="h-main">この企業は、工程では分かれません</div>
+  <div class="stagemap">
+    <div class="st"><span class="n">1</span>調べる</div>
+    <div class="st"><span class="n">2</span>入る</div>
+    <div class="st"><span class="n">3</span>権限を奪う</div>
+    <div class="st"><span class="n">4</span>横に動く</div>
+    <div class="st"><span class="n">5</span>探す</div>
+    <div class="st"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="outside"><div class="ob">分かれるのは、<b>守る相手</b>のほうです</div></div>
+</section>
+
+<!-- 223 デジタルアーツ i-FILTER -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="lead">やっているのは、i-FILTERという仕組みです</div>
+  <div class="stmt">あやしいサイトやメールに、<br><span class="em">そもそも触れさせません。</span></div>
+  <div class="note">入られる前よりもっと手前で、危ないものを見せない側に立っています</div>
+</section>
+
+<!-- 224 デジタルアーツ 守る相手 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="badge navy">相手が特徴的です</div>
+  <div class="h-main">守っている相手は、この2つです</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">学校</div><div class="cap">小中学校の子ども</div><div class="big">1人1台の端末</div><div class="div"></div><div class="strong">見せたくないものを、見せない仕組みが要ります</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">省庁</div><div class="cap">国の組織</div><div class="big">同じ仕組みが必要</div><div class="div"></div><div class="small">触れさせない、という守り方が求められる</div></div>
+  </div>
+</section>
+
+<!-- 225 デジタルアーツ 2期目 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="lead">国が、小中学校の子どもに1台ずつ端末を配る取り組みを進めています</div>
+  <div class="stmt">いまは、<span class="em">その2期目</span>が動いています。</div>
+</section>
+
+<!-- 226 デジタルアーツ 使い続ける -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="lead">学校や省庁は、一度入れたものを使い続けます</div>
+  <div class="stmt">入れ替えには、<br><span class="em">現場の手間と手続き</span>がかかります。</div>
+</section>
+
+<!-- 227 デジタルアーツ 制度の側から積み上がる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt">続けて入ってくるお金が、<br><span class="em">制度の側から積み上がります。</span></div>
+  <div class="note">この顧客基盤が、いちばんの強みです</div>
+</section>
+
+<!-- 228 デジタルアーツ 生成AI -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="lead">もう1つあります。仕事で生成AIを使う企業が増えると</div>
+  <div class="stmt"><span class="em">何を入力させないか</span>を<br>決める必要が出てきます。</div>
+  <div class="note">そこも、この企業がやっている場所です。ここは追い風になります</div>
+</section>
+
+<!-- 229 デジタルアーツ 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">契約高というのは、これから売上になる分です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">前の期</div></div><div class="body"><div class="lbl">年間の売上</div><div class="val2">108億円</div><div class="tag">実績</div></div></div>
+    <div class="col"><div class="top"><div class="nm">契約高</div><div class="cd">前の期</div></div><div class="body"><div class="lbl">166億円</div><div class="val2">6割近く増</div><div class="tag">売上より先に積み上がる</div></div></div>
+  </div>
+</section>
+
+<!-- 230 デジタルアーツ 次の3か月 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="h-main">その次の3か月も</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">売上</div><div class="cd">次の3か月</div></div><div class="body"><div class="lbl">前の年から</div><div class="val2">2割増</div><div class="tag">伸びている</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益</div><div class="cd">次の3か月</div></div><div class="body"><div class="lbl">前の年から</div><div class="val2">3割増</div><div class="tag">伸びている</div></div></div>
+  </div>
+</section>
+
+<!-- 231 デジタルアーツ 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">6,020円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">5,330円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来で</div><div class="r-v" style="font-size:50px">1割を超えるマイナス</div></div>
+  </div>
+</section>
+
+<!-- 232 デジタルアーツ 逆を向いている -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="badge">さきほどお伝えした企業です</div>
+  <div class="h-main">この2つが、逆を向いています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">業績</div><div class="cap">契約高は</div><div class="big">6割近く増</div><div class="div"></div><div class="strong">伸びています</div></div>
+    <div class="vsmark">／</div>
+    <div class="box right"><div class="name">株価</div><div class="cap">年初来で</div><div class="big">1割を超える<br>マイナス</div><div class="div"></div><div class="small">下がっています</div></div>
+  </div>
+</section>
+
+<!-- 233 デジタルアーツ 3つに戻る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：デジタルアーツ（2326）</span><span class="brand"></span></div>
+  <div class="lead">続けて入ってくるお金は、契約高が6割近く増えています。1社にいくつ売れているかは、学校と省庁という相手の性質で決まります</div>
+  <div class="stmt">残るのは、<span class="em">期待がどこまで入っているか</span>です。</div>
+</section>
+
+<!-- 234 トレンドマイクロ 社名 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="lead">6社目</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">6つの段階を、1社で横断する</div>
+      <div class="mfig" style="font-size:92px">トレンドマイクロ<span class="u" style="font-size:74px">　4704</span></div>
+      <div class="msub">ここまでの5社は、守る場所が1つに決まっていました</div>
+    </div>
+  </div>
+</section>
+
+<!-- 235 トレンドマイクロ 段階 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="h-main">この企業は、全部やっています</div>
+  <div class="stagemap">
+    <div class="st on"><span class="n">1</span>調べる</div>
+    <div class="st on"><span class="n">2</span>入る</div>
+    <div class="st on"><span class="n">3</span>権限を奪う</div>
+    <div class="st on"><span class="n">4</span>横に動く</div>
+    <div class="st on"><span class="n">5</span>探す</div>
+    <div class="st on"><span class="n">6</span>持ち出す</div>
+  </div>
+  <div class="note">6つの段階を1社で横断しているのは、この9社の中で、この企業だけです</div>
+</section>
+
+<!-- 236 トレンドマイクロ 守っている場所 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="h-main">守っている場所を、並べます</div>
+  <div class="h-sub">このほかに、メール、データ、そして監視まで</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">パソコンと<br>サーバー</div><div class="ctext">端末そのものを守る</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">社内の通信</div><div class="ctext">中での動きを見る</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">クラウド</div><div class="ctext">外に置いた仕組みも守る</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">ID</div><div class="ctext">誰が入ろうとしているかを確かめる</div></div>
+  </div>
+</section>
+
+<!-- 237 トレンドマイクロ まとめて任される側 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="lead">企業はいま、セキュリティの製品を1社にまとめたがっています。1社にいくつ売れているか、という数字で名前を出したのが、この企業です</div>
+  <div class="stmt"><span class="em">まとめて任される側</span>にいる。<br>ここが、この企業のいちばんの強みです。</div>
+</section>
+
+<!-- 238 トレンドマイクロ 業績 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="h-main">業績です</div>
+  <div class="h-sub">2026年12月期の上期</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">上期</div></div><div class="body"><div class="lbl">1,486億円</div><div class="val2">1割増</div><div class="tag">前の年から</div></div></div>
+    <div class="col"><div class="top"><div class="nm">営業利益</div><div class="cd">上期</div></div><div class="body"><div class="lbl">前の年より</div><div class="val2">2割以上減</div><div class="tag">減っています</div></div></div>
+  </div>
+</section>
+
+<!-- 239 トレンドマイクロ 減った理由 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="lead">減った理由は、クラウドを動かす費用と、AIを動かす費用です</div>
+  <div class="stmt">攻撃する側がAIを使うなら、守る側も使う。<br><span class="em">その費用が、ここに出ています。</span></div>
+</section>
+
+<!-- 240 トレンドマイクロ Vision One -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="lead">伸びている中身を見ると、Vision Oneという、まとめて守るサービスがあります</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">この契約のお金</div>
+      <div class="mfig">5割<span class="u">近く増</span></div>
+      <div class="msub">まとめて任される側にいる、という数字がここに出ています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 241 トレンドマイクロ 外からの評価 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="h-main">外からの評価と、自社の研究所</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">ガートナー</div><div class="cd">この分野の評価</div></div><div class="body"><div class="lbl">上位に置かれた回数</div><div class="val2">21回連続</div><div class="tag">調査会社の評価</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ブラックロック</div><div class="cd">世界最大の機関投資家</div></div><div class="body"><div class="lbl">持っている比率</div><div class="val2">7%あまり</div><div class="tag">株主として</div></div></div>
+    <div class="col"><div class="top"><div class="nm">自社の研究所</div><div class="cd">1つの大会で</div></div><div class="body"><div class="lbl">見つけたゼロデイ</div><div class="val2">47件</div><div class="tag">研究者に約1億9,000万円</div></div></div>
+  </div>
+</section>
+
+<!-- 242 トレンドマイクロ 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：トレンドマイクロ（4704）</span><span class="brand"></span></div>
+  <div class="h-main">株価です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">6,436円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月7日</div><div class="c-v">6,961円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初来で</div><div class="r-v">8%ほど</div></div>
+  </div>
+  <div class="note">利益の何倍まで買われているかで見ると、およそ30倍。6社の中でいちばん大きい企業が、この水準にいます</div>
+</section>
+
+<!-- 243 6社を見てきました -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：6社を見てきました</span><span class="brand"></span></div>
+  <div class="lead">6社を見てきました</div>
+  <div class="stmt">同じ6社でも、年初からの動きは<br><span class="em">そろっていません。</span></div>
+</section>
+
+<!-- 244 両端 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：6社を見てきました</span><span class="brand"></span></div>
+  <div class="badge navy">同じ「サイバーセキュリティ関連」で</div>
+  <div class="h-main">両端が、これだけ離れています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">いちばん上がった</div><div class="cap">年初来で</div><div class="big">9割を超えた</div><div class="div"></div><div class="strong">カウリス</div></div>
+    <div class="vsmark">／</div>
+    <div class="box right"><div class="name">いちばん下がった</div><div class="cap">年初来で</div><div class="big">1割を超える<br>マイナス</div><div class="div"></div><div class="small">デジタルアーツ</div></div>
+  </div>
+</section>
+
+<!-- 245 9社の工程マップ -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 8：9社の工程マップ</span><span class="brand"></span></div>
+  <div class="h-main">分かれ目になっているのは、守っている工程です</div>
+  <div class="stagemap map">
+    <div class="st on"><span class="n">1</span>調べる<span class="co">ブロードバンド<br>セキュリティ</span><span class="co">サイバーセキュリティ<br>クラウド</span></div>
+    <div class="st on"><span class="n">2</span>入る<span class="co">ソリトンシステムズ</span><span class="co">カウリス</span></div>
+    <div class="st"><span class="n">3</span>権限を奪う<span class="co none">―</span></div>
+    <div class="st on"><span class="n">4</span>横に動く<span class="co">セキュアヴェイル</span></div>
+    <div class="st"><span class="n">5</span>探す<span class="co none">―</span></div>
+    <div class="st on2"><span class="n">6</span>持ち出す<span class="co">ZenmuTech（その先）</span></div>
+  </div>
+  <div class="outside">
+    <div class="ob" style="font-size:19px">FFRIセキュリティ<br><b>まだ知られていない攻撃</b></div>
+    <div class="ob" style="font-size:19px">デジタルアーツ<br><b>守る相手（学校と省庁）</b></div>
+    <div class="ob" style="font-size:19px">トレンドマイクロ<br><b>6つの段階を横断</b></div>
+  </div>
+</section>
+
+<!-- 246 覚えて帰る2つ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：覚えて帰る2つ</span><span class="brand"></span></div>
+  <div class="h-main">全部を覚える必要はありません</div>
+  <div class="grid g2">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">6つの段階のどこが<br>気になったか</div><div class="ctext">自分が重いと思う工程はどこか。それだけで、見る企業が決まります</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">持ち株は、<br>どの段階にいるか</div><div class="ctext">ご自分の持ち株があるなら、それはこの帯のどこにいるのか</div></div>
+  </div>
+  <div class="foot-bar">この2つだけ、覚えて帰ってください。<span class="em">では、どう持つか</span></div>
+</section>
+
+<!-- ========== p10_mochikata（40枚） ========== -->
+<!-- 247 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 9：どう持つか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 9 / 10</span><span class="bar"></span><span>工程で分けてから、持ち株で分ける</span></div>
+  <div class="numbox">09</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">どう持つか。<br>持ち株別の見方</div><div class="rule"></div><div class="desc">新NISAで積み立てる場合と、口座を守る設定まで</div></div>
+</section>
+
+<!-- 248 重なっているのは2か所 -->
+<section class="slide t-stage">
+  <div class="hdr"><span class="sec">Section 9：工程で分けてから</span><span class="brand"></span></div>
+  <div class="h-main">9社のうち、同じ工程に重なっているのは2か所です</div>
+  <div class="stagemap map">
+    <div class="st on"><span class="n">1</span>調べる<span class="co">入口を守るのが3社</span></div>
+    <div class="st on"><span class="n">2</span>入る<span class="co">おかしな動きに気づくのが2社</span></div>
+    <div class="st"><span class="n">3</span>権限を奪う<span class="co none">―</span></div>
+    <div class="st on"><span class="n">4</span>横に動く<span class="co">残りの4社は、それぞれ1社ずつ</span></div>
+    <div class="st"><span class="n">5</span>探す<span class="co none">―</span></div>
+    <div class="st on2"><span class="n">6</span>持ち出す<span class="co">その先に1社</span></div>
+  </div>
+</section>
+
+<!-- 249 分散にならない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：工程で分けてから</span><span class="brand"></span></div>
+  <div class="lead">持ち株が同じ工程に2社あっても</div>
+  <div class="stmt"><span class="em">分散にはなりません。</span></div>
+  <div class="note">見ている場所は、1つです</div>
+</section>
+
+<!-- 250 持っている方は3つの数字 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：すでに持っている方</span><span class="brand"></span></div>
+  <div class="h-main">すでにこのテーマの株を持っている方</div>
+  <div class="h-sub">見るのは、3つの数字です。どれが崩れたのかで、株価が動いた理由を切り分けられます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">続けて入ってくる<br>お金</div><div class="ctext">契約のお金と、やめた企業の割合</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">1社に、いくつ<br>売れているか</div><div class="ctext">まとめて任される側にいるか</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">期待が、どこまで<br>入っているか</div><div class="ctext">利益の何倍まで買われているか</div></div>
+  </div>
+</section>
+
+<!-- 251 個別株が不安な方 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：個別株が不安な方</span><span class="brand"></span></div>
+  <div class="lead">そして、いきなり個別株を買うのが不安な方</div>
+  <div class="stmt">9社の名前を覚える必要はありません。<br>このテーマは、<span class="em">まとめて持つ方法</span>があります。</div>
+</section>
+
+<!-- 252 成長投資枠 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="lead">実用的な話から入ります</div>
+  <div class="stmt">このテーマの商品は、<br><span class="em">成長投資枠</span>で買うことになります。</div>
+  <div class="note">年間240万円まで使える、あちらの枠です</div>
+</section>
+
+<!-- 253 2つの枠 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="badge navy">新NISAの2つの枠</div>
+  <div class="h-main">買える枠が、決まっています</div>
+  <div class="cols">
+    <div class="box left"><div class="name">つみたて投資枠</div><div class="cap">このテーマの商品は</div><div class="big">買えません</div><div class="div"></div><div class="small">対象になっている商品が別です</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">成長投資枠</div><div class="cap">年間</div><div class="big">240万円まで</div><div class="div"></div><div class="strong">こちらで買うことになります</div></div>
+  </div>
+</section>
+
+<!-- 254 選べるのは3本 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="lead">選べるのは3本。日本の投資信託が1本、アメリカのETFが2本です</div>
+  <div class="stmt">ETFというのは、<br><span class="em">市場に上場している投資信託</span>です。</div>
+</section>
+
+<!-- 255 3本 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="h-main">この3本です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">サイバーセキュリティ<br>株式オープン</div><div class="ctext">日本の投資信託（三菱UFJアセットマネジメント）</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">CIBR</div><div class="ctext">アメリカのETF。3本でいちばん規模が大きい</div></div>
+    <div class="card c2"><div class="cno">3</div><div class="ctitle">BUG</div><div class="ctext">アメリカのETF。専業の比率がいちばん高い</div></div>
+  </div>
+</section>
+
+<!-- 256 1本目 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="lead">1本目は、サイバーセキュリティ株式オープン。三菱UFJアセットマネジメントのものです</div>
+  <div class="stmt">日本円で金額を指定して、積み立てられます。<br>口座によっては、<span class="em">100円から</span>入れます。</div>
+</section>
+
+<!-- 257 2本目 CIBR -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="lead">2本目はCIBR。3本でいちばん規模が大きい商品です</div>
+  <div class="stmt">セキュリティの専業だけでなく、<br><span class="em">通信機器のシスコや、半導体のブロードコム</span>も<br>入っています。</div>
+</section>
+
+<!-- 258 3本目 BUG -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="lead">3本目はBUG</div>
+  <div class="stmt">セキュリティの専業の比率が、<br><span class="em">3本でいちばん高く</span>なっています。</div>
+</section>
+
+<!-- 259 コストの両端 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="badge">コストは両端だけ言います</div>
+  <div class="h-main">持っている間、毎年かかる費用です</div>
+  <div class="cols">
+    <div class="box right"><div class="name">日本の投資信託</div><div class="cap">年あたり</div><div class="big">1.87%</div><div class="div"></div><div class="small">円で積み立てられる分、費用は高い</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">アメリカのETF</div><div class="cap">年あたり</div><div class="big">0.5%台</div><div class="div"></div><div class="strong">3倍以上の差があります</div></div>
+  </div>
+</section>
+
+<!-- 260 中身はアメリカ中心 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="lead">ここで、中身の話をします。3本とも、入っているのはアメリカの企業が中心です</div>
+  <div class="stmt">この動画でお伝えした日本の9社は、<br><span class="em">入っていません。</span></div>
+</section>
+
+<!-- 261 上位にいる3社 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="h-main">上位にいるのは、この3社です</div>
+  <div class="h-sub">さきほど、米国株の話で出した企業です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">パロアルト<br>ネットワークス</div><div class="ctext">アメリカ最大のサイバーセキュリティ企業</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">クラウド<br>ストライク</div><div class="ctext">パソコンやサーバーを守る</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">フォーティネット</div><div class="ctext">通信機器に強い</div></div>
+  </div>
+</section>
+
+<!-- 262 別のことをしている -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="lead">つまり</div>
+  <div class="stmt">積み立てで買うのと、日本の個別株を買うのは、<br><span class="em">別のことをしています。</span></div>
+  <div class="note">どちらかが正しい、という話ではありません</div>
+</section>
+
+<!-- 263 選ぶときに見る3つ -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="h-main">選ぶときに見るのは、3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">コストが低いか</span><span class="d">持っている間、毎年かかる費用</span></div>
+    <div class="row"><span class="no">2</span><span class="t">規模が十分に大きいか</span><span class="d">小さすぎると、続かないことがある</span></div>
+    <div class="row"><span class="no">3</span><span class="t">自分の口座で買えるか</span><span class="d">新NISAで買えるかは、口座によって違います</span></div>
+  </div>
+  <div class="cta">最後の1つは、ご自分の証券口座で確認してください</div>
+</section>
+
+<!-- 264 土台と上乗せ -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="h-main">形も1つだけお伝えします</div>
+  <div class="chain">
+    <div class="node">つみたて投資枠<br>オルカンやS&amp;P500</div>
+    <div class="arr">＋</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">成長投資枠<br>このテーマを足す</div>
+  </div>
+  <div class="release">土台と、上乗せです</div>
+</section>
+
+<!-- 265 値動きは大きくなりやすい -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：新NISAで積み立てるなら</span><span class="brand"></span></div>
+  <div class="lead">ただ、テーマを絞った商品は</div>
+  <div class="stmt">オルカンやS&amp;P500より、<br><span class="em">値動きが大きくなりやすい</span>です。</div>
+  <div class="note">商品を選ぶところで悩みすぎるより、どこを取りたいかを先に決める。そのほうが早く決まります</div>
+</section>
+
+<!-- 266 ここからはご自分の話 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：買う前に、口座を守る</span><span class="brand"></span></div>
+  <div class="lead">漏れた情報は、別のサービスのログインに使われます</div>
+  <div class="stmt">これは企業の話ではなく、<span class="em">ご自分の話</span>です。</div>
+</section>
+
+<!-- 267 やること4つ（前半） -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 9：買う前に、口座を守る</span><span class="brand"></span></div>
+  <div class="h-main">やることは4つ。まず、この2つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">使い回しをやめる</span><span class="d">銀行と証券口座から先に変える</span></div>
+    <div class="row"><span class="no">2</span><span class="t">GoogleとAppleを守る</span><span class="d">2段階認証を設定する</span></div>
+  </div>
+  <div class="cta">設定はどれも、数分で終わります</div>
+</section>
+
+<!-- 268 やること4つ（後半） -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 9：買う前に、口座を守る</span><span class="brand"></span></div>
+  <div class="h-main">そして、この2つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">3</span><span class="t">使っていない入口を閉じる</span><span class="d">証券口座の設定で、使わない経路を止める</span></div>
+    <div class="row"><span class="no">4</span><span class="t">メールと電話に答えない</span><span class="d">リンクからは入らない</span></div>
+  </div>
+  <div class="cta">順番に見ていきます</div>
+</section>
+
+<!-- 269 1つ目 使い回しをやめる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：①使い回しをやめる</span><span class="brand"></span></div>
+  <div class="lead">1つ目。同じパスワードを、ほかのサービスでも使っているなら</div>
+  <div class="stmt">全部でなくていいので、<br><span class="em">銀行と証券口座から先に</span>変えます。</div>
+</section>
+
+<!-- 270 攻撃する側の手口 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：①使い回しをやめる</span><span class="brand"></span></div>
+  <div class="h-main">攻撃する側がやっているのは、これだけです</div>
+  <div class="chain">
+    <div class="node">漏れたメールアドレスと<br>パスワードの組み合わせ</div>
+    <div class="arr">→</div>
+    <div class="node">別のサービスに<br>順番に入れていく</div>
+    <div class="arr">→</div>
+    <div class="node danger">1つでも同じなら<br>そのまま通る</div>
+  </div>
+</section>
+
+<!-- 271 確認する場所 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：①使い回しをやめる</span><span class="brand"></span></div>
+  <div class="h-main">使い回しは、ここで確認できます</div>
+  <div class="grid g2">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">iPhoneなら</div><div class="ctext">パスワードのアプリに、セキュリティ警告が出ます</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">Chromeなら</div><div class="ctext">Googleパスワードマネージャーのチェックアップです</div></div>
+  </div>
+  <div class="foot-bar">どちらも、<span class="em">漏れた可能性のあるものと、使い回しているもの</span>が一覧で出ます</div>
+</section>
+
+<!-- 272 2つ目 GoogleとApple -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：②GoogleとAppleを守る</span><span class="brand"></span></div>
+  <div class="lead">2つ目。証券口座のログインをどれだけ強くしても</div>
+  <div class="stmt">GoogleやAppleのアカウントが奪われれば、<br><span class="em">そこに保存されている情報から入られます。</span></div>
+</section>
+
+<!-- 273 2段階認証 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：②GoogleとAppleを守る</span><span class="brand"></span></div>
+  <div class="lead">やることは1つです</div>
+  <div class="stmt"><span class="em">2段階認証</span>。<br>パスワードだけでログインできる状態を、やめます。</div>
+</section>
+
+<!-- 274 3つ目 使っていない入口を閉じる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：③使っていない入口を閉じる</span><span class="brand"></span></div>
+  <div class="lead">3つ目</div>
+  <div class="stmt"><span class="em">使っていない入口</span>を、閉じることです。</div>
+</section>
+
+<!-- 275 SBI証券 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：③使っていない入口を閉じる</span><span class="brand"></span></div>
+  <div class="h-main">SBI証券の場合</div>
+  <div class="h-sub">スマホの顔や指紋でログインする設定にしたうえで、これを使います</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ログインパスワードの<br>無効設定</div><div class="ctext">ユーザー名とパスワードだけで入る経路を、閉じられます</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">使っていないツールも<br>個別に止める</div><div class="ctext">普段使っていない株アプリやパソコンのツールからのログイン</div></div>
+  </div>
+</section>
+
+<!-- 276 楽天証券 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：③使っていない入口を閉じる</span><span class="brand"></span></div>
+  <div class="h-main">楽天証券の場合</div>
+  <div class="h-sub">取引やサービスの一時的な利用停止。止める範囲を選べます</div>
+  <div class="grid g2">
+    <div class="card c3"><div class="cno">1</div><div class="ctitle">残すもの</div><div class="ctext">投資信託の買付だけ残せば、毎月の積み立ては続きます</div></div>
+    <div class="card c1"><div class="cno">2</div><div class="ctitle">止めるもの</div><div class="ctext">売却、出金、国内株、外国株。資産を外に動かす機能を止める</div></div>
+  </div>
+</section>
+
+<!-- 277 まとめて停止 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：③使っていない入口を閉じる</span><span class="brand"></span></div>
+  <div class="lead">どちらにも、ログインそのものをまとめて停止する設定があります</div>
+  <div class="stmt">数か月ログインしない方なら、<br><span class="em">こちらでも構いません。</span></div>
+</section>
+
+<!-- 278 4つ目 メールと電話 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：④メールと電話に答えない</span><span class="brand"></span></div>
+  <div class="lead">4つ目。「あなたは漏洩の対象です」「本人確認をしてください」というメールが来ても</div>
+  <div class="stmt">そのメールの<span class="em">リンクから入らない。</span></div>
+  <div class="note">一度閉じて、公式のアプリか、自分で登録したブックマークから開きます</div>
+</section>
+
+<!-- 279 知っているから本物ではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：④メールと電話に答えない</span><span class="brand"></span></div>
+  <div class="lead">相手は、ご自分の名前も住所も電話番号も知っています</div>
+  <div class="stmt">知っているから本物、ではありません。<br><span class="em">その情報そのものが、漏れたものかもしれません。</span></div>
+</section>
+
+<!-- 280 認証コードは教えない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：④メールと電話に答えない</span><span class="brand"></span></div>
+  <div class="lead">ワンタイムパスワードと、SMSで届く認証コードは</div>
+  <div class="stmt">電話でもメールでも、<br><span class="em">誰にも教えないでください。</span></div>
+  <div class="note">設定はどれも、数分で終わります</div>
+</section>
+
+<!-- 281 崩れる条件は2つ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：見方を変えるとしたら</span><span class="brand"></span></div>
+  <div class="lead">ここまでは、守る側に予算がつき続ける、という前提で見てきました</div>
+  <div class="stmt">それが崩れるとしたら、<span class="em">条件は2つ</span>です。</div>
+</section>
+
+<!-- 282 1つ目 標準で付いてくる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：見方を変えるとしたら</span><span class="brand"></span></div>
+  <div class="lead">1つ目。OpenAIやマイクロソフトのような、AIそのものを作っている企業が</div>
+  <div class="stmt">セキュリティの機能を<span class="em">標準で付けてくる</span>ときです。</div>
+  <div class="note">無料で付いてくるものに、別途お金を払う企業は減ります</div>
+</section>
+
+<!-- 283 いまは出ていない -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：見方を変えるとしたら</span><span class="brand"></span></div>
+  <div class="badge navy">どこを見ていればいいか</div>
+  <div class="h-main">いまのところ、その動きは数字に出ていません</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">いまの数字</div><div class="cap">契約をやめる企業の割合</div><div class="big">1%を切る</div><div class="div"></div><div class="strong">契約高も増えています</div></div>
+    <div class="vsmark">／</div>
+    <div class="box right"><div class="name">変わったら</div><div class="cap">最初に出るのは</div><div class="big">続けて入るお金</div><div class="div"></div><div class="small">ここから崩れます</div></div>
+  </div>
+</section>
+
+<!-- 284 2つ目 起点になったとき -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：見方を変えるとしたら</span><span class="brand"></span></div>
+  <div class="lead">2つ目</div>
+  <div class="stmt">セキュリティの企業そのものが、<br><span class="em">障害や攻撃の起点になった</span>ときです。</div>
+</section>
+
+<!-- 285 裏返る -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：見方を変えるとしたら</span><span class="brand"></span></div>
+  <div class="h-main">1社にまとめて任せる動きは、ここまで見てきたとおり続いています</div>
+  <div class="chain">
+    <div class="node">まとめた先が<br>止まる</div>
+    <div class="arr">→</div>
+    <div class="node danger">止まる範囲も<br>まとめて広がる</div>
+  </div>
+  <div class="release">1社にいくつ売れているか、という数字は、そのまま裏返ります</div>
+</section>
+
+<!-- 286 どちらも、いまは起きていない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：見方を変えるとしたら</span><span class="brand"></span></div>
+  <div class="lead">どちらも、いまは起きていません</div>
+  <div class="stmt">起きたときに、この動画でお伝えした<span class="em">見方は変わります。</span></div>
+  <div class="note">最後に、動画の最初の迷いに戻ります</div>
+</section>
+
+<!-- ========== p11_imi（15枚） ========== -->
+<!-- 287 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 10：「セキュリティ」の、本当の意味</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 10 / 10</span><span class="bar"></span><span>最初の迷いに戻ります</span></div>
+  <div class="numbox">10</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">「セキュリティ」の、<br>本当の意味</div><div class="rule"></div><div class="desc">なぜ、最後の主役になりうるのか</div></div>
+</section>
+
+<!-- 288 AIを動かすために必要なもの -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 10：AIを動かすために</span><span class="brand"></span></div>
+  <div class="h-main">AIを動かすために必要なものを、順に並べてみます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">計算をする<br>半導体</div><div class="ctext">AIそのものを動かす頭脳</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">それを置く<br>データセンター</div><div class="ctext">動かし続ける場所</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">動かすための<br>電力</div><div class="ctext">止まれば、全部止まる</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">つなぐための<br>通信</div><div class="ctext">使う人のところまで届ける</div></div>
+  </div>
+</section>
+
+<!-- 289 5つ目 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：AIを動かすために</span><span class="brand"></span></div>
+  <div class="lead">そして、5つ目</div>
+  <div class="stmt">入ってきたものを<span class="em">守る仕組み</span>です。</div>
+  <div class="note">この5つは、どれも欠かせないものです</div>
+</section>
+
+<!-- 290 付け足されたものではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：守る仕組みの位置</span><span class="brand"></span></div>
+  <div class="lead">守る仕組みは</div>
+  <div class="stmt">最後に<span class="em">付け足されたものではありません。</span></div>
+</section>
+
+<!-- 291 3つ並べる -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 10：守る仕組みの位置</span><span class="brand"></span></div>
+  <div class="h-main">どれが欠けても、同じことが起きます</div>
+  <div class="chain">
+    <div class="node">半導体が<br>なければ動かない</div>
+    <div class="arr">／</div>
+    <div class="node">電力が<br>なければ止まる</div>
+    <div class="arr">／</div>
+    <div class="node danger">守る仕組みがなければ<br>外から壊される</div>
+  </div>
+</section>
+
+<!-- 292 使う量に比例して増える -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：守る仕組みの位置</span><span class="brand"></span></div>
+  <div class="lead">だから、セキュリティの支出は、守りの費用ではありません</div>
+  <div class="stmt">AIを使う量が増えれば、そのぶん増えていく。<br><span class="em">使う量に比例して増える支出</span>です。</div>
+</section>
+
+<!-- 293 最初の迷い -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 10：最初の迷いに戻ります</span><span class="brand"></span></div>
+  <div class="badge navy">動画の最初に置いた二択</div>
+  <div class="h-main">もう一度、ここに戻ります</div>
+  <div class="cols">
+    <div class="box left"><div class="name">見送る</div><div class="cap">もう上がってしまったから</div><div class="big">今は手を出さない</div><div class="div"></div><div class="small">動画の最初に、2つに分かれた迷いです</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">見ていく</div><div class="cap">それでも</div><div class="big">今から見ていく</div><div class="div"></div><div class="strong">どちらでもない、3つ目があります</div></div>
+  </div>
+</section>
+
+<!-- 294 答え -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：最初の迷いに戻ります</span><span class="brand"></span></div>
+  <div class="lead">答えです</div>
+  <div class="stmt">見送る必要はありません。ただ、<br><span class="em">上がった順に追いかけるのでもありません。</span></div>
+</section>
+
+<!-- 295 第三の道 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 10：最初の迷いに戻ります</span><span class="brand"></span></div>
+  <div class="h-main">これが第三の道です</div>
+  <div class="chain">
+    <div class="node">6つの段階の<br>どこを守っているかで分ける</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">3つの数字で<br>確かめる</div>
+  </div>
+  <div class="release">そのうえで、ご自分で見分けられるようになります</div>
+</section>
+
+<!-- 296 攻撃する側も守る側も -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：ここまでをまとめます</span><span class="brand"></span></div>
+  <div class="lead">攻撃する側は、AIを手に入れました</div>
+  <div class="stmt">守る側も、<span class="em">同じものを手に入れます。</span></div>
+</section>
+
+<!-- 297 国も、その守る側に日本の企業 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：ここまでをまとめます</span><span class="brand"></span></div>
+  <div class="lead">国も、攻撃される前に止めにいく側に回りました</div>
+  <div class="stmt">そして、その守る側に、<br><span class="em">日本の企業がいます。</span></div>
+</section>
+
+<!-- 298 主役かどうかを決めるもの -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：最後の主役</span><span class="brand"></span></div>
+  <div class="lead">サイバーセキュリティが、AI投資の最後の主役になるかもしれない。最初に、そうお伝えしました</div>
+  <div class="stmt">主役かどうかを決めるのは、一日の値動きではありません。<br>企業と国が、<span class="em">毎年そこに予算をつけ続けるかどうか</span>です。</div>
+</section>
+
+<!-- 299 過去動画への誘導 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：最後に</span><span class="brand"></span></div>
+  <div class="lead">AI関連の話は</div>
+  <div class="stmt">僕のチャンネルの過去動画でかなり解説してますので、<br><span class="em">良ければご覧ください。</span></div>
+</section>
+
+<!-- 300 コメント訴求 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：最後に</span><span class="brand"></span></div>
+  <div class="lead">セキュリティの企業は、これから重要になる。そう思った方、そして</div>
+  <div class="stmt">気になる銘柄があった方は、<br><span class="em">ぜひコメント欄で教えてください。</span></div>
+</section>
+
+<!-- 301 エンディング -->
+<section class="slide t-closing">
+  <div class="big">攻撃する側はAIを手に入れ、<br><span class="em">守る側も、同じものを手に入れます。</span></div>
+  <div class="sub">それではまた、次の動画でお会いしましょう。ご視聴いただき、ありがとうございました。</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span><span class="tg">⚡ ハイプボタン</span></div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* =========================================================
+   日経平均10万円（マクロ編）デッキの追加CSS
+   PLAN.md §3。keizai-slide の style.css のあとに読み込む。
+   新しい色・トーンは足さない（既存の変数だけを使う）。
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   3-a. lagline ＝ 注文が利益に変わるまでの時間差（このデッキの背骨）
+   ［注文が決まる］→［部材・仕掛品］→［作る・納める］→［検収］→［売上］→［利益］
+   .done = 通過済み / .on = いま通過中
+   出る場所：④68（初出）⑤91 ⑫239 ⑬272 ⑬300 ⑮332 ほか
+   --------------------------------------------------------- */
+.lagline{display:flex;gap:12px;justify-content:center;align-items:stretch;margin:0 64px;}
+.lagline .lg{flex:1;padding:44px 8px;border-radius:16px;background:var(--graybox);
+  color:#7c8798;font-size:34px;font-weight:800;text-align:center;line-height:1.25;
+  border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;
+  box-shadow:var(--shadow-sm);}
+.lagline .lg .n{display:block;font-size:22px;opacity:.75;margin-bottom:10px;font-weight:700;}
+.lagline .lg.done{background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);color:#fff;border-color:transparent;}
+.lagline .lg.on{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;border-color:transparent;}
+.lagline .lg.on .n,.lagline .lg.done .n{opacity:.85;}
+
+/* 帯の下に置く注記 */
+.lag-note{text-align:center;font-size:32px;font-weight:700;color:var(--navy);
+  margin:46px 76px 0;line-height:1.5;}
+.lag-note .em{color:var(--orange);}
+
+/* ---------------------------------------------------------
+   3-b. fourcheck ＝ 追うのは、4つだけです（⑫が初出。⑤より前に出さない）
+   ［注文の残り］［売上に変わったか］［営業利益率］［PER］
+   .ok = 増えている / .wait = まだ / .ng = 下がっている / .on = いま説明中
+   --------------------------------------------------------- */
+.fourcheck{display:flex;gap:18px;justify-content:center;align-items:stretch;margin:0 64px;}
+.fourcheck .fc{flex:1;padding:46px 12px;border-radius:16px;background:var(--graybox);
+  color:#7c8798;font-size:40px;font-weight:800;text-align:center;line-height:1.3;
+  border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;
+  box-shadow:var(--shadow-sm);}
+.fourcheck .fc .n{display:block;font-size:22px;opacity:.75;margin-bottom:12px;font-weight:700;}
+.fourcheck .fc .s{display:block;font-size:25px;font-weight:700;margin-top:18px;opacity:.92;}
+.fourcheck .fc.on{background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);color:#fff;border-color:transparent;}
+.fourcheck .fc.ok{background:linear-gradient(150deg,#2f8f6b 0%,#27795b 100%);color:#fff;border-color:transparent;}
+.fourcheck .fc.wait{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;border-color:transparent;}
+.fourcheck .fc.ng{background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;border-color:transparent;}
+
+/* ---------------------------------------------------------
+   3-c. 見出しの上余白（光電融合・サイバーで踏んだ落とし穴）
+   t-cards / t-vs / t-stats は padding-top を上げて
+   見出しがヘッダー帯に食い込まないようにする
+   --------------------------------------------------------- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---------------------------------------------------------
+   t-fx の結果カードの色違い。
+   既定は赤（＝目減り・悪化）。前向きな結果に赤を使うと意味が逆に読めるので、
+   .good（緑）と .navy（中立）を足す。新しい色は作らず既存の変数だけを使う。
+   --------------------------------------------------------- */
+.t-fx .result.good{background:linear-gradient(135deg,var(--green),#3aa77e);
+  box-shadow:0 12px 26px rgba(47,143,107,.32);}
+.t-fx .result.navy{background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);
+  box-shadow:0 12px 26px rgba(19,35,63,.32);}
+.t-fx .result.orange{background:linear-gradient(135deg,var(--orange),var(--orange2));
+  box-shadow:0 12px 26px rgba(230,145,42,.32);}
+
+/* lagline / fourcheck を置くスライドの共通枠。画面いっぱいに使う（上下中央） */
+.t-band{padding:92px 0 56px;display:flex;flex-direction:column;justify-content:center;}
+.t-band .h-main{margin:0 70px 48px;}
+.t-band .h-sub{margin:-30px 70px 40px;}
+
+/* ---------------------------------------------------------
+   長い見出しが左右の端に届かないようにする。
+   ★numviz には付けない。縦の余裕が無く、見出しが2行になると
+     note が下にはみ出す（p184 で踏んだ）。numviz の見出しは
+     24字以内に収める運用で逃がす。
+   --------------------------------------------------------- */
+.t-flow .h-main,
+.t-vbars .h-main,
+.t-stack .h-main{padding-left:70px;padding-right:70px;}
+.t-flow .h-sub,
+.t-vbars .h-sub,
+.t-stack .h-sub{padding-left:70px;padding-right:70px;}
+
+/* ---------------------------------------------------------
+   細い seg は、中に文字が入らない（スキルの既知の落とし穴）。
+   .tiny を付けると、値をバーの右隣に濃い色で出す。
+   --------------------------------------------------------- */
+.t-prop .pbar .seg.main.tiny{overflow:visible;position:relative;}
+.t-prop .pbar .seg.main.tiny .p{position:absolute;left:calc(100% + 18px);top:50%;
+  transform:translateY(-50%);color:var(--navy);white-space:nowrap;}
+.t-prop .pbar .seg.main.tiny .l{display:none;}
+
+/* ---------------------------------------------------------
+   短い棒は、中に長い金額が入らない。
+   .vb .bar.out を付けると、値を棒の上に出す。
+   --------------------------------------------------------- */
+.t-vbars .vb .bar.out{overflow:visible;position:relative;color:transparent;}
+.t-vbars .vb .bar.out::after{content:attr(data-v);position:absolute;left:50%;bottom:calc(100% + 10px);
+  transform:translateX(-50%);color:var(--navy);font-size:30px;font-weight:800;white-space:nowrap;}

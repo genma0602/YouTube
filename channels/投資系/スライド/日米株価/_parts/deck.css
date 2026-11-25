@@ -1,0 +1,113 @@
+/* ===== 日米株価デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* 見出しがヘッダー帯に食い込む型の上余白（サイバー・光電融合で踏んだ落とし穴） */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* 2〜3個並べるメトリックは数字を小さく */
+.metrics.two .metric{min-width:0;flex:1;max-width:540px;padding:34px 30px 36px;}
+.metrics.two .mfig{font-size:70px;}
+.metrics.two .mfig .u{font-size:36px;}
+.metrics.two .msub{font-size:21px;}
+
+/* ---- 3条件ボード（このデッキの背骨） ---- */
+.t-cond{display:flex;flex-direction:column;justify-content:center;padding:70px 70px 0;}
+.t-cond .lead{font-size:26px;color:#69727c;font-weight:600;text-align:center;margin-bottom:14px;position:relative;padding-top:26px;}
+.t-cond .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cond .h-main{margin:6px 0 10px;}
+.t-cond .h-sub{margin-bottom:30px;}
+.t-cond .note{text-align:center;font-size:24px;color:#7a828c;font-weight:600;margin-top:34px;line-height:1.7;}
+.cond3{display:flex;gap:26px;justify-content:center;margin-top:20px;}
+.cond3 .cd{flex:1;max-width:340px;background:#eef2f7;color:#7c8798;border:1px solid var(--line);border-radius:18px;
+  padding:26px 14px 24px;text-align:center;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:12px;}
+.cond3 .cd .n{font-size:20px;font-weight:800;letter-spacing:.1em;opacity:.8;}
+.cond3 .cd .t{font-size:34px;font-weight:800;line-height:1.3;}
+.cond3 .cd .c{font-size:24px;font-weight:800;border-radius:10px;padding:10px 6px;background:#fff;color:#9aa3ae;}
+.cond3 .cd.now{background:#fff;color:var(--navy);border:3px solid var(--blue);}
+.cond3 .cd.now .c{background:#eaf2fc;color:var(--blue);}
+.cond3 .cd.ok{background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;border-color:transparent;}
+.cond3 .cd.ok .c{background:rgba(255,255,255,.14);color:#fff;}
+.cond3 .cd.hit{background:linear-gradient(150deg,var(--red),var(--red2));color:#fff;border-color:transparent;}
+.cond3 .cd.hit .c{background:rgba(255,255,255,.18);color:#fff;}
+
+/* 横棒（戻るまでの時間）はラベル幅を広げる */
+.t-port .brow .lab{width:300px;}
+
+/* 4〜5段のフローは1行に収める */
+.t-flow .chain.n4,.t-flow .chain.n5{flex-wrap:nowrap;}
+.t-flow .chain.n4 .node{min-width:0;padding:28px 20px;font-size:25px;}
+.t-flow .chain.n5 .node{min-width:0;padding:26px 14px;font-size:23px;}
+.t-flow .chain.n4 .arr,.t-flow .chain.n5 .arr{padding:0 8px;font-size:32px;}
+
+/* カードの丸番号に文字を入れるときは幅を広げる */
+.t-cards .card .cno.wide{width:auto;padding:0 14px;}
+
+/* ランキング：色はプラスのときだけ赤。行が多いときは詰める */
+.t-rank .row .pct:not(.up){color:var(--navy);}
+.t-rank.compact .rows{gap:9px;}
+.t-rank.compact .row{padding:9px 28px;}
+.t-rank.compact .row .nm{font-size:24px;}
+.t-rank.compact .row .pct{font-size:28px;}
+
+/* 2〜3個並べる数字の箱は横幅いっぱいに広げ、数字は折り返さない */
+.metrics.two{width:100%;max-width:1100px;margin:0 auto;}
+.metrics.two .metric{flex:1 1 0;max-width:none;}
+.metrics.two .mfig{font-size:56px;white-space:nowrap;}
+.metrics.two .mfig .u{font-size:30px;}
+.metrics.two.three .mfig{font-size:50px;}
+
+/* 階段の数字は折り返さない */
+.t-steps .step{width:340px;}
+.t-steps .step .v{font-size:40px;white-space:nowrap;}
+
+/* 締めの説明文 */
+.t-closing .sub{max-width:1000px;line-height:1.6;}
+
+/* カード型・表型は中身を上下中央に（上に寄って下が空くのを防ぐ） */
+.t-cards,.t-stats{display:flex;flex-direction:column;justify-content:center;padding-bottom:40px;}
+.t-cards .badge,.t-stats .badge{align-self:flex-start;}
+
+/* 大きな数字は1行で（箱のほうを広げる） */
+.metric.hero .mfig{white-space:nowrap;}
+
+/* 章の扉：上に寄りすぎないよう全体を下げる */
+.t-section .topic{top:170px;}
+.t-section .numbox{top:282px;}
+.t-section .stitle{top:298px;}
+
+/* ===== 見づらさの直し（2026-10-17 通し点検） ===== */
+/* 比較スライド：中身が少ないときに上へ寄らないよう上下中央に */
+.t-vs{display:flex;flex-direction:column;justify-content:center;padding-bottom:40px;}
+.t-vs .badge{align-self:flex-start;}
+/* 比較スライドの補足文字が薄すぎる */
+.t-vs .box .cap{font-size:21px;color:#6f7883;}
+.t-vs .box .small{font-size:21px;color:#5f6874;}
+/* 表：空のタグ（色の帯）を出さない／数字を大きく／見出し帯の補足をはっきり */
+.t-stats .col .tag:empty{display:none;}
+.t-stats .col .val2{font-size:48px;}
+.t-stats .col .top .cd{font-size:19px;opacity:1;}
+.t-stats .col .lbl{font-size:21px;color:#5f6874;}
+/* 下の注記が薄すぎる */
+.foot-note{color:#7a828c;}
+/* 数直線のラベル */
+.t-numline .mk .lab{font-size:21px;color:#5f6874;}
+/* 数字の箱の補足 */
+.metric .msub{color:#5f6874;}
+/* 2〜3段のフローは箱と文字を大きく */
+.t-flow .chain:not(.n4):not(.n5) .node{font-size:31px;padding:36px 34px;}
+.t-flow .chain:not(.n4):not(.n5) .arr{font-size:46px;}
+/* 並べた数字を少し大きく */
+.metrics.two .mfig{font-size:64px;}
+.metrics.two.three .mfig{font-size:54px;}
+.metrics.two .mlbl{font-size:23px;}
+/* 並べた数字の最終サイズ（通し点検で調整） */
+.metrics.two .metric{padding:44px 30px 44px;}
+.metrics.two .mfig{font-size:80px;}
+.metrics.two .mfig .u{font-size:38px;}
+.metrics.two.three .mfig{font-size:64px;}
+.metrics.two.three .mfig .u{font-size:32px;}
+.metrics.two .msub{font-size:22px;}
+/* 長い数字が入る並べ方は、数字を小さく（.long） */
+.metrics.two.long .mfig{font-size:58px;}
+.metrics.two.long .mfig .u{font-size:30px;}

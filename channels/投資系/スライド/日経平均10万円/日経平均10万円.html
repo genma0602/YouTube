@@ -1,0 +1,3721 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>日経平均10万円</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:50px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 32px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:42px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:18px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:26px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 0;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:60px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:44px;}
+.t-port .bars{display:flex;flex-direction:column;gap:28px;max-width:1000px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:26px;font-weight:800;color:var(--navy);width:250px;}
+.t-port .brow .track{flex:1;height:54px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:300px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:50px;font-weight:800;color:var(--navy);}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:340px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* ===== industry chips map ===== */
+.t-chips{display:flex;flex-direction:column;justify-content:center;padding:56px 60px 0;}
+.t-chips .h-main{margin:0 0 12px;}
+.t-chips .h-sub{margin-bottom:32px;}
+.t-chips .groups{display:flex;gap:24px;justify-content:center;align-items:stretch;}
+.t-chips .grp{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px 28px;text-align:center;}
+.t-chips .grp.g-a{border-top:6px solid var(--blue);} .t-chips .grp.g-b{border-top:6px solid var(--orange);} .t-chips .grp.g-c{border-top:6px solid var(--green);}
+.t-chips .grp .gh{font-size:23px;font-weight:800;margin-bottom:18px;}
+.t-chips .grp.g-a .gh{color:var(--blue);} .t-chips .grp.g-b .gh{color:#cf820f;} .t-chips .grp.g-c .gh{color:var(--green);}
+.t-chips .chip{display:inline-block;margin:6px;padding:11px 18px;border-radius:26px;background:#eef2f7;color:var(--navy);font-size:19px;font-weight:700;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+
+/* =========================================================
+   日経平均10万円（マクロ編）デッキの追加CSS
+   PLAN.md §3。keizai-slide の style.css のあとに読み込む。
+   新しい色・トーンは足さない（既存の変数だけを使う）。
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   3-a. lagline ＝ 注文が利益に変わるまでの時間差（このデッキの背骨）
+   ［注文が決まる］→［部材・仕掛品］→［作る・納める］→［検収］→［売上］→［利益］
+   .done = 通過済み / .on = いま通過中
+   出る場所：④68（初出）⑤91 ⑫239 ⑬272 ⑬300 ⑮332 ほか
+   --------------------------------------------------------- */
+.lagline{display:flex;gap:12px;justify-content:center;align-items:stretch;margin:0 64px;}
+.lagline .lg{flex:1;padding:44px 8px;border-radius:16px;background:var(--graybox);
+  color:#7c8798;font-size:34px;font-weight:800;text-align:center;line-height:1.25;
+  border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;
+  box-shadow:var(--shadow-sm);}
+.lagline .lg .n{display:block;font-size:22px;opacity:.75;margin-bottom:10px;font-weight:700;}
+.lagline .lg.done{background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);color:#fff;border-color:transparent;}
+.lagline .lg.on{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;border-color:transparent;}
+.lagline .lg.on .n,.lagline .lg.done .n{opacity:.85;}
+
+/* 帯の下に置く注記 */
+.lag-note{text-align:center;font-size:32px;font-weight:700;color:var(--navy);
+  margin:46px 76px 0;line-height:1.5;}
+.lag-note .em{color:var(--orange);}
+
+/* ---------------------------------------------------------
+   3-b. fourcheck ＝ 追うのは、4つだけです（⑫が初出。⑤より前に出さない）
+   ［注文の残り］［売上に変わったか］［営業利益率］［PER］
+   .ok = 増えている / .wait = まだ / .ng = 下がっている / .on = いま説明中
+   --------------------------------------------------------- */
+.fourcheck{display:flex;gap:18px;justify-content:center;align-items:stretch;margin:0 64px;}
+.fourcheck .fc{flex:1;padding:46px 12px;border-radius:16px;background:var(--graybox);
+  color:#7c8798;font-size:40px;font-weight:800;text-align:center;line-height:1.3;
+  border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;
+  box-shadow:var(--shadow-sm);}
+.fourcheck .fc .n{display:block;font-size:22px;opacity:.75;margin-bottom:12px;font-weight:700;}
+.fourcheck .fc .s{display:block;font-size:25px;font-weight:700;margin-top:18px;opacity:.92;}
+.fourcheck .fc.on{background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);color:#fff;border-color:transparent;}
+.fourcheck .fc.ok{background:linear-gradient(150deg,#2f8f6b 0%,#27795b 100%);color:#fff;border-color:transparent;}
+.fourcheck .fc.wait{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;border-color:transparent;}
+.fourcheck .fc.ng{background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;border-color:transparent;}
+
+/* ---------------------------------------------------------
+   3-c. 見出しの上余白（光電融合・サイバーで踏んだ落とし穴）
+   t-cards / t-vs / t-stats は padding-top を上げて
+   見出しがヘッダー帯に食い込まないようにする
+   --------------------------------------------------------- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---------------------------------------------------------
+   t-fx の結果カードの色違い。
+   既定は赤（＝目減り・悪化）。前向きな結果に赤を使うと意味が逆に読めるので、
+   .good（緑）と .navy（中立）を足す。新しい色は作らず既存の変数だけを使う。
+   --------------------------------------------------------- */
+.t-fx .result.good{background:linear-gradient(135deg,var(--green),#3aa77e);
+  box-shadow:0 12px 26px rgba(47,143,107,.32);}
+.t-fx .result.navy{background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);
+  box-shadow:0 12px 26px rgba(19,35,63,.32);}
+.t-fx .result.orange{background:linear-gradient(135deg,var(--orange),var(--orange2));
+  box-shadow:0 12px 26px rgba(230,145,42,.32);}
+
+/* lagline / fourcheck を置くスライドの共通枠。画面いっぱいに使う（上下中央） */
+.t-band{padding:92px 0 56px;display:flex;flex-direction:column;justify-content:center;}
+.t-band .h-main{margin:0 70px 48px;}
+.t-band .h-sub{margin:-30px 70px 40px;}
+
+/* ---------------------------------------------------------
+   長い見出しが左右の端に届かないようにする。
+   ★numviz には付けない。縦の余裕が無く、見出しが2行になると
+     note が下にはみ出す（p184 で踏んだ）。numviz の見出しは
+     24字以内に収める運用で逃がす。
+   --------------------------------------------------------- */
+.t-flow .h-main,
+.t-vbars .h-main,
+.t-stack .h-main{padding-left:70px;padding-right:70px;}
+.t-flow .h-sub,
+.t-vbars .h-sub,
+.t-stack .h-sub{padding-left:70px;padding-right:70px;}
+
+/* ---------------------------------------------------------
+   細い seg は、中に文字が入らない（スキルの既知の落とし穴）。
+   .tiny を付けると、値をバーの右隣に濃い色で出す。
+   --------------------------------------------------------- */
+.t-prop .pbar .seg.main.tiny{overflow:visible;position:relative;}
+.t-prop .pbar .seg.main.tiny .p{position:absolute;left:calc(100% + 18px);top:50%;
+  transform:translateY(-50%);color:var(--navy);white-space:nowrap;}
+.t-prop .pbar .seg.main.tiny .l{display:none;}
+
+/* ---------------------------------------------------------
+   短い棒は、中に長い金額が入らない。
+   .vb .bar.out を付けると、値を棒の上に出す。
+   --------------------------------------------------------- */
+.t-vbars .vb .bar.out{overflow:visible;position:relative;color:transparent;}
+.t-vbars .vb .bar.out::after{content:attr(data-v);position:absolute;left:50%;bottom:calc(100% + 10px);
+  transform:translateX(-50%);color:var(--navy);font-size:30px;font-weight:800;white-space:nowrap;}
+
+</style>
+</head>
+<body>
+
+<!-- ========== p01_yumemonogatari（14枚） ========== -->
+<!-- 001 t-title -->
+<section class="slide t-title">
+  <div class="kicker">日経平均10万円</div>
+  <div class="big">日経平均<span class="em">10万円</span>は、<br>もう夢物語ではありません</div>
+  <div class="lead">なぜ30年伸びなかったのか／なぜこれから上がり続けるのか</div>
+</section>
+
+<!-- 002 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">少し前まで、日経平均10万円は夢物語だと思われていました</div>
+  <div class="stmt">ところが、日本経済が<span class="em">30年ぶり</span>に<br>変わり始めています。</div>
+</section>
+
+<!-- 003 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">30年ぶりの変化</div>
+  <div class="stmt"><span class="em">希望が見えてきました。</span></div>
+</section>
+
+<!-- 004 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：何が変わったのか</span><span class="brand"></span></div>
+  <div class="lead">何が変わったのか</div>
+  <div class="stmt"><span class="em">物価</span>です。</div>
+</section>
+
+<!-- 005 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">はじめに：何が変わったのか</span><span class="brand"></span></div>
+  <div class="lead">日本は30年、デフレの中にいました</div>
+  <div class="h-main">それが、いま形が変わりつつあります</div>
+  <div class="row">
+    <div class="card"><div class="c-l">30年間</div><div class="c-v">デフレ</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">いま</div><div class="c-v">物価が上がる</div></div>
+    <div class="arr">→</div>
+    <div class="result good"><div class="r-l">そして</div><div class="r-v">給料も上がる</div></div>
+  </div>
+  <div class="note">物価が上がり、給料も上がる形に変わりつつあります</div>
+</section>
+
+<!-- 006 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：ところが</span><span class="brand"></span></div>
+  <div class="lead">それでも</div>
+  <div class="stmt">ところが、<span class="em">素直に喜べない</span>と思います。</div>
+</section>
+
+<!-- 007 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：ところが</span><span class="brand"></span></div>
+  <div class="lead">日本経済は、また止まるのではないか</div>
+  <div class="stmt">失われた30年を<span class="em">自分の給料で経験した人</span>なら、<br>そう思って当然です。</div>
+</section>
+
+<!-- 008 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">はじめに：不安の根拠</span><span class="brand"></span></div>
+  <div class="badge navy">その不安には、根拠もあります</div>
+  <div class="h-main">上がっているものと、減っているもの</div>
+  <div class="cols">
+    <div class="box left"><div class="name">上がった</div><div class="cap">市場と給料</div><div class="big">株と給料</div><div class="div"></div><div class="strong">株は上がり、給料も増え始めた</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">減った</div><div class="cap">家計</div><div class="big">使ったお金</div><div class="div"></div><div class="strong">家庭が実際に使ったお金は、前の年より減っている</div></div>
+  </div>
+  <div class="foot-note">この2つが、同時に起きています</div>
+</section>
+
+<!-- 009 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：いまの日本</span><span class="brand"></span></div>
+  <div class="lead">株は上がり、給料も増え始めたのに</div>
+  <div class="stmt">暮らしが楽になった<span class="em">実感はない</span>。<br>これが、いまの日本です。</div>
+</section>
+
+<!-- 010 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：結論</span><span class="brand"></span></div>
+  <div class="lead">それでも、結論から言います</div>
+  <div class="stmt"><span class="em">日本経済は復活します。</span></div>
+</section>
+
+<!-- 011 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：結論</span><span class="brand"></span></div>
+  <div class="lead">日本株は、これからも上がり続けると考えています</div>
+  <div class="stmt">日経平均<span class="em">10万円</span>も、<br>条件が揃えば届く数字です。</div>
+</section>
+
+<!-- 012 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">はじめに：2つの問い</span><span class="brand"></span></div>
+  <div class="badge">だから今回は、2つに分けて聞いてください</div>
+  <div class="h-main">今回お答えする、2つの問い</div>
+  <div class="cols">
+    <div class="box left"><div class="name">問い1</div><div class="cap">過去について</div><div class="big">なぜ止まった</div><div class="div"></div><div class="strong">なぜ日本経済は、30年も止まっていたのか</div></div>
+    <div class="vsmark">＆</div>
+    <div class="box right"><div class="name">問い2</div><div class="cap">これからについて</div><div class="big">なぜ上がる</div><div class="div"></div><div class="strong">それなのに、なぜこれから上がり続けるのか</div></div>
+  </div>
+  <div class="foot-note">この2つは、別々の話ではありません</div>
+</section>
+
+<!-- 013 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：2つの問い</span><span class="brand"></span></div>
+  <div class="lead">別々の話ではありません</div>
+  <div class="stmt">同じ<span class="em">1つの原因</span>の、<br>裏と表です。</div>
+</section>
+
+<!-- 014 t-agenda -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">今回お話しすること</span><span class="brand"></span></div>
+  <div class="h-main">お話しする順番は3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">なぜ30年止まっていたのか</span><span class="d">原因は、作る力ではありませんでした</span></div>
+    <div class="row"><span class="no">2</span><span class="t">日本経済が、どう動くのか</span><span class="d">政府・財政・生産性・世界の工場</span></div>
+    <div class="row"><span class="no">3</span><span class="t">日本のどの企業に注文が来ているのか</span><span class="d">会社四季報の秋号と決算資料をもとに3社</span></div>
+  </div>
+  <div class="cta">10万円が来るかどうかは、誰かの予想ではなく、注文と利益の数字で判定します</div>
+</section>
+
+<!-- ========== p02_30nen（19枚） ========== -->
+<!-- 015 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 1：なぜ、30年も伸びなかったのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 1 / 13</span><span class="bar"></span><span>30年の答え</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">なぜ、30年も<br>伸びなかったのか</div><div class="rule"></div><div class="desc">原因は、作る力ではありませんでした</div></div>
+</section>
+
+<!-- 016 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：先に、考え方から</span><span class="brand"></span></div>
+  <div class="lead">早く儲かる銘柄を教えてほしい、と思う方もいると思います</div>
+  <div class="stmt">ただ、銘柄の名前だけ聞いても、<br><span class="em">意味がありません。</span></div>
+</section>
+
+<!-- 017 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：先に、考え方から</span><span class="brand"></span></div>
+  <div class="lead">なぜ注文が来ているのかが分からないと、いつまで持てばいいか判断できません</div>
+  <div class="stmt">だから先に、<span class="em">ジャンジャン儲かるための考え方</span>の<br>ほうを解説します。</div>
+</section>
+
+<!-- 018 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：先に答えを言います</span><span class="brand"></span></div>
+  <div class="lead">先に答えを言います</div>
+  <div class="stmt">日本経済が伸びなかったのは、<br>企業に力が無かったから<span class="em">ではありません</span>。</div>
+</section>
+
+<!-- 019 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：先に答えを言います</span><span class="brand"></span></div>
+  <div class="lead">では、何が原因だったのか</div>
+  <div class="stmt">景気が戻りかけるたびに、<br><span class="em">自分から冷やす側</span>に動いてきたからです。</div>
+</section>
+
+<!-- 020 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：アベノミクス</span><span class="brand"></span></div>
+  <div class="lead">2013年から、アベノミクスが始まりました</div>
+  <div class="stmt">柱になったのは、<br>それまでにない規模の<span class="em">金融緩和</span>です。</div>
+</section>
+
+<!-- 022 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：アベノミクス</span><span class="brand"></span></div>
+  <div class="badge navy">これは効きました</div>
+  <div class="h-main">金融緩和で、動いた4つ</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">円</div><div class="ctext">円は安くなった</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">株</div><div class="ctext">株は上がった</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">企業の利益</div><div class="ctext">利益も増えた</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">働く人の数</div><div class="ctext">働く人の数も増えた</div></div>
+  </div>
+  <div class="foot-bar">アベノミクスは失敗だった、とは言いません。<span class="em">ここは成果として認めていいところ</span>です</div>
+</section>
+
+<!-- 023 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：ところが、その翌年</span><span class="brand"></span></div>
+  <div class="lead">ところが、その翌年です</div>
+  <div class="stmt">2014年4月、消費税が<br><span class="em">5%から8%</span>に上がりました。</div>
+</section>
+
+<!-- 024 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：増税の影響</span><span class="brand"></span></div>
+  <div class="lead">日銀自身の推計では</div>
+  <div class="h-main">この増税が、その年度の成長率を押し下げた</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">2014年度の成長率への影響（日銀の推計）</div>
+      <div class="mfig">1.2<span class="u">ポイント</span></div>
+      <div class="msub">増税の影響を取り除けば、2014年度もプラス成長だった可能性がある</div>
+    </div>
+  </div>
+  <div class="note">日銀は、影響が事前の想定より大きかったことも認めています</div>
+</section>
+
+<!-- 025 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：増税の影響</span><span class="brand"></span></div>
+  <div class="lead">物価の上がったぶんを引いた手取りが減って、消費が弱くなった</div>
+  <div class="stmt">そして2019年にも、<br>消費税は<span class="em">10%</span>に上がりました。</div>
+</section>
+
+<!-- 026 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：同時にやったこと</span><span class="brand"></span></div>
+  <div class="badge">アベノミクスの10年</div>
+  <div class="h-main">温める政策と、冷やす政策を、同じ時期に</div>
+  <div class="cols">
+    <div class="box left"><div class="name">温める</div><div class="cap">景気を</div><div class="big">金融緩和</div><div class="div"></div><div class="strong">それまでにない規模で踏み込んだ</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box right"><div class="name">冷やす</div><div class="cap">家計の負担を</div><div class="big">消費増税</div><div class="div"></div><div class="strong">5%→8%、そして10%へ</div></div>
+  </div>
+  <div class="foot-note">同じ時期に、同時にやった。これが、アベノミクスの10年です</div>
+</section>
+
+<!-- 027 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：1997年にも</span><span class="brand"></span></div>
+  <div class="lead">同じことは、その前にも起きています</div>
+  <div class="stmt">1997年にも消費税を上げ、<br>同時に<span class="em">財政を引き締めました</span>。</div>
+</section>
+
+<!-- 028 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：1997年にも</span><span class="brand"></span></div>
+  <div class="h-main">このあと起きたこと</div>
+  <div class="chain">
+    <div class="node">景気は<br>後退</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node danger">金融機関が<br>行き詰まる</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">2000年<br>ゼロ金利も解除</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:var(--orange);">翌年、また<br>金融緩和へ</div>
+  </div>
+  <div class="release">しかも、やめる前よりも<span class="em" style="color:var(--orange)">踏み込んだ緩和</span>が必要になりました</div>
+</section>
+
+<!-- 028 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：正直にお伝えします</span><span class="brand"></span></div>
+  <div class="lead">正直にお伝えします。この2つの時期は、海外の景気悪化も重なっています</div>
+  <div class="stmt">増税や利上げだけが原因だ、<br>とまでは<span class="em">言えません</span>。</div>
+</section>
+
+<!-- 029 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：共通する順番</span><span class="brand"></span></div>
+  <div class="h-main">ただ、共通していることが1つあります</div>
+  <div class="chain">
+    <div class="node">景気が<br>戻りかける</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node danger">回復の途中で<br>自分から冷やす</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">また緩和で<br>やり直す</div>
+  </div>
+  <div class="release">この順番を、日本は<span class="em" style="color:var(--orange)">何度も繰り返してきました</span></div>
+</section>
+
+<!-- 030 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：生産性と賃金</span><span class="brand"></span></div>
+  <div class="lead">もう1つあります。生産性は、この30年で少しずつ上がりました</div>
+  <div class="stmt">ただ、伸びは小さい。しかも上がったぶんが、<br><span class="em">賃金に十分回らなかった</span>。</div>
+</section>
+
+<!-- 031 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：30年かけて作られた形</span><span class="brand"></span></div>
+  <div class="lead">さきほどの、給料は増え始めたのに使うお金は減っている</div>
+  <div class="stmt">あれは、いま始まった話ではありません。<br><span class="em">30年かけて作られた形</span>です。</div>
+</section>
+
+<!-- 035 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：つまり</span><span class="brand"></span></div>
+  <div class="lead">つまり、伸びなかった原因は、作る力ではありません</div>
+  <div class="stmt"><span class="em">踏み方</span>のほうでした。<br>だからこそ、温める側に回れば結果は変わります。</div>
+</section>
+
+<!-- 034 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：2つ目の問いへ</span><span class="brand"></span></div>
+  <div class="lead">では、いまの日本は何をしているのか</div>
+  <div class="stmt">ここから、<span class="em">2つ目の問い</span>に入ります。</div>
+</section>
+
+<!-- ========== p03_seifu（15枚） ========== -->
+<!-- 034 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 2：今回は、政府が温める側に回りました</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 2 / 13</span><span class="bar"></span><span>向きが、逆になった</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">今回は、政府が<br>温める側に回りました</div><div class="rule"></div><div class="desc">増税ではなく、投資へ</div></div>
+</section>
+
+<!-- 035 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：向きが、逆になりました</span><span class="brand"></span></div>
+  <div class="badge navy">いまの政府がやっていること</div>
+  <div class="h-main">増税ではありません。投資です</div>
+  <div class="cols">
+    <div class="box left"><div class="name">これまで</div><div class="cap">冷やす側</div><div class="big">増税</div><div class="div"></div><div class="strong">回復の途中で、家計の負担を増やした</div></div>
+    <div class="vsmark">→</div>
+    <div class="box right"><div class="name">いま</div><div class="cap">温める側</div><div class="big">投資</div><div class="div"></div><div class="strong">企業が作る力そのものを上げる側へ</div></div>
+  </div>
+  <div class="foot-note">向きが、逆になりました</div>
+</section>
+
+<!-- 036 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：過去と違うところ</span><span class="brand"></span></div>
+  <div class="lead">過去と違うところを</div>
+  <div class="stmt"><span class="em">3つに絞って</span>お伝えします。</div>
+</section>
+
+<!-- 037 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：①お金の出し方</span><span class="brand"></span></div>
+  <div class="lead">まず、お金の出し方です</div>
+  <div class="stmt">予算が1年ごとではなく、<br><span class="em">何年かまとめて</span>確保される形になりました。</div>
+</section>
+
+<!-- 038 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：①お金の出し方</span><span class="brand"></span></div>
+  <div class="lead">これは企業にとって大きい。工場を建てて動かすまでには、数年かかります</div>
+  <div class="stmt">来年も支援があるか分からない状態では、<br>企業は<span class="em">踏み切れません</span>。</div>
+</section>
+
+<!-- 039 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 2：②対象</span><span class="brand"></span></div>
+  <div class="badge">それから、対象です</div>
+  <div class="h-main">公共事業の中心が、入れ替わりました</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">昔</div><div class="ctitle">道路や橋</div><div class="ctext">作ったあとに残るのは、構造物だった</div></div>
+    <div class="card c2"><div class="cno">今</div><div class="ctitle">17の分野</div><div class="ctext">国が重点を決めた分野へ。AIと半導体、電力、造船や防衛が入っている</div></div>
+  </div>
+  <div class="foot-bar">企業が<span class="em">ものを作る力そのもの</span>を上げる側へ、お金が向き始めました</div>
+</section>
+
+<!-- 040 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：③規模</span><span class="brand"></span></div>
+  <div class="lead">そして、規模です</div>
+  <div class="h-main">2040年度までに想定されている投資の額</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">政府と民間を合わせた投資の想定（2040年度まで）</div>
+      <div class="mfig">370<span class="u">兆円 超</span></div>
+      <div class="msub">国が重点を決めた17の分野に向かう</div>
+    </div>
+  </div>
+  <div class="note">これから何年もかけて、使われるかどうかが決まります</div>
+</section>
+
+<!-- 041 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：③規模</span><span class="brand"></span></div>
+  <div class="lead">AIと半導体だけで見ると</div>
+  <div class="h-main">2030年度までに置かれた、公的な支援枠</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">AIと半導体の公的な支援枠（2030年度まで）</div>
+      <div class="mfig">10<span class="u">兆円 以上</span></div>
+      <div class="msub">17の分野のうち、1つの分野だけでこの規模</div>
+    </div>
+  </div>
+  <div class="note">予算が何年かまとめて確保されるから、企業は設備投資に踏み切れる</div>
+</section>
+
+<!-- 042 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 2：ここで1つ断っておきます</span><span class="brand"></span></div>
+  <div class="badge">370兆円の読み方</div>
+  <div class="h-main">全部、別のものです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">掲げた金額</div><div class="ctext">政府が想定として示した額。370兆円超はこれ</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">通った予算</div><div class="ctext">国会を通った予算とは違う</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">使われたお金</div><div class="ctext">実際に使われたお金とも違う</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">買った設備</div><div class="ctext">企業が本当に設備を買った金額とも、また違う</div></div>
+  </div>
+  <div class="foot-bar">もう使い終わった金額ではありません。<span class="em">これから決まります</span></div>
+</section>
+
+<!-- 043 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：効くとは限らない</span><span class="brand"></span></div>
+  <div class="lead">そして、政府がお金を出せば経済が伸びる、とも言えません</div>
+  <div class="stmt">1990年代の公共事業を調べた研究では、<br>使った額のわりに<span class="em">効果が小さかった</span>。</div>
+</section>
+
+<!-- 044 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：効くとは限らない</span><span class="brand"></span></div>
+  <div class="lead">同じ研究では</div>
+  <div class="stmt">民間の投資を<span class="em">押しのけた面</span>もあった、<br>と分析されています。</div>
+</section>
+
+<!-- 045 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：効くかどうかの条件</span><span class="brand"></span></div>
+  <div class="badge navy">効くかどうかは、2つで決まります</div>
+  <div class="h-main">政府が出したお金が、効く条件</div>
+  <div class="cols">
+    <div class="box left"><div class="name">条件1</div><div class="cap">出す側が</div><div class="big">企業の財務</div><div class="div"></div><div class="strong">財務の強い企業が、その話に乗って自分のお金も出すか</div></div>
+    <div class="vsmark">＆</div>
+    <div class="box right"><div class="name">条件2</div><div class="cap">向け先が</div><div class="big">生産性</div><div class="div"></div><div class="strong">投資の対象が、生産性を上げるものかどうか</div></div>
+  </div>
+  <div class="foot-note">借金の重い企業では、政府が支援しても投資が増えにくいことも分かっています</div>
+</section>
+
+<!-- 046 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：狙っているところ</span><span class="brand"></span></div>
+  <div class="lead">いまの日本が狙っているのは、まさにここです</div>
+  <div class="stmt">企業が<span class="em">自分のお金を足したくなる分野</span>に、<br>政府が先に出す。</div>
+</section>
+
+<!-- 047 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：工場が建つには</span><span class="brand"></span></div>
+  <div class="h-main">ただ、工場は、お金を出すと言っただけでは建ちません</div>
+  <div class="chain">
+    <div class="node">土地が<br>要ります</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">＋</div>
+    <div class="node">電気が<br>要ります</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">＋</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">そして、<br>水も要ります</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">この水が、<span class="em" style="color:var(--blue)">後半につながります</span></div>
+</section>
+
+<!-- 048 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：注文の数字に出ます</span><span class="brand"></span></div>
+  <div class="lead">本当に動き始めているかどうかは、計画書には出ません</div>
+  <div class="stmt"><span class="em">注文の数字</span>に出ます。</div>
+</section>
+
+<!-- ========== p04_chumon（18枚） ========== -->
+<!-- 049 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 3：注文は、もう入っています</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 3 / 13</span><span class="bar"></span><span>計画書ではなく、注文の数字</span></div>
+  <div class="numbox">03</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">注文は、<br>もう入っています</div><div class="rule"></div><div class="desc">日本の製造業に、注文が積み上がり始めた</div></div>
+</section>
+
+<!-- 050 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：工作機械の注文</span><span class="brand"></span></div>
+  <div class="lead">実際に、日本の製造業に注文が積み上がり始めた兆しは、もう数字に出ています</div>
+  <div class="stmt">その数字が、<span class="em">工作機械の注文</span>です。</div>
+</section>
+
+<!-- 051 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：工作機械とは</span><span class="brand"></span></div>
+  <div class="badge navy">工作機械とは、金属を削る機械</div>
+  <div class="h-main">元をたどれば、この機械で削り出している</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">半導体を作る装置</div><div class="ctext">装置そのものの部品を削り出す</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">飛行機の部品</div><div class="ctext">精密な加工が要る</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">船のエンジン</div><div class="ctext">大型の加工が要る</div></div>
+  </div>
+  <div class="foot-bar">世界のどの工場にも<span class="em">欠かせない</span>、日本の製造業のいちばん土台に近い機械です</div>
+</section>
+
+<!-- 052 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：景気の先を映す</span><span class="brand"></span></div>
+  <div class="lead">この注文は</div>
+  <div class="stmt"><span class="em">景気の先を映す</span>と言われます。</div>
+</section>
+
+<!-- 053 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：景気の先を映す</span><span class="brand"></span></div>
+  <div class="lead">企業が生産を増やそうと決めたとき</div>
+  <div class="stmt">いちばん早く発注されるのが、<br><span class="em">作るための機械</span>だからです。</div>
+</section>
+
+<!-- 053 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：先に1社だけ</span><span class="brand"></span></div>
+  <div class="lead">先に1社だけ、名前を出しておきます</div>
+  <div class="h-main">この統計を出している業界団体の、会長企業です</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">東証プライム／工作機械・成形機</div>
+      <div class="mfig">芝浦機械<span class="u"> 6104</span></div>
+      <div class="msub">注文の統計を出している業界団体の会長を、この企業の社長が務めています</div>
+    </div>
+  </div>
+  <div class="note">業界全体を見ている立場の人が、自分の企業も経営しています</div>
+</section>
+
+<!-- 054 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：受注残</span><span class="brand"></span></div>
+  <div class="lead">その注文票を見ます。2026年8月の終わりの時点で</div>
+  <div class="h-main">契約が決まっていて、まだ作り終えていない仕事</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">工作機械の受注残（2026年8月末・業界全体）</div>
+      <div class="mfig">1兆596<span class="u">億円</span></div>
+      <div class="msub">遡れるかぎりで、いちばん多い金額</div>
+    </div>
+  </div>
+  <div class="note">すでに契約が決まっていて、まだ作り終えていない仕事の金額です</div>
+</section>
+
+<!-- 056 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：注文の向き</span><span class="brand"></span></div>
+  <div class="lead">ここで見てほしいのは</div>
+  <div class="stmt">総額よりも、<span class="em">向き</span>です。</div>
+</section>
+
+<!-- 055 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：注文の向き</span><span class="brand"></span></div>
+  <div class="lead">毎月、出荷した以上に新しい注文が入ってくる</div>
+  <div class="h-main">だから残りが減らずに、積み上がっていきます</div>
+  <div class="row">
+    <div class="card"><div class="c-l">注文を取るペース</div><div class="c-v">速い</div></div>
+    <div class="arr">＞</div>
+    <div class="card"><div class="c-l">作って出すペース</div><div class="c-v">追いつかない</div></div>
+    <div class="arr">＝</div>
+    <div class="result orange"><div class="r-l">その結果</div><div class="r-v">積み上がる</div></div>
+  </div>
+  <div class="note">注文を取るペースが、作って出すペースを上回っています</div>
+</section>
+
+<!-- 056 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：増え続けている</span><span class="brand"></span></div>
+  <div class="lead">2026年9月の注文</div>
+  <div class="h-main">前の年の同じ月と比べて</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">工作機械の受注（2026年9月・前年同月比）</div>
+      <div class="mfig">+60.4<span class="u">%</span></div>
+      <div class="msub">増え続けているのは、これで15か月連続</div>
+    </div>
+  </div>
+  <div class="note">一度きりの跳ね上がりではなく、15か月続いています</div>
+</section>
+
+<!-- 057 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：中身を1つだけ開きます</span><span class="brand"></span></div>
+  <div class="lead">国内では、電気機械の分野からの注文が</div>
+  <div class="h-main">前の年と比べて、どれだけ増えたか</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">国内・電気機械の分野からの注文（前年比）</div>
+      <div class="mfig">約3<span class="u">倍</span></div>
+      <div class="msub">この中に、半導体を作る装置の企業が入っています</div>
+    </div>
+  </div>
+  <div class="note">中身を1つだけ開くと、はっきりしています</div>
+</section>
+
+<!-- 059 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：装置を作る企業が</span><span class="brand"></span></div>
+  <div class="lead">装置を作る企業が、その装置を削り出す機械を</div>
+  <div class="stmt">いま、<span class="em">大量に発注</span>しています。</div>
+</section>
+
+<!-- 058 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：勘違いしやすいところ</span><span class="brand"></span></div>
+  <div class="badge">ここは勘違いしやすいところです</div>
+  <div class="h-main">この1兆円は、全部がAI半導体ではありません</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">航空宇宙・造船</div><div class="ctext">どちらも設備投資を増やしている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">防衛</div><div class="ctext">大型の機械への注文が重なる</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">エネルギー・自動車</div><div class="ctext">ここからも注文が入っている</div></div>
+  </div>
+  <div class="foot-bar">AIだけで説明すると、投資が止まった瞬間に全部崩れる話になる。<span class="em">実際には、もっと幅があります</span></div>
+</section>
+
+<!-- 059 t-band：lagline の初出 -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">Section 3：気をつけるところ</span><span class="brand"></span></div>
+  <div class="h-main">受注残は、利益ではありません。現金でもありません</div>
+  <div class="lagline">
+    <div class="lg done"><span class="n">1</span>注文が<br>決まる</div>
+    <div class="lg"><span class="n">2</span>部材・<br>仕掛品</div>
+    <div class="lg"><span class="n">3</span>作る・<br>納める</div>
+    <div class="lg"><span class="n">4</span>検収</div>
+    <div class="lg"><span class="n">5</span>売上</div>
+    <div class="lg"><span class="n">6</span>利益</div>
+  </div>
+  <div class="lag-note">決まっているのは<span class="em">1だけ</span>。6に届くまでに、時間がかかります</div>
+</section>
+
+<!-- 060 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：気をつけるところ</span><span class="brand"></span></div>
+  <div class="badge">6に届かないことも、あります</div>
+  <div class="h-main">注文のあとに、起こり得ること</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">取り消し</div><div class="ctext">注文が取り消されることもあります</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">仕様の変更</div><div class="ctext">仕様が変わることもあります</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">納期が延びる</div><div class="ctext">部品が来ずに、納期が延びることもあります</div></div>
+  </div>
+  <div class="foot-bar">1兆円あるからといって、<span class="em">1兆円の売上が約束されたわけではありません</span></div>
+</section>
+
+<!-- 061 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：1社だけ、中まで見ます</span><span class="brand"></span></div>
+  <div class="lead">では、この1兆円は、どの企業に積まれているのか</div>
+  <div class="stmt">さきほど名前を出した芝浦機械を、<br><span class="em">1社だけ、中まで</span>見ます。</div>
+</section>
+
+<!-- 062 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：選んだ理由</span><span class="brand"></span></div>
+  <div class="lead">選んだ理由は、会長というだけではありません</div>
+  <div class="stmt">注文が大きく増えているのに、<br>決算が<span class="em">赤字</span>だからです。</div>
+</section>
+
+<!-- 063 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：選んだ理由</span><span class="brand"></span></div>
+  <div class="lead">いまの日本の製造業に起きていることが</div>
+  <div class="stmt"><span class="em">1社の中に、そのまま</span>出ています。</div>
+</section>
+
+<!-- ========== p05_shibaura（36枚） ========== -->
+<!-- 067 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：芝浦機械の中で、何が起きているのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4 / 13</span><span class="bar"></span><span>1社を、中まで見る</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">芝浦機械の中で、<br>何が起きているのか</div><div class="rule"></div><div class="desc">注文は増えている。ところが、決算は赤字</div></div>
+</section>
+
+<!-- 068 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：何を作っている企業か</span><span class="brand"></span></div>
+  <div class="badge navy">芝浦機械には、柱が2つあります</div>
+  <div class="h-main">2つの柱</div>
+  <div class="cols">
+    <div class="box left"><div class="name">柱1</div><div class="cap">成形機</div><div class="big">型に入れる</div><div class="div"></div><div class="strong">プラスチックや金属を型に入れて成形する機械</div></div>
+    <div class="vsmark">＆</div>
+    <div class="box right"><div class="name">柱2</div><div class="cap">工作機械</div><div class="big">金属を削る</div><div class="div"></div><div class="strong">さきほどの、金属を削る工作機械</div></div>
+  </div>
+  <div class="foot-note">この2つで、いま起きていることが違います</div>
+</section>
+
+<!-- 069 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：何を作っている企業か</span><span class="brand"></span></div>
+  <div class="lead">先に言っておくと</div>
+  <div class="stmt">この企業は、<br>AI半導体のチップを<span class="em">作っていません</span>。</div>
+</section>
+
+<!-- 070 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：何を作っている企業か</span><span class="brand"></span></div>
+  <div class="lead">作っているのは</div>
+  <div class="stmt">AIのデータセンターで光をつなぐ部品の、<br>その<span class="em">型を削る機械</span>です。</div>
+</section>
+
+<!-- 071 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：どこにいる企業か</span><span class="brand"></span></div>
+  <div class="h-main">AIの投資から、3つ離れたところ</div>
+  <div class="chain">
+    <div class="node">データセンターが<br>増える</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">光でつなぐ<br>部品が要る</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">部品を作るには<br>型が要る</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:var(--orange);">型を削る<br>この企業の機械</div>
+  </div>
+  <div class="release">型を削るには、この企業の機械が<span class="em" style="color:var(--orange)">欠かせない</span></div>
+</section>
+
+<!-- 072 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 4：注文は、売上の2.7倍</span><span class="brand"></span></div>
+  <div class="h-main">工作機械の受注が、2.6倍になりました</div>
+  <div class="h-sub">2026年4月から6月の3か月（前の年の同じ時期と比べて）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:110px">53億円</div><div class="cap">前の年</div><div class="sub">同じ3か月</div></div>
+    <div class="vb orange"><div class="bar" style="height:280px">140億円</div><div class="cap">2026年4〜6月</div><div class="sub">2.6倍に</div></div>
+  </div>
+</section>
+
+<!-- 073 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 4：注文は、売上の2.7倍</span><span class="brand"></span></div>
+  <div class="lead">工作機械の受注残</div>
+  <div class="h-main">まだ作り終えていない仕事も、増えています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v">225億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年6月末</div><div class="c-v">401億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result orange"><div class="r-l">増え方</div><div class="r-v">+77.8%</div></div>
+  </div>
+  <div class="note">工作機械の受注残だけを取り出した数字です</div>
+</section>
+
+<!-- 074 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：注文は、売上の2.7倍</span><span class="brand"></span></div>
+  <div class="lead">同じ3か月の、工作機械の売上</div>
+  <div class="h-main">140億円の注文を取って、出せたのは</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">工作機械の売上（2026年4〜6月）</div>
+      <div class="mfig">51<span class="u">億円</span></div>
+      <div class="msub">注文140億円に対して、出せたのが51億円</div>
+    </div>
+  </div>
+  <div class="note">注文が、売上の2.7倍入っています</div>
+</section>
+
+<!-- 075 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 4：注文は、売上の2.7倍</span><span class="brand"></span></div>
+  <div class="lead">取った注文と、出せた売上</div>
+  <div class="h-main">注文が、売上の2.7倍入っています</div>
+  <div class="pbar">
+    <div class="seg main"><span class="p">140億円</span><span class="l">取った注文</span></div>
+    <div class="seg rest"><span class="p">51億円</span><span class="l">出せた売上</span></div>
+  </div>
+  <div class="note">業界全体の「取るペースが作るペースを上回る」が、1社の決算ではこう出ます</div>
+</section>
+
+<!-- 076 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：ところが、連結は赤字です</span><span class="brand"></span></div>
+  <div class="lead">ここで</div>
+  <div class="stmt"><span class="em">都合の悪い数字</span>を出します。</div>
+</section>
+
+<!-- 077 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 4：ところが、連結は赤字です</span><span class="brand"></span></div>
+  <div class="h-main">連結の売上は、31.8%減りました</div>
+  <div class="h-sub">2026年4月から6月（前の年の同じ時期と比べて）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:270px">309億円</div><div class="cap">前の年</div><div class="sub">同じ3か月</div></div>
+    <div class="vb orange"><div class="bar" style="height:184px">211億円</div><div class="cap">2026年4〜6月</div><div class="sub">−31.8%</div></div>
+  </div>
+</section>
+
+<!-- 078 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 4：ところが、連結は赤字です</span><span class="brand"></span></div>
+  <div class="lead">営業利益も、黒字から赤字に変わっています</div>
+  <div class="h-main">同じ3か月の、営業利益</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v">9.2億円の黒字</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年4〜6月</div><div class="c-v">6.5億円の赤字</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">つまり</div><div class="r-v">赤字に転落</div></div>
+  </div>
+  <div class="note">注文が2.6倍なのに、赤字です</div>
+</section>
+
+<!-- 079 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：赤字の理由</span><span class="brand"></span></div>
+  <div class="lead">理由は工作機械ではありません</div>
+  <div class="stmt">もう1つの柱、<span class="em">成形機</span>のほうです。</div>
+</section>
+
+<!-- 081 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 4：赤字の理由</span><span class="brand"></span></div>
+  <div class="h-main">成形機の売上が、落ちました</div>
+  <div class="h-sub">中国で電池に使うフィルムを作る装置が売れなくなった</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:270px">243億円</div><div class="cap">前の年</div><div class="sub">同じ3か月</div></div>
+    <div class="vb orange"><div class="bar" style="height:152px">137億円</div><div class="cap">2026年4〜6月</div><div class="sub">落ち込んだ</div></div>
+  </div>
+</section>
+
+<!-- 082 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：2つの柱で、逆のことが</span><span class="brand"></span></div>
+  <div class="badge navy">同じ企業の中で</div>
+  <div class="h-main">伸びている柱と、落ちている柱</div>
+  <div class="cols">
+    <div class="box left"><div class="name">伸びている</div><div class="cap">工作機械</div><div class="big">売上も利益も増</div><div class="div"></div><div class="strong">受注残は77.8%増えている</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">落ちている</div><div class="cap">成形機</div><div class="big">打ち消す</div><div class="div"></div><div class="strong">成形機の落ち込みが、それを打ち消している</div></div>
+  </div>
+  <div class="foot-note">全社で見ると、赤字になります</div>
+</section>
+
+<!-- 083 t-stack -->
+<section class="slide t-stack">
+  <div class="hdr"><span class="sec">Section 4：中身が入れ替わっている</span><span class="brand"></span></div>
+  <div class="h-main">全社の受注残は、前の年とほとんど変わりません</div>
+  <div class="h-sub">ところが、中身が入れ替わっています</div>
+  <div class="sbar">
+    <div class="seg a" style="width:37%"><div class="sn">工作機械</div><div class="sv">+77.8%</div></div>
+    <div class="seg b" style="width:63%"><div class="sn">成形機ほか</div><div class="sv">受注残は減っている</div></div>
+  </div>
+  <div class="total">この企業の<span class="em">形そのもの</span>が、いま変わりつつあります</div>
+</section>
+
+<!-- 084 t-band：lagline の2回目 -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">Section 4：時間差の実物</span><span class="brand"></span></div>
+  <div class="h-main">さきほどの時間差が、1社の決算に出た形です</div>
+  <div class="lagline">
+    <div class="lg done"><span class="n">1</span>注文が<br>決まる</div>
+    <div class="lg on"><span class="n">2</span>部材・<br>仕掛品</div>
+    <div class="lg on"><span class="n">3</span>作る・<br>納める</div>
+    <div class="lg"><span class="n">4</span>検収</div>
+    <div class="lg"><span class="n">5</span>売上</div>
+    <div class="lg"><span class="n">6</span>利益</div>
+  </div>
+  <div class="lag-note">注文を取ってから利益になるまでに、<span class="em">部品を集めて、作って、納めて、検収を受ける時間</span>が要ります</div>
+</section>
+
+<!-- 085 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：財務は厚い</span><span class="brand"></span></div>
+  <div class="h-main">赤字と聞くと不安になりますが、財務は厚いです</div>
+  <div class="h-sub">赤字が続いて行き詰まる、という状態ではありません</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">自己資本比率</div><div class="cd">2026年6月末</div></div><div class="body"><div class="lbl">返さなくていいお金の割合</div><div class="val2">67.7%</div><div class="tag">厚い</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">手元の現金</div><div class="cd">2026年3月末</div></div><div class="body"><div class="lbl">すぐ使える現金</div><div class="val2">427億円</div><div class="tag">十分</div></div></div>
+  </div>
+</section>
+
+<!-- 086 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：③の条件に当てはまる</span><span class="brand"></span></div>
+  <div class="lead">さきほどの、財務の強い企業が自分のお金を出す側</div>
+  <div class="stmt">という条件に、<span class="em">当てはまります</span>。</div>
+</section>
+
+<!-- 087 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：営業キャッシュフロー</span><span class="brand"></span></div>
+  <div class="lead">もう1つ、営業キャッシュフローも見ておきます</div>
+  <div class="h-main">注文が増えると、お金は先に出ていきます</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">営業キャッシュフロー（2026年3月期）</div>
+      <div class="mfig">約85<span class="u">億円 のマイナス</span></div>
+      <div class="msub">部材と、仕掛品、つまり作りかけの在庫が先に出ていく</div>
+    </div>
+  </div>
+  <div class="note">見るのは、マイナスの大きさではなく、向きが変わるかどうかです</div>
+</section>
+
+<!-- 088 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：これから何をするのか</span><span class="brand"></span></div>
+  <div class="lead">これから何をするのか</div>
+  <div class="stmt"><span class="em">3つ</span>動いています。</div>
+</section>
+
+<!-- 089 t-steps -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 4：これから何をするのか</span><span class="brand"></span></div>
+  <div class="h-main">光をつなぐ部品の型を削る、超精密な機械</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">これまで</div><div class="v">月3〜5台</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2027年度</div><div class="v">月12〜15台</div></div>
+  </div>
+</section>
+
+<!-- 090 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：これから何をするのか</span><span class="brand"></span></div>
+  <div class="lead">それから、航空宇宙、エネルギー、造船、防衛に使う大型の機械</div>
+  <div class="h-main">生産量で、どこまで増やすか</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">大型の機械の生産量（目標）</div>
+      <div class="mfig">1.5<span class="u">倍</span></div>
+      <div class="msub">この分野は、AIとは別の設備投資から注文が来ます</div>
+    </div>
+  </div>
+  <div class="note">AIへの投資が止まっても、この分野の注文は別に動きます</div>
+</section>
+
+<!-- 091 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：これから何をするのか</span><span class="brand"></span></div>
+  <div class="lead">そして、アメリカの超精密加工メーカーを買う計画です</div>
+  <div class="h-main">北米と欧州の販売網が手に入ります</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">買収の金額（1ドル150円で計算）</div>
+      <div class="mfig">約225<span class="u">億円</span></div>
+      <div class="msub">1億5,000万ドル。ここから先のドルも、すべて1ドル150円で換算してお伝えします</div>
+    </div>
+  </div>
+  <div class="note">北米と欧州の販売網が手に入ります</div>
+</section>
+
+<!-- 092 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：買収の注意</span><span class="brand"></span></div>
+  <div class="lead">ただし、この買収先は直近で赤字です（売上は約53億円、営業損失が約6億円）</div>
+  <div class="stmt">黒字になる見込みと発表されていますが、<br>まだ<span class="em">予想の段階</span>です。</div>
+</section>
+
+<!-- 093 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：2030年度の目標</span><span class="brand"></span></div>
+  <div class="lead">2030年度には、新しい市場で</div>
+  <div class="h-main">どれだけの売上を取る目標か</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">新しい市場の売上目標（2030年度）</div>
+      <div class="mfig">250<span class="u">億円</span></div>
+      <div class="msub">いまの売上の2割弱に当たる規模</div>
+    </div>
+  </div>
+  <div class="note">ただ、これは目標であって、受注ではありません</div>
+</section>
+
+<!-- 094 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：目標との距離</span><span class="brand"></span></div>
+  <div class="badge">目標との距離も見ておきます</div>
+  <div class="h-main">前の中期計画と、いまの予想</div>
+  <div class="cols">
+    <div class="box left"><div class="name">掲げた目標</div><div class="cap">前の中期計画</div><div class="big">2,000億円</div><div class="div"></div><div class="strong">2027年3月期に売上2,000億円、営業利益率10%</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">いまの予想</div><div class="cap">2027年3月期</div><div class="big">1,370億円</div><div class="div"></div><div class="strong">利益率は3%ほど。大きく届いていません</div></div>
+  </div>
+  <div class="foot-note">掲げた目標と、いまの予想には開きがあります</div>
+</section>
+
+<!-- 095 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：会社四季報の秋号</span><span class="brand"></span></div>
+  <div class="h-main">四季報は、この企業自身の予想より上を見ています</div>
+  <div class="h-sub">営業利益の予想（今期・来期）</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">企業自身の予想</div><div class="cd">今期</div></div><div class="body"><div class="lbl">営業利益</div><div class="val2">42億円</div><div class="tag">企業の予想</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">会社四季報 秋号</div><div class="cd">今期</div></div><div class="body"><div class="lbl">営業利益</div><div class="val2">46億円</div><div class="tag">四季報のほうが上</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">会社四季報 秋号</div><div class="cd">来期</div></div><div class="body"><div class="lbl">営業利益／売上</div><div class="val2">59億円</div><div class="tag">売上1,700億円</div></div></div>
+  </div>
+</section>
+
+<!-- 096 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：いちばん近い答え合わせ</span><span class="brand"></span></div>
+  <div class="lead">いちばん近い答え合わせは上期の決算。計画は売上520億円で、営業利益はゼロ</div>
+  <div class="stmt">4月から6月で211億円。残りの3か月で<br><span class="em">追いつけるかどうか</span>が見えます。</div>
+</section>
+
+<!-- 096 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：株価は、どこにいるのか</span><span class="brand"></span></div>
+  <div class="lead">株価は、どこにいるのか</div>
+  <div class="h-main">年の初めからの動き</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">芝浦機械（6104）／2026年10月9日の終値</div>
+      <div class="mfig">4,925<span class="u">円</span></div>
+      <div class="msub">年の初めから14.94%上がっています</div>
+    </div>
+  </div>
+  <div class="note">ただ、一本調子ではありません</div>
+</section>
+
+<!-- 099 t-numline -->
+<section class="slide t-numline">
+  <div class="hdr"><span class="sec">Section 4：株価は、どこにいるのか</span><span class="brand"></span></div>
+  <div class="h-main">安値と高値の、どのあたりにいるのか</div>
+  <div class="scale">
+    <div class="mk" style="left:8%"><div class="val">3,650円</div><div class="dot"></div><div class="lab">3月の安値</div></div>
+    <div class="mk" style="left:62%"><div class="val" style="color:#d6850f">いま 4,925円</div><div class="dot" style="background:#d6850f"></div><div class="lab">10月9日</div></div>
+    <div class="mk" style="left:90%"><div class="val">5,170円</div><div class="dot"></div><div class="lab">5月の高値</div></div>
+  </div>
+  <div class="foot-note">安値から見れば35%上、高値から見れば5%下。いまはその間にいます</div>
+</section>
+
+<!-- 100 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：2つの倍率</span><span class="brand"></span></div>
+  <div class="h-main">この企業の今期の予想で計算すると</div>
+  <div class="h-sub">利益で見た倍率と、資産で見た倍率</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd">今期の企業予想</div></div><div class="body"><div class="lbl">利益の何倍まで買われているか</div><div class="val2">約58倍</div><div class="tag">高い</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd">同じ基準</div></div><div class="body"><div class="lbl">資産で見た倍率</div><div class="val2">約0.99倍</div><div class="tag">1倍割れ</div></div></div>
+  </div>
+</section>
+
+<!-- 101 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：2つの倍率</span><span class="brand"></span></div>
+  <div class="lead">PBRは1倍を割っているので安く見えます。ただ、利益が落ちているのでPERは58倍と高い</div>
+  <div class="stmt">安く放置されている、<br>という状態では<span class="em">ありません</span>。</div>
+</section>
+
+<!-- 102 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：配当</span><span class="brand"></span></div>
+  <div class="lead">配当は、1株につき年140円の予想です</div>
+  <div class="h-main">ただし、稼いだ利益に対して</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">配当性向（今期の予想）</div>
+      <div class="mfig">約165<span class="u">%</span></div>
+      <div class="msub">稼いだ利益の1.6倍を配当に回す計算</div>
+    </div>
+  </div>
+  <div class="note">利益が落ちている間も維持する判断。続けられるかは、利益が戻るかどうかにかかっています</div>
+</section>
+
+<!-- 103 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：ここまでで見えたこと</span><span class="brand"></span></div>
+  <div class="lead">ここまでで</div>
+  <div class="stmt">注文が積まれていることと、<br>それが利益になるには<span class="em">時間がかかる</span>ことが見えました。</div>
+</section>
+
+<!-- 104 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：次の問い</span><span class="brand"></span></div>
+  <div class="lead">政府が17の分野に投資して、企業が設備を買って、注文が積まれる</div>
+  <div class="stmt">その元のお金は、どこから来るのか。<br>そんなに借金をして、<span class="em">大丈夫なのか</span>。</div>
+</section>
+
+<!-- ========== p06_shakkin（19枚） ========== -->
+<!-- 103 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 5：それでも、借金は大丈夫なのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 5 / 13</span><span class="bar"></span><span>その元のお金は、どこから</span></div>
+  <div class="numbox">05</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">それでも、<br>借金は大丈夫なのか</div><div class="rule"></div><div class="desc">残高と、1年ぶんの赤字は別のもの</div></div>
+</section>
+
+<!-- 104 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：残高は、G7でいちばん重い</span><span class="brand"></span></div>
+  <div class="lead">国と地方を合わせた、政府全体の借金</div>
+  <div class="h-main">残高で見ると、G7の中でいちばん重い</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">政府の借金の残高（対GDP）</div>
+      <div class="mfig">206.5<span class="u">%</span></div>
+      <div class="msub">政府が持っている資産を差し引いても、やはりG7でいちばん重いまま</div>
+    </div>
+  </div>
+  <div class="note">ここは、いちばん都合の悪い数字です</div>
+</section>
+
+<!-- 105 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：借金の数字は2つ</span><span class="brand"></span></div>
+  <div class="badge navy">ただし、借金の話には数字が2つあります</div>
+  <div class="h-main">この2つは、別のものです</div>
+  <div class="cols">
+    <div class="box left"><div class="name">数字1</div><div class="cap">これまでの合計</div><div class="big">残高</div><div class="div"></div><div class="strong">これまでに積み上がった借金の合計</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">数字2</div><div class="cap">1年ぶん</div><div class="big">赤字</div><div class="div"></div><div class="strong">その1年で、新しく増えたぶん</div></div>
+  </div>
+  <div class="foot-note">1年ぶんで見ると、順番が逆になります</div>
+</section>
+
+<!-- 106 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 5：毎年の赤字はG7でいちばん小さい</span><span class="brand"></span></div>
+  <div class="h-main">1年ぶんの赤字は、日本がG7でいちばん小さい</div>
+  <div class="h-sub">2025年の政府全体の赤字（対GDP）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:58px">1.1%</div><div class="cap">日本</div><div class="sub">G7で最小</div></div>
+    <div class="vb orange"><div class="bar" style="height:290px">6.8%</div><div class="cap">アメリカ</div><div class="sub">G7で最大</div></div>
+  </div>
+  <div class="foot-bar">アメリカは、日本の<span class="em">6倍以上</span>です</div>
+</section>
+
+<!-- 107 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：毎年の赤字</span><span class="brand"></span></div>
+  <div class="lead">2026年の予測でも</div>
+  <div class="stmt">日本が<span class="em">いちばん小さいまま</span>です。</div>
+</section>
+
+<!-- 108 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：IMFの指摘</span><span class="brand"></span></div>
+  <div class="lead">世界各国の財政を点検している国際通貨基金、IMFも</div>
+  <div class="stmt">日本の赤字はコロナ前より小さく、<br>G7の中でも<span class="em">小さい水準</span>だと指摘しています。</div>
+</section>
+
+<!-- 109 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：つまり</span><span class="brand"></span></div>
+  <div class="lead">つまり日本は、毎年の借金をG7でいちばん抑えている国です</div>
+  <div class="stmt">出しすぎて危ない国ではなく、<br>むしろ<span class="em">出す量が少ない側</span>にいます。</div>
+</section>
+
+<!-- 110 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ギリシャとは、壊れ方が違う</span><span class="brand"></span></div>
+  <div class="lead">財政の話をすると、必ずギリシャの名前が出てきます</div>
+  <div class="stmt">2010年代に、国の借金が返せなくなって<br><span class="em">大きな混乱</span>になった国です。</div>
+</section>
+
+<!-- 111 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ギリシャとは、壊れ方が違う</span><span class="brand"></span></div>
+  <div class="lead">日本も同じようになるのではないか</div>
+  <div class="stmt">ここには、<span class="em">はっきり違う</span>と答えられます。</div>
+</section>
+
+<!-- 112 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：ギリシャとは、壊れ方が違う</span><span class="brand"></span></div>
+  <div class="badge navy">理由は3つです</div>
+  <div class="h-main">日本とギリシャの、決定的な違い</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">何で借りているか</div><div class="ctext">日本は円で借りている。ギリシャはユーロで借りていて、自分の通貨を出せなかった</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">誰が持っているか</div><div class="ctext">日本の国債は9割近くを国内が持つ。ギリシャは多くを海外の投資家が持っていた</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">経常収支</div><div class="ctext">日本は黒字。ギリシャは経常赤字の国だった</div></div>
+  </div>
+  <div class="foot-bar">同じ「借金が多い」でも、<span class="em">壊れ方が違います</span></div>
+</section>
+
+<!-- 113 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 5：誰が国債を持っているか</span><span class="brand"></span></div>
+  <div class="lead">日本の国債を、誰が持っているか</div>
+  <div class="h-main">9割近くを、国内が持っています</div>
+  <div class="pbar">
+    <div class="seg main"><span class="p">9割近く</span><span class="l">国内が保有</span></div>
+    <div class="seg rest"><span class="p">1割強</span><span class="l">海外が保有</span></div>
+  </div>
+  <div class="note">ギリシャは、多くを海外の投資家が持っていました</div>
+</section>
+
+<!-- 114 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：対外純資産</span><span class="brand"></span></div>
+  <div class="lead">日本は経常収支が黒字です</div>
+  <div class="h-main">海外に持っている資産から、負債を引いた金額</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">日本が海外に持つ資産 − 負債</div>
+      <div class="mfig">約562<span class="u">兆円</span></div>
+      <div class="msub">ギリシャは経常赤字の国でした</div>
+    </div>
+  </div>
+  <div class="note">海外から見て、日本は貸している側にいます</div>
+</section>
+
+<!-- 115 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 5：IMFの評価</span><span class="brand"></span></div>
+  <div class="badge">IMFも、日本の国債のリスクを中程度と評価</div>
+  <div class="h-main">理由に挙げている4つ</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">円で借りている</div><div class="ctext">自分の通貨で借りている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">厚い国内投資家</div><div class="ctext">国内に厚い投資家がいる</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">政府の資産</div><div class="ctext">政府も資産を持っている</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">長い償還期間</div><div class="ctext">返すまでの期間が長い</div></div>
+  </div>
+  <div class="foot-bar">同じ借金の多さでも、<span class="em">壊れにくい形</span>になっています</div>
+</section>
+
+<!-- 116 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：比率だけでは測れない</span><span class="brand"></span></div>
+  <div class="lead">ただ、借金の比率だけでは何も測れません</div>
+  <div class="stmt">トルコは政府の借金がGDPの2割ほどしかありませんが、<br>物価が年に<span class="em">3割</span>上がっています。</div>
+</section>
+
+<!-- 117 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：日本で起きるとしたら</span><span class="brand"></span></div>
+  <div class="badge navy">日本で起きるとしたら</div>
+  <div class="h-main">起きないことと、起き得ること</div>
+  <div class="cols">
+    <div class="box left"><div class="name">起きない</div><div class="cap">よく言われるが</div><div class="big">返せなくなる</div><div class="div"></div><div class="strong">借金が返せなくなること、ではありません</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">起き得る</div><div class="cap">本当の論点</div><div class="big">金利と円</div><div class="div"></div><div class="strong">金利が上がって利払いが増える。そして円が安くなる</div></div>
+  </div>
+  <div class="foot-note">IMFも、利払いの増加と、高齢化による支出の増加を課題として挙げています</div>
+</section>
+
+<!-- 118 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 5：返し方は、分母を増やすこと</span><span class="brand"></span></div>
+  <div class="lead">では、この重さをどうやって下げるのか。GDP比は分数です</div>
+  <div class="h-main">分母が増えれば、借金を減らさなくても比率は下がる</div>
+  <div class="pbar">
+    <div class="seg main"><span class="p">分子</span><span class="l">借金</span></div>
+    <div class="seg rest"><span class="p">分母</span><span class="l">経済の大きさ（ここを増やす）</span></div>
+  </div>
+  <div class="note">物価と企業の利益が増えれば、税収も増えます</div>
+</section>
+
+<!-- 119 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：返し方は、分母を増やすこと</span><span class="brand"></span></div>
+  <div class="lead">だから</div>
+  <div class="stmt"><span class="em">成長して分母を増やす</span>のが、<br>いちばん現実的な返し方になります。</div>
+</section>
+
+<!-- 120 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：30年が、まさにそれでした</span><span class="brand"></span></div>
+  <div class="lead">借金を怖がって、回復の途中で冷やせば、分母は増えないまま、残高だけが残る</div>
+  <div class="stmt">ここまで見てきた30年が、<br><span class="em">まさにそれ</span>でした。</div>
+</section>
+
+<!-- 121 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ただし</span><span class="brand"></span></div>
+  <div class="lead">ただし、お金を出せば必ず経済が伸びる、とも言えません</div>
+  <div class="stmt">日本は、投資の量が少ない国ではないからです。<br>それでも、<span class="em">伸びませんでした</span>。</div>
+</section>
+
+<!-- ========== p07_toushi（22枚） ========== -->
+<!-- 122 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 6：問題は、投資の量ではない</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 6 / 13</span><span class="bar"></span><span>量ではなく、向け先</span></div>
+  <div class="numbox">06</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">問題は、<br>投資の量ではない</div><div class="rule"></div><div class="desc">日本の投資量は、G7でいちばん多い</div></div>
+</section>
+
+<!-- 123 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：投資の量は、G7でいちばん多い</span><span class="brand"></span></div>
+  <div class="lead">日本は、投資をしていない国だと思われがちです</div>
+  <div class="stmt">ところが、数字は<span class="em">逆</span>です。</div>
+</section>
+
+<!-- 124 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 6：投資の量は、G7でいちばん多い</span><span class="brand"></span></div>
+  <div class="h-main">設備・建物・研究開発に使ったお金を、GDPと比べると</div>
+  <div class="h-sub">2024年。G7の中で、日本がいちばん高い</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:260px">約26%</div><div class="cap">日本</div><div class="sub">G7で最高</div></div>
+    <div class="vb"><div class="bar" style="height:220px">約22%</div><div class="cap">アメリカ</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:200px">約20%</div><div class="cap">ドイツ</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:190px">約19%</div><div class="cap">イギリス</div><div class="sub"></div></div>
+  </div>
+</section>
+
+<!-- 125 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ここからが問題</span><span class="brand"></span></div>
+  <div class="lead">ところが</div>
+  <div class="stmt">ここからが<span class="em">問題</span>です。</div>
+</section>
+
+<!-- 126 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：増えていないのは、生産性のほう</span><span class="brand"></span></div>
+  <div class="lead">OECDの分析によると</div>
+  <div class="stmt">働く人1人あたりの設備は、この20年ほど、<br><span class="em">ほとんど増えていません</span>。</div>
+</section>
+
+<!-- 127 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 6：増えていないのは、生産性のほう</span><span class="brand"></span></div>
+  <div class="h-main">同じ人数と設備から、どれだけ価値を生めるようになったか</div>
+  <div class="h-sub">全要素生産性の伸び（2000年から2024年の平均・年あたり）</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:90px">0.4%</div><div class="cap">日本</div><div class="sub">OECD平均の半分</div></div>
+    <div class="vb"><div class="bar" style="height:180px">0.8%</div><div class="cap">OECD平均</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:270px">1.2%</div><div class="cap">アメリカ</div><div class="sub">日本の3倍</div></div>
+  </div>
+</section>
+
+<!-- 128 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：1,000万円の使い道</span><span class="brand"></span></div>
+  <div class="badge navy">飲食店で考えると分かりやすいと思います</div>
+  <div class="h-main">同じ1,000万円を、何に使うか</div>
+  <div class="cols">
+    <div class="box left"><div class="name">使い道1</div><div class="cap">店を改装する</div><div class="big">内装</div><div class="div"></div><div class="strong">店はきれいになる。でも作れる料理の数と出すスピードが変わらなければ、生産性は上がっていない</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">使い道2</div><div class="cap">仕組みを変える</div><div class="big">設備</div><div class="div"></div><div class="strong">調理の機械を入れ、注文の仕組みを自動化する</div></div>
+  </div>
+  <div class="foot-note">もちろん、内装への投資にも集客の効果はあります</div>
+</section>
+
+<!-- 129 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 6：生産性を上げる投資とは</span><span class="brand"></span></div>
+  <div class="lead">同じ1,000万円で、調理の機械を入れ、注文の仕組みを自動化すると</div>
+  <div class="h-main">これが、生産性を上げる投資です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまで</div><div class="c-v">5人で100食</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">設備を入れる</div><div class="c-v">同じ5人</div></div>
+    <div class="arr">＝</div>
+    <div class="result good"><div class="r-l">作れる数</div><div class="r-v">150食</div></div>
+  </div>
+  <div class="note">大切なのは、何にお金を使い、それがどれだけ新しい価値を生むかです</div>
+</section>
+
+<!-- 130 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の問題も、これと同じ</span><span class="brand"></span></div>
+  <div class="lead">投資の量が足りなかったのではなく</div>
+  <div class="stmt">その投資が、生産性の向上に<br><span class="em">十分つながっていませんでした</span>。</div>
+</section>
+
+<!-- 131 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：これも、踏み方の話です</span><span class="brand"></span></div>
+  <div class="lead">これも、踏み方の話です</div>
+  <div class="stmt">お金の量ではなく、<br><span class="em">向け先</span>のほうです。</div>
+</section>
+
+<!-- 132 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：ほかの国は、向け先を決めた</span><span class="brand"></span></div>
+  <div class="lead">アメリカは、半導体産業を強くするため</div>
+  <div class="h-main">製造支援の制度を用意しました</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">アメリカの製造支援の制度（1ドル150円で計算）</div>
+      <div class="mfig">約5兆9,000<span class="u">億円</span></div>
+      <div class="msub">約390億ドル</div>
+    </div>
+  </div>
+  <div class="note">政府が出したのは、ここまでです</div>
+</section>
+
+<!-- 133 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 6：民間が、巨額の計画で応えた</span><span class="brand"></span></div>
+  <div class="h-main">政府の支援に対して、民間が発表した投資計画</div>
+  <div class="h-sub">半導体や電子機器に関わる企業の発表（1ドル150円で計算）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar out" style="height:40px" data-v="約5兆9,000億円">約5兆9,000億円</div><div class="cap">政府の支援</div><div class="sub">約390億ドル</div></div>
+    <div class="vb orange"><div class="bar" style="height:290px">約67兆円</div><div class="cap">民間の投資計画</div><div class="sub">約4,500億ドル</div></div>
+  </div>
+  <div class="foot-bar">政府がきっかけを作り、民間が<span class="em">10倍以上</span>の計画で応えた形です</div>
+</section>
+
+<!-- 134 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ただし</span><span class="brand"></span></div>
+  <div class="lead">ただし、この4,500億ドルは発表された計画の額です</div>
+  <div class="stmt">AIの需要が広がったことも背景にあるので、<br>政府の支援だけで実現したとは<span class="em">言い切れません</span>。</div>
+</section>
+
+<!-- 135 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：ドイツ</span><span class="brand"></span></div>
+  <div class="lead">ドイツも、2025年に財政のルールを見直し</div>
+  <div class="h-main">インフラ投資のために、基金を設けました</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">ドイツのインフラ基金（5,000億ユーロ）</div>
+      <div class="mfig">80<span class="u">兆円 超</span></div>
+      <div class="msub">財政の規律を重んじてきた国が、投資を広げる側に動いている</div>
+    </div>
+  </div>
+  <div class="note">インフラと研究開発に、投資を広げる方向へ</div>
+</section>
+
+<!-- 136 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 6：スペイン</span><span class="brand"></span></div>
+  <div class="h-main">EUからの資金を使って、官民の投資を進めた結果</div>
+  <div class="h-sub">2025年の実質の成長率</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:280px">2.8%</div><div class="cap">スペイン</div><div class="sub">日本の2倍以上</div></div>
+    <div class="vb"><div class="bar" style="height:120px">約1.2%</div><div class="cap">日本</div><div class="sub"></div></div>
+  </div>
+  <div class="foot-bar">スペインは個人消費や雇用の増加も効いているので、<span class="em">公共投資だけが理由ではありません</span></div>
+</section>
+
+<!-- 137 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：共通しているのは</span><span class="brand"></span></div>
+  <div class="lead">共通しているのは</div>
+  <div class="stmt">政府がお金を出して終わりにせず、<br><span class="em">民間の投資につなげている</span>ところです。</div>
+</section>
+
+<!-- 138 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本も、同じ方向へ</span><span class="brand"></span></div>
+  <div class="lead">日本も、ようやく同じ方向に動き始めました</div>
+  <div class="stmt">さきほどの17の戦略分野も、<br>お金を配るために選ばれたわけでは<span class="em">ありません</span>。</div>
+</section>
+
+<!-- 139 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 6：17の分野が選ばれた目的</span><span class="brand"></span></div>
+  <div class="badge navy">その目的で選ばれています</div>
+  <div class="h-main">17の戦略分野が選ばれた、3つの目的</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">生産性を高める</div><div class="ctext">同じ人数で、より多くの価値を生む</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">国内で作る力</div><div class="ctext">国内で作る力を強くする</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">海外でも稼ぐ</div><div class="ctext">海外の市場でも稼げる産業を育てる</div></div>
+  </div>
+  <div class="foot-bar">お金を配るためではなく、<span class="em">この3つのため</span>に選ばれています</div>
+</section>
+
+<!-- 140 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：生産性を上げる投資は、機械に出る</span><span class="brand"></span></div>
+  <div class="lead">では、生産性を上げるには、何が要るのか。AI、研究開発、人材の育成。方法はいくつもあります</div>
+  <div class="stmt">そして製造業にとって、とくに大きいのが<br><span class="em">機械や装置への投資</span>です。</div>
+</section>
+
+<!-- 141 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 6：生産性を上げる投資は、機械に出る</span><span class="brand"></span></div>
+  <div class="lead">工場に新しい機械を入れると</div>
+  <div class="h-main">こうした設備投資が、生産性の向上につながります</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまで</div><div class="c-v">10人で作る</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">機械を入れる</div><div class="c-v">同じ人数で</div></div>
+    <div class="arr">＝</div>
+    <div class="result good"><div class="r-l">作れる量</div><div class="r-v">1.5倍</div></div>
+  </div>
+  <div class="note">人の手では難しかった精密な加工を、AIとロボットで実現する、という形もあります</div>
+</section>
+
+<!-- 142 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：いま、その動きが出ています</span><span class="brand"></span></div>
+  <div class="lead">いま、この動きが、日本の工作機械の業界に出ています</div>
+  <div class="stmt">さきほど見た、<span class="em">1兆円を超える受注残</span>です。</div>
+</section>
+
+<!-- 143 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の中だけの話ではない</span><span class="brand"></span></div>
+  <div class="lead">あの数字は、日本の中だけの話ではありません</div>
+  <div class="stmt"><span class="em">世界中の企業</span>が生産設備にお金を<br>使い始めていることを映しています。</div>
+</section>
+
+<!-- ========== p08_kyuryo（12枚） ========== -->
+<!-- 144 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本の強み</span><span class="brand"></span></div>
+  <div class="lead">その需要に応えている企業の1つが、さきほどの芝浦機械です</div>
+  <div class="stmt">世界中の工場に<span class="em">欠かせない</span>機械や装置を、<br>日本が供給している。ここにもあります。</div>
+</section>
+
+<!-- 145 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 7：給料は増え始めたのに、使うお金が減っているのはなぜか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 7 / 13</span><span class="bar"></span><span>円安から、その先へ</span></div>
+  <div class="numbox">07</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">給料は増え始めたのに、<br>使うお金が減っているのはなぜか</div><div class="rule"></div><div class="desc">ここには、順番があります</div></div>
+</section>
+
+<!-- 146 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：まず、円安</span><span class="brand"></span></div>
+  <div class="lead">企業の利益は増えているのに、家庭が使うお金は減っていました。ここには、順番があります</div>
+  <div class="h-main">日本企業の利益が増えた理由の1つ</div>
+  <div class="row">
+    <div class="card"><div class="c-l">海外で売る企業</div><div class="c-v">同じ台数</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">円が安くなると</div><div class="c-v">円に直すと</div></div>
+    <div class="arr">＝</div>
+    <div class="result good"><div class="r-l">売上は</div><div class="r-v">増える</div></div>
+  </div>
+  <div class="note">海外で売っている企業は、同じ台数を売っても、円に直したときの売上が増えます</div>
+</section>
+
+<!-- 149 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：同じ円安が、逆に働く</span><span class="brand"></span></div>
+  <div class="badge navy">ところが、同じ円安が</div>
+  <div class="h-main">企業と家計で、逆に働きます</div>
+  <div class="cols">
+    <div class="box left"><div class="name">企業には</div><div class="cap">追い風</div><div class="big">売上が増える</div><div class="div"></div><div class="strong">海外で売ったぶんが、円に直すと増える</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">家計には</div><div class="cap">逆風</div><div class="big">値段が上がる</div><div class="div"></div><div class="strong">食べ物も燃料も、多くを輸入に頼っている</div></div>
+  </div>
+  <div class="foot-note">円安が行き過ぎれば、暮らしはつらくなります</div>
+</section>
+
+<!-- 149 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：まだ結びついていない</span><span class="brand"></span></div>
+  <div class="lead">企業の成長と、家計の豊かさが、いまはまだ結びついていません</div>
+  <div class="stmt">だから、円安そのものが<br><span class="em">行き先ではありません</span>。</div>
+</section>
+
+<!-- 150 t-steps -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 7：3つの段階</span><span class="brand"></span></div>
+  <div class="h-main">次の段階があります</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">第1段階</div><div class="v">円安で利益</div></div>
+    <div class="sarr">→</div>
+    <div class="step s2"><div class="era">第2段階</div><div class="v">国内へ投資</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">第3段階</div><div class="v">給料と消費</div></div>
+  </div>
+</section>
+
+<!-- 151 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：第2段階</span><span class="brand"></span></div>
+  <div class="lead">円安で増えた利益を、国内の設備と、人と、研究開発に回す</div>
+  <div class="stmt">生産性が上がれば、企業は給料を上げられます。<br>使えるお金が増えれば、<span class="em">国内向けの商売も伸びます</span>。</div>
+</section>
+
+<!-- 152 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：いま日本がいるのは、ここ</span><span class="brand"></span></div>
+  <div class="lead">政府が投資の側に回り、企業が国内に設備を入れ始めました</div>
+  <div class="stmt">円安で増えた利益を、次の段階に回せるかどうか。<br>そこが<span class="em">分かれ目</span>になります。</div>
+</section>
+
+<!-- 153 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：その先</span><span class="brand"></span></div>
+  <div class="lead">そして、その先です。国内の成長が本物になり、日本に投資するお金が入ってくれば</div>
+  <div class="h-main">円が強くなることと株が上がることは、同時に起きることもある</div>
+  <div class="row">
+    <div class="card"><div class="c-l">国内の成長</div><div class="c-v">本物になる</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">投資が入る</div><div class="c-v">円高に向かう</div></div>
+    <div class="arr">＝</div>
+    <div class="result navy"><div class="r-l">そうなれば</div><div class="r-v">国内は楽に</div></div>
+  </div>
+  <div class="note">輸入する食べ物と燃料の値段は下がる。海外で稼ぐ企業の利益は円に直すと減るが、国内の商売は楽になる</div>
+</section>
+
+<!-- 156 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：正直にお伝えします</span><span class="brand"></span></div>
+  <div class="lead">ここは、正直にお伝えします</div>
+  <div class="stmt">海外で稼いだ利益が、そのまま国内の給料と設備に<br>回るとは<span class="em">かぎりません</span>。</div>
+</section>
+
+<!-- 157 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：円の向き</span><span class="brand"></span></div>
+  <div class="lead">だから、国内の需要が強くなれば自動的に円高、という話にはしません</div>
+  <div class="stmt">円の向きは、<span class="em">日米の金利の差</span>と<br><span class="em">入ってくる投資のお金</span>で、あとから決まっていきます。</div>
+</section>
+
+<!-- 158 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：次の問い</span><span class="brand"></span></div>
+  <div class="lead">では</div>
+  <div class="stmt">なぜ世界中から、<br>日本の工作機械に<span class="em">注文が集まっている</span>のか。</div>
+</section>
+
+<!-- ========== p09_naze_nihon（36枚） ========== -->
+<!-- 156 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 8：なぜ、日本に注文が来るのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 8 / 13</span><span class="bar"></span><span>世界が、日本の機械を買っている</span></div>
+  <div class="numbox">08</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">なぜ、日本に<br>注文が来るのか</div><div class="rule"></div><div class="desc">アメリカは、作る力を手放しました</div></div>
+</section>
+
+<!-- 157 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 8：アメリカは、作る力を手放しました</span><span class="brand"></span></div>
+  <div class="lead">半導体の売上で見ると</div>
+  <div class="h-main">アメリカの企業が、世界の約半分を占めています</div>
+  <div class="pbar">
+    <div class="seg main" style="width:50%"><span class="p">約半分</span><span class="l">アメリカの企業</span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">そのほかの国</span></div>
+  </div>
+  <div class="note">設計も、研究開発も、AIの中心はアメリカです</div>
+</section>
+
+<!-- 158 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：ところが、作る能力は別</span><span class="brand"></span></div>
+  <div class="lead">ところが</div>
+  <div class="stmt">作る能力は、<span class="em">別</span>です。</div>
+</section>
+
+<!-- 159 t-steps -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 8：作る割合は、落ちた</span><span class="brand"></span></div>
+  <div class="h-main">世界の半導体を、どこで作っているか</div>
+  <div class="steps">
+    <div class="step s3"><div class="era">1990年</div><div class="v">約37%</div></div>
+    <div class="sarr">→</div>
+    <div class="step s1"><div class="era">2022年</div><div class="v">約10%</div></div>
+  </div>
+</section>
+
+<!-- 160 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：だから建て直している</span><span class="brand"></span></div>
+  <div class="lead">設計はできる。ところが、作る場所がない</div>
+  <div class="stmt">だから今、<span class="em">国内に工場を建て直しています</span>。</div>
+</section>
+
+<!-- 161 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：お金だけでは動かない</span><span class="brand"></span></div>
+  <div class="lead">ただ、工場はお金だけでは動きません。アメリカの業界団体の調査では</div>
+  <div class="h-main">2030年までに、足りなくなる人の数</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">熟練した作業者や技術者の不足（2030年までの試算）</div>
+      <div class="mfig">約6万7,000<span class="u">人</span></div>
+      <div class="msub">建物と機械は、お金があれば買える</div>
+    </div>
+  </div>
+  <div class="note">ところが、作る技術と人は、すぐには揃いません</div>
+</section>
+
+<!-- 162 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：お金は、建物から中身に移ります</span><span class="brand"></span></div>
+  <div class="lead">ここがいちばん大事なところです</div>
+  <div class="h-main">アメリカが、工場の建物に使っているお金</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">工場の建物への支出（1年あたり・1ドル150円で計算）</div>
+      <div class="mfig">約26<span class="u">兆円</span></div>
+      <div class="msub">約1,707億ドル</div>
+    </div>
+  </div>
+  <div class="note">工場は、建ててから機械を入れます</div>
+</section>
+
+<!-- 163 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：お金は、建物から中身に移ります</span><span class="brand"></span></div>
+  <div class="lead">建物が立ち上がった分だけ、次に入れる機械の注文が出てきます</div>
+  <div class="h-main">お金の向かう先が、移る段階に入りました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまで</div><div class="c-v">建物</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">立ち上がると</div><div class="c-v">機械を入れる</div></div>
+    <div class="arr">＝</div>
+    <div class="result orange"><div class="r-l">お金は</div><div class="r-v">中身へ</div></div>
+  </div>
+  <div class="note">その中身を作っているのが日本で、だから工作機械の注文が増え続けています</div>
+</section>
+
+<!-- 164 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：芝浦機械も、同じ順番</span><span class="brand"></span></div>
+  <div class="h-main">注文が売上の2.7倍なのも、同じ順番です</div>
+  <div class="chain">
+    <div class="node">データセンターの<br>建物が先に建つ</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">中に入れる<br>光の部品が要る</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:var(--orange);">部品の型を削る<br>機械の注文</div>
+  </div>
+  <div class="release">建物が先に建ち、機械の注文が<span class="em" style="color:var(--orange)">あとから来ています</span></div>
+</section>
+
+<!-- 165 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：見るときは、2つを並べる</span><span class="brand"></span></div>
+  <div class="lead">見るときは、建物の金額と、機械の注文。この2つを並べます</div>
+  <div class="stmt">建物のほうが落ち着いても機械の注文が増えているなら、<br>お金は<span class="em">中身に移っている</span>ということです。</div>
+</section>
+
+<!-- 167 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：アリゾナ</span><span class="brand"></span></div>
+  <div class="h-main">台湾のTSMCが、アメリカのアリゾナに建てている工場</div>
+  <div class="h-sub">計画の話ではありません。実際に建っています（1ドル150円で計算）</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">アメリカ政府の補助</div><div class="cd">最大</div></div><div class="body"><div class="lbl">66億ドル</div><div class="val2">約1兆円</div><div class="tag">決定済み</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">TSMC側の投資計画</div><div class="cd">3つの工場を合わせて</div></div><div class="body"><div class="lbl">650億ドル</div><div class="val2">約9兆8,000億円</div><div class="tag">超える規模</div></div></div>
+  </div>
+</section>
+
+<!-- 168 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：アリゾナ</span><span class="brand"></span></div>
+  <div class="lead">そして2025年4月には</div>
+  <div class="stmt"><span class="em">3つ目の工場</span>が起工しました。</div>
+</section>
+
+<!-- 169 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：政府のお金だけではない</span><span class="brand"></span></div>
+  <div class="h-main">自国の政府のお金だけで建てているわけでもありません</div>
+  <div class="h-sub">1ドル150円で計算</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">台湾の企業</div><div class="cd">対米の直接投資</div></div><div class="body"><div class="lbl">2,500億ドル以上</div><div class="val2">37兆円 超</div><div class="tag">＋同規模の信用保証</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">韓国</div><div class="cd">投資枠</div></div><div class="body"><div class="lbl">3,500億ドル</div><div class="val2">約52兆円</div><div class="tag">枠</div></div></div>
+  </div>
+</section>
+
+<!-- 170 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：枠と計画の数字</span><span class="brand"></span></div>
+  <div class="lead">どれも枠と計画の数字で</div>
+  <div class="stmt">案件ごとの選定は、<span class="em">これから</span>です。</div>
+</section>
+
+<!-- 171 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：どれだけのお金が、機械に向かうのか</span><span class="brand"></span></div>
+  <div class="lead">注文の元になるお金を見ます。データセンターに強い4社だけで</div>
+  <div class="h-main">1年に、どれだけ設備投資をしているか</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">データセンターに強い4社の設備投資（1年・1ドル150円で計算）</div>
+      <div class="mfig">約90<span class="u">兆円 超</span></div>
+      <div class="msub">6,000億ドルを超える</div>
+    </div>
+  </div>
+  <div class="note">TSMCも、アメリカの巨大なIT企業も、設備投資をそろって積み上げています</div>
+</section>
+
+<!-- 172 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：半導体製造装置の市場</span><span class="brand"></span></div>
+  <div class="lead">その結果、世界の半導体製造装置の市場は</div>
+  <div class="h-main">2026年に、どこまで伸びる見通しか</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">世界の半導体製造装置の市場（2026年・1ドル150円で計算）</div>
+      <div class="mfig">約25<span class="u">兆円</span></div>
+      <div class="msub">約1,659億ドル。前の年より23.2%増える見通し</div>
+    </div>
+  </div>
+  <div class="note">装置が売れれば、その装置を削り出す機械にも注文が来ます</div>
+</section>
+
+<!-- 173 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：そして日本です</span><span class="brand"></span></div>
+  <div class="lead">日本の装置メーカーの販売の見通し</div>
+  <div class="h-main">半年で、1兆円 上に修正されました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2026年1月</div><div class="c-v">5兆5,004億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">7月</div><div class="c-v">6兆5,502億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result good"><div class="r-l">半年で</div><div class="r-v">1兆円 上へ</div></div>
+  </div>
+  <div class="note">ただし、この販売高には海外での生産も含まれます。工作機械の受注額とは別の統計です</div>
+</section>
+
+<!-- 174 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：ここで、中国が出てきます</span><span class="brand"></span></div>
+  <div class="lead">中国も、国家のお金で建てています</div>
+  <div class="h-main">データセンターに入った、国の資金</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">中国のデータセンターへの国の資金（2021年以降・1ドル150円で計算）</div>
+      <div class="mfig">15<span class="u">兆円 超</span></div>
+      <div class="msub">1,000億ドルを超える</div>
+    </div>
+  </div>
+  <div class="note">政府の資金を受ける新しいデータセンターには、国産のチップを使うよう求める政策も出ています</div>
+</section>
+
+<!-- 175 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：別々に建てている</span><span class="brand"></span></div>
+  <div class="badge navy">つまり</div>
+  <div class="h-main">アメリカと中国が、同じものを別々に建てています</div>
+  <div class="cols">
+    <div class="box left"><div class="name">アメリカ</div><div class="cap">自国に建て直す</div><div class="big">1組目</div><div class="div"></div><div class="strong">補助と民間の投資で、国内に工場を</div></div>
+    <div class="vsmark">＆</div>
+    <div class="box right"><div class="name">中国</div><div class="cap">国家の資金で</div><div class="big">2組目</div><div class="div"></div><div class="strong">国産のチップを使うよう求める政策も</div></div>
+  </div>
+  <div class="foot-note">機械と装置を売る側から見ると、意味がまったく違います</div>
+</section>
+
+<!-- 176 t-stack -->
+<section class="slide t-stack">
+  <div class="hdr"><span class="sec">Section 8：需要は二重になる</span><span class="brand"></span></div>
+  <div class="h-main">1つの世界に1組で済んでいたものが、2組必要になる</div>
+  <div class="h-sub">工場の数は二重になり、装置と機械の総需要は、むしろ増えます</div>
+  <div class="sbar">
+    <div class="seg a" style="width:50%"><div class="sn">アメリカ側</div><div class="sv">1組目の工場</div></div>
+    <div class="seg b" style="width:50%"><div class="sn">中国側</div><div class="sv">2組目の工場</div></div>
+  </div>
+  <div class="total">装置と機械の総需要は、<span class="em">むしろ増えます</span></div>
+</section>
+
+<!-- 177 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：分断は、売る側には追い風</span><span class="brand"></span></div>
+  <div class="lead">分断は、作る側には重い話です</div>
+  <div class="stmt">ところが、作るための機械を売る側には、<br><span class="em">追い風</span>になります。</div>
+</section>
+
+<!-- 178 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：1つの国だけでは作れない</span><span class="brand"></span></div>
+  <div class="badge navy">いまの半導体は、1つの国だけでは作れません</div>
+  <div class="h-main">役割が、国ごとに分かれています</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">台湾</div><div class="ctitle">最先端のチップ</div><div class="ctext">請け負って作るところ</div></div>
+    <div class="card c2"><div class="cno">韓国</div><div class="ctitle">メモリ</div><div class="ctext">AIに欠かせないメモリ</div></div>
+    <div class="card c3"><div class="cno">日本</div><div class="ctitle">作るための道具</div><div class="ctext">装置と材料、精密な部品、測るための機器</div></div>
+  </div>
+  <div class="foot-bar">日本がなくては、<span class="em">どの国も工場を動かせません</span></div>
+</section>
+
+<!-- 179 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 8：注文の7割は海外から</span><span class="brand"></span></div>
+  <div class="lead">2026年9月の、日本の工作機械の注文</div>
+  <div class="h-main">世界が、日本の機械を買っています</div>
+  <div class="pbar">
+    <div class="seg main" style="width:71.4%"><span class="p">71.4%</span><span class="l">海外から</span></div>
+    <div class="seg rest"><span class="p">28.6%</span><span class="l">国内から</span></div>
+  </div>
+  <div class="note">国内向けも増えていますが、それ以上の勢いで、世界が日本の機械を買っています</div>
+</section>
+
+<!-- 180 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：工場が建つ場所には、条件があります</span><span class="brand"></span></div>
+  <div class="h-main">さきほどの、土地と電気と水</div>
+  <div class="chain">
+    <div class="node">土地</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">＋</div>
+    <div class="node">電気</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">＋</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">水</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">ここが、<span class="em" style="color:var(--blue)">日本に効いてきます</span></div>
+</section>
+
+<!-- 181 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：熊本の地下水</span><span class="brand"></span></div>
+  <div class="lead">阿蘇山の噴火でできた地層は隙間が多く、雨や田んぼの水が地中に染み込みやすい</div>
+  <div class="h-main">その結果、熊本の地下にある水の量</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">熊本の地下にある水</div>
+      <div class="mfig">約871<span class="u">億トン</span></div>
+      <div class="msub">琵琶湖に溜まっている水の、3.2倍</div>
+    </div>
+  </div>
+  <div class="note">熊本市は、水道の水源が100%地下水です</div>
+</section>
+
+<!-- 182 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：熊本に集まっている</span><span class="brand"></span></div>
+  <div class="h-main">60年ほど前から、水を理由に集まってきました</div>
+  <div class="h-sub">熊本県の、半導体に関わる企業</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">熊本市の水道</div><div class="cd">水源</div></div><div class="body"><div class="lbl">水道の水源</div><div class="val2">100%地下水</div><div class="tag">全量</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">熊本県</div><div class="cd">集積</div></div><div class="body"><div class="lbl">半導体に関わる企業</div><div class="val2">200社以上</div><div class="tag">60年ほど前から</div></div></div>
+  </div>
+</section>
+
+<!-- 183 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：その熊本が、変わりつつある</span><span class="brand"></span></div>
+  <div class="lead">TSMCの子会社が、3ナノの半導体を2028年から熊本で作る計画を示しました</div>
+  <div class="stmt">3ナノは回路の細かさを表す数字で、<br><span class="em">小さいほど最先端</span>です。</div>
+</section>
+
+<!-- 184 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：組んで作る形</span><span class="brand"></span></div>
+  <div class="badge navy">しかもこの企業には、日本の企業も出資しています</div>
+  <div class="h-main">海外の半導体企業と日本の企業が、組んで作る形</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">ソニー</div><div class="ctext">出資している</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">デンソー</div><div class="ctext">出資している</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">トヨタ</div><div class="ctext">出資している</div></div>
+  </div>
+  <div class="foot-bar">呼び込むだけでなく、<span class="em">日本の企業が中に入っています</span></div>
+</section>
+
+<!-- 185 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：北海道の千歳</span><span class="brand"></span></div>
+  <div class="lead">北海道の千歳では、さらに細かい2ナノ級の国産化を目指す企業に</div>
+  <div class="h-main">研究開発の支援は、累計でいくらか</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">国の研究開発の支援（累計）</div>
+      <div class="mfig">2兆3,540<span class="u">億円</span></div>
+      <div class="msub">2ナノ級の国産化を目指す企業へ</div>
+    </div>
+  </div>
+  <div class="note">熊本は呼び込む側、千歳は自分で作る側です</div>
+</section>
+
+<!-- 186 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：日本が変わりかけている</span><span class="brand"></span></div>
+  <div class="lead">日本は、いま段階が変わりかけています</div>
+  <div class="h-main">世界の半導体を作る側で、日本がもう一度</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまで</div><div class="c-v">工場を呼び込む国</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">これから</div><div class="c-v">自分で作る国</div></div>
+    <div class="arr">＝</div>
+    <div class="result good"><div class="r-l">その入口</div><div class="r-v">主役の1つに</div></div>
+  </div>
+  <div class="note">世界の半導体を作る側で、日本がもう一度、主役の1つになる。その入口にいます</div>
+</section>
+
+<!-- 187 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：ただし、水の話は正確に</span><span class="brand"></span></div>
+  <div class="badge">ただし、日本だけがきれいな水を持つわけではありません</div>
+  <div class="h-main">日本の雨の量を、2つの見方で</div>
+  <div class="cols">
+    <div class="box left"><div class="name">面積で割ると</div><div class="cap">多いほう</div><div class="big">多い</div><div class="div"></div><div class="strong">日本の雨の量は、面積で割れば多いほう</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">人の数で割ると</div><div class="cap">下回る</div><div class="big">平均以下</div><div class="div"></div><div class="strong">人の数で割ると、世界の平均を下回る</div></div>
+  </div>
+  <div class="foot-note">地域によって水の量も質も違い、足りなくなる年もあります</div>
+</section>
+
+<!-- 188 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：台湾も技術を持っている</span><span class="brand"></span></div>
+  <div class="lead">台湾も</div>
+  <div class="stmt">工場で使う水を<span class="em">9割近く再利用</span>する<br>技術を持っています。</div>
+</section>
+
+<!-- 189 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：日本の強みは、組み合わせ</span><span class="brand"></span></div>
+  <div class="badge navy">つまり、日本の強みは「水がきれいだから」ではありません</div>
+  <div class="h-main">3つが揃っていることが、強みです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">十分な量の水</div><div class="ctext">工場を動かすだけの量がある</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">精製する技術</div><div class="ctext">工場で使える純度まで上げる技術がある</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">近くに集まる企業</div><div class="ctext">装置と材料と部品の企業が、近くに集まっている</div></div>
+  </div>
+  <div class="foot-bar">水も、電気も、人も、機械も、同じ場所に揃っている国は、<span class="em">世界にそう多くありません</span></div>
+</section>
+
+<!-- 190 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：純度まで上げているのは</span><span class="brand"></span></div>
+  <div class="lead">その純度まで水を上げているのは、水処理の企業です</div>
+  <div class="stmt">日本には、その設備を<br><span class="em">世界の工場に売っている企業</span>があります。</div>
+</section>
+
+<!-- 191 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 8：日本の投資枠</span><span class="brand"></span></div>
+  <div class="lead">日本がアメリカに置いた投資枠も</div>
+  <div class="h-main">出資と融資と保証を合わせた、上限です</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">日本がアメリカに置いた投資枠（1ドル150円で計算）</div>
+      <div class="mfig">約82<span class="u">兆円</span></div>
+      <div class="msub">5,500億ドル。現金を渡す話ではありません</div>
+    </div>
+  </div>
+  <div class="note">アメリカに工場が建つときも、その中に入る装置と部品は、日本から出ていきます</div>
+</section>
+
+<!-- 192 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：もう1つの理由</span><span class="brand"></span></div>
+  <div class="lead">ただ、世界が作る場所を分けようとしている理由は、技術と人手だけではありません</div>
+  <div class="stmt">もう1つあります。<br><span class="em">日本のいちばん西の島</span>から見ると、よく分かります。</div>
+</section>
+
+<!-- ========== p10_taiwan（15枚） ========== -->
+<!-- 192 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 9：台湾に、集まりすぎたということ</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 9 / 13</span><span class="bar"></span><span>集中しているから、分ける</span></div>
+  <div class="numbox">09</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">台湾に、<br>集まりすぎたということ</div><div class="rule"></div><div class="desc">作る場所を分ける、もう1つの理由</div></div>
+</section>
+
+<!-- 193 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 9：与那国島から台湾まで</span><span class="brand"></span></div>
+  <div class="lead">日本のいちばん西にある与那国島から、台湾まで</div>
+  <div class="h-main">東京から静岡までより、短い距離です</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">与那国島から台湾までの距離</div>
+      <div class="mfig">110<span class="u">キロ</span></div>
+      <div class="msub">東京から静岡までより、短い</div>
+    </div>
+  </div>
+  <div class="note">台湾で起きることは、日本の近所で起きることです</div>
+</section>
+
+<!-- 194 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：2022年に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">2022年には、中国軍が撃ったミサイルが、与那国島の近くの海に落ちました</div>
+  <div class="stmt">ただし、落ちたのは領土や領海そのものではありません。<br>日本が攻撃を受けたと<span class="em">言い換えることはしません</span>。</div>
+</section>
+
+<!-- 196 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：先に、はっきりさせておきます</span><span class="brand"></span></div>
+  <div class="lead">台湾で戦闘が起きたからといって、日本が自動的に戦争に加わるわけではありません</div>
+  <div class="stmt">法律の上では、日本への武力攻撃があるかどうかなど、<br><span class="em">別の条件</span>が要ります。</div>
+</section>
+
+<!-- 197 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 9：なぜ、そこに全部が集まったのか</span><span class="brand"></span></div>
+  <div class="lead">最先端のチップは、どこで作られているか</div>
+  <div class="h-main">9割を超える分が、台湾で作られています</div>
+  <div class="pbar">
+    <div class="seg main" style="width:90%"><span class="p">9割超</span><span class="l">台湾で製造</span></div>
+    <div class="seg rest"><span class="p">1割弱</span><span class="l">他</span></div>
+  </div>
+  <div class="note">最先端のチップに限った数字です</div>
+</section>
+
+<!-- 198 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 9：台湾海峡を通る貿易</span><span class="brand"></span></div>
+  <div class="lead">そして、日本の貿易額のうち</div>
+  <div class="h-main">約28%が、台湾海峡を通っています</div>
+  <div class="pbar">
+    <div class="seg main" style="width:28%"><span class="p">約28%</span><span class="l">台湾海峡を通る</span></div>
+    <div class="seg rest"><span class="p">約72%</span><span class="l">そのほかの航路</span></div>
+  </div>
+  <div class="note">ここが使えなくなると、船は遠回りをするしかない。何日も余計にかかり、燃料と保険料が上がります</div>
+</section>
+
+<!-- 199 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 9：試算もあります</span><span class="brand"></span></div>
+  <div class="h-main">台湾との貿易が止まった場合の試算</div>
+  <div class="h-sub">条件つきの感応度分析であり、発生の予測ではありません</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">貿易が止まった場合</div><div class="cd">日本のGDP</div></div><div class="body"><div class="lbl">下がる幅</div><div class="val2">約1.38%</div><div class="tag">試算</div></div></div>
+    <div class="col"><div class="top"><div class="nm">厳しい前提なら</div><div class="cd">アジア向け輸出も半減</div></div><div class="body"><div class="lbl">下がる幅</div><div class="val2">約5.99%</div><div class="tag">厳しい前提</div></div></div>
+  </div>
+</section>
+
+<!-- 200 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：2つだけ添えておきます</span><span class="brand"></span></div>
+  <div class="lead">中国も、原油や石炭、天然ガスの多くを、同じ海峡を通して運んでいます</div>
+  <div class="stmt">経済のつながりは、危機を避ける理由になります。<br>ただし、戦争を<span class="em">不可能にするわけではありません</span>。</div>
+</section>
+
+<!-- 201 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：工場を力で取っても</span><span class="brand"></span></div>
+  <div class="badge navy">もう1つ。工場を力で取っても、半導体は作れません</div>
+  <div class="h-main">最先端の工場が動くために、要るもの</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">止まらない電力</div><div class="ctext">一瞬でも止まると、工程が全部やり直しになる</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">超純水と薬品</div><div class="ctext">削るたび、洗うたびに要る</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">装置と交換部品</div><div class="ctext">壊れた部品の交換が続かないと止まる</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">熟練した技術者</div><div class="ctext">人がいないと、動かせない</div></div>
+  </div>
+  <div class="foot-bar">建物と機械を押さえただけでは、<span class="em">動きません</span></div>
+</section>
+
+<!-- 202 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：だから、正確に言うと</span><span class="brand"></span></div>
+  <div class="lead">だから、中国の台湾への姿勢を、TSMCを奪うためだけで説明するのは正確ではありません</div>
+  <div class="stmt">歴史や主権の問題のほうが、<br><span class="em">ずっと大きい</span>。</div>
+</section>
+
+<!-- 203 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：集中しているから、分ける</span><span class="brand"></span></div>
+  <div class="lead">アメリカがアリゾナに建てるのも、日本が熊本と千歳に建てるのも</div>
+  <div class="stmt">台湾を置き換えるためではありません。<br>1か所に集まりすぎた状態を、<span class="em">緩めるため</span>です。</div>
+</section>
+
+<!-- 204 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：だから、注文になる</span><span class="brand"></span></div>
+  <div class="h-main">台湾の代わりになれる場所は、どこにもありません</div>
+  <div class="chain">
+    <div class="node danger">全部が1か所に<br>ある状態</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">少しずつ<br>別の場所にも作る</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:var(--orange);">機械と装置の<br>注文になる</div>
+  </div>
+  <div class="release">全部が1か所にある状態は、企業にとっても国にとっても<span class="em" style="color:var(--orange)">危ない</span></div>
+</section>
+
+<!-- 204 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：誤解のないように</span><span class="brand"></span></div>
+  <div class="lead">誤解のないように言いますが、戦争で儲かるという話ではありません。戦争が起きれば、日本株は大きく下がります</div>
+  <div class="stmt">そうならないための備えと、供給の網を強くするための投資が、<br>いま日本の工場に<span class="em">注文として積まれている</span>。</div>
+</section>
+
+<!-- 207 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：いつ起きるかは言いません</span><span class="brand"></span></div>
+  <div class="lead">そして、いつ起きるかを、年で言うこともしません</div>
+  <div class="stmt">ある年に必ず起きるという確かな根拠は、<br><span class="em">どこにもありません</span>。</div>
+</section>
+
+<!-- 208 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：材料は出ました</span><span class="brand"></span></div>
+  <div class="lead">ここまでで、材料は出ました。政策、注文、1社の決算、財政、生産性、そして世界の工場の置き場所</div>
+  <div class="stmt">では、最初の問いに戻ります。<br>日経平均10万円は、<span class="em">本当に届くのか</span>。</div>
+</section>
+
+<!-- ========== p11_kotaeawase（16枚） ========== -->
+<!-- 207 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 10：答え合わせ</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 10 / 13</span><span class="bar"></span><span>次は、計算します</span></div>
+  <div class="numbox">10</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">答え合わせ</div><div class="rule"></div><div class="desc">10万円に必要な利益を、数字で出します</div></div>
+</section>
+
+<!-- 208 t-numline -->
+<section class="slide t-numline">
+  <div class="hdr"><span class="sec">Section 10：まず、距離を測ります</span><span class="brand"></span></div>
+  <div class="h-main">いまの日経平均と、10万円までの距離</div>
+  <div class="scale">
+    <div class="mk" style="left:12%"><div class="val" style="color:#d6850f">約6万9,000円</div><div class="dot" style="background:#d6850f"></div><div class="lab">10月時点</div></div>
+    <div class="mk" style="left:86%"><div class="val">10万円</div><div class="dot"></div><div class="lab">目標の水準</div></div>
+  </div>
+  <div class="foot-note">10万円まで、あと<span style="color:#d6850f;font-weight:800">4割半</span>です</div>
+</section>
+
+<!-- 209 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 10：企業の利益に置き換える</span><span class="brand"></span></div>
+  <div class="h-main">これを企業の利益に置き換えます</div>
+  <div class="h-sub">いまの日経平均の、2つの数字</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd">いま</div></div><div class="body"><div class="lbl">利益の何倍まで買われているか</div><div class="val2">22.87倍</div><div class="tag">現在</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">1株あたりの利益</div><div class="cd">いま</div></div><div class="body"><div class="lbl">225社の利益を1株に直すと</div><div class="val2">約3,000円</div><div class="tag">現在</div></div></div>
+  </div>
+</section>
+
+<!-- 210 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 10：必要な利益を出します</span><span class="brand"></span></div>
+  <div class="lead">PERが今と同じままなら</div>
+  <div class="h-main">10万円に必要な利益は、いくらか</div>
+  <div class="row">
+    <div class="card"><div class="c-l">いまの利益</div><div class="c-v">約3,000円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10万円に必要</div><div class="c-v">約4,400円</div></div>
+    <div class="arr">＝</div>
+    <div class="result good"><div class="r-l">必要な伸び</div><div class="r-v">4割半</div></div>
+  </div>
+  <div class="note">PERが今と同じままなら、利益が4割半増えれば届きます</div>
+</section>
+
+<!-- 211 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 10：期間で割ります</span><span class="brand"></span></div>
+  <div class="badge navy">4割半を、期間で割ると</div>
+  <div class="h-main">毎年どれだけ伸びれば届くか</div>
+  <div class="cols">
+    <div class="box left"><div class="name">5年なら</div><div class="cap">毎年</div><div class="big">7.7%</div><div class="div"></div><div class="strong">5年で4割半に届く伸び</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">10年なら</div><div class="cap">毎年</div><div class="big">3.8%</div><div class="div"></div><div class="strong">10年かければ、これで足りる</div></div>
+  </div>
+  <div class="foot-note">ここが、今日の話が全部向かっていた数字です</div>
+</section>
+
+<!-- 212 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：今日の話が向かっていた数字</span><span class="brand"></span></div>
+  <div class="lead">ここが</div>
+  <div class="stmt">今日の話が、<span class="em">全部向かっていた数字</span>です。</div>
+</section>
+
+<!-- 213 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 10：企業の利益は、いま増えています</span><span class="brand"></span></div>
+  <div class="lead">そして、企業の利益は、いま増えています。財務省の統計では</div>
+  <div class="h-main">2026年4月から6月の経常利益</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">経常利益（2026年4〜6月・前の3か月と比べて）</div>
+      <div class="mfig">+11.0<span class="u">%</span></div>
+      <div class="msub">財務省の統計</div>
+    </div>
+  </div>
+  <div class="note">ただし、これは日本企業全体のデータで、日経平均の225社が同じ割合で増えたわけではありません</div>
+</section>
+
+<!-- 214 t-steps -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 10：いちばん強気に見ると</span><span class="brand"></span></div>
+  <div class="h-main">PERが今のままで、利益が年20%で2年伸びれば</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">いま</div><div class="v">約6万9,000円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s2"><div class="era">1年目 +20%</div><div class="v">利益が増える</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2028年の秋</div><div class="v">10万円へ</div></div>
+  </div>
+</section>
+
+<!-- 215 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 10：1年目は、見通しもほぼ同じ</span><span class="brand"></span></div>
+  <div class="lead">かなり高い伸びです。ただ、1年目は、証券会社の見通しでもほぼその水準です</div>
+  <div class="h-main">野村證券の予測（TOPIXの1株あたりの利益）</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">TOPIXの1株あたり利益（2026年度・野村證券の予測）</div>
+      <div class="mfig">+19.2<span class="u">%</span></div>
+      <div class="msub">強気に見た年20%と、ほぼ同じ水準</div>
+    </div>
+  </div>
+  <div class="note">1年目については、プロの見通しも近い水準にあります</div>
+</section>
+
+<!-- 216 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：分かれ目は2年目</span><span class="brand"></span></div>
+  <div class="lead">分かれ目は2年目です。証券会社の見通しでは、2年目は1桁台に落ちます</div>
+  <div class="stmt">そこを超えられるかどうかは、<br>いま積まれている注文が<span class="em">利益に変わるか</span>で決まります。</div>
+</section>
+
+<!-- 217 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 10：長期の試算</span><span class="brand"></span></div>
+  <div class="lead">同じ系列の調査会社は、高い利益成長が続けば</div>
+  <div class="h-main">2035年度の日経平均の、長期の試算</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">2035年度の日経平均（長期の試算）</div>
+      <div class="mfig">14万6,000<span class="u">円</span></div>
+      <div class="msub">高い利益成長が続けば、という条件つき</div>
+    </div>
+  </div>
+  <div class="note">10万円のさらに先を見た、長期の試算です</div>
+</section>
+
+<!-- 218 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 10：背景にあるもの</span><span class="brand"></span></div>
+  <div class="badge navy">背景にあるのは、4つ</div>
+  <div class="h-main">利益の伸びを支えるもの</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">AI半導体の需要</div><div class="ctext">世界の設備投資が続いている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">海外での収益</div><div class="ctext">日本企業が海外で稼ぐ利益</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">国内の設備投資</div><div class="ctext">政府が温める側に回った</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">自社株買い</div><div class="ctext">1株あたりの利益を押し上げる</div></div>
+  </div>
+  <div class="foot-bar">ここに政府の戦略投資が効いてくれば、<span class="em">利益の伸びをさらに押し上げます</span></div>
+</section>
+
+<!-- 219 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：ただし、断っておきます</span><span class="brand"></span></div>
+  <div class="lead">ただし、2028年という数字は証券会社の予測ではありません</div>
+  <div class="stmt">必要な利益の伸びから、<br><span class="em">僕が逆算した数字</span>です。</div>
+</section>
+
+<!-- 220 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：厳しい条件がつきます</span><span class="brand"></span></div>
+  <div class="lead">年20%が2年続き</div>
+  <div class="stmt">そのあいだPERも下がらない、という<br><span class="em">厳しい条件</span>がつきます。</div>
+</section>
+
+<!-- 221 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：重要なのは</span><span class="brand"></span></div>
+  <div class="lead">重要なのは、10万円が期待だけの数字ではないことです</div>
+  <div class="stmt">企業の利益の伸びから、<br><span class="em">計算できる水準</span>だということです。</div>
+</section>
+
+<!-- 222 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：次の問い</span><span class="brand"></span></div>
+  <div class="lead">では、日経平均が10万円に近づいていく過程を、僕たちはどの数字で確かめればいいのか</div>
+  <div class="stmt">見るものは、<span class="em">4つ</span>に絞れます。</div>
+</section>
+
+<!-- ========== p12_miru_suuji（16枚） ========== -->
+<!-- 223 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 11：見るべき数字と、崩れる条件</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 11 / 13</span><span class="bar"></span><span>自分で判定できるようになる</span></div>
+  <div class="numbox">11</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">見るべき数字と、<br>崩れる条件</div><div class="rule"></div><div class="desc">追うのは、4つだけです</div></div>
+</section>
+
+<!-- 224 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 11：日経平均は、2つで決まる</span><span class="brand"></span></div>
+  <div class="badge navy">さきほどの計算のとおり</div>
+  <div class="h-main">日経平均そのものは、2つで決まります</div>
+  <div class="cols">
+    <div class="box left"><div class="name">1つ目</div><div class="cap">企業が稼ぐ</div><div class="big">利益</div><div class="div"></div><div class="strong">ただ、決算が出るまで分からない</div></div>
+    <div class="vsmark">×</div>
+    <div class="box right"><div class="name">2つ目</div><div class="cap">何倍で買われるか</div><div class="big">PER</div><div class="div"></div><div class="strong">縮めば、利益が増えても株価は上がらない</div></div>
+  </div>
+  <div class="foot-note">その利益が増えるかどうかを、先回りして見られる数字があります。注文です</div>
+</section>
+
+<!-- 225 t-band：fourcheck の初出 -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">Section 11：追うのは、4つだけです</span><span class="brand"></span></div>
+  <div class="h-main">追うのは、4つだけです</div>
+  <div class="fourcheck">
+    <div class="fc on"><span class="n">1</span>注文の<br>残り<span class="s">増えているか</span></div>
+    <div class="fc on"><span class="n">2</span>売上<span class="s">変わったか</span></div>
+    <div class="fc on"><span class="n">3</span>営業<br>利益率<span class="s">上がったか</span></div>
+    <div class="fc on"><span class="n">4</span>PER<span class="s">縮んでいないか</span></div>
+  </div>
+  <div class="lag-note">難しい指標は要りません。この4つを<span class="em">順番に</span>見れば足ります</div>
+</section>
+
+<!-- 226 t-band：lagline で①を説明 -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">Section 11：①注文の残り</span><span class="brand"></span></div>
+  <div class="h-main">まず、注文の残りが増え続けているか</div>
+  <div class="lagline">
+    <div class="lg on"><span class="n">1</span>注文が<br>決まる</div>
+    <div class="lg"><span class="n">2</span>部材・<br>仕掛品</div>
+    <div class="lg"><span class="n">3</span>作る・<br>納める</div>
+    <div class="lg"><span class="n">4</span>検収</div>
+    <div class="lg"><span class="n">5</span>売上</div>
+    <div class="lg"><span class="n">6</span>利益</div>
+  </div>
+  <div class="lag-note">契約が決まっていて、<span class="em">まだ作り終えていない仕事</span>の金額です</div>
+</section>
+
+<!-- 227 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 11：①注文の残り</span><span class="brand"></span></div>
+  <div class="badge">増えているときと、減り始めたとき</div>
+  <div class="h-main">注文の残りが示すもの</div>
+  <div class="cols">
+    <div class="box left"><div class="name">増えている間</div><div class="cap">良い状態</div><div class="big">先まで埋まる</div><div class="div"></div><div class="strong">作る側の仕事が、先まで埋まっています</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">減り始めたら</div><div class="cap">合図</div><div class="big">ピークが過ぎた</div><div class="div"></div><div class="strong">注文のピークが過ぎた合図になります</div></div>
+  </div>
+  <div class="foot-note">増えているか、減り始めたか。見るのはそこです</div>
+</section>
+
+<!-- 228 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：②売上に変わっているか</span><span class="brand"></span></div>
+  <div class="lead">それから、その注文が売上に変わっているか</div>
+  <div class="stmt">注文を取った時点では、<br>まだ<span class="em">1円も入っていません</span>。</div>
+</section>
+
+<!-- 229 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：②売上に変わっているか</span><span class="brand"></span></div>
+  <div class="lead">残りが増えているのに売上が伸びないなら</div>
+  <div class="stmt">部品が来ていないか、<br><span class="em">作る力が足りていない</span>ということです。</div>
+</section>
+
+<!-- 230 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：③営業利益率</span><span class="brand"></span></div>
+  <div class="lead">そして、営業利益率が上がっているか</div>
+  <div class="stmt">売上が増えても、値引きや材料費で利益率が落ちていれば、<br>稼ぐ力そのものは<span class="em">強くなっていません</span>。</div>
+</section>
+
+<!-- 231 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：④PER</span><span class="brand"></span></div>
+  <div class="lead">最後に、PERです</div>
+  <div class="stmt">利益が増えても、PERが縮めば、<br>株価は<span class="em">上がりません</span>。</div>
+</section>
+
+<!-- 232 t-band：fourcheck で締める -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">Section 11：どこで見るか</span><span class="brand"></span></div>
+  <div class="h-main">この4つが、同じ向きに動いているかどうか</div>
+  <div class="fourcheck">
+    <div class="fc on"><span class="n">1</span>注文の<br>残り<span class="s">持ち株の決算</span></div>
+    <div class="fc on"><span class="n">2</span>売上<span class="s">持ち株の決算</span></div>
+    <div class="fc on"><span class="n">3</span>営業<br>利益率<span class="s">持ち株の決算</span></div>
+    <div class="fc wait"><span class="n">4</span>PER<span class="s">日経平均で見る</span></div>
+  </div>
+  <div class="lag-note">それだけ見ていれば、10万円までの距離が縮んでいるのか、止まっているのかを<span class="em">自分で判定できます</span></div>
+</section>
+
+<!-- 233 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：崩れる条件</span><span class="brand"></span></div>
+  <div class="lead">強気の話をしてきたので</div>
+  <div class="stmt">崩れる条件も、<span class="em">自分から言っておきます</span>。</div>
+</section>
+
+<!-- 234 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 11：崩れる条件①為替</span><span class="brand"></span></div>
+  <div class="badge">まず、為替です</div>
+  <div class="h-main">さきほどの円高が、ここでは逆に働きます</div>
+  <div class="cols">
+    <div class="box left"><div class="name">国内の商売には</div><div class="cap">追い風</div><div class="big">楽になる</div><div class="div"></div><div class="strong">輸入する食べ物と燃料の値段が下がる</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">海外に売る企業には</div><div class="cap">向かい風</div><div class="big">利益が減る</div><div class="div"></div><div class="strong">日本の工作機械は、注文の7割以上が海外から</div></div>
+  </div>
+  <div class="foot-note">円の向きは、さきほどの金利の差と、入ってくる投資のお金で見ます</div>
+</section>
+
+<!-- 235 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：崩れる条件②金利</span><span class="brand"></span></div>
+  <div class="lead">そして、金利です。金利が上がると、PERが縮みます</div>
+  <div class="stmt">利益が増えていても、<br>株価が<span class="em">ついてこない時期</span>が出てきます。</div>
+</section>
+
+<!-- 236 t-steps -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 11：崩れる条件③AIへの設備投資</span><span class="brand"></span></div>
+  <div class="h-main">金額が減るのではなく、増える勢いが落ちる</div>
+  <div class="steps">
+    <div class="step s3"><div class="era">これまで</div><div class="v">勢いよく増えた</div></div>
+    <div class="sarr">→</div>
+    <div class="step s2"><div class="era">これから</div><div class="v">増え方が鈍る</div></div>
+  </div>
+</section>
+
+<!-- 237 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：崩れる条件③AIへの設備投資</span><span class="brand"></span></div>
+  <div class="lead">それでも</div>
+  <div class="stmt">伸び率で株価を測っている相場では、<br><span class="em">鈍っただけで売られる</span>ことがあります。</div>
+</section>
+
+<!-- 238 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：崩れる条件④中国</span><span class="brand"></span></div>
+  <div class="lead">最後に、中国です。政府の資金で建てるデータセンターには、国産のチップを使うよう求める政策が出ています。同じ動きは、機械にも広がり得ます</div>
+  <div class="stmt">中国が自分で作れるようになれば、<br>日本の機械への注文は<span class="em">減ります</span>。</div>
+</section>
+
+<!-- ========== p13_mizu（52枚） ========== -->
+<!-- 239 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：次は、同じ目で2社</span><span class="brand"></span></div>
+  <div class="lead">見る数字は、どの企業でも同じです</div>
+  <div class="stmt">次は、同じ目で、もう2社見ます。<br>半導体の工場に、<span class="em">水を作っている企業</span>です。</div>
+</section>
+
+<!-- 240 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 12：水を作る側にも、同じことが起きています</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 12 / 13</span><span class="bar"></span><span>栗田工業とオルガノ</span></div>
+  <div class="numbox">12</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">水を作る側にも、<br>同じことが起きています</div><div class="rule"></div><div class="desc">さきほどの4つで、2社を読む</div></div>
+</section>
+
+<!-- 241 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 12：2社だけ見ます</span><span class="brand"></span></div>
+  <div class="badge navy">さきほどの、水を工場で使える純度まで上げる技術</div>
+  <div class="h-main">その技術を売っている企業を、2社だけ見ます</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">6370</div><div class="ctitle">栗田工業</div><div class="ctext">東証プライム。水の入口から出口まで、一通り持っている</div></div>
+    <div class="card c2"><div class="cno">6368</div><div class="ctitle">オルガノ</div><div class="ctext">東証プライム。先端の半導体向けの比重が高い</div></div>
+  </div>
+  <div class="foot-bar">証券コードは、栗田工業が<span class="em">6370</span>、オルガノが<span class="em">6368</span>です</div>
+</section>
+
+<!-- 242 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：超純水</span><span class="brand"></span></div>
+  <div class="lead">半導体の工場では、削ったり洗ったりするたびに、超純水を使います</div>
+  <div class="stmt">不純物が残っていると、<br>回路が<span class="em">不良になる</span>からです。</div>
+</section>
+
+<!-- 243 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 12：この2社がやっていること</span><span class="brand"></span></div>
+  <div class="h-main">この2社がやっているのは、3つです</div>
+  <div class="chain">
+    <div class="node">水を作る装置を<br>設計して建てる</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">使った水を処理して<br>もう一度使えるように</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">工場が動き出したあと<br>質を保ち続ける</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">薬品を入れ、<span class="em" style="color:var(--blue)">設備を回し続ける</span>ところまで</div>
+</section>
+
+<!-- 244 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 12：装置メーカーとの違い</span><span class="brand"></span></div>
+  <div class="badge navy">ここが、装置メーカーと少し違います</div>
+  <div class="h-main">売れたあとに、何が残るか</div>
+  <div class="cols">
+    <div class="box left"><div class="name">建つとき</div><div class="cap">1回</div><div class="big">装置が売れる</div><div class="div"></div><div class="strong">工場が建つときに、装置が売れる</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box right"><div class="name">そのあと</div><div class="cap">ずっと</div><div class="big">保守と薬品</div><div class="div"></div><div class="strong">工場が動いているあいだ、仕事が続く</div></div>
+  </div>
+  <div class="foot-note">売ったら終わり、ではありません</div>
+</section>
+
+<!-- 245 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：AIの半導体は、仕事を重くする</span><span class="brand"></span></div>
+  <div class="lead">AIの半導体は、この仕事を重くします。回路が細かくなるほど工程が増え、許される汚れの幅が狭くなるからです</div>
+  <div class="stmt">使う水の量も、出る排水の量も、<br><span class="em">増えていきます</span>。</div>
+</section>
+
+<!-- 246 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：まず、栗田工業です</span><span class="brand"></span></div>
+  <div class="lead">この企業は、電子分野のほかに、一般の水処理や薬品、保守もやっています</div>
+  <div class="stmt">半導体以外にも<span class="em">足がある</span>、という形です。</div>
+</section>
+
+<!-- 247 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 12：水の入口から出口まで</span><span class="brand"></span></div>
+  <div class="h-main">一通り持っています</div>
+  <div class="chain">
+    <div class="node">原水の<br>処理</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">超純水を<br>作る</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">使ったあとの<br>排水の処理</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">再利用</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">水の<span class="em" style="color:var(--blue)">入口から出口まで</span></div>
+</section>
+
+<!-- 248 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：技術の裏付け</span><span class="brand"></span></div>
+  <div class="lead">ベルギーに、世界の半導体メーカーが共同で使う研究機関があります</div>
+  <div class="stmt">次の世代の工程で水をどう扱うかを、顧客と同じ場所で開発。<br>最先端の工場に欠かせない水を、<span class="em">次の世代まで握っている形</span>です。</div>
+</section>
+
+<!-- 250 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：栗田工業の受注</span><span class="brand"></span></div>
+  <div class="lead">注文を見ます。2026年4月から6月の3か月で</div>
+  <div class="h-main">前の年の同じ時期から、どれだけ増えたか</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">栗田工業の受注（2026年4〜6月）</div>
+      <div class="mfig">1,657<span class="u">億円</span></div>
+      <div class="msub">前の年の同じ時期から +77.1%</div>
+    </div>
+  </div>
+  <div class="note">中身を開くと、はっきりしています</div>
+</section>
+
+<!-- 251 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 12：電子分野の装置</span><span class="brand"></span></div>
+  <div class="h-main">半導体などの電子分野の装置の受注が、約10倍に</div>
+  <div class="h-sub">2026年4月から6月（前の年の同じ時期と比べて）</div>
+  <div class="vcols">
+    <div class="vb"><div class="bar" style="height:30px">69億円</div><div class="cap">前の年</div><div class="sub">同じ3か月</div></div>
+    <div class="vb orange"><div class="bar" style="height:300px">701億円</div><div class="cap">2026年4〜6月</div><div class="sub">約10倍</div></div>
+  </div>
+</section>
+
+<!-- 252 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 12：増えた金額の中身</span><span class="brand"></span></div>
+  <div class="lead">全社の受注が増えた金額のうち</div>
+  <div class="h-main">およそ88%が、ここで説明できます</div>
+  <div class="pbar">
+    <div class="seg main" style="width:88%"><span class="p">約88%</span><span class="l">電子分野の装置</span></div>
+    <div class="seg rest"><span class="p">約12%</span><span class="l">そのほか</span></div>
+  </div>
+  <div class="note">大型の案件を取ったのは、韓国、アメリカ、中国だと説明されています</div>
+</section>
+
+<!-- 253 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 12：装置を納めたあとに残る仕事</span><span class="brand"></span></div>
+  <div class="lead">この企業の強みは、装置を納めたあとに残る仕事です</div>
+  <div class="h-main">同じ3か月の売上のうち、約72%がサービス関連</div>
+  <div class="pbar">
+    <div class="seg main" style="width:72%"><span class="p">約72%</span><span class="l">サービス関連</span></div>
+    <div class="seg rest"><span class="p">約28%</span><span class="l">装置など</span></div>
+  </div>
+  <div class="note">水の質を保つ運転管理、薬品、交換部材、保守。工場が動いているあいだ続く仕事です</div>
+</section>
+
+<!-- 254 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 12：ところが、利益は</span><span class="brand"></span></div>
+  <div class="h-main">ところが、利益はそこまで増えていません</div>
+  <div class="h-sub">同じ3か月（前の年の同じ時期と比べて）</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:230px">+14.3%</div><div class="cap">売上</div><div class="sub">増えた</div></div>
+    <div class="vb"><div class="bar" style="height:125px">+7.8%</div><div class="cap">営業利益</div><div class="sub">伸びは半分ほど</div></div>
+  </div>
+</section>
+
+<!-- 255 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：電子分野の営業利益率</span><span class="brand"></span></div>
+  <div class="lead">電子分野の営業利益率</div>
+  <div class="h-main">大きな工事で追加の費用が出たことと、人件費が理由です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v">12.3%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年4〜6月</div><div class="c-v">8.9%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">利益率は</div><div class="r-v">下がった</div></div>
+  </div>
+  <div class="note">注文は増えているのに、利益率は下がっています</div>
+</section>
+
+<!-- 256 t-band：lagline -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">Section 12：芝浦機械と同じ読み方</span><span class="brand"></span></div>
+  <div class="h-main">ここは、芝浦機械と同じ読み方になります</div>
+  <div class="lagline">
+    <div class="lg done"><span class="n">1</span>注文が<br>決まる</div>
+    <div class="lg on"><span class="n">2</span>部材・<br>仕掛品</div>
+    <div class="lg on"><span class="n">3</span>作る・<br>納める</div>
+    <div class="lg"><span class="n">4</span>検収</div>
+    <div class="lg"><span class="n">5</span>売上</div>
+    <div class="lg"><span class="n">6</span>利益</div>
+  </div>
+  <div class="lag-note">注文が増えても、<span class="em">工事の採算が戻らなければ</span>、利益はついてきません</div>
+</section>
+
+<!-- 257 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：中期計画の目標</span><span class="brand"></span></div>
+  <div class="h-main">目標も見ておきます</div>
+  <div class="h-sub">中期計画（2028年3月期）</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">売上</div><div class="cd">2028年3月期</div></div><div class="body"><div class="lbl">目標</div><div class="val2">4,700億円</div><div class="tag">中期計画</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益率</div><div class="cd">2028年3月期</div></div><div class="body"><div class="lbl">目標</div><div class="val2">16%</div><div class="tag">＝年750億円ほど</div></div></div>
+  </div>
+</section>
+
+<!-- 258 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：目標との距離</span><span class="brand"></span></div>
+  <div class="lead">計算すると、年に750億円ほどの利益が要ります</div>
+  <div class="h-main">いまの予想から、どれだけ増やす必要があるか</div>
+  <div class="row">
+    <div class="card"><div class="c-l">いまの予想</div><div class="c-v">655億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">目標</div><div class="c-v">750億円ほど</div></div>
+    <div class="arr">＝</div>
+    <div class="result orange"><div class="r-l">必要な伸び</div><div class="r-v">1割半ほど</div></div>
+  </div>
+  <div class="note">1割半ほど増やさないと届きません</div>
+</section>
+
+<!-- 259 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：四季報の見方</span><span class="brand"></span></div>
+  <div class="lead">四季報の秋号は、今期の営業利益を675億円と見ていて</div>
+  <div class="stmt">この企業自身の予想より、<span class="em">強気</span>です。</div>
+</section>
+
+<!-- 260 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：株主への還元</span><span class="brand"></span></div>
+  <div class="lead">株主への還元も動いています</div>
+  <div class="stmt">2026年10月に、<span class="em">350億円規模</span>の<br>自己株式の取得を終えたと発表しました。</div>
+</section>
+
+<!-- 261 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：栗田工業の株価</span><span class="brand"></span></div>
+  <div class="lead">株価は</div>
+  <div class="h-main">年の初めからの動き</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">栗田工業（6370）／2026年10月9日の終値</div>
+      <div class="mfig">7,777<span class="u">円</span></div>
+      <div class="msub">年の初めから18.75%上がっています</div>
+    </div>
+  </div>
+  <div class="note">ただし、6月の高値からは下げたところにいます</div>
+</section>
+
+<!-- 262 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：高値からの位置</span><span class="brand"></span></div>
+  <div class="lead">年の初めからは上がっていますが</div>
+  <div class="h-main">6月の高値から見ると</div>
+  <div class="row">
+    <div class="card"><div class="c-l">年の初めから</div><div class="c-v">+18.75%</div></div>
+    <div class="arr">＋</div>
+    <div class="card"><div class="c-l">6月の高値から</div><div class="c-v">−21.59%</div></div>
+    <div class="arr">＝</div>
+    <div class="result navy"><div class="r-l">いまの位置</div><div class="r-v">その間</div></div>
+  </div>
+  <div class="note">年の初めからは上がり、高値からは下げたところにいます</div>
+</section>
+
+<!-- 263 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：1つ注意があります</span><span class="brand"></span></div>
+  <div class="lead">今期の最終利益の予想には、子会社を売った一時的な利益が入っています</div>
+  <div class="stmt">それを除くとPERは16倍台ではなく20倍ほど。<br>PERで見ると、<span class="em">安いとは言えません</span>。</div>
+</section>
+
+<!-- 265 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：もう1社、オルガノです</span><span class="brand"></span></div>
+  <div class="lead">この企業は、先端の半導体向けの比重が高く</div>
+  <div class="stmt"><span class="em">台湾での実績</span>が、いちばん大きい。</div>
+</section>
+
+<!-- 266 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：台湾での位置</span><span class="brand"></span></div>
+  <div class="lead">この企業の説明では、台湾の半導体向けの超純水設備で高いシェアを持っています</div>
+  <div class="stmt">最先端の工場が集まる場所で、<br><span class="em">主役の1社</span>です。</div>
+</section>
+
+<!-- 267 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 12：台湾への集中</span><span class="brand"></span></div>
+  <div class="badge navy">さきほどお話しした台湾への集中は</div>
+  <div class="h-main">この企業にとって、2つの意味を持ちます</div>
+  <div class="cols">
+    <div class="box left"><div class="name">プラス</div><div class="cap">実績として</div><div class="big">強み</div><div class="div"></div><div class="strong">最先端の工場が集まる場所での実績</div></div>
+    <div class="vsmark">＆</div>
+    <div class="box right"><div class="name">マイナス</div><div class="cap">集中として</div><div class="big">リスク</div><div class="div"></div><div class="strong">1か所に寄っていることのリスク</div></div>
+  </div>
+  <div class="foot-note">強みであり、同時にリスクでもあります</div>
+</section>
+
+<!-- 268 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 12：いま動いているのは、台湾の外</span><span class="brand"></span></div>
+  <div class="h-main">顧客がアメリカに工場を建てるとき、付いていく形です</div>
+  <div class="chain">
+    <div class="node">アメリカで<br>設計と施工の体制</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">＋</div>
+    <div class="node">台湾で<br>研究と技術開発</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:var(--orange);">顧客に<br>付いていく</div>
+  </div>
+  <div class="release">アメリカでは<span class="em" style="color:var(--orange)">人を育てている</span>ところです</div>
+</section>
+
+<!-- 269 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：オルガノの受注</span><span class="brand"></span></div>
+  <div class="lead">注文を見ます。同じ3か月の受注</div>
+  <div class="h-main">前の年の同じ時期から、どれだけ増えたか</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">オルガノの受注（2026年4〜6月）</div>
+      <div class="mfig">1,102<span class="u">億円</span></div>
+      <div class="msub">85.0%増えました</div>
+    </div>
+  </div>
+  <div class="note">受注残も、1年前より3割以上増えています</div>
+</section>
+
+<!-- 270 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：受注の見通しを引き上げ</span><span class="brand"></span></div>
+  <div class="lead">そして今期の受注の見通しを</div>
+  <div class="h-main">700億円、上に引き上げました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまでの見通し</div><div class="c-v">2,300億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">引き上げ後</div><div class="c-v">3,000億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result good"><div class="r-l">上積み</div><div class="r-v">700億円</div></div>
+  </div>
+  <div class="note">工場の数が増えただけではありません</div>
+</section>
+
+<!-- 271 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：増え方の中身</span><span class="brand"></span></div>
+  <div class="lead">増え方に、中身の変化もあります</div>
+  <div class="stmt">1件あたりの工事の範囲が広がり、取れる金額が大きくなっています。<br>ただし上積みには、<span class="em">前倒しで受けたぶん</span>も入っています。</div>
+</section>
+
+<!-- 273 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 12：この企業も、装置だけではない</span><span class="brand"></span></div>
+  <div class="lead">工場が動き出したあとの水の供給、運転管理、保守、設備を持ったまま貸す形のサービス</div>
+  <div class="h-main">売上で見ると、工事とサービスがほぼ半々です</div>
+  <div class="pbar">
+    <div class="seg main" style="width:50%"><span class="p">約半分</span><span class="l">工事</span></div>
+    <div class="seg rest"><span class="p">約半分</span><span class="l">サービス</span></div>
+  </div>
+  <div class="note">売ったら終わり、ではない形は、栗田工業と同じです</div>
+</section>
+
+<!-- 274 t-vbars -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 12：利益の形は、栗田工業と同じ</span><span class="brand"></span></div>
+  <div class="h-main">売上は増えて、営業利益は減りました</div>
+  <div class="h-sub">同じ3か月（前の年の同じ時期と比べて）</div>
+  <div class="vcols">
+    <div class="vb orange"><div class="bar" style="height:200px">+10.7%</div><div class="cap">売上</div><div class="sub">増えた</div></div>
+    <div class="vb"><div class="bar" style="height:92px">−4.9%</div><div class="cap">営業利益</div><div class="sub">減った</div></div>
+  </div>
+  <div class="foot-bar">前の年に<span class="em">採算のいい案件</span>があった反動です</div>
+</section>
+
+<!-- 275 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：オルガノの営業利益率</span><span class="brand"></span></div>
+  <div class="lead">営業利益率も</div>
+  <div class="h-main">下がっています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v">18.2%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年4〜6月</div><div class="c-v">15.7%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">利益率は</div><div class="r-v">下がった</div></div>
+  </div>
+  <div class="note">この企業は、いま積み上げた受注が利益として本格的に出てくるのは2028年3月期以降だと説明しています</div>
+</section>
+
+<!-- 276 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：四季報も、厳しく見ている</span><span class="brand"></span></div>
+  <div class="h-main">四季報も、そこは厳しく見ています</div>
+  <div class="h-sub">来期の予想</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">売上</div><div class="cd">来期</div></div><div class="body"><div class="lbl">四季報の予想</div><div class="val2">2,400億円</div><div class="tag">2割増える</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益</div><div class="cd">来期</div></div><div class="body"><div class="lbl">四季報の予想</div><div class="val2">430億円</div><div class="tag">+7.5%にとどまる</div></div></div>
+  </div>
+</section>
+
+<!-- 277 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：四季報の見方</span><span class="brand"></span></div>
+  <div class="lead">売上が2割増える一方で、営業利益は7.5%しか増えない予想</div>
+  <div class="stmt">注文が増えても、利益率が戻るとは限らない、<br>という<span class="em">見方</span>です。</div>
+</section>
+
+<!-- 278 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：長期の目標</span><span class="brand"></span></div>
+  <div class="h-main">長期の目標も出ています</div>
+  <div class="h-sub">2031年3月期の目標と、いまのROE</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">売上</div><div class="cd">2031年3月期</div></div><div class="body"><div class="lbl">目標</div><div class="val2">2,600億円以上</div><div class="tag">長期の目標</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益率</div><div class="cd">2031年3月期</div></div><div class="body"><div class="lbl">目標</div><div class="val2">18〜20%</div><div class="tag">長期の目標</div></div></div>
+    <div class="col"><div class="top"><div class="nm">ROE</div><div class="cd">2026年3月期</div></div><div class="body"><div class="lbl">自己資本利益率</div><div class="val2">約21.5%</div><div class="tag">すでに高い水準</div></div></div>
+  </div>
+</section>
+
+<!-- 279 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：オルガノの株価</span><span class="brand"></span></div>
+  <div class="lead">株価は</div>
+  <div class="h-main">年の初めからの動き</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">オルガノ（6368）／2026年10月9日の終値</div>
+      <div class="mfig">2,779<span class="u">円</span></div>
+      <div class="msub">年の初めから2.06%上がっています</div>
+    </div>
+  </div>
+  <div class="note">9月に1株を5株に分けたので、それより前の株価は5分の1に直して比べる必要があります</div>
+</section>
+
+<!-- 280 numviz t-metric -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 12：配当</span><span class="brand"></span></div>
+  <div class="lead">配当は、1株につき年44円の予想で</div>
+  <div class="h-main">利回りは</div>
+  <div class="metrics">
+    <div class="metric blue hero">
+      <div class="mlbl">配当利回り（年44円の予想）</div>
+      <div class="mfig">約1.58<span class="u">%</span></div>
+      <div class="msub">1株につき年44円の予想</div>
+    </div>
+  </div>
+  <div class="note">株式分割のあとの株価で計算しています</div>
+</section>
+
+<!-- 281 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 12：こちらにも注意があります</span><span class="brand"></span></div>
+  <div class="lead">親会社が、発行済み株式の4割以上を持っています</div>
+  <div class="h-main">市場で売買できる株数は、その分だけ少なくなります</div>
+  <div class="pbar">
+    <div class="seg main" style="width:42%"><span class="p">4割以上</span><span class="l">親会社が保有</span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">市場で売買できる分</span></div>
+  </div>
+  <div class="note">売買できる株数が少ないと、値動きが大きくなることがあります</div>
+</section>
+
+<!-- 282 t-band：fourcheck で2社を読む -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">Section 12：2社とも、同じ形です</span><span class="brand"></span></div>
+  <div class="h-main">さきほどの4つで読むと、こうなります</div>
+  <div class="fourcheck">
+    <div class="fc ok"><span class="n">1</span>注文の<br>残り<span class="s">増えている</span></div>
+    <div class="fc wait"><span class="n">2</span>売上<span class="s">まだ追いつかず</span></div>
+    <div class="fc ng"><span class="n">3</span>営業<br>利益率<span class="s">下がっている</span></div>
+    <div class="fc"><span class="n">4</span>PER<span class="s">—</span></div>
+  </div>
+  <div class="lag-note">注文の残りは増えている。売上への変わり方は、まだ追いついていない。<span class="em">利益率は下がっている</span></div>
+</section>
+
+<!-- 283 t-band：lagline で締める -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">Section 12：2社とも、同じ形です</span><span class="brand"></span></div>
+  <div class="h-main">注文が利益になる時間を、2社とも通過しているところ</div>
+  <div class="lagline">
+    <div class="lg done"><span class="n">1</span>注文が<br>決まる</div>
+    <div class="lg on"><span class="n">2</span>部材・<br>仕掛品</div>
+    <div class="lg on"><span class="n">3</span>作る・<br>納める</div>
+    <div class="lg"><span class="n">4</span>検収</div>
+    <div class="lg"><span class="n">5</span>売上</div>
+    <div class="lg"><span class="n">6</span>利益</div>
+  </div>
+  <div class="lag-note">どちらも、<span class="em">世界の工場が増えるほど仕事が増える側</span>にいます</div>
+</section>
+
+<!-- 284 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：地政学の話とつながります</span><span class="brand"></span></div>
+  <div class="lead">ここが</div>
+  <div class="stmt"><span class="em">地政学の話</span>とつながります。</div>
+</section>
+
+<!-- 285 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：アリゾナは、水の乏しい土地</span><span class="brand"></span></div>
+  <div class="h-main">水の乏しい土地に、先端の工場が建っています</div>
+  <div class="h-sub">TSMCが示した、アリゾナの水の計画と目標</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">構内の再循環</div><div class="cd">計画</div></div><div class="body"><div class="lbl">工場で使う水のうち</div><div class="val2">約65%</div><div class="tag">計画</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">回収率</div><div class="cd">目標</div></div><div class="body"><div class="lbl">高度な回収施設で</div><div class="val2">90%</div><div class="tag">目標</div></div></div>
+  </div>
+</section>
+
+<!-- 286 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：水が少ない場所ほど</span><span class="brand"></span></div>
+  <div class="lead">つまり</div>
+  <div class="stmt">水が少ない場所ほど、水を回収して使い回す<br>技術の<span class="em">値段が上がります</span>。</div>
+</section>
+
+<!-- 287 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 12：水が豊かだから勝てる、ではありません</span><span class="brand"></span></div>
+  <div class="badge navy">日本の企業の競争力は</div>
+  <div class="h-main">どこにあるのか</div>
+  <div class="cols">
+    <div class="box left"><div class="name">ではない</div><div class="cap">よく言われるが</div><div class="big">水がきれい</div><div class="div"></div><div class="strong">日本の水がきれいなこと、ではありません</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">本当の強み</div><div class="cap">技術と実績</div><div class="big">上げて回収</div><div class="div"></div><div class="strong">どんな原水からでも必要な純度まで上げて、使ったあとに回収できる技術</div></div>
+  </div>
+  <div class="foot-note">そして、工場で動かした実績のほうです</div>
+</section>
+
+<!-- 288 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：中国も同じ</span><span class="brand"></span></div>
+  <div class="lead">中国も同じです。超純水が要るのは、最先端の工場だけではありません</div>
+  <div class="stmt">成熟した工程の工場でも要ります。さきほどの「別々に建てるから<br>需要は二重になる」は、水の設備も<span class="em">同じ数え方</span>です。</div>
+</section>
+
+<!-- 290 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 12：3つの注意</span><span class="brand"></span></div>
+  <div class="badge">ここは、自分から断っておきます</div>
+  <div class="h-main">言い過ぎないための、3つの注意</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">2社だけではない</div><div class="ctext">ヨーロッパやアメリカにも、同じ仕事をする大きな企業がある</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">分散＝純増ではない</div><div class="ctext">台湾に建てる予定だったものがアメリカに移るだけなら、置き場所が変わっただけ</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">衝突で儲かる話でもない</div><div class="ctext">衝突が起きれば、この2社の工事も顧客の工場も止まる</div></div>
+  </div>
+  <div class="foot-bar">採用されるかは、顧客の工場で動かした実績と、設計、工事の管理、価格で決まります</div>
+</section>
+
+<!-- 291 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：追い風になるのは</span><span class="brand"></span></div>
+  <div class="lead">追い風になるのは</div>
+  <div class="stmt">衝突ではなく、<span class="em">分散のための投資</span>です。</div>
+</section>
+
+<!-- 292 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：答え合わせは、11月です</span><span class="brand"></span></div>
+  <div class="h-main">答え合わせの日は、決まっています</div>
+  <div class="h-sub">3社の中間決算</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">オルガノ</div><div class="cd">火曜</div></div><div class="body"><div class="lbl">中間決算</div><div class="val2">11月4日</div><div class="tag">いちばん早い</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">栗田工業</div><div class="cd">水曜</div></div><div class="body"><div class="lbl">中間決算</div><div class="val2">11月5日</div><div class="tag">翌日</div></div></div>
+    <div class="col"><div class="top"><div class="nm">芝浦機械</div><div class="cd">火曜</div></div><div class="body"><div class="lbl">中間決算</div><div class="val2">11月11日</div><div class="tag">半ば</div></div></div>
+  </div>
+</section>
+
+<!-- 293 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：何を確かめるのか</span><span class="brand"></span></div>
+  <div class="lead">注文が利益に変わり始めているのか、利益率が戻るのか</div>
+  <div class="stmt">11月の初めから半ばまでで、<br>3社の中間決算が<span class="em">並びます</span>。</div>
+</section>
+
+<!-- 294 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：ここまでが、個別の企業を追う道</span><span class="brand"></span></div>
+  <div class="lead">ここまでが、個別の企業を追う道です</div>
+  <div class="stmt">ただ、そこまでやるつもりはない、という方もいます。次は、決算を追わずに<br><span class="em">水のまわりをまとめて持つ方法</span>を見ます。</div>
+</section>
+
+<!-- ========== p14_nisa（18枚） ========== -->
+<!-- 291 t-section -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 13：新NISAなら、水のまわりをまとめて持てます</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 13 / 13</span><span class="bar"></span><span>決算を追わない道</span></div>
+  <div class="numbox">13</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">新NISAなら、水のまわりを<br>まとめて持てます</div><div class="rule"></div><div class="desc">成長投資枠で買えるETFを3本</div></div>
+</section>
+
+<!-- 292 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：3本とも、成長投資枠</span><span class="brand"></span></div>
+  <div class="lead">ここから出す3本は</div>
+  <div class="stmt">どれも<span class="em">成長投資枠</span>で買えるETFです。</div>
+</section>
+
+<!-- 293 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 13：土台とは別の枠</span><span class="brand"></span></div>
+  <div class="badge navy">つみたて投資枠の全世界株には</div>
+  <div class="h-main">今日の3社は、入っていないか、入っていてもごくわずか</div>
+  <div class="cols">
+    <div class="box left"><div class="name">つみたて投資枠</div><div class="cap">土台</div><div class="big">全世界株</div><div class="div"></div><div class="strong">今日の3社は入っていないか、入っていてもごくわずか</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box right"><div class="name">成長投資枠</div><div class="cap">足す枠</div><div class="big">水のまわり</div><div class="div"></div><div class="strong">積み立ての土台とは別に、水のまわりだけを足す</div></div>
+  </div>
+  <div class="foot-note">信託報酬は、3本とも年0.5%から0.75%のあいだです</div>
+</section>
+
+<!-- 294 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：日本に上場しているETF</span><span class="brand"></span></div>
+  <div class="h-main">日本に上場しているETFが1本あります</div>
+  <div class="h-sub">グローバルX クリーンテック-日本株式ETF</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">証券コード</div><div class="cd">東証</div></div><div class="body"><div class="lbl">日本株と同じように</div><div class="val2">2637</div><div class="tag">円のまま売買できる</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">1口の値段</div><div class="cd">2026年10月9日</div></div><div class="body"><div class="lbl">終値</div><div class="val2">2,713円</div><div class="tag">為替の手間がない</div></div></div>
+  </div>
+</section>
+
+<!-- 295 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 13：2社の比率</span><span class="brand"></span></div>
+  <div class="lead">この中に、栗田工業とオルガノが</div>
+  <div class="h-main">合わせて8.31%入っています</div>
+  <div class="pbar">
+    <div class="seg main tiny" style="width:8.31%"><span class="p">2社で 8.31%</span><span class="l"></span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">そのほかの日本企業</span></div>
+  </div>
+  <div class="note">今回調べた3本の中では、2社の比率がいちばん高いETFです</div>
+</section>
+
+<!-- 296 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 13：ただし、2つ気をつける</span><span class="brand"></span></div>
+  <div class="badge">このETFの注意</div>
+  <div class="h-main">買う前に、知っておくこと</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">水処理の専業ではない</div><div class="ctext">環境や省エネに関わる日本企業を広く集めたETF。エアコンや電子部品の企業も入っている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">規模が小さいほう</div><div class="ctext">注文を出す前に、売り買いの値段の開きと、どれくらい売買されているかを見ておく</div></div>
+  </div>
+  <div class="foot-bar">半導体の水の需要だけで動くわけでは<span class="em">ない</span>、ということです</div>
+</section>
+
+<!-- 297 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：アメリカに上場している2本</span><span class="brand"></span></div>
+  <div class="h-main">1本目は、インベスコのETFです</div>
+  <div class="h-sub">世界の水の処理や浄化、水道のインフラに関わる企業を集めています</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">1口の値段</div><div class="cd">ドル建て</div></div><div class="body"><div class="lbl">2026年10月9日</div><div class="val2">44ドル台</div><div class="tag">米国に上場</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">円に直すと</div><div class="cd">1ドル150円で計算</div></div><div class="body"><div class="lbl">1口あたり</div><div class="val2">約6,600円</div><div class="tag">目安</div></div></div>
+  </div>
+</section>
+
+<!-- 298 numviz t-prop -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 13：こちらの2社の比率</span><span class="brand"></span></div>
+  <div class="lead">ここにも栗田工業とオルガノが入っていて</div>
+  <div class="h-main">2社で4.09%です</div>
+  <div class="pbar">
+    <div class="seg main tiny" style="width:4.09%"><span class="p">2社で 4.09%</span><span class="l"></span></div>
+    <div class="seg rest"><span class="p">残り</span><span class="l">ポンプの企業やアメリカの水処理の大手など</span></div>
+  </div>
+  <div class="note">さきほどの国内のETFより比率は低いぶん、世界に散らばります</div>
+</section>
+
+<!-- 299 t-stats -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：2本目</span><span class="brand"></span></div>
+  <div class="h-main">2本目は、ファースト・トラストのETFです</div>
+  <div class="h-sub">信託報酬は3本の中でいちばん低く、規模もいちばん大きい</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">1口の値段</div><div class="cd">ドル建て</div></div><div class="body"><div class="lbl">2026年10月9日</div><div class="val2">105ドル台</div><div class="tag">米国に上場</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">円に直すと</div><div class="cd">1ドル150円で計算</div></div><div class="body"><div class="lbl">1口あたり</div><div class="val2">約1万5,700円</div><div class="tag">目安</div></div></div>
+  </div>
+</section>
+
+<!-- 300 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：ただし</span><span class="brand"></span></div>
+  <div class="lead">ただし、こちらには栗田工業もオルガノも入っていません。中身は、アメリカの水質を測る分析機器の企業と、上下水道に関わる企業が中心です</div>
+  <div class="stmt">日本の2社を持ちたい、という目的には<br><span class="em">合いません</span>。</div>
+</section>
+
+<!-- 301 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：気をつけるところ</span><span class="brand"></span></div>
+  <div class="lead">気をつけるところを</div>
+  <div class="stmt"><span class="em">3つ</span>だけお伝えします。</div>
+</section>
+
+<!-- 302 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：①専用ETFではない</span><span class="brand"></span></div>
+  <div class="lead">まず、どれも半導体向けの水の専用ETFではありません。上下水道や分析機器、環境関連の値動きも一緒に入ってきます</div>
+  <div class="stmt">半導体の設備投資とは関係のない理由で、<br><span class="em">上下することがあります</span>。</div>
+</section>
+
+<!-- 303 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 13：②ドル建て</span><span class="brand"></span></div>
+  <div class="lead">次に、アメリカに上場している2本はドル建てです</div>
+  <div class="h-main">ドルで増えても、円で減ることが起こります</div>
+  <div class="row">
+    <div class="card"><div class="c-l">国内が強くなると</div><div class="c-v">円高に向かう</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">ドル建ての資産</div><div class="c-v">円に直すと</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">円で見ると</div><div class="r-v">価値は下がる</div></div>
+  </div>
+  <div class="note">さきほどお話ししたように、国内が強くなって円高に向かえば、円に直したときの価値は下がります</div>
+</section>
+
+<!-- 304 t-vs -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 13：③税金</span><span class="brand"></span></div>
+  <div class="badge">そして、税金です</div>
+  <div class="h-main">分配金の税金は、口座によって扱いが違います</div>
+  <div class="cols">
+    <div class="box left"><div class="name">普通の口座</div><div class="cap">取り戻せる</div><div class="big">控除が使える</div><div class="div"></div><div class="strong">外国税額控除で取り戻せます</div></div>
+    <div class="vsmark">VS</div>
+    <div class="box right"><div class="name">NISAの口座</div><div class="cap">取り戻せない</div><div class="big">控除が使えない</div><div class="div"></div><div class="strong">アメリカ側で引かれる分配金の税金は残ります</div></div>
+  </div>
+  <div class="foot-note">分配金を目当てに海外のETFをNISAで持つと、ここが効いてきます</div>
+</section>
+
+<!-- 305 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：取扱いの確認</span><span class="brand"></span></div>
+  <div class="lead">取扱いは、証券会社によって違います。とくに2本目のファースト・トラストのほうは、確認できた取扱先が限られていました</div>
+  <div class="stmt">買えるかどうかと、成長投資枠の対象かどうかは、<br><span class="em">注文画面で最後に確かめてください</span>。</div>
+</section>
+
+<!-- 306 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：どれがいい、という話はしません</span><span class="brand"></span></div>
+  <div class="lead">どれがいい、という話はしません</div>
+  <div class="stmt">中身が違うので、<span class="em">答えも変わります</span>。</div>
+</section>
+
+<!-- 307 t-cards -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 13：先に決めるのは、目的のほう</span><span class="brand"></span></div>
+  <div class="badge navy">先に決めるのは、商品ではなく目的です</div>
+  <div class="h-main">何を取りたいのか</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">2社を厚く持ちたい</div><div class="ctext">国内のETFが、2社の比率がいちばん高い</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">世界の水を広く</div><div class="ctext">比率は低いぶん、世界に散らばる</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">コストを抑えたい</div><div class="ctext">信託報酬がいちばん低いものを選ぶ</div></div>
+  </div>
+  <div class="foot-bar">商品を選ぶところで悩むより、<span class="em">何を取りたいのかを先に決めてください</span></div>
+</section>
+
+<!-- 308 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：そこが決まれば</span><span class="brand"></span></div>
+  <div class="lead">そこが決まれば</div>
+  <div class="stmt">選ぶのは、<span class="em">早いです</span>。</div>
+</section>
+
+<!-- ========== p15_shime（12枚） ========== -->
+<!-- 309 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ</span><span class="brand"></span></div>
+  <div class="lead">10万円に届くかどうかは</div>
+  <div class="stmt">誰かの予想では、<span class="em">決まりません</span>。</div>
+</section>
+
+<!-- 310 numviz t-fx -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">まとめ</span><span class="brand"></span></div>
+  <div class="lead">日本の企業が稼ぐ利益が、どれだけ増えるかで決まります</div>
+  <div class="h-main">その利益は、注文から始まります</div>
+  <div class="row">
+    <div class="card"><div class="c-l">まず</div><div class="c-v">注文</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">それが変わって</div><div class="c-v">利益</div></div>
+    <div class="arr">→</div>
+    <div class="result good"><div class="r-l">そして</div><div class="r-v">10万円へ</div></div>
+  </div>
+  <div class="note">10万円に届くかどうかは、日本の企業が稼ぐ利益が、どれだけ増えるかで決まります</div>
+</section>
+
+<!-- 311 t-band：lagline で締める -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">まとめ</span><span class="brand"></span></div>
+  <div class="h-main">注文は、いちばん先に動く数字です</div>
+  <div class="lagline">
+    <div class="lg done"><span class="n">1</span>注文が<br>決まる</div>
+    <div class="lg on"><span class="n">2</span>部材・<br>仕掛品</div>
+    <div class="lg on"><span class="n">3</span>作る・<br>納める</div>
+    <div class="lg"><span class="n">4</span>検収</div>
+    <div class="lg"><span class="n">5</span>売上</div>
+    <div class="lg"><span class="n">6</span>利益</div>
+  </div>
+  <div class="lag-note">そして注文は、<span class="em">もう日本の工場に積まれています</span></div>
+</section>
+
+<!-- 312 t-band：fourcheck で締める -->
+<section class="slide t-band">
+  <div class="hdr"><span class="sec">まとめ</span><span class="brand"></span></div>
+  <div class="h-main">残っているのは、その注文が利益に変わるかどうかです</div>
+  <div class="fourcheck">
+    <div class="fc on"><span class="n">1</span>注文の<br>残り<span class="s">増えているか</span></div>
+    <div class="fc on"><span class="n">2</span>売上<span class="s">変わったか</span></div>
+    <div class="fc on"><span class="n">3</span>営業<br>利益率<span class="s">上がったか</span></div>
+    <div class="fc on"><span class="n">4</span>PER<span class="s">縮んでいないか</span></div>
+  </div>
+  <div class="lag-note">そこは、さきほどの数字で、<span class="em">ニュースを待たずに自分で確かめられます</span></div>
+</section>
+
+<!-- 313 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ</span><span class="brand"></span></div>
+  <div class="lead">30年伸びなかった国が</div>
+  <div class="stmt">急に別の国になるわけでは、<span class="em">ありません</span>。</div>
+</section>
+
+<!-- 314 t-flow -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">まとめ：踏み方は変わりました</span><span class="brand"></span></div>
+  <div class="h-main">ただ、踏み方は変わりました</div>
+  <div class="chain">
+    <div class="node">政府が冷やす側から<br>温める側へ</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node">企業が国内に<br>設備を入れ始めた</div>
+    <div class="sarr" style="display:flex;align-items:center;font-size:40px;color:#b6bec8;font-weight:800;padding:0 18px;">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:var(--orange);">世界が作る場所を<br>分け直している</div>
+  </div>
+  <div class="release">そのどれにも、日本の機械と水の技術が<span class="em" style="color:var(--orange)">欠かせません</span></div>
+</section>
+
+<!-- 315 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ</span><span class="brand"></span></div>
+  <div class="lead">その注文が</div>
+  <div class="stmt"><span class="em">日本の工場に</span>来ています。</div>
+</section>
+
+<!-- 316 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">まとめ：結論</span><span class="brand"></span></div>
+  <div class="lead">だから僕は</div>
+  <div class="stmt">日本株は、これからも<br><span class="em">上がり続ける</span>と考えています。</div>
+</section>
+
+<!-- 317 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">過去の動画</span><span class="brand"></span></div>
+  <div class="lead">AI関連の動画や、TOPIX改革の動画もありますので</div>
+  <div class="stmt">良ければ、<span class="em">ご覧ください</span>。</div>
+</section>
+
+<!-- 318 t-closing -->
+<section class="slide t-closing">
+  <div class="big">今回の動画は、以上です。<br><span class="em">少しでも参考になったなら</span></div>
+  <div class="sub">高評価とチャンネル登録、そしてハイプボタンで応援していただけると、とても励みになります</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span><span class="tg">⚡ ハイプボタン</span></div>
+</section>
+
+<!-- 319 t-text -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">コメント欄で教えてください</span><span class="brand"></span></div>
+  <div class="lead">投資をするうえで少しでも参考になった点があれば</div>
+  <div class="stmt">ぜひ<span class="em">コメント欄</span>で教えてください。<br>皆さんの声を楽しみにしています。</div>
+</section>
+
+<!-- 320 t-title -->
+<section class="slide t-title">
+  <div class="kicker">ご視聴ありがとうございました</div>
+  <div class="big">それではまた、<br><span class="em">次の動画</span>でお会いしましょう</div>
+  <div class="lead">ご視聴いただき、ありがとうございました</div>
+</section>
+
+</body>
+</html>

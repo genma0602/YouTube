@@ -1,0 +1,66 @@
+/* ===== アンソロピック上場とフィジカルAI・デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* ---- 見出しがヘッダー帯に食い込む型の上余白（アンソロピック版と同じ直し） ---- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---- ユーザー支給の画像スライド（画像に見出しと説明が入っているので帯は付けない） ---- */
+.t-image{background:#0f1c33;}
+.t-image::after{display:none;}
+.t-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ---- 5枚・4枚のカードは文字を少し小さく ---- */
+.t-cards .grid.g5 .card .ctitle{font-size:30px !important;line-height:1.35;}
+.t-cards .grid.g4 .card .ctitle{font-size:34px !important;line-height:1.35;}
+.t-cards .grid.g5 .card,.t-cards .grid.g4 .card{padding-left:12px;padding-right:12px;}
+.t-cards .grid.g5 .ctext,.t-cards .grid.g4 .ctext{font-size:20px;}
+
+/* ---- 棒が2〜3本の縦棒は、幅を広げて数字を切らさない ---- */
+.t-vbars .vcols.wide .vb .bar{width:270px;font-size:30px;}
+
+/* ---- 階段の箱は2行が入る高さに ---- */
+.t-steps .step.s1{height:240px;}
+.t-steps .step.s2{height:285px;}
+.t-steps .step.s3{height:335px;}
+.t-steps .step .v{line-height:1.25;}
+
+/* ---- この企画：画面いっぱいに使う（数字と本文を大きく、縦は中央に） ---- */
+.h-main,.h-sub,.t-text .lead,.t-text .note,.t-stats .val2,.t-cards .ctitle,.t-cards .ctext{text-wrap:balance;}
+.t-stats,.t-cards{display:flex;flex-direction:column;justify-content:center;padding-top:70px;padding-bottom:10px;}
+.t-stats .h-sub,.t-cards .h-sub{font-size:26px;line-height:1.45;margin-bottom:30px;}
+.t-stats .col .top{padding:22px 14px;}
+.t-stats .col .top .nm{font-size:31px;line-height:1.25;}
+.t-stats .col .top .cd{font-size:24px;font-weight:700;margin-top:4px;}
+.t-stats .col .body{min-height:230px;padding:24px 14px;}
+.t-stats .col .lbl{font-size:24px;}
+.t-stats .col .val2{font-size:60px;line-height:1.2;margin:0;}
+.t-cards .card{justify-content:center;padding:30px 20px;}
+.t-cards .card .ctitle{font-size:36px;line-height:1.35;}
+.t-cards .card .ctext{font-size:26px;line-height:1.5;}
+.t-vs{display:flex;flex-direction:column;justify-content:center;padding-bottom:10px;}
+.t-vs .badge{align-self:center;font-size:22px;}
+.t-vs .box{padding:30px 26px;min-height:300px;justify-content:center;}
+.t-vs .box .name{font-size:34px;}
+.t-vs .box .cap{font-size:24px;line-height:1.35;margin-top:12px;}
+.t-vs .box .big{font-size:50px;line-height:1.25;margin-top:8px;}
+.t-text .lead{font-size:30px;line-height:1.45;}
+.t-text .note{font-size:27px;line-height:1.55;}
+.t-flow .node{font-size:31px;}
+.t-flow .release{font-size:29px;line-height:1.45;}
+.t-agenda .row .t{font-size:34px;}
+.numviz .msub{font-size:27px;line-height:1.45;}
+.numviz .lead,.t-prop .lead{font-size:28px;line-height:1.45;text-wrap:balance;}
+.t-metric .mlbl{font-size:26px;}
+/* 文節の途中で折り返さない */
+.h-main,.h-sub,.t-text .lead,.t-text .note,.t-stats .val2,.t-stats .nm,.t-stats .cd,.t-cards .ctitle,.t-cards .ctext,.numviz .lead,.numviz .msub,.t-flow .release,.t-vs .note,.t-vs .cap{word-break:auto-phrase;}
+.t-closing .sub{padding:0 90px;line-height:1.55;text-wrap:balance;word-break:auto-phrase;}
+
+/* ---- 縦棒：棒と見出しが重ならないように（日本株底打ち） ---- */
+.t-vbars .vcols{height:auto;min-height:300px;}
+.t-vbars .vb .cap{min-height:34px;white-space:nowrap;}
+.t-vbars .vb .bar{white-space:nowrap;}
+.t-vbars .vcols:not(.wide){gap:48px;}
+.t-vbars .vcols:not(.wide) .vb .bar{width:190px;font-size:27px;}
+/* ---- 4列の数値 ---- */
+.t-stats .cols:has(> .col:nth-child(4)) .val2{font-size:52px;}
