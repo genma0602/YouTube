@@ -1,0 +1,38 @@
+/* ===== 米中間選挙・デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* ---- 見出しがヘッダー帯に食い込む型の上余白（アンソロピック版と同じ直し） ---- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---- ユーザー支給の画像スライド（画像に見出しと説明が入っているので帯は付けない） ---- */
+.t-image{background:#0f1c33;}
+.t-image::after{display:none;}
+.t-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ---- 3つのルールの帯（このデッキの背骨） ---- */
+.t-map{display:flex;flex-direction:column;justify-content:center;padding:70px 48px 0;}
+.t-map .h-main{margin:0 0 34px;}
+.flowmap{display:flex;gap:14px;justify-content:center;align-items:stretch;}
+.flowmap .fm{flex:1;background:#eef2f7;color:#7c8798;border:1px solid var(--line);border-radius:16px;
+  padding:24px 10px 22px;text-align:center;font-size:36px;font-weight:800;line-height:1.25;box-shadow:var(--shadow-sm);}
+.flowmap .fm .n{display:block;font-size:20px;font-weight:700;opacity:.8;margin-bottom:8px;}
+.flowmap .fm .s{display:block;font-size:24px;font-weight:700;margin-top:14px;line-height:1.45;opacity:.95;}
+.flowmap .fm.on{background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;border-color:transparent;}
+.flowmap .fm.done{background:#dfe7f2;color:#40557a;}
+.flowmap .fm .s.ng{color:#d9534f;opacity:1;}
+.flowmap .fm.on .s.ng{color:#ffb4a8;}
+.flowmap .fm .s.ok{color:#2a7d4f;opacity:1;}
+.flowmap .fm.on .s.ok{color:#a8e6c1;}
+/* 帯の下に置く国名・企業名 */
+.t-map .coname{margin:40px auto 0;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow);padding:24px 50px;min-width:720px;}
+.t-map .coname .cn{font-size:56px;font-weight:800;color:var(--navy);line-height:1.15;}
+.t-map .coname .cc{font-size:28px;font-weight:700;color:#7a828c;margin-top:10px;}
+.t-map .note{text-align:center;font-size:26px;color:#7a828c;font-weight:600;margin-top:34px;line-height:1.6;}
+
+/* ---- 5枚・4枚のカードは文字を少し小さく ---- */
+.t-cards .grid.g5 .card .ctitle{font-size:30px !important;line-height:1.35;}
+.t-cards .grid.g4 .card .ctitle{font-size:34px !important;line-height:1.35;}
+.t-cards .grid.g5 .card,.t-cards .grid.g4 .card{padding-left:12px;padding-right:12px;}
+.t-cards .grid.g5 .ctext,.t-cards .grid.g4 .ctext{font-size:20px;}

@@ -1,0 +1,2680 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>電力増強</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:50px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 32px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:42px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:18px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:26px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 0;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:60px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:44px;}
+.t-port .bars{display:flex;flex-direction:column;gap:28px;max-width:1000px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:26px;font-weight:800;color:var(--navy);width:250px;}
+.t-port .brow .track{flex:1;height:54px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:300px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:50px;font-weight:800;color:var(--navy);}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:340px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* ===== industry chips map ===== */
+.t-chips{display:flex;flex-direction:column;justify-content:center;padding:56px 60px 0;}
+.t-chips .h-main{margin:0 0 12px;}
+.t-chips .h-sub{margin-bottom:32px;}
+.t-chips .groups{display:flex;gap:24px;justify-content:center;align-items:stretch;}
+.t-chips .grp{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px 28px;text-align:center;}
+.t-chips .grp.g-a{border-top:6px solid var(--blue);} .t-chips .grp.g-b{border-top:6px solid var(--orange);} .t-chips .grp.g-c{border-top:6px solid var(--green);}
+.t-chips .grp .gh{font-size:23px;font-weight:800;margin-bottom:18px;}
+.t-chips .grp.g-a .gh{color:var(--blue);} .t-chips .grp.g-b .gh{color:#cf820f;} .t-chips .grp.g-c .gh{color:var(--green);}
+.t-chips .chip{display:inline-block;margin:6px;padding:11px 18px;border-radius:26px;background:#eef2f7;color:var(--navy);font-size:19px;font-weight:700;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+
+/* ===== 電力増強・デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* ---- 見出しがヘッダー帯に食い込む型の上余白（アンソロピック版と同じ直し） ---- */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+/* ---- ユーザー支給の画像スライド（画像に見出しと説明が入っているので帯は付けない） ---- */
+.t-image{background:#0f1c33;}
+.t-image::after{display:none;}
+.t-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ---- 3つのルールの帯（このデッキの背骨） ---- */
+.t-map{display:flex;flex-direction:column;justify-content:center;padding:70px 48px 0;}
+.t-map .h-main{margin:0 0 34px;}
+.flowmap{display:flex;gap:14px;justify-content:center;align-items:stretch;}
+.flowmap .fm{flex:1;background:#eef2f7;color:#7c8798;border:1px solid var(--line);border-radius:16px;
+  padding:24px 10px 22px;text-align:center;font-size:36px;font-weight:800;line-height:1.25;box-shadow:var(--shadow-sm);}
+.flowmap .fm .n{display:block;font-size:20px;font-weight:700;opacity:.8;margin-bottom:8px;}
+.flowmap .fm .s{display:block;font-size:24px;font-weight:700;margin-top:14px;line-height:1.45;opacity:.95;}
+.flowmap .fm.on{background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;border-color:transparent;}
+.flowmap .fm.done{background:#dfe7f2;color:#40557a;}
+.flowmap .fm .s.ng{color:#d9534f;opacity:1;}
+.flowmap .fm.on .s.ng{color:#ffb4a8;}
+.flowmap .fm .s.ok{color:#2a7d4f;opacity:1;}
+.flowmap .fm.on .s.ok{color:#a8e6c1;}
+/* 帯の下に置く国名・企業名 */
+.t-map .coname{margin:40px auto 0;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow);padding:24px 50px;min-width:720px;}
+.t-map .coname .cn{font-size:56px;font-weight:800;color:var(--navy);line-height:1.15;}
+.t-map .coname .cc{font-size:28px;font-weight:700;color:#7a828c;margin-top:10px;}
+.t-map .note{text-align:center;font-size:26px;color:#7a828c;font-weight:600;margin-top:34px;line-height:1.6;}
+
+/* ---- 5枚・4枚のカードは文字を少し小さく ---- */
+.t-cards .grid.g5 .card .ctitle{font-size:30px !important;line-height:1.35;}
+.t-cards .grid.g4 .card .ctitle{font-size:34px !important;line-height:1.35;}
+.t-cards .grid.g5 .card,.t-cards .grid.g4 .card{padding-left:12px;padding-right:12px;}
+.t-cards .grid.g5 .ctext,.t-cards .grid.g4 .ctext{font-size:20px;}
+
+/* ---- 棒が2〜3本の縦棒は、幅を広げて数字を切らさない ---- */
+.t-vbars .vcols.wide .vb .bar{width:270px;font-size:30px;}
+
+/* ---- 階段の箱は2行が入る高さに ---- */
+.t-steps .step.s1{height:240px;}
+.t-steps .step.s2{height:285px;}
+.t-steps .step.s3{height:335px;}
+.t-steps .step .v{line-height:1.25;}
+
+/* ---- この企画：画面いっぱいに使う（数字と本文を大きく、縦は中央に） ---- */
+.h-main,.h-sub,.t-text .lead,.t-text .note,.t-stats .val2,.t-cards .ctitle,.t-cards .ctext{text-wrap:balance;}
+.t-stats,.t-cards{display:flex;flex-direction:column;justify-content:center;padding-top:70px;padding-bottom:10px;}
+.t-stats .h-sub,.t-cards .h-sub{font-size:26px;line-height:1.45;margin-bottom:30px;}
+.t-stats .col .top{padding:22px 14px;}
+.t-stats .col .top .nm{font-size:31px;line-height:1.25;}
+.t-stats .col .top .cd{font-size:24px;font-weight:700;margin-top:4px;}
+.t-stats .col .body{min-height:230px;padding:24px 14px;}
+.t-stats .col .lbl{font-size:24px;}
+.t-stats .col .val2{font-size:60px;line-height:1.2;margin:0;}
+.t-cards .card{justify-content:center;padding:30px 20px;}
+.t-cards .card .ctitle{font-size:36px;line-height:1.35;}
+.t-cards .card .ctext{font-size:26px;line-height:1.5;}
+.t-vs{display:flex;flex-direction:column;justify-content:center;padding-bottom:10px;}
+.t-vs .badge{align-self:center;font-size:22px;}
+.t-vs .box{padding:30px 26px;min-height:300px;justify-content:center;}
+.t-vs .box .name{font-size:34px;}
+.t-vs .box .cap{font-size:24px;line-height:1.35;margin-top:12px;}
+.t-vs .box .big{font-size:50px;line-height:1.25;margin-top:8px;}
+.t-text .lead{font-size:30px;line-height:1.45;}
+.t-text .note{font-size:27px;line-height:1.55;}
+.t-flow .node{font-size:31px;}
+.t-flow .release{font-size:29px;line-height:1.45;}
+.t-agenda .row .t{font-size:34px;}
+.numviz .msub{font-size:27px;line-height:1.45;}
+.numviz .lead,.t-prop .lead{font-size:28px;line-height:1.45;text-wrap:balance;}
+.t-metric .mlbl{font-size:26px;}
+/* 文節の途中で折り返さない */
+.h-main,.h-sub,.t-text .lead,.t-text .note,.t-stats .val2,.t-stats .nm,.t-stats .cd,.t-cards .ctitle,.t-cards .ctext,.numviz .lead,.numviz .msub,.t-flow .release,.t-vs .note,.t-vs .cap{word-break:auto-phrase;}
+.t-closing .sub{padding:0 90px;line-height:1.55;text-wrap:balance;word-break:auto-phrase;}
+
+</style>
+</head>
+<body>
+
+<!-- ========== p01_intro（8枚） ========== -->
+<!-- タイトル -->
+<section class="slide t-title">
+  <div class="kicker">AI関連株が大きく売られるなかで</div>
+  <div class="big"><span class="em">電力増強</span>関連株に<br>追い風が吹く</div>
+  <div class="lead">可能性が出てきた</div>
+</section>
+
+<!-- アメリカの中間選挙で、民 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">アメリカの中間選挙で、民主党が勝ちました</div>
+  <div class="chain">
+    <div class="node">新しいデータセンターは<br>建てにくくなる</div>
+    <div class="arr">→</div>
+    <div class="node">AIに必要な計算は<br>増え続ける</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">今ある建物を<br>もっと働かせる</div>
+  </div>
+  <div class="release">アメリカの巨大IT企業の幹部も、新しく建てるより、今ある施設を広げるほうが進めやすいと話しています</div>
+</section>
+
+<!-- オルカンやS&P500も -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">これは、個別の株を持っている方だけの話ではありません</div>
+  <div class="stmt">オルカンやS&amp;P500も、<br>中身の上位には<br><span class="em">AIの企業</span>が並んでいます。</div>
+</section>
+
+<!-- 日経平均の1日の下げ幅（ -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">ただ、株価の動きを見ると、とてもそんな気分にはなれないと思います</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">日経平均の1日の下げ幅（史上3番目）</div>
+      <div class="mfig">3,643<span class="u">円</span></div>
+      <div class="msub">不安になるのは当然です</div>
+    </div>
+  </div>
+</section>
+
+<!-- この動画で、どちらかに決 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="badge navy">株を売って、いったん離れたほうがいいのか</div>
+  <div class="h-main">この動画で、どちらかに決めます</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">株を売って</div><div class="cap">いったん</div><div class="big">離れる</div></div>
+    <div class="vsmark">？</div>
+    <div class="box left"><div class="name">それとも</div><div class="cap">このまま</div><div class="big">持ち続ける</div></div>
+  </div>
+</section>
+
+<!-- AIへの投資は
+【止まり -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">結論からお伝えします</div>
+  <div class="stmt">AIへの投資は<br><span class="em">止まりません</span>。<br>変わるのは、お金の行き先です。</div>
+  <div class="note">新しい建物だけでなく、今ある建物を強くする工事と設備にも、お金が向かいやすくなる。だから、慌てて離れる前に、見る場所を変えてください</div>
+</section>
+
+<!-- お話しする順番は3つです -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="h-main">お話しする順番は3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">アメリカは、なぜAIをやめられないのか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">新しく建てるのが難しくなると、何が起きるのか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">今ある建物を強くする仕事を受け持つ企業</span><span class="d"></span></div>
+  </div>
+  <div class="cta">途中で、AIと関係のない株まで、なぜ売られたのかもお話しします</div>
+</section>
+
+<!-- 【7社】を解説します。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：はじめに</span><span class="brand"></span></div>
+  <div class="lead">会社四季報と各社の決算資料をもとに</div>
+  <div class="stmt"><span class="em">7社</span>を解説します。</div>
+  <div class="note">見終わるころには、AI規制のニュースを聞いたときに、投資が止まる話なのか、お金の行き先が変わる話なのかを、ご自分で分けられるようになっているはずです</div>
+</section>
+
+<!-- ========== p02_senkyo（10枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 2：選挙のあと、何が起きたのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 2 / 20</span><span class="bar"></span><span>選挙</span></div>
+  <div class="numbox">2</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">選挙のあと、<br>何が起きたのか</div><div class="rule"></div><div class="desc">AI関連株を持っている人を不安にさせる動き</div></div>
+</section>
+
+<!-- でも、経済全体を見て
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：選挙のあと、何が起きたのか</span><span class="brand"></span></div>
+  <div class="lead">早く儲かる銘柄を教えてほしい、と思う方もいると思います</div>
+  <div class="stmt">でも、経済全体を見て<br><span class="em">連想ゲーム</span>ができないと、<br>株で儲かることはできません。</div>
+</section>
+
+<!-- 銘柄の名前ではなく、
+ジ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：選挙のあと、何が起きたのか</span><span class="brand"></span></div>
+  <div class="lead">だから先に</div>
+  <div class="stmt">銘柄の名前ではなく、<br>ジャンジャン儲かるかもしれない<br><span class="em">考え方</span>を解説します。</div>
+</section>
+
+<!-- AI関連株を持っている人 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：選挙のあと、何が起きたのか</span><span class="brand"></span></div>
+  <div class="lead">選挙の結果が出ると</div>
+  <div class="stmt">AI関連株を持っている人を<br>不安にさせる動きが、<br><span class="em">2つ</span>出てきました。</div>
+</section>
+
+<!-- 画像：01_ansari -->
+<section class="slide t-image"><img src="img/01_ansari.png" alt="AI開発の一時停止を訴える議員"></section>
+
+<!-- 画像：02_hinojosa -->
+<section class="slide t-image"><img src="img/02_hinojosa.png" alt="テキサスで新しいデータセンターの承認を停止"></section>
+
+<!-- そして、アメリカの株が大 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 2：選挙のあと、何が起きたのか</span><span class="brand"></span></div>
+  <div class="h-main">そして、アメリカの株が大きく売られました｜1日の下げ</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">NASDAQ</div><div class="cd">ハイテク株が多い</div></div><div class="body"><div class="lbl"></div><div class="val2">5.5%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">半導体の企業を<br>集めた指数</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約12.2%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">NVIDIA</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約9.3%</div></div></div>
+  </div>
+</section>
+
+<!-- 東証プライムの1,551 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 2：選挙のあと、何が起きたのか</span><span class="brand"></span></div>
+  <div class="lead">ところが、下げたのはAI関連株だけではありませんでした</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">東証プライムの1,551銘柄のうち、上がったのは</div>
+      <div class="mfig">21<span class="u">銘柄だけ</span></div>
+      <div class="msub">銀行の株も、トヨタも、任天堂も売られました。自分の株まで下がったと感じた方もいると思います。気のせいではありません</div>
+    </div>
+  </div>
+</section>
+
+<!-- どちらも、今回解説する7 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：選挙のあと、何が起きたのか</span><span class="brand"></span></div>
+  <div class="badge navy">ただし、同じ全面安の中でも、動きは分かれました</div>
+  <div class="h-main">どちらも、今回解説する7社に入っています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">この日に</div><div class="cap">全面安の中で</div><div class="big">株価を<br>上げた企業</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">営業利益は約6割増</div><div class="cap">それなのに</div><div class="big">年初来安値を<br>つけた企業</div></div>
+  </div>
+</section>
+
+<!-- AIへの投資そのものは
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：選挙のあと、何が起きたのか</span><span class="brand"></span></div>
+  <div class="lead">では</div>
+  <div class="stmt">AIへの投資そのものは<br><span class="em">止まるのか</span>。</div>
+</section>
+
+<!-- ========== p03_yamerarenai（14枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 3 / 20</span><span class="bar"></span><span>安全保障</span></div>
+  <div class="numbox">3</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">アメリカは、<br>AIを<br>やめられません</div><div class="rule"></div><div class="desc">中国との安全保障の競争</div></div>
+</section>
+
+<!-- 民主党の
+【全員の考え】 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="lead">さきほどの、AIの開発を止めるという投稿は</div>
+  <div class="stmt">民主党の<br><span class="em">全員の考え</span>では<br>ありません。</div>
+</section>
+
+<!-- 画像：03_turek -->
+<section class="slide t-image"><img src="img/03_turek.png" alt="データセンター建設の全国一律の停止に反対"></section>
+
+<!-- 画像：04_gottheimer -->
+<section class="slide t-image"><img src="img/04_gottheimer.png" alt="データセンターの全面停止に反対"></section>
+
+<!-- いちばん大きいのは、
+中 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="lead">では、なぜ止められないのか</div>
+  <div class="stmt">いちばん大きいのは、<br>中国との<br><span class="em">安全保障の競争</span>です。</div>
+  <div class="note">AIは、チャットのサービスだけの技術ではありません</div>
+</section>
+
+<!-- AIの力は、そのまま国を -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="h-main">AIの力は、そのまま国を守る力につながります</div>
+  <div class="h-sub">AIは、ここまで使われ始めています</div>
+  <div class="grid g4" style="grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">軍の情報の<br>分析</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">敵の動きを<br>つかむ偵察</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">サイバー攻撃<br>への守り</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">作戦を決める<br>ときの支え</div></div>
+  </div>
+</section>
+
+<!-- AIの規制のやり方は違っ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="badge navy">これは、トランプ大統領だけの考えではありません</div>
+  <div class="h-main">AIの規制のやり方は違っても、AIで主導権を握り、安全保障に使う方向は同じです</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">2024年10月</div><div class="cap">民主党のバイデン政権</div><div class="big">安全保障<br>の覚書</div></div>
+    <div class="vsmark">＝</div>
+    <div class="box left"><div class="name">2026年6月</div><div class="cap">共和党のトランプ政権</div><div class="big">安全保障<br>の覚書</div></div>
+  </div>
+</section>
+
+<!-- その相手の中国も、投資を -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="h-main">その相手の中国も、投資を急いでいます｜中国の大手IT企業の設備投資（Moody'sによる）</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2025年</div><div class="c-v">約650億ドル</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2026年の見通し</div><div class="c-v">約1,400億ドル</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">日本円で</div><div class="r-v">約22兆円</div></div>
+  </div>
+</section>
+
+<!-- ただ、アメリカだけが足を -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="lead">金額では、アメリカの大手にまだ届いていません</div>
+  <div class="stmt">ただ、アメリカだけが足を止めれば、<br>その差は<span class="em">一気に縮まります</span>。</div>
+  <div class="note">中国のAIが進めば、軍や情報集め、サイバーの分野で使われるおそれもあります</div>
+</section>
+
+<!-- 中国に【甘くなる】
+わけ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="lead">民主党が勝ったからといって</div>
+  <div class="stmt">中国に<span class="em">甘くなる</span><br>わけでもありません。</div>
+  <div class="note">中国の半導体への追加の関税は、2027年6月23日に税率を引き上げる予定です</div>
+</section>
+
+<!-- 画像：05_warren -->
+<section class="slide t-image"><img src="img/05_warren.png" alt="先端AIの半導体が中国に流れるリスク"></section>
+
+<!-- 景気の面でも、止めにくい -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="h-main">景気の面でも、止めにくい事情があります｜J.P. Morganの推計</div>
+  <div class="h-sub">アメリカの大手金融機関の推計です</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">アメリカの成長率</div><div class="cd">直近1年</div></div><div class="body"><div class="lbl"></div><div class="val2">2.1%</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">うちAI関連の投資</div><div class="cd"></div></div><div class="body"><div class="lbl">ポイント</div><div class="val2">約0.47</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">成長に占める割合</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2割ほど</div></div></div>
+  </div>
+</section>
+
+<!-- ただ、それとAIをやめる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="lead">もちろん、建てる条件が厳しくなる動きは、これから強まると思います</div>
+  <div class="stmt">ただ、それとAIをやめることは、<br><span class="em">まったく別の話</span>です。</div>
+  <div class="note">中国との競争が続く限り、アメリカがAIをやめる可能性は低い、と僕は見ています</div>
+</section>
+
+<!-- AIへの投資には
+【逃げ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：アメリカは、AIをやめられません</span><span class="brand"></span></div>
+  <div class="lead">それに、アメリカのどこかで止められても</div>
+  <div class="stmt">AIへの投資には<br><span class="em">逃げ道</span>があります。</div>
+</section>
+
+<!-- ========== p04_nukemichi（11枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4 / 20</span><span class="bar"></span><span>抜け道</span></div>
+  <div class="numbox">4</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">抜け道は、<br>いくらでも<br>あります</div><div class="rule"></div><div class="desc">別の州へ、そして海外へ</div></div>
+</section>
+
+<!-- ワイオミング州の新しいデ -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="lead">まず、アメリカの中で、別の州へ移る道があります｜Googleは選挙の2日後に</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">ワイオミング州の新しいデータセンター（170億ドル）</div>
+      <div class="mfig">およそ2.7<span class="u">兆円</span></div>
+      <div class="msub">規制の厳しい州を避けて、電気を確保できる州へ向かう動きです</div>
+    </div>
+  </div>
+</section>
+
+<!-- 今、世界の国々が、
+デー -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="lead">次に、海外です</div>
+  <div class="stmt">今、世界の国々が、<br>データセンターの誘致を<br><span class="em">競っています</span>。</div>
+</section>
+
+<!-- 画像：06_india -->
+<section class="slide t-image"><img src="img/06_india.png" alt="インド、データセンターを国家の基盤に"></section>
+
+<!-- インドには、大手も動いて -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="h-main">インドには、大手も動いています</div>
+  <div class="h-sub">インドの市場の関係者からは、アメリカの規制が厳しくなれば、インドがさらに投資を受け入れられる、という声も出ています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">Google</div><div class="cd">ビシャーカパトナムのAIの拠点</div></div><div class="body"><div class="lbl">2030年まで・2026年4月に着工</div><div class="val2">約2.4兆円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">Microsoft</div><div class="cd">インドへの投資の構想</div></div><div class="body"><div class="lbl">2029年まで</div><div class="val2">約2.8兆円</div></div></div>
+  </div>
+</section>
+
+<!-- 画像：07_finland -->
+<section class="slide t-image"><img src="img/07_finland.png" alt="Google、フィンランドに130億ユーロ投資"></section>
+
+<!-- この動画で見ていく
+考え -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="lead">古い建物を生かして、電気を確保する</div>
+  <div class="stmt">この動画で見ていく<br>考え方と<br><span class="em">同じです</span>。</div>
+</section>
+
+<!-- ほかの国も動いています -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="h-main">ほかの国も動いています</div>
+  <div class="h-sub">フランス、ポルトガル、ブラジル、タイでも、計画が進んでいます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">イギリス</div><div class="ctext">電気の網につなぐ順番を優先して、待ち時間を最大5年縮める政策</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">サウジアラビア</div><div class="ctext">政府のファンドと国営の石油会社が出資するAI企業が、2030年までに3GWを目指す</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">日本</div><div class="ctext">Microsoftが2029年までに、AIの設備や人材へおよそ1.6兆円</div></div>
+  </div>
+</section>
+
+<!-- アメリカから一斉に
+逃げ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="lead">ただし、これらの計画の多くは、選挙の前から決まっていました</div>
+  <div class="stmt">アメリカから一斉に<br>逃げ出したわけでは<br><span class="em">ありません</span>。</div>
+  <div class="note">そして、海外でも、いくらでも建てられるわけではありません。インドでも、電気と水が課題です</div>
+</section>
+
+<!-- どこの国でも、足りないも -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="h-main">どこの国でも、足りないものがあります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">電気</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">水</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">時間</div></div>
+  </div>
+</section>
+
+<!-- では、実際のお金は
+【ど -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：抜け道は、いくらでもあります</span><span class="brand"></span></div>
+  <div class="lead">それでも、別の州にも、アメリカの外にも、行き先はあります</div>
+  <div class="stmt">では、実際のお金は<br><span class="em">どう動いている</span>のか。</div>
+</section>
+
+<!-- ========== p05_suuji（5枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 5：数字で見ても、AIへの投資は増えています</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 5 / 20</span><span class="bar"></span><span>数字</span></div>
+  <div class="numbox">5</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">数字で見ても、<br>AIへの投資は<br>増えています</div><div class="rule"></div><div class="desc">最新のゴールドマンのレポート</div></div>
+</section>
+
+<!-- データセンターの建設のお -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：数字で見ても、AIへの投資は増えています</span><span class="brand"></span></div>
+  <div class="lead">アメリカの大手金融機関、Goldman Sachsが、選挙の直後の11月6日にまとめた最新のレポート</div>
+  <div class="stmt">データセンターの建設のお金の予測を、<br>むしろ<span class="em">引き上げて</span>います。</div>
+</section>
+
+<!-- アメリカのデータセンター -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 5：数字で見ても、AIへの投資は増えています</span><span class="brand"></span></div>
+  <div class="h-main">アメリカのデータセンターの建設に使われるお金の予測</div>
+  <div class="h-sub">すでに工事が始まっている案件だけで、約3,000億ドル、およそ47兆円あります</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">2026年</div><div class="cd">670億ドル → 800億ドル</div></div><div class="body"><div class="lbl">日本円で</div><div class="val2">約12.6兆円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">2027年</div><div class="cd">870億ドル → 1,000億ドル</div></div><div class="body"><div class="lbl"></div><div class="val2">約15.8兆円</div></div></div>
+  </div>
+</section>
+
+<!-- 大手4社の2026年の設 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 5：数字で見ても、AIへの投資は増えています</span><span class="brand"></span></div>
+  <div class="lead">裏付けになる数字もそろっています｜Amazon、Google、Microsoft、Meta</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">大手4社の2026年の設備投資の見通し（合計7,000億ドル超）</div>
+      <div class="mfig">110<span class="u">兆円以上</span></div>
+      <div class="msub">データセンター以外の投資も含みます。Metaは見通しの下限を引き上げ、GoogleとAmazonは見通しをそのまま保っています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 投資が止まらないことと、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：数字で見ても、AIへの投資は増えています</span><span class="brand"></span></div>
+  <div class="lead">ただ</div>
+  <div class="stmt">投資が止まらないことと、<br>思いどおりに建てられることは<br><span class="em">別です</span>。</div>
+</section>
+
+<!-- ========== p06_shinsetsu（15枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 6 / 20</span><span class="bar"></span><span>新設</span></div>
+  <div class="numbox">6</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">ただし、<br>新しく建てるのは<br>難しくなります</div><div class="rule"></div><div class="desc">建てる側の遅れと、規制</div></div>
+</section>
+
+<!-- まず、建てる側が追いつい -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="h-main">まず、建てる側が追いついていません</div>
+  <div class="h-sub">Microsoftも、借りる予定だったデータセンターの引き渡しが遅れたことが、設備投資に響いたと説明しています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">予定より遅れている工事</div><div class="cd">保険会社が追う約60件のうち</div></div><div class="body"><div class="lbl">2〜3か月の遅れも含む</div><div class="val2">85〜90%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">工事の費用</div><div class="cd">同じ広さで1年前と比べて</div></div><div class="body"><div class="lbl"></div><div class="val2">31%上昇</div></div></div>
+  </div>
+</section>
+
+<!-- 建物が
+【間に合っていま -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="lead">お金はあるのに</div>
+  <div class="stmt">建物が<br><span class="em">間に合っていません</span>。</div>
+</section>
+
+<!-- そこに、規制が重なります -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="h-main">そこに、規制が重なります。ここは、正直にお伝えします</div>
+  <div class="h-sub">J.P. Morganによると｜州や市が建設を一時的に止めた例</div>
+  <div class="vcols wide">
+    <div class="vb"><div class="bar" style="height:64px">45件</div><div class="cap">2023〜2025年</div><div class="sub">3年間の合計</div></div>
+    <div class="vb orange"><div class="bar" style="height:240px">400件超</div><div class="cap">2026年</div><div class="sub">入ってから</div></div>
+  </div>
+</section>
+
+<!-- 開発を制限する側が勝った -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="lead">選挙と同じ日に行われた住民投票でも</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">開発を制限する側が勝った住民投票</div>
+      <div class="mfig" style="font-size:120px">41件中40<span class="u">件</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 反対の理由は -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="h-main">反対の理由は</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">電気代が<br>上がる</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">水を<br>大量に使う</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">音が<br>うるさい</div></div>
+  </div>
+</section>
+
+<!-- 近所にデータセンターを建 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="lead">アメリカの調査機関Pewの調査</div>
+  <div class="h-main">近所にデータセンターを建てることを支持する政治家に</div>
+  <div class="pbar">
+    <div class="seg main" style="width:61%"><span class="p">61%</span><span class="l">否定的な有権者</span></div>
+    <div class="seg rest"><span class="p"></span><span class="l">それ以外</span></div>
+  </div>
+</section>
+
+<!-- 【自分の近所】に
+建つこ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="lead">嫌われているのは、AIそのものより</div>
+  <div class="stmt"><span class="em">自分の近所</span>に<br>建つことだと言えます。</div>
+  <div class="note">そこで、AIの企業は、住民への配慮を始めました</div>
+</section>
+
+<!-- 画像：08_openai -->
+<section class="slide t-image"><img src="img/08_openai.png" alt="OpenAI、データセンターで電力コストを負担"></section>
+
+<!-- 画像：09_anthropic -->
+<section class="slide t-image"><img src="img/09_anthropic.png" alt="Anthropic、電気代の上昇分を自社で負担"></section>
+
+<!-- 画像：10_spacex -->
+<section class="slide t-image"><img src="img/10_spacex.png" alt="AI施設のガスタービン69基を撤去へ"></section>
+
+<!-- 約束だけでなく、
+【設備 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="lead">撤去が終わったわけではありませんが</div>
+  <div class="stmt">約束だけでなく、<br><span class="em">設備を変える</span>ところまで<br>話が進みました。</div>
+</section>
+
+<!-- つまり、規制は、建設を止 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="h-main">つまり、規制は、建設を止めるより、費用を払わせる方向に向かっています</div>
+  <div class="chain">
+    <div class="node">規制</div>
+    <div class="arr">→</div>
+    <div class="node">費用を<br>企業に払わせる</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">新しく建てる<br>費用が上がる</div>
+  </div>
+  <div class="release">一方で、ウォーレン上院議員は、企業が送電の費用を全部は払っていない可能性がある、と批判しています。約束がどこまで守られるかは、これから見ていく必要があります</div>
+</section>
+
+<!-- 日本のある空調の大手も、 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="badge navy">では、いつから影響が出るのか｜J.P. Morganの見方</div>
+  <div class="h-main">日本のある空調の大手も、2027年度に出荷する分の注文の残りのうち、約4分の3はすでに建設中だと説明しています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">2027年に動き出す分</div><div class="cap"></div><div class="big">おおむね<br>計画どおり</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">2028年以降の新しい計画</div><div class="cap"></div><div class="big">影響が<br>大きい</div></div>
+  </div>
+</section>
+
+<!-- では、【どうするのか】。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：ただし、新しく建てるのは難しくなります</span><span class="brand"></span></div>
+  <div class="lead">新しく電気を引くのは難しく、しかも高くつく</div>
+  <div class="stmt">では、<span class="em">どうするのか</span>。</div>
+</section>
+
+<!-- ========== p07_kizon（12枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 7 / 20</span><span class="bar"></span><span>今ある建物</span></div>
+  <div class="numbox">7</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">だから、<br>今ある建物の<br>電気を増やします</div><div class="rule"></div><div class="desc">受け取る電気の量ではなく、使い道</div></div>
+</section>
+
+<!-- 選挙のあとに
+【口にした -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="lead">その答えを</div>
+  <div class="stmt">選挙のあとに<br><span class="em">口にした人</span>が<br>います。</div>
+</section>
+
+<!-- 画像：11_meta -->
+<section class="slide t-image"><img src="img/11_meta.png" alt="Meta幹部、既存施設の拡張が有力"></section>
+
+<!-- 同じ方向の動きは、NVI -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="h-main">同じ方向の動きは、NVIDIAにもあります</div>
+  <div class="h-sub">建物も、電気の契約も、通信の線も、すでにそろっています。まだ提案の段階ですが、ゼロから建てるより早く動かせる、という狙いです</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">古い通信ビル</div><div class="cd">AIの施設に変える構想</div></div><div class="body"><div class="lbl">ビルを持つ投資会社に持ちかけた</div><div class="val2">130棟以上</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">電気</div><div class="cd">合わせて</div></div><div class="body"><div class="lbl">原発1基分ほど</div><div class="val2">約1GW</div></div></div>
+  </div>
+</section>
+
+<!-- カギは、受け取る電気の量 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="lead">では、今ある建物で、どうやってAIを増やすのか</div>
+  <div class="stmt">カギは、受け取る電気の量ではなく、<br>その電気の<span class="em">使い道</span>です。</div>
+</section>
+
+<!-- 画像：12_reikyaku_3wari -->
+<section class="slide t-image"><img src="img/12_reikyaku_3wari.png" alt="冷却の効率化でAIの力を増やす"></section>
+
+<!-- 受け取る電気の枠は同じま -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="lead">実際の例もあります｜NVIDIAの実験</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">受け取る電気の枠は同じまま、配り方を細かく調整するだけで</div>
+      <div class="mfig">+49.2<span class="u">%</span></div>
+      <div class="msub">AIの処理量が増えました。小さな設備での実験で、使った電気そのものは増えています。それでも、枠を増やさずに処理量を増やせることは確かめられました</div>
+    </div>
+  </div>
+</section>
+
+<!-- 空気で冷やしている古い建 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="lead">Googleは</div>
+  <div class="stmt">空気で冷やしている古い建物にも、<br>棚ごと液体で冷やす設備を<br><span class="em">後から入れられる</span>仕組みを出しました。</div>
+  <div class="note">建物全体を工事しなくても、棚の単位で、熱を多く出すAIの半導体を足していけます</div>
+</section>
+
+<!-- 日本でも始まっています -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="h-main">日本でも始まっています</div>
+  <div class="h-sub">動いている建物に、液体で冷やす設備を入れています</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">Equinix</div><div class="ctext">アメリカのデータセンター大手。大阪で</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">KDDI</div><div class="ctext">東京の渋谷で</div></div>
+  </div>
+</section>
+
+<!-- さきほどのワイオミングの -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="badge navy">ただし、これで新しく建てる必要がなくなるわけではありません</div>
+  <div class="h-main">さきほどのワイオミングのように、2つは同時に進みます</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">新しく</div><div class="cap"></div><div class="big">建てる<br>投資</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">今ある建物を</div><div class="cap"></div><div class="big">強くする<br>投資</div></div>
+  </div>
+</section>
+
+<!-- 今ある建物を強くする仕事 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="h-main">今ある建物を強くする仕事は、いくつもの工程に分かれます</div>
+  <div class="h-sub">全部を取り替える必要はありません。足りないところだけを増やします。その代わり、どの工程も欠かせません</div>
+  <div class="grid g5" style="grid-template-columns:repeat(6,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">冷やし方の<br>無駄を<br>調べる</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">工事を<br>する</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">電気を<br>無駄なく<br>配る</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">冷やす<br>設備を<br>入れる</div></div>
+    <div class="card c1"><div class="cno">5</div><div class="ctitle">据え付けて<br>保守する</div></div>
+    <div class="card c2"><div class="cno">6</div><div class="ctitle">計算を<br>動かす</div></div>
+  </div>
+</section>
+
+<!-- この【工程の順番】に
+見 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：だから、今ある建物の電気を増やします</span><span class="brand"></span></div>
+  <div class="lead">ここから見る企業は、どれもデータセンターだけの企業ではありません</div>
+  <div class="stmt">この<span class="em">工程の順番</span>に<br>見ていきます。</div>
+  <div class="note">最後の計算を動かす工程を受け持つ企業は、あの全面安の日に、株価を上げていました。この企業は、最後にお話しします</div>
+</section>
+
+<!-- ========== p08_takasago（17枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 8：冷やし方の無駄を調べる高砂熱学工業</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 8 / 20</span><span class="bar"></span><span>調べる</span></div>
+  <div class="numbox">8</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">冷やし方の無駄を調べる<br>高砂熱学工業</div><div class="rule"></div><div class="desc">証券コード 1969</div></div>
+</section>
+
+<!-- 画像：13_takasago_shindan -->
+<section class="slide t-image"><img src="img/13_takasago_shindan.png" alt="高砂熱学工業 データセンターの冷却の無駄を診断"></section>
+
+<!-- 冷やすための電気が減れば -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="lead">さきほどの計算のとおり</div>
+  <div class="stmt">冷やすための電気が減れば、<br>その分だけ計算に回せる電気が<br><span class="em">増えます</span>。</div>
+</section>
+
+<!-- 決算｜2026年4月から -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">決算｜2026年4月から6月まで</div>
+  <div class="h-sub">前の年の同じ時期に、大きな工事の進み具合が集中していた反動です</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">売上</div><div class="cd">849億円</div></div><div class="body"><div class="lbl"></div><div class="val2">約1割減</div></div></div>
+    <div class="col "><div class="top"><div class="nm">営業利益</div><div class="cd">85億円</div></div><div class="body"><div class="lbl"></div><div class="val2">16%減</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">粗い利益の割合</div><div class="cd">売上に対して</div></div><div class="body"><div class="lbl">1年前より1.4ポイント上昇</div><div class="val2">22.5%</div></div></div>
+  </div>
+</section>
+
+<!-- その一方で -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">その一方で</div>
+  <div class="h-sub">企業自身は、今期も営業利益が500億円に増えると予想しています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">まだ売上になっていない<br>工事の残り</div><div class="cd"></div></div><div class="body"><div class="lbl">12%増</div><div class="val2">4,333億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">前の期の営業利益</div><div class="cd">47%増</div></div><div class="body"><div class="lbl">純利益は過去最高</div><div class="val2">477億円</div></div></div>
+  </div>
+</section>
+
+<!-- 4月から6月までに受けた -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="lead">なぜ伸びているのか。今ある建物を直す仕事が増えているからです</div>
+  <div class="h-main">4月から6月までに受けた注文</div>
+  <div class="pbar">
+    <div class="seg main" style="width:82%"><span class="p">8割以上</span><span class="l">リニューアル（663億円・1年前より53%増）</span></div>
+    <div class="seg rest"><span class="p"></span><span class="l">新築</span></div>
+  </div>
+</section>
+
+<!-- ただし、このリニューアル -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">ただし、このリニューアルはデータセンターだけの数字ではありません</div>
+  <div class="h-sub">半導体の工場やオフィスビルも入っています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">データセンター向けの注文</div><div class="cd">前の期</div></div><div class="body"><div class="lbl">1年で約5割増</div><div class="val2">163億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">注文全体に占める割合</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">5%ほど</div></div></div>
+  </div>
+</section>
+
+<!-- 画像：14_takasago_kouki -->
+<section class="slide t-image"><img src="img/14_takasago_kouki.png" alt="高砂熱学工業 工事の早さを上げる仕組み"></section>
+
+<!-- 海外にも追い風が吹いてい -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">海外にも追い風が吹いています｜4月から6月の海外の営業利益は17億円、1年前の約3.6倍</div>
+  <div class="h-sub">タイ、マレーシア、インドの工事が利益を押し上げました</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">タイ</div><div class="ctext">データセンターを新しく建てる30億円以上の工事を受けている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">日本・大阪の箕面市</div><div class="ctext">Digital Realtyと三菱商事が運営するデータセンターの工事も手がけてきた</div></div>
+  </div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="h-sub">ROEは、株主から預かったお金で、どれだけ効率よく利益を出したかを表す数字です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">58.9%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約421億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期・高い水準</div></div><div class="body"><div class="lbl"></div><div class="val2">19.2%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準</div>
+  <div class="h-sub">PERは、株価が利益の何倍まで買われているか。PBRは、純資産の何倍か</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約11.6倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約2.2倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">115円→123円の予定</div></div><div class="body"><div class="lbl"></div><div class="val2">利回り約3.5%</div></div></div>
+  </div>
+</section>
+
+<!-- 海外の投資家も持っていま -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">海外の投資家も持っています｜外国の投資家が持つ株の割合は約22%</div>
+  <div class="h-sub">Capital Groupの担当者は、報告書の対談で、省エネの技術の高さと、すでに抱えている顧客の多さを挙げています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">Capital Group</div><div class="cd">アメリカの運用会社</div></div><div class="body"><div class="lbl">5.04%から減らしたが、大きな株主の1つ</div><div class="val2">3.74%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ノルウェーの<br>政府の年金基金</div><div class="cd">日本でいえば、GPIFにあたる機関</div></div><div class="body"><div class="lbl"></div><div class="val2">1.51%</div></div></div>
+  </div>
+</section>
+
+<!-- 証券会社の評価は、強気が -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">証券会社の評価は、強気がそろっています</div>
+  <div class="h-sub">どれも、全面安の前の評価です</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">Morgan Stanley MUFG</div><div class="ctext">9月に判断を中立から強気に引き上げ、目標株価を5,900円に</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">野村・みずほ・SMBC日興</div><div class="ctext">強気</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来の推移 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来の推移</div>
+  <div class="h-sub">あの全面安の日は5.35%下がり、取引の途中で3,408円まで下げて、年初来安値をつけました</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">1月5日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">4,546円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">11月6日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">3,557円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">年初来</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">およそ22%の下落</div></div></div>
+  </div>
+</section>
+
+<!-- 【年初来安値】まで
+売ら -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="lead">前の期に過去最高の利益を出し、今期も増益を見込んでいる企業が</div>
+  <div class="stmt"><span class="em">年初来安値</span>まで<br>売られたことになります。</div>
+</section>
+
+<!-- 次の決算は、11月の中間 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="h-main">次の決算は、11月の中間決算です。見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">データセンター向けの注文が増えているか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">海外の利益の伸びが続いているか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">11%台まで上がった利益率を保てているか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- AIを研究している人たち -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：高砂熱学工業 1969</span><span class="brand"></span></div>
+  <div class="lead">冷やし方の無駄を減らす。この考え方は、空調の企業だけのものではありません</div>
+  <div class="stmt">AIを研究している人たちも、<br><span class="em">同じ方向</span>を見ています。</div>
+</section>
+
+<!-- ========== p09_kenkyusha（6枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 9：研究者も、今ある設備から計算を引き出す</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 9 / 20</span><span class="bar"></span><span>研究</span></div>
+  <div class="numbox">9</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">研究者も、<br>今ある設備から<br>計算を引き出す</div><div class="rule"></div><div class="desc">MicrosoftとGoogleの研究</div></div>
+</section>
+
+<!-- 画像：15_microsoft -->
+<section class="slide t-image"><img src="img/15_microsoft.png" alt="Microsoft データセンターの調査で判明"></section>
+
+<!-- 画像：16_google_gpu -->
+<section class="slide t-image"><img src="img/16_google_gpu.png" alt="Google 研究で判明したGPUの無駄"></section>
+
+<!-- 画像：17_meta_aws -->
+<section class="slide t-image"><img src="img/17_meta_aws.png" alt="大手もすでに既存データセンターを強化"></section>
+
+<!-- だから、最初に
+【調べる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：研究者も、今ある設備から計算を引き出そうとしています</span><span class="brand"></span></div>
+  <div class="lead">ただし、どんな建物でも作り替えられるわけではありません</div>
+  <div class="stmt">だから、最初に<br><span class="em">調べる工程</span>が<br>欠かせません。</div>
+  <div class="note">Schneider Electricの技術者は、電気や床の強さに余裕のない建物は、作り替えに向かないこともあると話しています。さきほどの高砂熱学の診断は、その入り口です</div>
+</section>
+
+<!-- 【お金を動かす人たち】は -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：研究者も、今ある設備から計算を引き出そうとしています</span><span class="brand"></span></div>
+  <div class="lead">研究者がこう考えているなら</div>
+  <div class="stmt"><span class="em">お金を動かす人たち</span>は<br>どうでしょうか。</div>
+</section>
+
+<!-- ========== p10_okane（10枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 10 / 20</span><span class="bar"></span><span>お金</span></div>
+  <div class="numbox">10</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">お金を動かす人たちも、<br>今ある建物を<br>見ています</div><div class="rule"></div><div class="desc">UBSとGrayscale</div></div>
+</section>
+
+<!-- もう動いている施設には、 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="badge navy">スイスの大手銀行、UBS｜2026年9月</div>
+  <div class="h-main">もう動いている施設には、電気の契約も、借りてくれる顧客も、稼ぎも、すでにあります</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">投資するなら</div><div class="cap"></div><div class="big">もう動いて<br>いる施設</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">新しく建てる施設は</div><div class="cap">工事、お金集め、電気の確保の</div><div class="big">どこかで<br>つまずく<br>おそれ</div></div>
+  </div>
+</section>
+
+<!-- 今ある建物が
+【主役】に -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="lead">お金を動かす人たちにとって</div>
+  <div class="stmt">今ある建物が<br><span class="em">主役</span>になりつつあります。</div>
+</section>
+
+<!-- アメリカの運用会社、Gr -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="h-main">アメリカの運用会社、Grayscale｜どれか1つでも欠ければ、計算を届けられません</div>
+  <div class="h-sub">今ある建物は、このうち許可と電気を、もう持っています</div>
+  <div class="grid g5" style="grid-template-columns:repeat(5,1fr);gap:16px">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">建てる<br>許可</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">電気</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">冷やす<br>設備</div></div>
+    <div class="card c4"><div class="cno">4</div><div class="ctitle">半導体</div></div>
+    <div class="card c1"><div class="cno">5</div><div class="ctitle">通信</div></div>
+  </div>
+</section>
+
+<!-- 値段が上がる建物ほど、持 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="lead">ただし、UBSが話しているのは、建物の値段のことです</div>
+  <div class="stmt">値段が上がる建物ほど、持ち主には、<br>お金をかけて中を強くする<br><span class="em">理由</span>ができます。</div>
+  <div class="note">設備を作る企業の注文が増える、と約束しているわけではありません</div>
+</section>
+
+<!-- 東京の周りでは、
+【電気 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="lead">では、日本はどうか。日本でも、事情は同じです</div>
+  <div class="stmt">東京の周りでは、<br><span class="em">電気が足りない</span>ことが、<br>いちばんの壁です。</div>
+  <div class="note">新しく建てる施設の多くは、完成する前に借り手が決まり、延期になった計画もあります</div>
+</section>
+
+<!-- 新しく建てる計画もありま -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="h-main">新しく建てる計画もあります｜工事を始めてから動き出すまで、2年ほど</div>
+  <div class="steps">
+    <div class="step s2"><div class="era">2026年10月 大阪・茨木</div><div class="v">工事開始</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2028年 茨木・京田辺</div><div class="v">動き出す</div></div>
+  </div>
+</section>
+
+<!-- 今ある建物の中を強くする -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="lead">その間も、AIの計算は増え続けます</div>
+  <div class="stmt">今ある建物の中を強くする仕事が、<br><span class="em">先に来ます</span>。</div>
+  <div class="note">日本の設備の企業には、追い風です</div>
+</section>
+
+<!-- AWSが2023年から2 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="lead">海外のお金も、日本に入っています</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">AWSが2023年から2027年までに日本に投資</div>
+      <div class="mfig">2兆2,600<span class="u">億円</span></div>
+      <div class="msub"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 利益が伸びている企業まで -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 10：お金を動かす人たちも、今ある建物を見ています</span><span class="brand"></span></div>
+  <div class="lead">ここまで聞いても、あの全面安の日を思い出すと、不安は残ると思います</div>
+  <div class="stmt">利益が伸びている企業まで、<br>なぜ<span class="em">年初来安値</span>まで<br>売られたのか。</div>
+</section>
+
+<!-- ========== p11_zenmenyasu（13枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 11 / 20</span><span class="bar"></span><span>全面安</span></div>
+  <div class="numbox">11</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">なぜ、<br>関係のない株まで<br>売られたのか</div><div class="rule"></div><div class="desc">買いの偏りと、信用取引</div></div>
+</section>
+
+<!-- まず、下げは選挙で始まっ -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="h-main">まず、下げは選挙で始まったわけではありません</div>
+  <div class="chain">
+    <div class="node">10月6日ごろ<br>NASDAQが高値</div>
+    <div class="arr">→</div>
+    <div class="node">AIのお金は返るのか<br>金利への警戒</div>
+    <div class="arr">→</div>
+    <div class="node danger">選挙が<br>重なった</div>
+  </div>
+  <div class="release">選挙は、そこに重なったきっかけの1つです</div>
+</section>
+
+<!-- 同じAI関連株を大量に持 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="lead">ここで効いてきたのが、買いの偏りです</div>
+  <div class="stmt">同じAI関連株を大量に持っていると、<br>下がったときに<br><span class="em">売りが一度に重なります</span>。</div>
+</section>
+
+<!-- 大きなお金を動かす
+【ヘ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="lead">先に動いたのは</div>
+  <div class="stmt">大きなお金を動かす<br><span class="em">ヘッジファンド</span>です。</div>
+</section>
+
+<!-- 画像：18_gs_nomura -->
+<section class="slide t-image"><img src="img/18_gs_nomura.png" alt="株価下落の裏側に大きな売り圧力"></section>
+
+<!-- 画像：19_shinyou -->
+<section class="slide t-image"><img src="img/19_shinyou.png" alt="日本で重なった信用取引のリスク"></section>
+
+<!-- 画像：20_oishou -->
+<section class="slide t-image"><img src="img/20_oishou.png" alt="株価がさらに下がると追証の連鎖"></section>
+
+<!-- ファンドが、利益の出てい -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="lead">ノムラ・シンガポールの須田吉貴も</div>
+  <div class="stmt">ファンドが、利益の出ている<br>銀行株などを売る動きが<br><span class="em">広がり得る</span>と話しています。</div>
+  <div class="note">AI関連株の損失を埋めるためです</div>
+</section>
+
+<!-- では、業績はどうなのか -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="h-main">では、業績はどうなのか</div>
+  <div class="h-sub">野村アセットマネジメントは、日本株が急落した日の動きを、過剰反応とも言える、と書いています。企業の利益の見通しを上げる動きが、下げる動きを上回っているからです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">大手の<br>設備投資</div><div class="ctext">伸びている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">クラウドの<br>売上</div><div class="ctext">伸びている</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">NVIDIA</div><div class="ctext">8月に発表した3か月の売上が、前の年の2倍超</div></div>
+  </div>
+</section>
+
+<!-- 業績の悪化というより、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="lead">つまり、今回の下げには</div>
+  <div class="stmt">業績の悪化というより、<br><span class="em">ガス抜き</span>に近い面があります。</div>
+  <div class="note">利益が伸びている企業まで売られたのは、そのためです。ただし、何割が業績への不安で、何割が持ち高の整理なのかは、公開されているデータでは誰にも分かりません</div>
+</section>
+
+<!-- だからこそ見るべきなのは -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="badge navy">もちろん、疑問は残ります｜Goldman SachsのJim Covello</div>
+  <div class="h-main">だからこそ見るべきなのは、株価の上げ下げより、注文が入っているのか、電気が足りているのかです</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">AIの設備を</div><div class="cap"></div><div class="big">売る側が<br>儲かる</div></div>
+    <div class="vsmark">≠</div>
+    <div class="box left"><div class="name">使う側が</div><div class="cap"></div><div class="big">お金を<br>回収できる</div></div>
+  </div>
+</section>
+
+<!-- 株価の急落と、金融が止ま -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="lead">2008年のような金融危機になるのでは、と心配する方もいると思います</div>
+  <div class="stmt">株価の急落と、金融が止まることは<br><span class="em">別の話</span>です。</div>
+  <div class="note">世界の金融を見ている国際機関のIMFは、AI関連株の調整が起きても、銀行全体には一定の耐性があると見ています。警戒しているのは、一部の金融機関やファンドの借金です</div>
+</section>
+
+<!-- 動いているデータセンター -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 11：なぜ、関係のない株まで売られたのか</span><span class="brand"></span></div>
+  <div class="lead">では、企業に戻ります。調べて無駄が分かったら、次は工事です</div>
+  <div class="stmt">動いているデータセンターを<br><span class="em">止めずに</span>行う工事です。</div>
+  <div class="note">空気で冷やす設備と、液体で冷やす設備を並べて使えるようにします</div>
+</section>
+
+<!-- ========== p12_hibiya（16枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 12：止めずに工事する日比谷総合設備</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 12 / 20</span><span class="bar"></span><span>工事</span></div>
+  <div class="numbox">12</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">止めずに工事する<br>日比谷総合設備</div><div class="rule"></div><div class="desc">証券コード 1982</div></div>
+</section>
+
+<!-- 画像：21_hibiya_tomezu -->
+<section class="slide t-image"><img src="img/21_hibiya_tomezu.png" alt="日比谷総合設備 止めずに設備を更新"></section>
+
+<!-- 決算｜2026年4月から -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">決算｜2026年4月から6月まで</div>
+  <div class="h-sub">売上は178億円で6.5%減りましたが、利益は増えています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">受けた注文</div><div class="cd">560億円</div></div><div class="body"><div class="lbl"></div><div class="val2">約3.4倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">22億円</div></div><div class="body"><div class="lbl"></div><div class="val2">34%増</div></div></div>
+    <div class="col "><div class="top"><div class="nm">前の期の営業利益</div><div class="cd">107億円</div></div><div class="body"><div class="lbl"></div><div class="val2">43%増</div></div></div>
+  </div>
+</section>
+
+<!-- 売上に対する利益の割合 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">売上に対する利益の割合</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1年前</div><div class="c-v">8.5%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">4月から6月</div><div class="c-v">12.2%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">上がった幅</div><div class="r-v">3.7ポイント</div></div>
+  </div>
+</section>
+
+<!-- なぜ伸びているのか。デー -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">なぜ伸びているのか。データセンターの追い風が、注文の数字に出ているからです</div>
+  <div class="h-sub">データセンターや情報の施設向けの注文（4月から6月）</div>
+  <div class="vcols wide">
+    <div class="vb"><div class="bar" style="height:64px">52億円</div><div class="cap">1年前</div><div class="sub"></div></div>
+    <div class="vb orange"><div class="bar" style="height:240px">419億円</div><div class="cap">今年</div><div class="sub">約8倍</div></div>
+  </div>
+</section>
+
+<!-- ただし、内部の工事には、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="lead">今ある建物を直すリニューアルの注文も、455億円で約3.7倍になりました</div>
+  <div class="stmt">ただし、内部の工事には、<br><span class="em">新しい建物</span>の工事も<br>含まれます。</div>
+  <div class="note">企業は、増えた理由に、大きなデータセンターの内部の設備工事を挙げています。全部が、動いている建物の改修というわけではありません</div>
+</section>
+
+<!-- 今期の売上の計画1,05 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="lead">まだ工事が終わっていない注文の残りは1,413億円で、1年前より約7割増えました</div>
+  <div class="h-main">今期の売上の計画1,050億円のうち</div>
+  <div class="pbar">
+    <div class="seg main" style="width:60%"><span class="p">約6割</span><span class="l">すでに注文が決まった工事</span></div>
+    <div class="seg rest"><span class="p"></span><span class="l">残り</span></div>
+  </div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="h-sub">配当は1年で110円の予定で、創業60周年の記念の10円を含みます。2026年5月には、約67億円の自社株買いもしています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd">高い水準</div></div><div class="body"><div class="lbl"></div><div class="val2">75.6%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約270億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期</div></div><div class="body"><div class="lbl"></div><div class="val2">11.6%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約13.7倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約1.6倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当の利回り</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約4%</div></div></div>
+  </div>
+</section>
+
+<!-- 2026年6月から始めた -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="lead">今ある建物を強くする話で、いちばん直接なのが</div>
+  <div class="stmt">2026年6月から始めた<br><span class="em">検証</span>です。</div>
+</section>
+
+<!-- 画像：22_hibiya_ekirei -->
+<section class="slide t-image"><img src="img/22_hibiya_ekirei.png" alt="日比谷総合設備 液体冷却の後付けを検証中"></section>
+
+<!-- 海外の投資家も持っていま -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">海外の投資家も持っています</div>
+  <div class="h-sub">Fidelityの日本の小型株ファンドの担当者は、アナリストがあまり見ていない企業を探している、と話しています。名指しした話ではありませんが、この企業には定期的に追っているアナリストがいません</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">Fidelity</div><div class="cd">アメリカの運用会社</div></div><div class="body"><div class="lbl"></div><div class="val2">3.13%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">Vanguard</div><div class="cd">アメリカの運用会社</div></div><div class="body"><div class="lbl"></div><div class="val2">2.58%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来の推移 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来の推移</div>
+  <div class="h-sub">あの全面安の日は6.69%下がり、10月末からの1週間ほどで約12%下げました。2月の年初来の高値3,485円からは、約2割下の位置です</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">1月5日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2,417円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">11月6日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2,775円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">年初来</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">およそ15%の上昇</div></div></div>
+  </div>
+</section>
+
+<!-- 次の決算は、11月11日 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">次の決算は、11月11日の中間決算です。見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">データセンター向けの注文が続いているか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">たまった注文の残りが、売上に変わり始めているか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">12%台まで上がった利益の割合を保てているか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- ひとつ、注意もあります｜ -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="h-main">ひとつ、注意もあります｜データセンター向けの注文（1年間）</div>
+  <div class="h-sub">4月から6月の急な増え方が、毎年このまま続くとは限りません</div>
+  <div class="vcols wide">
+    <div class="vb"><div class="bar" style="height:240px">530億円</div><div class="cap">その前の年</div><div class="sub"></div></div>
+    <div class="vb orange"><div class="bar" style="height:222px">491億円</div><div class="cap">前の期</div><div class="sub"></div></div>
+  </div>
+</section>
+
+<!-- 研究者が指摘していた、
+ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 12：日比谷総合設備 1982</span><span class="brand"></span></div>
+  <div class="lead">工事で設備を並べても、電気を配る力が足りなければ、GPUは置けません</div>
+  <div class="stmt">研究者が指摘していた、<br>建物の中で<span class="em">電気を配る設備</span>です。</div>
+</section>
+
+<!-- ========== p13_mitsubishi（20枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 13：電気を無駄なく配る三菱電機</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 13 / 20</span><span class="bar"></span><span>配る</span></div>
+  <div class="numbox">13</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">電気を無駄なく配る<br>三菱電機</div><div class="rule"></div><div class="desc">証券コード 6503</div></div>
+</section>
+
+<!-- 画像：23_mitsubishi -->
+<section class="slide t-image"><img src="img/23_mitsubishi.png" alt="三菱電機 データセンターの電力と冷却を支える"></section>
+
+<!-- 決算｜2026年4月から -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">決算｜2026年4月から9月まで</div>
+  <div class="h-sub">売上も、本業のもうけも、この期間として過去最高です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">3兆1,251億円</div></div><div class="body"><div class="lbl"></div><div class="val2">14%増</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">3,581億円</div></div><div class="body"><div class="lbl"></div><div class="val2">約6割増</div></div></div>
+  </div>
+</section>
+
+<!-- 企業自身は、1年間の本業 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">企業自身は、1年間の本業のもうけの予想を引き上げました</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまでの予想</div><div class="c-v">6,200億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">引き上げた予想</div><div class="c-v">7,100億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">増やした分</div><div class="r-v">900億円</div></div>
+  </div>
+</section>
+
+<!-- 自動車の部品の事業を手放 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="lead">一方で、最終的な利益の予想は下げています</div>
+  <div class="stmt">自動車の部品の事業を手放すのに伴う、<br>約1,000億円の<span class="em">損失</span>です。</div>
+  <div class="note">本業が悪くなったわけではありません</div>
+</section>
+
+<!-- なぜ伸びているのか｜経営 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">なぜ伸びているのか｜経営陣が、次の年度に伸ばす分野として挙げたもの</div>
+  <div class="h-sub">工場の自動化、防衛、空調、半導体と、伸びている事業はいくつもあります。3つとも、データセンターの追い風を受ける分野です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">北米の電力と<br>変電の設備</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">データセンター<br>用の空調</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">光の通信の<br>部品</div></div>
+  </div>
+</section>
+
+<!-- いちばん分かりやすい例が -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="lead">今回の話で</div>
+  <div class="stmt">いちばん分かりやすい例が<br><span class="em">アメリカ</span>にあります。</div>
+</section>
+
+<!-- 画像：24_mitsubishi_ups -->
+<section class="slide t-image"><img src="img/24_mitsubishi_ups.png" alt="三菱電機 動かしたまま電源装置を更新"></section>
+
+<!-- アメリカのデータセンター -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="lead">ほかにも</div>
+  <div class="stmt">アメリカのデータセンターの企業に、<br>電源装置を納めて、<br><span class="em">保守まで</span>請け負っている例があります。</div>
+</section>
+
+<!-- データセンター用の空調も -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">データセンター用の空調も伸ばしています</div>
+  <div class="steps">
+    <div class="step s2"><div class="era">前の年度の売上</div><div class="v">320億円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2030年度の目標</div><div class="v">1,000億円<br>を超える</div></div>
+  </div>
+</section>
+
+<!-- そのための動き -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">そのための動き</div>
+  <div class="h-sub">ただし、この空調の売上は、まだ三菱電機全体の1%にも届きません</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">アメリカ・オハイオ州</div><div class="ctext">約47億円をかけて、自動車の部品の工場の一部をこの空調の工場に。生産開始は2027年4月の予定</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">オランダ</div><div class="ctext">冷やす設備を据え付けて保守する企業を、2つのグループごと買い取った</div></div>
+  </div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="h-sub">10月30日には、上限2,000億円の自社株買いも発表しています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">63.6%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約9,600億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期</div></div><div class="body"><div class="lbl"></div><div class="val2">9.7%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約19.8倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約2.0倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">年60円の予定</div></div><div class="body"><div class="lbl"></div><div class="val2">利回り約1.3%</div></div></div>
+  </div>
+</section>
+
+<!-- 2025年1月に
+【結ん -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="lead">日本では、AWSと、データセンターの空調、電源装置、受ける電気の設備などで協力する覚書を</div>
+  <div class="stmt">2025年1月に<br><span class="em">結んでいます</span>。</div>
+  <div class="note">日本のどの施設に納めたかは、公表されていません</div>
+</section>
+
+<!-- 海外の投資家も持っていま -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">海外の投資家も持っています</div>
+  <div class="h-sub">BlackRockの持ち分には、指数に合わせて買う運用の分も含まれます</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">外国の投資家</div><div class="cd">持つ株の割合・2026年3月末</div></div><div class="body"><div class="lbl">半分近く</div><div class="val2">47.0%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">BlackRock</div><div class="cd">アメリカの運用会社</div></div><div class="body"><div class="lbl">10月に7.05%から増やした</div><div class="val2">8.09%</div></div></div>
+  </div>
+</section>
+
+<!-- 海外の証券会社の評価は、 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">海外の証券会社の評価は、分かれています</div>
+  <div class="h-sub">注目されているのは、北米の電力と冷やす設備の伸びと、自動車の部品の事業を手放したあとの資本の使い方です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">Goldman Sachs</div><div class="ctext">決算のあとの11月2日にも「買い」を続けた。目標株価は7,900円→7,400円</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">J.P. Morgan・Citi</div><div class="ctext">「買い」にあたる判断で7,100円、強気で7,200円</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">Morgan Stanley MUFG・UBS</div><div class="ctext">中立。6,000円と6,600円</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来の推移 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来の推移</div>
+  <div class="h-sub">あの全面安の日は5.35%下がり、取引の途中で4,319円まで下げて、年初来安値をつけました。5月の年初来の高値6,686円からは、約3割下の位置です</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">1月5日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">4,790円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">11月6日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">4,497円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">年初来</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">およそ6%の下落</div></div></div>
+  </div>
+</section>
+
+<!-- 半年の営業利益が約6割増 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="lead">選挙のあとの全面安のところでお話しした</div>
+  <div class="stmt">半年の営業利益が約6割増えたのに<br>年初来安値をつけた企業は、<br><span class="em">三菱電機</span>です。</div>
+</section>
+
+<!-- 次の決算で見るところは3 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">北米の電源装置や電力の設備の注文が増えているか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">データセンター用の空調の売上が伸びているか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">オハイオの工場が予定どおり動き出せそうか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 次は、その熱を
+【冷やす -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 13：三菱電機 6503</span><span class="brand"></span></div>
+  <div class="lead">電気を配れるようになれば、置けるGPUが増え、その分だけ熱も増えます</div>
+  <div class="stmt">次は、その熱を<br><span class="em">冷やす工程</span>です。</div>
+</section>
+
+<!-- ========== p14_daikin（19枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 14：建物からGPUまで冷やすダイキン工業</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 14 / 20</span><span class="bar"></span><span>冷やす</span></div>
+  <div class="numbox">14</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">建物からGPUまで冷やす<br>ダイキン工業</div><div class="rule"></div><div class="desc">証券コード 6367</div></div>
+</section>
+
+<!-- 画像：25_daikin -->
+<section class="slide t-image"><img src="img/25_daikin.png" alt="ダイキン工業 データセンターを建物からGPUまで冷やす"></section>
+
+<!-- 決算｜2026年4月から -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">決算｜2026年4月から9月まで</div>
+  <div class="h-sub">売上の伸びに比べると、利益の伸びは小さめです。アメリカの関税や材料の値上がりが響いています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">2兆9,108億円</div></div><div class="body"><div class="lbl"></div><div class="val2">17%増</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">2,708億円</div></div><div class="body"><div class="lbl"></div><div class="val2">約10%増</div></div></div>
+  </div>
+</section>
+
+<!-- 企業自身は、1年間の予想 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">企業自身は、1年間の予想を引き上げました</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上の予想</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">5兆4,400億円</div></div></div>
+    <div class="col "><div class="top"><div class="nm">営業利益の予想</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">4,550億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">増やす予定</div></div><div class="body"><div class="lbl"></div><div class="val2">360円→370円</div></div></div>
+  </div>
+</section>
+
+<!-- 北米の大きな建物向けの空 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="lead">なぜ伸びているのか</div>
+  <div class="stmt">北米の大きな建物向けの空調の売上が、<br>半年で<span class="em">23%</span>増えました。</div>
+  <div class="note">北米のデータセンター向けに、建物に合わせて作る空調機の注文が増え、ヨーロッパやアジアのデータセンター向けにも冷却装置が売れています</div>
+</section>
+
+<!-- 北米のデータセンター向け -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">北米のデータセンター向けの冷却の売上</div>
+  <div class="vcols wide">
+    <div class="vb"><div class="bar" style="height:64px">約230億円</div><div class="cap">2023年度</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:80px">約1,000億円</div><div class="cap">2025年度</div><div class="sub">見通し</div></div>
+    <div class="vb orange"><div class="bar" style="height:240px">3,000億円超</div><div class="cap">2030年度</div><div class="sub">目標</div></div>
+  </div>
+</section>
+
+<!-- 【動いている例】も
+あり -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="lead">実際に</div>
+  <div class="stmt"><span class="em">動いている例</span>も<br>あります。</div>
+</section>
+
+<!-- 画像：26_daikin_sandiego -->
+<section class="slide t-image"><img src="img/26_daikin_sandiego.png" alt="ダイキン工業 米サンディエゴの稼働中データセンターでAIを冷却"></section>
+
+<!-- 【ダイキンだけ】です。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="lead">今回の7社の中で、海外の実際のAIの計算を冷やしている例を確かめられるのは</div>
+  <div class="stmt"><span class="em">ダイキンだけ</span>です。</div>
+  <div class="note">ここが、ダイキンの強みです</div>
+</section>
+
+<!-- 【ダイキン】です。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="lead">新しく建てるのが難しい、というところでお話しした空調の大手は</div>
+  <div class="stmt"><span class="em">ダイキン</span>です。</div>
+</section>
+
+<!-- 2027年度に出荷するデ -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="lead">決算の説明会で、野村證券のアナリストが、アメリカの規制と選挙の影響を質問しました｜竹中直文社長の答え</div>
+  <div class="h-main">2027年度に出荷するデータセンター向けの注文の残りのうち</div>
+  <div class="pbar">
+    <div class="seg main" style="width:75%"><span class="p">約4分の3</span><span class="l">すでに建設中の案件</span></div>
+    <div class="seg rest"><span class="p"></span><span class="l">残り</span></div>
+  </div>
+</section>
+
+<!-- 一つずつ
+【見ていく】と -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="lead">2028年度向けには、これから建てる案件も含まれます</div>
+  <div class="stmt">一つずつ<br><span class="em">見ていく</span>という姿勢です。</div>
+</section>
+
+<!-- 工場の側でも備えています -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">工場の側でも備えています｜メキシコ</div>
+  <div class="chain">
+    <div class="node">水で冷やす装置<br>を作る計画</div>
+    <div class="arr">→</div>
+    <div class="node">空気で冷やす装置<br>に切り替え</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">8月に新しい<br>生産ライン</div>
+  </div>
+  <div class="release">生産ラインを、ふつうの空調にも回せる作りにすることも考えています</div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">51.0%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約9,300億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期</div></div><div class="body"><div class="lbl"></div><div class="val2">9.1%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約21.7倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約2.0倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当の利回り</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約1.7%</div></div></div>
+  </div>
+</section>
+
+<!-- 海外の投資家も持っていま -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">海外の投資家も持っています｜外国の投資家が持つ株の割合は46.4%</div>
+  <div class="h-sub">冷やす設備の実績は認めつつ、全体の利益の割合の伸びと、PERの高さを見ている形です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">Goldman Sachs</div><div class="ctext">決算のあとの11月6日に目標株価を24,000円→26,000円。判断は中立のまま</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">UBS</div><div class="ctext">「買い」で27,500円</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">Morgan Stanley MUFG・Citi</div><div class="ctext">中立で22,500円</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来の推移 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来の推移</div>
+  <div class="h-sub">あの全面安の日も1.51%上がり、プライム市場で上がった21銘柄の1つになりました。7月の年初来の高値26,440円からは、約2割下の位置です</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">1月5日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">20,250円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">11月6日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">21,790円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">年初来</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">およそ8%の上昇</div></div></div>
+  </div>
+</section>
+
+<!-- 次の決算で見るところは3 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">北米のデータセンター向けの冷却の売上が伸びているか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">2027年度に出荷する建設中の案件が、延期されていないか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">利益の割合が戻ってきているか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 液体を送る装置と、
+停電 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 14：ダイキン工業 6367</span><span class="brand"></span></div>
+  <div class="lead">冷やす設備を作る企業は、ダイキンだけではありません</div>
+  <div class="stmt">液体を送る装置と、<br>停電に備える電池を<br><span class="em">手がける企業</span>があります。</div>
+</section>
+
+<!-- ========== p15_panasonic（18枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 15：液体を整え、電池で備えるパナソニックホールディングス</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 15 / 20</span><span class="bar"></span><span>冷やす・備える</span></div>
+  <div class="numbox">15</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">液体を整え、電池で備える<br>パナソニック<br>ホールディングス</div><div class="rule"></div><div class="desc">証券コード 6752</div></div>
+</section>
+
+<!-- 画像：27_panasonic -->
+<section class="slide t-image"><img src="img/27_panasonic.png" alt="パナソニックHD データセンターを支える冷却と電源"></section>
+
+<!-- 画像：28_panasonic_3hashira -->
+<section class="slide t-image"><img src="img/28_panasonic_3hashira.png" alt="パナソニックHD データセンター向けの3つの柱"></section>
+
+<!-- 決算｜2026年4月から -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="h-main">決算｜2026年4月から9月まで</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">4兆925億円</div></div><div class="body"><div class="lbl"></div><div class="val2">7%増</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">3,632億円</div></div><div class="body"><div class="lbl"></div><div class="val2">2倍超</div></div></div>
+  </div>
+</section>
+
+<!-- 企業自身は、1年間の予想 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="h-main">企業自身は、1年間の予想を引き上げています</div>
+  <div class="h-sub">2028年度に置いていた利益の目標を、2年早く今年度に達成する見込みです</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">売上</div><div class="ctext">8兆4,000億円</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">営業利益</div><div class="ctext">5,900億円→7,100億円</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">純利益</div><div class="ctext">4,500億円→5,400億円</div></div>
+  </div>
+</section>
+
+<!-- 事業の立て直しによる
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="lead">ただし、この利益の伸びには</div>
+  <div class="stmt">事業の立て直しによる<br><span class="em">コストの削減</span>も<br>大きく効いています。</div>
+</section>
+
+<!-- なぜ伸びているのか。AI -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="h-main">なぜ伸びているのか。AIのデータセンターに関わる売上が増えているからです</div>
+  <div class="vcols wide">
+    <div class="vb"><div class="bar" style="height:82px">5,520億円</div><div class="cap">前の年度</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:136px">9,100億円</div><div class="cap">今年度</div><div class="sub">予想</div></div>
+    <div class="vb orange"><div class="bar" style="height:240px">1兆6,000億円</div><div class="cap">2028年度</div><div class="sub">目指す</div></div>
+  </div>
+</section>
+
+<!-- 約1兆円は【電池】です。 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="lead">ただし、2028年度の1兆6,000億円のうち</div>
+  <div class="stmt">約1兆円は<span class="em">電池</span>です。</div>
+  <div class="note">液体で冷やす装置だけの数字ではありません</div>
+</section>
+
+<!-- アメリカの大手クラウドの -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="lead">いちばん伸びているのは、その電池です</div>
+  <div class="stmt">アメリカの大手クラウドの複数の企業と、<br>設計の<span class="em">最初の段階</span>から<br>一緒に作っています。</div>
+  <div class="note">設計の最初から入っている企業は、あとから入れ替えられにくい。ここが強みです。国内の車向けの電池の生産ラインも、この電池向けに切り替えました</div>
+</section>
+
+<!-- 開発の合意や注文を、
+【 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="lead">2028年度に1兆円を目指すこの電池の事業は</div>
+  <div class="stmt">開発の合意や注文を、<br><span class="em">ほぼすべて</span>取れている<br>としています。</div>
+  <div class="note">ただし、この中には開発の合意も含まれていて、全部が取り消せない注文というわけではありません</div>
+</section>
+
+<!-- ある条件で、空気で冷やす -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="lead">液体で冷やす装置は、まだ始まったばかりです。2026年3月に、ヨーロッパで注文の受け付けを始めました</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">ある条件で、空気で冷やす機器と比べた、冷やすための電気</div>
+      <div class="mfig">約43<span class="u">%少ない</span></div>
+      <div class="msub">比べた機器の範囲だけの数字です。大きな注文が決まったという発表は、まだありません</div>
+    </div>
+  </div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="h-sub">ROEは前の期で3.8%と低めでしたが、今期は10%まで上げる予想です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">52.1%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd">3月末の時点</div></div><div class="body"><div class="lbl"></div><div class="val2">約7,700億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">今期の予想</div></div><div class="body"><div class="lbl"></div><div class="val2">10%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約13倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約1.3倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">年70円の予定</div></div><div class="body"><div class="lbl"></div><div class="val2">利回り約2.3%</div></div></div>
+  </div>
+</section>
+
+<!-- 11月4日、台湾の新竹県 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="lead">ひとつ、お伝えしておくことがあります</div>
+  <div class="stmt">11月4日、台湾の新竹県の<br>基板の材料の工場で<br><span class="em">火災</span>が起きました。</div>
+  <div class="note">亡くなった方が出ました。被害の大きさや、工場がいつ動き出せるか、業績への影響は、まだ分かっていません</div>
+</section>
+
+<!-- 海外の投資家も持っていま -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="h-main">海外の投資家も持っています｜外国の投資家が持つ株の割合は約46%。評価は強気が多くなっています</div>
+  <div class="h-sub">評価されているのは、アメリカの大手クラウドとの長い付き合いと、電池や部品の強さ。ただし、多くの評価は、火災の影響をまだ数字に入れていない可能性があります</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">買い・強気</div><div class="ctext">Goldman Sachs 6,300円、Citi 5,400円、オーストラリアの金融大手Macquarie 5,600円（火災のあとの11月4日）、UBS 5,000円</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">中立</div><div class="ctext">J.P. Morgan 4,900円、Morgan Stanley MUFG 4,700円</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来の推移 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来の推移</div>
+  <div class="h-sub">8月の年初来の高値4,982円からは、約4割下の位置です。火災のあった11月4日から、全面安の日まで3日続けて下がりました</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">1月5日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2,078.5円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">11月6日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">3,008円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">年初来</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">およそ45%の上昇</div></div></div>
+  </div>
+</section>
+
+<!-- 次の決算で見るところは3 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">台湾の工場の被害と、いつ動き出せるか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">電池の注文が、実際の売上にどれだけ変わっているか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">液体で冷やす装置の、最初の大きな注文が決まるか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 現場で据え付けて、試して -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 15：パナソニックホールディングス 6752</span><span class="brand"></span></div>
+  <div class="lead">冷やす設備は、作っただけでは動きません</div>
+  <div class="stmt">現場で据え付けて、試して、<br>壊れないように見守る仕事が<br><span class="em">要ります</span>。</div>
+</section>
+
+<!-- ========== p16_yashima（17枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 16：据え付けて保守する八洲電機</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 16 / 20</span><span class="bar"></span><span>保守</span></div>
+  <div class="numbox">16</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">据え付けて保守する<br>八洲電機</div><div class="rule"></div><div class="desc">証券コード 3153</div></div>
+</section>
+
+<!-- 画像：29_yashima -->
+<section class="slide t-image"><img src="img/29_yashima.png" alt="八洲電機 データセンターの設置・試験・保守を担う"></section>
+
+<!-- 決算｜2026年4月から -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="h-main">決算｜2026年4月から9月まで</div>
+  <div class="h-sub">伸びたのは公共と設備の部門で、営業利益が78.5%増えています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">347億円</div></div><div class="body"><div class="lbl"></div><div class="val2">21%増</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">28億円</div></div><div class="body"><div class="lbl"></div><div class="val2">約5割増</div></div></div>
+  </div>
+</section>
+
+<!-- ただし、この部門には
+空 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="lead">企業は、データセンターのサーバーを冷やす特殊な空調機の納入や、空調の工事、変圧器が効いたと説明しています</div>
+  <div class="stmt">ただし、この部門には<br>空港や水道の仕事も<br><span class="em">入っています</span>。</div>
+  <div class="note">全部がデータセンターではありません</div>
+</section>
+
+<!-- 企業自身は、1年間の予想 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="h-main">企業自身は、1年間の予想を引き上げました</div>
+  <div class="h-sub">大きな工事の完成が後半に集まりやすく、半年の進み具合だけでは判断できません</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益の予想</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">89億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">増やす予定</div></div><div class="body"><div class="lbl"></div><div class="val2">45円→66円</div></div></div>
+  </div>
+</section>
+
+<!-- 液体で冷やす設備の、
+据 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="lead">なぜ伸びているのか</div>
+  <div class="stmt">液体で冷やす設備の、<br>据え付けから保守までを、<br><span class="em">もう実際に</span>始めているからです。</div>
+</section>
+
+<!-- 画像：30_yashima_coolit -->
+<section class="slide t-image"><img src="img/30_yashima_coolit.png" alt="八洲電機 液体冷却の据え付けから保守を開始"></section>
+
+<!-- 画像：31_yashima_hoshu -->
+<section class="slide t-image"><img src="img/31_yashima_hoshu.png" alt="八洲電機 液体冷却の保守体制"></section>
+
+<!-- 今期の予想は、もう計画の -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="badge navy">現場で据え付けて保守する、欠かせない相手になる。これが八洲電機の立ち位置です</div>
+  <div class="h-main">今期の予想は、もう計画の数字の近くまで来ています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">2029年3月期の計画</div><div class="cap"></div><div class="big">売上850億円<br>経常利益95億円</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">今期の予想</div><div class="cap"></div><div class="big">売上820億円<br>経常利益90億円</div></div>
+  </div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">59.7%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約186億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期・高め</div></div><div class="body"><div class="lbl"></div><div class="val2">15.4%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準</div>
+  <div class="h-sub">PERは、今回の7社の中でいちばん低い水準です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd">7社の中でいちばん低い</div></div><div class="body"><div class="lbl"></div><div class="val2">約8.7倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約1.5倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当の利回り</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約2.6%</div></div></div>
+  </div>
+</section>
+
+<!-- 海外の投資家は、まだ多く -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="h-main">海外の投資家は、まだ多くありません</div>
+  <div class="h-sub">この企業を定期的に追っているアナリストもいません。そこで、11月30日に、機関投資家とアナリストに向けた決算の説明会を、オンラインで開く予定です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">外国の投資家</div><div class="cd">持つ株の割合・2026年3月末</div></div><div class="body"><div class="lbl"></div><div class="val2">4.14%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">Dimensional</div><div class="cd">アメリカの運用会社</div></div><div class="body"><div class="lbl"></div><div class="val2">1.25%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来の推移 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来の推移</div>
+  <div class="h-sub">決算のあとには一時3,115円まで上げましたが、あの全面安の日は5.30%下がり、取引の途中で2,431円まで下げて、年初来安値をつけました</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">1月5日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2,831円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">11月6日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2,503円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">年初来</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">およそ12%の下落</div></div></div>
+  </div>
+</section>
+
+<!-- 【年初来安値】まで
+売ら -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="lead">利益が約5割伸びて、配当を増やす企業が</div>
+  <div class="stmt"><span class="em">年初来安値</span>まで<br>売られたことになります。</div>
+</section>
+
+<!-- 株価には、もう1つ重しが -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="h-main">株価には、もう1つ重しがあります｜10月、TOPIXの中での比率を段階的に下げていく銘柄に入りました</div>
+  <div class="chain">
+    <div class="node">比率が<br>下がる</div>
+    <div class="arr">→</div>
+    <div class="node">TOPIXに合わせて<br>動くお金が売る</div>
+    <div class="arr">→</div>
+    <div class="node danger">その日<br>約5.6%下落</div>
+  </div>
+  <div class="release">上場がなくなるわけではありません。ただ、TOPIXに合わせて動く大きなお金は、比率が下がる分だけ売ることになります</div>
+</section>
+
+<!-- 次に見るところは3つです -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="h-main">次に見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">11月30日の説明会で、液体で冷やす設備の売上や保守の契約の数が出てくるか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">後半に集まる大きな工事が、予定どおり完成するか</span><span class="d"></span></div>
+    <div class="row"><span class="no">3</span><span class="t">データセンター向けの新しい注文が入るか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- あとは
+【計算を動かす】 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 16：八洲電機 3153</span><span class="brand"></span></div>
+  <div class="lead">据え付けて、保守まで整えば</div>
+  <div class="stmt">あとは<br><span class="em">計算を動かす</span>だけです。</div>
+</section>
+
+<!-- ========== p17_iij（23枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 17：注目の1社インターネットイニシアティブ</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 17 / 20</span><span class="bar"></span><span>計算を動かす</span></div>
+  <div class="numbox">17</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">注目の1社<br>インターネット<br>イニシアティブ</div><div class="rule"></div><div class="desc">証券コード 3774</div></div>
+</section>
+
+<!-- 画像：32_iij -->
+<section class="slide t-image"><img src="img/32_iij.png" alt="注目の1社 IIJ"></section>
+
+<!-- 画像：33_iij_saigo -->
+<section class="slide t-image"><img src="img/33_iij_saigo.png" alt="IIJ 流れの最後の主役"></section>
+
+<!-- 画像：34_iij_3tachiba -->
+<section class="slide t-image"><img src="img/34_iij_3tachiba.png" alt="IIJ 3つの立場で関わる"></section>
+
+<!-- データセンターは全国に1 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">データセンターは全国に13か所</div>
+  <div class="h-sub">そのうち2か所は、自社の建物です</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">千葉県の白井</div><div class="ctext">自社の建物</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">島根県の松江</div><div class="ctext">自社の建物</div></div>
+  </div>
+</section>
+
+<!-- あの全面安の日の昼12時 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">あの全面安の日の昼12時に、決算を出しています｜2026年4月から9月まで</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">売上</div><div class="cd">2,103億円</div></div><div class="body"><div class="lbl"></div><div class="val2">約3割増</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">165億円</div></div><div class="body"><div class="lbl"></div><div class="val2">7.4%増</div></div></div>
+  </div>
+</section>
+
+<!-- 同じ発表で、1年間の売上 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">同じ発表で、1年間の売上の予想を引き上げています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">これまでの予想</div><div class="c-v">3,850億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">引き上げた予想</div><div class="c-v">4,280億円</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">増やした分</div><div class="r-v">430億円</div></div>
+  </div>
+</section>
+
+<!-- なぜ伸びているのか｜GP -->
+<section class="slide t-vbars">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">なぜ伸びているのか｜GPUの計算の基盤を作り、動かす大きな注文を、この半年で3件</div>
+  <div class="h-sub">合わせて385億円。契約の期間全体の金額で、今年の売上にすべて入るわけではありません。顧客の名前は公表されていません</div>
+  <div class="vcols wide">
+    <div class="vb orange"><div class="bar" style="height:240px">205億円</div><div class="cap">1件目</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:140px">120億円</div><div class="cap">2件目</div><div class="sub"></div></div>
+    <div class="vb"><div class="bar" style="height:70px">60億円</div><div class="cap">3件目</div><div class="sub"></div></div>
+  </div>
+</section>
+
+<!-- 売上の中身 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">売上の中身</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">システムを作る仕事</div><div class="cd">607億円</div></div><div class="body"><div class="lbl"></div><div class="val2">2倍以上</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">作ったあとの運用と保守</div><div class="cd">545億円</div></div><div class="body"><div class="lbl"></div><div class="val2">約2割増</div></div></div>
+  </div>
+</section>
+
+<!-- まだ売上になっていない注 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">まだ売上になっていない注文の残り</div>
+  <div class="h-sub">この中には、小売業者のデータセンターを作り直す20億円の注文もあります。今ある建物を作り直す仕事が、もう注文として入っています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">作る仕事</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">606億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">運用と保守</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">1,533億円</div></div></div>
+  </div>
+</section>
+
+<!-- ただ、売上が約3割増えた -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">ただ、売上が約3割増えたのに、営業利益は7%ほどしか増えていません｜売上に対する利益の割合</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1年前</div><div class="c-v">9.5%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今回</div><div class="c-v">7.9%</div></div>
+    <div class="arr">＝</div>
+    <div class="result"><div class="r-l">企業の説明</div><div class="r-v">機器の多い案件</div></div>
+  </div>
+</section>
+
+<!-- だから見るのは、
+そのあ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="lead">機器は、売ったときに一度だけ売上になります</div>
+  <div class="stmt">だから見るのは、<br>そのあと何年も続く<br><span class="em">運用と保守</span>の仕事のほうです。</div>
+  <div class="note">そして、この運用と保守が、IIJの強みです</div>
+</section>
+
+<!-- 自社のデータセンターにも -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">自社のデータセンターにも投資しています｜白井</div>
+  <div class="h-sub">液体で冷やす設備にも対応できるように作っています。ただし、これは今ある棟の改修ではなく、同じ敷地に建てる新しい棟です</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">届いた電気が<br>計算に回る割合</div><div class="cd">効率のよい建物</div></div><div class="body"><div class="lbl"></div><div class="val2">約4分の3</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">3棟目</div><div class="cd">約270億円・今年度中に動き出す予定</div></div><div class="body"><div class="lbl">サーバーを並べる棚</div><div class="val2">約1,000</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">受け取れる電気</div><div class="cd">将来は</div></div><div class="body"><div class="lbl"></div><div class="val2">最初の2.5倍</div></div></div>
+  </div>
+</section>
+
+<!-- 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">財務</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">43.6%</div></div></div>
+    <div class="col "><div class="top"><div class="nm">現金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約412億円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">ROE</div><div class="cd">前の期</div></div><div class="body"><div class="lbl"></div><div class="val2">16.2%</div></div></div>
+  </div>
+</section>
+
+<!-- 株価と比べた水準 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">株価と比べた水準</div>
+  <div class="h-sub">PERは、設備の企業と比べると高めで、GPUの注文が利益に変わることを、ある程度見込まれた水準です</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">PER</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約25倍</div></div></div>
+    <div class="col "><div class="top"><div class="nm">PBR</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約3.8倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当の利回り</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約1.2%</div></div></div>
+  </div>
+</section>
+
+<!-- 画像：35_iij_coolcube -->
+<section class="slide t-image"><img src="img/35_iij_coolcube.png" alt="IIJ 後付けで導入できるGPU冷却設備"></section>
+
+<!-- 画像：36_iij_kyushu -->
+<section class="slide t-image"><img src="img/36_iij_kyushu.png" alt="IIJ 国の実証で進む分散型のAI基盤"></section>
+
+<!-- 海外の投資家の持ち分も増 -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">海外の投資家の持ち分も増えています｜外国の投資家が持つ株の割合</div>
+  <div class="steps">
+    <div class="step s2"><div class="era">2025年3月末</div><div class="v">26.0%</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2026年3月末</div><div class="v">29.1%</div></div>
+  </div>
+</section>
+
+<!-- いちばん大きいのは、香港 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">いちばん大きいのは、香港の運用会社Oasisです</div>
+  <div class="h-sub">保有の目的は、企業の価値を上げるための対話や提案。株価が割安だと判断すれば買い増すことも考える、としています</div>
+  <div class="cols">
+    <div class="col cnavy"><div class="top"><div class="nm">Oasisの持ち分</div><div class="cd">2026年6月の時点</div></div><div class="body"><div class="lbl">8.04%から増やした</div><div class="val2">9.07%</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">そのために使ったお金</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">約450億円</div></div></div>
+  </div>
+</section>
+
+<!-- Macquarieは強気 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="badge navy">海外の証券会社の評価は、分かれています</div>
+  <div class="h-main">Macquarieは強気で目標株価4,300円。Goldman Sachs、Citi、UBSは中立。どれも、売上の予想を引き上げる前の評価です</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">強気の材料</div><div class="cap"></div><div class="big">GPUの注文<br>運用と保守</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">慎重な材料</div><div class="cap"></div><div class="big">利益の割合<br>PERの高さ</div></div>
+  </div>
+</section>
+
+<!-- 株価｜年初来の推移 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">株価｜年初来の推移</div>
+  <div class="h-sub">あの全面安の日は3.38%上がり、プライム市場で上がった21銘柄の1つになりました。10月9日の年初来の高値3,728円からは、約3%下の位置です</div>
+  <div class="cols">
+    <div class="col "><div class="top"><div class="nm">1月5日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">2,731.5円</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">11月6日の終値</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">3,607円</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">年初来</div><div class="cd"></div></div><div class="body"><div class="lbl"></div><div class="val2">およそ32%の上昇</div></div></div>
+  </div>
+</section>
+
+<!-- 次の決算で見るところは2 -->
+<section class="slide t-agenda center">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="h-main">次の決算で見るところは2つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">GPUの注文で、どれだけ利益が残るのか</span><span class="d"></span></div>
+    <div class="row"><span class="no">2</span><span class="t">運用と保守の注文の残りが、どれくらいの速さで売上に変わっていくのか</span><span class="d"></span></div>
+  </div>
+</section>
+
+<!-- 次は、新NISAで、
+こ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 17：注目の1社｜インターネットイニシアティブ 3774</span><span class="brand"></span></div>
+  <div class="lead">ここまで、工程の順番に7社を見てきました</div>
+  <div class="stmt">次は、新NISAで、<br>この流れを<br><span class="em">まとめて持つ</span>なら。</div>
+</section>
+
+<!-- ========== p18_nisa（7枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 18：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 18 / 20</span><span class="bar"></span><span>新NISA</span></div>
+  <div class="numbox">18</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">新NISAで、<br>まとめて持つなら</div><div class="rule"></div><div class="desc">業種ごとのETFを3本</div></div>
+</section>
+
+<!-- ETFで
+【まとめて持つ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 18：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="lead">1社ずつ選ぶのは難しい、という方には</div>
+  <div class="stmt">ETFで<br><span class="em">まとめて持つ</span><br>方法があります。</div>
+  <div class="note">ETFは、株と同じように売り買いできる投資信託です。今回の7社のうち5社は、業種ごとに分かれた3本のETFに入っています。どれも野村アセットマネジメントのNEXT FUNDSで、新NISAの成長投資枠の対象です</div>
+</section>
+
+<!-- 業種ごとに分かれた3本 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 18：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="h-main">業種ごとに分かれた3本</div>
+  <div class="h-sub">信託報酬は、3本とも年0.352%です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">1625<br>電機・精密</div><div class="ctext">三菱電機とパナソニックが、それぞれ4%前後。純資産は約129億円で3本の中でいちばん大きく、売り買いもいちばん多い</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">1624<br>機械</div><div class="ctext">ダイキンが約10%。今回の企業への割合は3本の中でいちばん高い。ただ、純資産は約27億円と小さく、売り買いは少なめ</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">1619<br>建設・資材</div><div class="ctext">高砂熱学と日比谷総合設備で合わせて1.4%ほど。中心は大手のゼネコンや住宅の企業。工事の流れ全体に投資する1本</div></div>
+  </div>
+</section>
+
+<!-- 入っている企業の割合と、 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 18：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="lead">いちばん使いやすいのは、電機・精密のETF、証券コード1625です</div>
+  <div class="stmt">入っている企業の割合と、<br>売り買いのしやすさの<br><span class="em">バランス</span>が取れた1本です。</div>
+</section>
+
+<!-- ここで、お伝えしておくこ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 18：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="h-main">ここで、お伝えしておくことがあります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">データセンター<br>専用ではない</div><div class="ctext">電機、機械、建設という業種の全体に投資するので、ほかの企業の動きにも左右されます</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">八洲電機とIIJは<br>入っていない</div><div class="ctext">どの1本にも入っていません</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">純資産が小さい<br>ETFは指値で</div><div class="ctext">売り買いが少ないので、買うときは値段を決めて注文する指値を使ってください</div></div>
+  </div>
+</section>
+
+<!-- 積み立ての土台は、オルカ -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 18：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="h-main">積み立ての土台は、オルカンやS&amp;P500のままで構いません</div>
+  <div class="steps">
+    <div class="step s2"><div class="era">土台</div><div class="v">オルカン<br>S&amp;P500</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">成長投資枠の一部</div><div class="v">この流れに<br>寄せる</div></div>
+  </div>
+</section>
+
+<!-- 今どんな株を持っているか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 18：新NISAで、まとめて持つなら</span><span class="brand"></span></div>
+  <div class="lead">ここで</div>
+  <div class="stmt">今どんな株を持っているかで、<br><span class="em">見方</span>を分けておきます。</div>
+</section>
+
+<!-- ========== p19_mochikabu（7枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 19：今の持ち株で、どう見るか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 19 / 20</span><span class="bar"></span><span>持ち株</span></div>
+  <div class="numbox">19</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">今の持ち株で、<br>どう見るか</div><div class="rule"></div><div class="desc">決算をまたぐか、どこで見方を変えるか</div></div>
+</section>
+
+<!-- 株価の上げ下げより、
+大 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 19：今の持ち株で、どう見るか</span><span class="brand"></span></div>
+  <div class="lead">AI関連の半導体の株を持っている方は</div>
+  <div class="stmt">株価の上げ下げより、<br>大手4社の<span class="em">設備投資の見通し</span>を<br>見てください。</div>
+  <div class="note">次にそろって出てくるのは、2027年の1月から2月の決算です</div>
+</section>
+
+<!-- 信用取引で持っている方は -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 19：今の持ち株で、どう見るか</span><span class="brand"></span></div>
+  <div class="h-main">信用取引で持っている方は、追証が出る値段を自分で計算しておいてください</div>
+  <div class="chain">
+    <div class="node">いくらまで下がると<br>担保が足りなくなるか</div>
+    <div class="arr">→</div>
+    <div class="node">その手前で<br>入れられる現金は</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--blue);color:var(--blue);">慌てて売らされる<br>ことを避けやすく</div>
+  </div>
+</section>
+
+<!-- 全面安のあとは、良い決算 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 19：今の持ち株で、どう見るか</span><span class="brand"></span></div>
+  <div class="badge navy">ここで、僕の考えもお伝えしておきます｜今の相場で、決算をまたいで株を持つのは</div>
+  <div class="h-main">全面安のあとは、良い決算でも売られることがあります。さきほどの八洲電機が、その例です。僕なら、決算を見て、市場が落ち着いてから買うと思います</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">長期投資の方以外</div><div class="cap"></div><div class="big">危ない可能性<br>が高い</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">長期投資の方</div><div class="cap"></div><div class="big">絶好の買い場に<br>なるチャンス<br>かもしれない</div></div>
+  </div>
+</section>
+
+<!-- そして、見方を変えるべき -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 19：今の持ち株で、どう見るか</span><span class="brand"></span></div>
+  <div class="h-main">そして、見方を変えるべき場面が、2つあります</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">大手4社が</div><div class="ctext">設備投資の見通しを下げたとき</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">州の規制が</div><div class="ctext">新しく建てることだけでなく、今ある建物を広げることにまで及んだとき</div></div>
+  </div>
+</section>
+
+<!-- テキサスで何が決まるかは -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 19：今の持ち株で、どう見るか</span><span class="brand"></span></div>
+  <div class="h-main">テキサスで何が決まるかは、見ておく必要があります</div>
+  <div class="steps">
+    <div class="step s2"><div class="era">2027年1月12日</div><div class="v">州の議会が<br>始まる</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">1月19日</div><div class="v">新しい知事<br>が就く</div></div>
+  </div>
+</section>
+
+<!-- 今回の流れは
+【続く】と -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 19：今の持ち株で、どう見るか</span><span class="brand"></span></div>
+  <div class="lead">この2つが起きない限り</div>
+  <div class="stmt">今回の流れは<br><span class="em">続く</span>と<br>僕は見ています。</div>
+</section>
+
+<!-- ========== p20_shime（7枚） ========== -->
+<!-- 扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 20：最初の問いに戻ります</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 20 / 20</span><span class="bar"></span><span>答え</span></div>
+  <div class="numbox">20</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">最初の問いに<br>戻ります</div><div class="rule"></div><div class="desc">お金の行き先が変わる</div></div>
+</section>
+
+<!-- 僕の答えは、
+【慌てて離 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 20：締め</span><span class="brand"></span></div>
+  <div class="lead">株を売って、いったん離れたほうがいいのか</div>
+  <div class="stmt">僕の答えは、<br><span class="em">慌てて離れる必要はない</span>、<br>です。</div>
+  <div class="note">AIへの投資は止まっていません。変わったのは、お金の行き先です。その行き先に、日本の企業がいます</div>
+</section>
+
+<!-- 分けて聞いてください -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 20：締め</span><span class="brand"></span></div>
+  <div class="badge navy">これからAIの規制のニュースを聞いたときは</div>
+  <div class="h-main">分けて聞いてください</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">投資が</div><div class="cap"></div><div class="big">止まる話</div></div>
+    <div class="vsmark">？</div>
+    <div class="box left"><div class="name">お金の</div><div class="cap"></div><div class="big">行き先が<br>変わる話</div></div>
+  </div>
+</section>
+
+<!-- 僕のチャンネルの過去動画 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 20：締め</span><span class="brand"></span></div>
+  <div class="lead">電力株や光電融合株などの動画は</div>
+  <div class="stmt">僕のチャンネルの過去動画で<br><span class="em">かなり解説</span>してますので、<br>良ければご覧ください。</div>
+</section>
+
+<!-- 締め -->
+<section class="slide t-closing">
+  <div class="big">今回の動画は、以上です。</div>
+  <div class="sub">参考になったと思っていただけたら、高評価とチャンネル登録、そしてハイプボタンで応援していただけると、とても励みになります。</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span><span class="tg">⚡ ハイプボタン</span></div>
+</section>
+
+<!-- 少しでも参考になった点が -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 20：締め</span><span class="brand"></span></div>
+  <div class="lead">投資をするうえで</div>
+  <div class="stmt">少しでも参考になった点があれば、<br>ぜひ<span class="em">コメント欄</span>で<br>教えてください。</div>
+  <div class="note">皆さんの声を楽しみにしています</div>
+</section>
+
+<!-- 締め -->
+<section class="slide t-closing">
+  <div class="big">それではまた、次の動画でお会いしましょう。</div>
+  <div class="sub">ご視聴いただき、ありがとうございました。</div>
+</section>
+
+</body>
+</html>

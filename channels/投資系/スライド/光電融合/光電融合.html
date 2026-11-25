@@ -1,0 +1,3002 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>光電融合</title>
+<style>
+:root{
+  --navy:#13233f; --navy2:#1c3357; --ink:#0e1b30;
+  --orange:#e6912a; --orange2:#f2a847; --red:#b23b42; --red2:#c84b52;
+  --blue:#3f7fd6; --blue2:#5a96e6; --green:#2f8f6b; --gold:#c9a227;
+  --text:#222b38; --muted:#94a0ad;
+  --line:#e1e6ec; --graybox:#f1f4f8; --redbox:#fcf1f1; --redline:#e0a9ab; --bluebox:#eef4fb;
+  --shadow:0 10px 30px rgba(19,35,63,.10);
+  --shadow-sm:0 4px 14px rgba(19,35,63,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#3f444b;font-family:"Yu Gothic","YuGothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:30px;padding:48px 0;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+.slide{position:relative;width:1280px;height:720px;background:#fbfcfe;overflow:hidden;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.4);flex:0 0 auto;}
+.slide::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 55%,var(--orange) 100%);z-index:3;}
+
+/* header */
+.hdr{position:absolute;top:5px;left:0;right:0;height:48px;background:linear-gradient(180deg,#16294a 0%,#11203a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;z-index:2;border-bottom:1px solid rgba(255,255,255,.06);}
+.hdr .sec{font-size:15.5px;font-weight:700;letter-spacing:.04em;position:relative;padding-left:16px;}
+.hdr .sec::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:18px;border-radius:3px;background:var(--orange);}
+.hdr .brand{font-size:12.5px;color:#9fb0c6;letter-spacing:.42em;font-weight:600;}
+
+/* badges & headings */
+.badge{display:inline-block;background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;padding:11px 28px;border-radius:6px;box-shadow:0 6px 16px rgba(178,59,66,.28);text-transform:uppercase;}
+.badge.navy{background:linear-gradient(135deg,#1b3157 0%,#2a4a7e 100%);box-shadow:0 6px 16px rgba(19,35,63,.28);}
+.badge.orange{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);box-shadow:0 6px 16px rgba(230,145,42,.3);}
+.badge.blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);box-shadow:0 6px 16px rgba(63,127,214,.28);}
+.h-main{font-size:46px;font-weight:800;color:var(--navy);text-align:center;line-height:1.3;letter-spacing:.01em;}
+.h-sub{font-size:24px;color:var(--muted);text-align:center;font-weight:600;}
+.accent-red{color:var(--red);} .accent-orange{color:var(--orange);} .accent-navy{color:var(--navy);} .accent-blue{color:var(--blue);}
+
+/* footer bars */
+.foot-bar{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a2d4e 0%,#11203a 100%);color:#fff;text-align:center;padding:22px 24px;font-size:25px;font-weight:700;line-height:1.5;letter-spacing:.01em;}
+.foot-bar .em{color:var(--orange2);}
+.foot-note{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:23px;color:#aeb6c0;font-weight:600;}
+
+/* ===== title / hook ===== */
+.t-title{background:radial-gradient(120% 120% at 80% 0%,#274made 0%,transparent 60%),linear-gradient(155deg,#13233f 0%,#1f3ب66 55%,#24477d 100%);background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px;}
+.t-title .kicker{font-size:24px;letter-spacing:.34em;color:#8fb4e6;font-weight:700;margin-bottom:30px;padding:9px 26px;border:1px solid rgba(143,180,230,.4);border-radius:30px;}
+.t-title .big{font-size:74px;font-weight:800;line-height:1.26;letter-spacing:.01em;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-title .big .em{color:var(--orange2);}
+.t-title .lead{font-size:28px;color:#c6d2e2;margin-top:36px;font-weight:600;line-height:1.6;}
+.t-title .brandtag{position:absolute;bottom:42px;font-size:15px;letter-spacing:.45em;color:#7e8aa0;}
+
+/* ===== section divider ===== */
+.t-section{background:linear-gradient(180deg,#fbfcfe 0%,#eef2f8 100%);}
+.t-section .topic{position:absolute;top:100px;left:64px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);color:#fff;border-radius:10px;padding:16px 36px;font-size:27px;font-weight:800;display:flex;align-items:center;gap:22px;box-shadow:0 10px 24px rgba(63,127,214,.3);}
+.t-section .topic .bar{width:42px;height:3px;background:rgba(255,255,255,.7);display:inline-block;border-radius:2px;}
+.t-section .numbox{position:absolute;top:212px;left:96px;width:236px;height:226px;background:linear-gradient(150deg,#1b3157 0%,#11203a 100%);border-radius:22px;color:#fff;font-size:140px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(19,35,63,.32);}
+.t-section .numbox::after{content:"";position:absolute;inset:0;border-radius:22px;border:1px solid rgba(255,255,255,.08);}
+.t-section .stitle{position:absolute;left:376px;top:228px;right:64px;}
+.t-section .stitle .label{font-size:22px;letter-spacing:.45em;color:#9aa4b2;font-weight:700;}
+.t-section .stitle .ttl{font-size:60px;font-weight:800;color:var(--navy);margin-top:8px;line-height:1.18;letter-spacing:.01em;}
+.t-section .stitle .rule{width:64px;height:5px;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:3px;margin:22px 0;}
+.t-section .stitle .desc{font-size:24px;color:#9aa4b2;font-weight:600;}
+
+/* ===== agenda / list ===== */
+.t-agenda{padding:58px 76px 104px;display:flex;flex-direction:column;justify-content:center;}
+.t-agenda.center{padding-top:58px;}
+.t-agenda .h-main{margin:0 0 24px;}
+.t-agenda .rows{display:flex;flex-direction:column;gap:13px;}
+.t-agenda .row{display:flex;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:13px;padding:17px 28px;box-shadow:var(--shadow-sm);}
+.t-agenda .row .no{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,#1b3157,#11203a);color:#fff;font-size:21px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 10px rgba(19,35,63,.25);}
+.t-agenda .row .t{font-size:28px;font-weight:800;color:var(--navy);min-width:360px;}
+.t-agenda .row .d{font-size:21px;color:var(--muted);font-weight:600;}
+.t-agenda .row .d::before{content:"";display:inline-block;width:18px;height:2px;background:#cdd4dc;vertical-align:middle;margin-right:13px;}
+.t-agenda .cta{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:20px;font-size:26px;font-weight:800;letter-spacing:.02em;}
+
+/* ===== VS compare ===== */
+.t-vs{padding:50px 66px 0;}
+.t-vs .badge,.t-cards .badge,.t-stats .badge{display:inline-block;margin:0 0 16px;}
+.t-vs .h-main{margin:0 0 32px;}
+.t-vs .h-sub{margin:-22px 0 32px;}
+.t-vs .cols{display:flex;align-items:stretch;justify-content:center;}
+.t-vs .box{width:478px;background:#fff;border:1px solid var(--line);border-top:6px solid #9aa6b5;border-radius:14px;padding:42px 32px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+.t-vs .box.left{border-top-color:#8a97a8;}
+.t-vs .box.right{background:linear-gradient(180deg,#fff,#fdf4f4);border-top-color:var(--red);}
+.t-vs .box.bluebox{background:linear-gradient(180deg,#fff,#f3f8fe);border-top-color:var(--blue);}
+.t-vs .box .name{font-size:32px;font-weight:800;color:#56616e;}
+.t-vs .box.right .name{color:var(--red);} .t-vs .box.bluebox .name{color:var(--blue);}
+.t-vs .box .cap{font-size:20px;color:#9aa3ad;margin-top:18px;}
+.t-vs .box .big{font-size:46px;font-weight:800;color:var(--navy);margin-top:2px;}
+.t-vs .box.right .big{color:var(--red);} .t-vs .box.bluebox .big{color:var(--blue);}
+.t-vs .box .div{height:1px;background:#e4e8ee;margin:26px 0;}
+.t-vs .box .small{font-size:19px;color:#9aa3ad;}
+.t-vs .box .strong{font-size:28px;font-weight:800;color:#37404d;margin-top:4px;}
+.t-vs .vsmark{display:flex;align-items:center;justify-content:center;align-self:center;font-size:26px;font-weight:800;color:var(--navy);margin:0 20px;flex:0 0 auto;width:66px;height:66px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+
+/* ===== 3 cards ===== */
+.t-cards{padding:48px 54px 0;}
+.t-cards .h-main{margin:0 0 8px;}
+.t-cards .h-sub{margin-bottom:28px;}
+.t-cards .grid{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-cards .grid.g2{padding:0 70px;}
+.t-cards .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:42px 26px 42px;text-align:center;position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.t-cards .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;}
+.t-cards .card.c1::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.t-cards .card.c2::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-cards .card.c3::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.t-cards .card.c4::before{background:linear-gradient(90deg,var(--green),#3fae84);}
+.t-cards .card .cno{width:62px;height:62px;border-radius:18px;color:#fff;font-size:25px;font-weight:800;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(19,35,63,.16);}
+.t-cards .c1 .cno{background:linear-gradient(150deg,var(--red),var(--red2));} .t-cards .c2 .cno{background:linear-gradient(150deg,var(--orange),var(--orange2));} .t-cards .c3 .cno{background:linear-gradient(150deg,var(--blue),var(--blue2));} .t-cards .c4 .cno{background:linear-gradient(150deg,var(--green),#3fae84);}
+.t-cards .card .ctitle{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:.01em;}
+.t-cards .c1 .ctitle{color:var(--red);} .t-cards .c2 .ctitle{color:#cf820f;} .t-cards .c3 .ctitle{color:var(--blue);} .t-cards .c4 .ctitle{color:var(--green);}
+.t-cards .card .ctext{font-size:21px;color:#69727c;line-height:1.6;font-weight:600;}
+
+/* ===== stats 3col ===== */
+.t-stats{padding:58px 54px 0;}
+.t-stats .h-main{margin-bottom:8px;}
+.t-stats .h-sub{font-size:22px;margin-bottom:32px;}
+.t-stats .cols{display:flex;gap:26px;justify-content:center;align-items:stretch;}
+.t-stats .col{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.t-stats .col .top{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);color:#fff;text-align:center;padding:18px;}
+.t-stats .col.cblue .top{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-stats .col.cnavy .top{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stats .col .top .nm{font-size:27px;font-weight:800;} .t-stats .col .top .cd{font-size:18px;opacity:.9;}
+.t-stats .col .body{padding:34px 16px 36px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.t-stats .col .lbl{font-size:20px;color:#7a828c;font-weight:600;}
+.t-stats .col .val{font-size:48px;font-weight:800;color:var(--navy);margin:4px 0 20px;}
+.t-stats .col .val2{font-size:40px;font-weight:800;color:#cf820f;margin:4px 0 12px;}
+.t-stats .col.cblue .val2{color:var(--blue);} .t-stats .col.cnavy .val2{color:var(--navy);}
+.t-stats .col .tag{font-size:18px;color:#fff;font-weight:800;background:#cf820f;display:inline-block;padding:6px 20px;border-radius:20px;} .t-stats .col.cblue .tag{background:var(--blue);} .t-stats .col.cnavy .tag{background:var(--navy);}
+
+/* ===== text-centric ===== */
+.t-text{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 100px 0;}
+.t-text .lead{font-size:27px;color:#69727c;font-weight:600;margin-bottom:30px;line-height:1.6;position:relative;padding-top:26px;}
+.t-text .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.t-text .stmt{font-size:54px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:.01em;}
+.t-text .stmt .em{color:#d6850f;} .t-text .stmt .emr{color:var(--red);}
+.t-text .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:36px;line-height:1.7;}
+
+/* ===== flow / chain ===== */
+.t-flow{padding:66px 56px 0;}
+.t-flow .h-main{margin:28px 0 50px;}
+.t-flow .chain{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.t-flow .node{background:#fff;border:1px solid var(--line);border-bottom:5px solid #aeb8c4;border-radius:16px;padding:30px 28px;font-size:27px;font-weight:800;color:var(--navy);text-align:center;min-width:200px;line-height:1.4;box-shadow:var(--shadow-sm);}
+.t-flow .node.danger{background:linear-gradient(180deg,#fff,#fdf3f3);border-bottom-color:var(--red);color:var(--red);}
+.t-flow .arr{font-size:40px;color:#b6bec8;padding:0 18px;font-weight:800;}
+.t-flow .release{margin-top:56px;text-align:center;font-size:30px;font-weight:800;color:var(--green);background:linear-gradient(180deg,#f0faf5,#e6f6ee);display:inline-block;padding:18px 40px;border-radius:40px;border:1px solid #bfe6d3;width:fit-content;margin-left:auto;margin-right:auto;}
+.t-flow{display:flex;flex-direction:column;justify-content:center;}
+.t-flow .release{align-self:center;}
+
+/* ===== numeric ranking list ===== */
+.t-rank{padding:56px 76px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-rank .badge,.t-rank .gtag{position:absolute;}
+.t-rank .h-main{font-size:38px;margin:36px 0 14px;}
+.t-rank .h-sub{margin-bottom:26px;font-size:21px;}
+.t-rank .rows{display:flex;flex-direction:column;gap:13px;}
+.t-rank .row{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:12px;padding:18px 28px;box-shadow:var(--shadow-sm);}
+.t-rank .row .nm{font-size:26px;font-weight:800;color:var(--navy);flex:1;}
+.t-rank .row .pct{font-size:33px;font-weight:800;color:#c0392b;min-width:160px;text-align:right;}
+.t-rank .row .pct.up{color:#c0392b;}
+.t-rank .gtag{display:inline-block;font-size:17px;font-weight:800;color:#fff;padding:8px 20px;border-radius:24px;box-shadow:var(--shadow-sm);}
+
+/* ===== portfolio bars ===== */
+.t-port{padding:60px 80px 0;display:flex;flex-direction:column;justify-content:center;}
+.t-port .h-main{margin-bottom:44px;}
+.t-port .bars{display:flex;flex-direction:column;gap:28px;max-width:1000px;margin:0 auto;width:100%;}
+.t-port .brow{display:flex;align-items:center;gap:22px;}
+.t-port .brow .lab{font-size:26px;font-weight:800;color:var(--navy);width:250px;}
+.t-port .brow .track{flex:1;height:54px;background:#e9edf2;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:inset 0 2px 5px rgba(19,35,63,.06);}
+.t-port .brow .fill{height:100%;border-radius:12px;box-shadow:0 4px 12px rgba(19,35,63,.18);flex:0 0 auto;}
+.t-port .brow .pval{font-size:22px;font-weight:800;color:var(--navy);padding-left:16px;white-space:nowrap;}
+.t-port .f-cash{background:linear-gradient(135deg,#79838f,#929cа8);background:linear-gradient(135deg,#79838f,#929ca8);} .t-port .f-idx{background:linear-gradient(135deg,var(--blue),var(--blue2));} .t-port .f-jp{background:linear-gradient(135deg,var(--orange),var(--orange2));} .t-port .f-gold{background:linear-gradient(135deg,#c9a227,#dcb84a);}
+
+/* ===== closing ===== */
+.t-closing{background:radial-gradient(130% 130% at 85% -10%,#2b5290 0%,transparent 55%),linear-gradient(155deg,#10203a 0%,#1c3357 60%,#21426f 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.t-closing .big{font-size:56px;font-weight:800;line-height:1.38;text-shadow:0 4px 24px rgba(0,0,0,.25);}
+.t-closing .big .em{color:var(--orange2);}
+.t-closing .sub{font-size:27px;color:#c6d2e2;margin-top:32px;font-weight:600;}
+.t-closing .tags{margin-top:46px;display:flex;gap:20px;}
+.t-closing .tg{border:1.5px solid rgba(143,180,230,.6);background:rgba(143,180,230,.08);border-radius:40px;padding:15px 34px;font-size:25px;font-weight:800;color:#dbe7f5;}
+
+/* ===== number visual (共通) ===== */
+.numviz{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 80px 0;}
+.numviz .lead{font-size:26px;color:#69727c;font-weight:600;margin-bottom:6px;position:relative;padding-top:26px;}
+.numviz .lead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.numviz .h-main{margin:18px 0 44px;}
+.numviz .note{font-size:24px;color:#7a828c;font-weight:600;margin-top:44px;line-height:1.7;}
+
+/* big-number metrics */
+.metrics{display:flex;gap:34px;justify-content:center;align-items:stretch;}
+.metric{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:18px;box-shadow:var(--shadow);padding:40px 56px 42px;min-width:400px;}
+.metric.blue{border-top-color:var(--blue);} .metric.navy{border-top-color:var(--navy);} .metric.up{border-top-color:#c0392b;}
+.metric .mlbl{font-size:24px;color:#56616e;font-weight:800;}
+.metric .mfig{font-size:104px;font-weight:800;line-height:1.04;margin:10px 0 8px;color:var(--blue);letter-spacing:.01em;}
+.metric.navy .mfig{color:var(--navy);} .metric.up .mfig{color:#c0392b;}
+.metric .mfig .u{font-size:52px;font-weight:800;}
+.metric .msub{font-size:23px;color:#7a828c;font-weight:700;}
+.metric.hero{padding:48px 80px 50px;}
+.metric.hero .mfig{font-size:150px;}
+.metric.hero .mfig .u{font-size:68px;}
+
+/* proportion bar */
+.t-prop .pbar{display:flex;width:1080px;height:150px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-prop .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-prop .seg.main{background:linear-gradient(135deg,#1b3157,#2a4a7e);width:40%;}
+.t-prop .seg.rest{background:#e6ebf1;color:#69727c;flex:1;}
+.t-prop .seg .p{font-size:50px;font-weight:800;line-height:1;}
+.t-prop .seg .l{font-size:21px;font-weight:700;margin-top:10px;opacity:.92;}
+
+/* before / after (fx) */
+.t-fx{padding-left:40px;padding-right:40px;}
+.t-fx .row{display:flex;align-items:center;justify-content:center;gap:18px;}
+.t-fx .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 30px;min-width:0;}
+.t-fx .card .c-l{font-size:21px;color:#7a828c;font-weight:700;}
+.t-fx .card .c-v{font-size:48px;font-weight:800;color:var(--navy);margin-top:8px;white-space:nowrap;}
+.t-fx .arr{font-size:40px;color:#b6bec8;font-weight:800;flex:0 0 auto;}
+.t-fx .result{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:16px;padding:30px 38px;box-shadow:0 12px 26px rgba(178,59,66,.32);}
+.t-fx .result .r-l{font-size:21px;font-weight:700;opacity:.92;}
+.t-fx .result .r-v{font-size:58px;font-weight:800;margin-top:4px;white-space:nowrap;}
+
+/* ===== steps (ascending progression) ===== */
+.t-steps{display:flex;flex-direction:column;justify-content:center;padding:60px 70px 0;}
+.t-steps .h-main{margin:0 0 56px;}
+.t-steps .steps{display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+.t-steps .step{flex:0 0 auto;width:300px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);text-align:center;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-start;}
+.t-steps .step.s1{height:190px;border-top-color:#9aa6b5;}
+.t-steps .step.s2{height:250px;border-top-color:var(--blue);}
+.t-steps .step.s3{height:320px;border-top-color:var(--orange);}
+.t-steps .step .era{font-size:21px;color:#7a828c;font-weight:700;margin-bottom:12px;}
+.t-steps .step .v{font-size:50px;font-weight:800;color:var(--navy);}
+.t-steps .step.s3 .v{color:#d6850f;}
+.t-steps .sarr{display:flex;align-items:flex-end;padding-bottom:60px;font-size:40px;color:#b6bec8;font-weight:800;}
+
+/* ===== number line ===== */
+.t-numline{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-numline .h-main{margin:0 0 30px;}
+.t-numline .scale{position:relative;height:180px;margin:0 100px;}
+.t-numline .scale::before{content:"";position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);background:linear-gradient(90deg,#9bc0ee 0%,#cfe0f6 30%,#f2d3a0 62%,#e8b4b6 100%);border-radius:7px;}
+.t-numline .mk{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.t-numline .mk .val{font-size:30px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.t-numline .mk .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);margin:16px 0;z-index:1;}
+.t-numline .mk .lab{font-size:19px;font-weight:700;color:#7a828c;white-space:nowrap;}
+
+/* ===== stacked bar ===== */
+.t-stack{display:flex;flex-direction:column;justify-content:center;padding:60px 80px 0;}
+.t-stack .h-main{margin:0 0 12px;}
+.t-stack .h-sub{margin-bottom:46px;}
+.t-stack .sbar{display:flex;height:120px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.t-stack .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;}
+.t-stack .seg.a{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.t-stack .seg.b{background:linear-gradient(135deg,var(--blue),var(--blue2));}
+.t-stack .seg.c{background:linear-gradient(135deg,#1b3157,#2a4a7e);}
+.t-stack .seg .sn{font-size:25px;font-weight:800;}
+.t-stack .seg .sv{font-size:23px;font-weight:700;opacity:.96;margin-top:6px;}
+.t-stack .total{text-align:center;margin-top:40px;font-size:30px;font-weight:800;color:var(--navy);}
+.t-stack .total .em{color:#d6850f;font-size:46px;}
+
+/* ===== vertical bars compare ===== */
+.t-vbars{display:flex;flex-direction:column;justify-content:center;padding:50px 80px 96px;}
+.t-vbars .h-main{margin:0 0 12px;}
+.t-vbars .h-sub{margin-bottom:30px;}
+.t-vbars .vcols{display:flex;align-items:flex-end;justify-content:center;gap:90px;height:340px;}
+.t-vbars .vb{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.t-vbars .vb .bar{width:170px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue));box-shadow:0 10px 24px rgba(63,127,214,.25);display:flex;align-items:flex-start;justify-content:center;color:#fff;font-weight:800;font-size:32px;padding-top:18px;}
+.t-vbars .vb.orange .bar{background:linear-gradient(180deg,var(--orange2),var(--orange));box-shadow:0 10px 24px rgba(230,145,42,.25);}
+.t-vbars .vb .cap{margin-top:18px;font-size:23px;font-weight:800;color:var(--navy);text-align:center;}
+.t-vbars .vb .sub{font-size:19px;color:#7a828c;font-weight:600;margin-top:4px;}
+
+/* ===== industry chips map ===== */
+.t-chips{display:flex;flex-direction:column;justify-content:center;padding:56px 60px 0;}
+.t-chips .h-main{margin:0 0 12px;}
+.t-chips .h-sub{margin-bottom:32px;}
+.t-chips .groups{display:flex;gap:24px;justify-content:center;align-items:stretch;}
+.t-chips .grp{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px 28px;text-align:center;}
+.t-chips .grp.g-a{border-top:6px solid var(--blue);} .t-chips .grp.g-b{border-top:6px solid var(--orange);} .t-chips .grp.g-c{border-top:6px solid var(--green);}
+.t-chips .grp .gh{font-size:23px;font-weight:800;margin-bottom:18px;}
+.t-chips .grp.g-a .gh{color:var(--blue);} .t-chips .grp.g-b .gh{color:#cf820f;} .t-chips .grp.g-c .gh{color:var(--green);}
+.t-chips .chip{display:inline-block;margin:6px;padding:11px 18px;border-radius:26px;background:#eef2f7;color:var(--navy);font-size:19px;font-weight:700;}
+
+@page{size:1280px 720px;margin:0;}
+@media print{
+  html,body{background:#fff;padding:0;margin:0;gap:0;}
+  .slide{width:1280px;height:720px;box-shadow:none;border-radius:0;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide:last-child{page-break-after:auto;}
+}
+
+/* ===== 光電融合デッキ固有の追加（keizai-slide の style.css は触らない） ===== */
+
+/* ユーザー作成画像を1枚そのまま置く型。帯も線も出さない（画像の見出しを隠さないため） */
+.t-image{padding:0;background:#0d1626;display:flex;align-items:center;justify-content:center;}
+.t-image::after{display:none;}
+.t-image img{width:100%;height:100%;object-fit:contain;display:block;}
+
+/* ===== 見出しがヘッダー帯（53px）に食い込む型の上余白を足す =====
+   t-cards 48px / t-vs 50px / t-stats 58px は、中身が上寄せで
+   padding-top がそのまま開始位置になるため、見出しが帯に重なる。
+   （t-text・t-flow・numviz・t-agenda・t-numline・t-steps は縦中央寄せなので対象外） */
+.t-cards{padding-top:76px;}
+.t-vs{padding-top:74px;}
+.t-stats{padding-top:76px;}
+
+</style>
+</head>
+<body>
+
+<!-- ========== p01_intro ========== -->
+<!-- 001 タイトル -->
+<section class="slide t-title">
+  <div class="kicker">AI時代の電力問題と、部材を握る日本企業</div>
+  <div class="big">光電融合の成長で、<span class="em">日本株</span>が<br>さらに上昇するかもしれません</div>
+  <div class="lead">会社四季報の秋号と決算を読んだうえで、9社を解説します</div>
+</section>
+
+<!-- 002 なぜ光電融合が出てきたか -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="h-main">AI時代には、電力が足りなくなります</div>
+  <div class="chain">
+    <div class="node">AIを動かす<br>コンピューターが<br>増え続ける</div>
+    <div class="arr">→</div>
+    <div class="node danger">電力が<br>足りなくなる</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">光電融合</div>
+  </div>
+  <div class="release">その電力不足を解決するために出てきたのが、<span style="color:#cf820f">光電融合</span>です</div>
+</section>
+
+<!-- 003 誰に関係があるか -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="h-main">どちらの方にも、関係のある話です</div>
+  <div class="h-sub">光電融合は、AI半導体を増やし続けるために出てきた技術だからです</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">AI半導体株を<br>持っている方</div><div class="ctext">光電融合は、AI半導体が終わる話ではありません</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">積み立て投資を<br>されている方</div><div class="ctext">持ち方のところで、新NISAの枠の話もします</div></div>
+  </div>
+  <div class="foot-bar">AIを動かすコンピューターを、これから先も増やし続けるために、<span class="em">欠かせない技術</span>だからです</div>
+</section>
+
+<!-- 004 市場規模 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">光電融合の市場（2025年 → 2030年）</div>
+  <div class="h-main">5年で、市場が大きく伸びる予測</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">2025年から2030年の5年で</div>
+      <div class="mfig">約 70<span class="u">倍</span></div>
+      <div class="msub">2030年に 1兆2,800億円 になる予測</div>
+    </div>
+  </div>
+</section>
+
+<!-- 005 日本企業はもう動いている -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="h-main">そして、日本の企業は、もう動いています</div>
+  <div class="h-sub">4月、6月、1月。それぞれ、はっきりした動きがありました</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">4月</div><div class="ctitle">専門チームを<br>立ち上げた企業</div><div class="ctext">光電融合の専門チームを社内に新しく作った</div></div>
+    <div class="card c2"><div class="cno">6月</div><div class="ctitle">売上を2倍に<br>すると発表した企業</div><div class="ctext">半導体の売上を、2030年までに倍にする</div></div>
+    <div class="card c3"><div class="cno">1月</div><div class="ctitle">サンプル出荷を<br>始めた企業</div><div class="ctext">新しい部材を、量産の前に顧客へ出し始めた</div></div>
+  </div>
+  <div class="foot-bar">そして、株価も、<span class="em">先に動いています</span></div>
+</section>
+
+<!-- 006 迷い -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに</span><span class="brand"></span></div>
+  <div class="lead">ここで、こう思われるかもしれません</div>
+  <div class="stmt">株価がもう上がっているなら、<br>いまから投資するのは<span class="emr">遅い</span>んじゃないか。</div>
+  <div class="note">今回は、この判断に決着をつけます</div>
+</section>
+
+<!-- 007 結論 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">はじめに：今回の結論</span><span class="brand"></span></div>
+  <div class="lead">結論から、先にお伝えします</div>
+  <div class="stmt"><span class="em">遅くはありません。</span><br>むしろ、まだ<span class="em">早いくらい</span>です。</div>
+  <div class="note">光電融合に欠かせない部材の量産は、2028年か29年です</div>
+</section>
+
+<!-- 008 量産はまだ先 -->
+<section class="slide t-numline">
+  <div class="hdr"><span class="sec">はじめに：今回の結論</span><span class="brand"></span></div>
+  <div class="h-main">作る企業のほとんどが、まだ量産の手前にいます</div>
+  <div class="scale">
+    <div class="mk" style="left:12%"><div class="val">研究</div><div class="dot"></div><div class="lab">仕組みを作る</div></div>
+    <div class="mk" style="left:45%"><div class="val" style="color:#d6850f">試作</div><div class="dot" style="background:#d6850f"></div><div class="lab">顧客に試してもらう</div></div>
+    <div class="mk" style="left:84%"><div class="val" style="color:var(--blue)">量産</div><div class="dot" style="background:var(--blue)"></div><div class="lab">2028年か29年</div></div>
+  </div>
+  <div class="foot-note">だから、いまから投資するのは遅くない</div>
+</section>
+
+<!-- 009 2つに分かれる -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">はじめに：見方</span><span class="brand"></span></div>
+  <div class="badge navy">ただし</div>
+  <div class="h-main">同じ光電融合でも、2つに分かれます</div>
+  <div class="cols">
+    <div class="box left"><div class="name">1つ目</div><div class="cap">今の利益に</div><div class="big">入っている</div><div class="div"></div><div class="small">光の部品の需要が、すでに今の利益に入っている企業</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">2つ目</div><div class="cap">今の利益には</div><div class="big">これから</div><div class="div"></div><div class="strong">光の需要は、これから入ってくる企業</div></div>
+  </div>
+  <div class="foot-note">同じ「光電融合の銘柄」でも、中身はこれだけ違います</div>
+</section>
+
+<!-- 010 見るべき3つ -->
+<section class="slide t-agenda" style="padding-bottom:58px">
+  <div class="hdr"><span class="sec">はじめに：見方</span><span class="brand"></span></div>
+  <div class="h-main">見るべきなのは、この3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">どの部材を作る企業か</span><span class="d">土台・光の通り道・光を出す部品・材料・検査</span></div>
+    <div class="row"><span class="no">2</span><span class="t">今の利益に、光の需要が入っているか</span><span class="d">決算の部門の数字に、もう出ているかどうか</span></div>
+    <div class="row"><span class="no">3</span><span class="t">研究、試作、量産の、どの段階か</span><span class="d">言葉が「量産」「売上」に変わる瞬間がある</span></div>
+  </div>
+</section>
+
+<!-- 011 話す順番 -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">今日お話しすること</span><span class="brand"></span></div>
+  <div class="h-main">お話しする順番は、3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">なぜAIに光が欠かせないのか</span><span class="d">電力と熱の壁と、いま出てきた実物</span></div>
+    <div class="row"><span class="no">2</span><span class="t">どう作られて、日本のどこが強いのか</span><span class="d">作る順番と、その中での日本企業の居場所</span></div>
+    <div class="row"><span class="no">3</span><span class="t">そして、どう持つか</span><span class="d">個別株の持ち方と、新NISAで積み立てる方へ</span></div>
+  </div>
+  <div class="cta">会社四季報の秋号と決算を読んだうえで、9社を解説します</div>
+</section>
+
+<!-- 012 顔ぶれと約束 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">今日お話しすること</span><span class="brand"></span></div>
+  <div class="lead">ガラスの企業や印刷の企業から、電線の企業、総合電機の企業、検査装置の企業まで</div>
+  <div class="stmt">まだあまり<span class="em">注目されていない企業</span>も、<br>あるかもしれません。</div>
+  <div class="note">見終わるころには、どの部材を作る企業か、今の利益に入っているかで、<br>光電融合の銘柄を見分けられる状態になっているはずです</div>
+</section>
+
+<!-- ========== p02_tema ========== -->
+<!-- 013 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 1：一度冷めたテーマに、実物が出てきました</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 1 / 9</span><span class="bar"></span><span>なぜAIに光が欠かせないのか</span></div>
+  <div class="numbox">01</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">一度冷めたテーマに、<br>実物が出てきました</div><div class="rule"></div><div class="desc">なぜAIに光が欠かせないのか</div></div>
+</section>
+
+<!-- 014 構造を理解しないと -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：なぜ光が要るのか</span><span class="brand"></span></div>
+  <div class="lead">早く儲かる銘柄を教えてほしい、と思う方もいると思います</div>
+  <div class="stmt">ただ、構造を理解しないと、<br><span class="em">株で儲けることはできません。</span></div>
+  <div class="note">名前を聞いても、どれを、どの段階で持てばいいのか、判断できないからです</div>
+</section>
+
+<!-- 015 考え方から -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：なぜ光が要るのか</span><span class="brand"></span></div>
+  <div class="lead">だから先に、銘柄の名前ではなく</div>
+  <div class="stmt"><span class="em">ジャンジャン儲かるための考え方</span>の<br>ほうを解説します。</div>
+</section>
+
+<!-- 016 CPOとは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：CPOとは</span><span class="brand"></span></div>
+  <div class="lead">その考え方の中心にあるもの</div>
+  <div class="stmt">計算するチップのすぐ隣に、<br><span class="em">光の部品</span>を置く技術。</div>
+  <div class="note">名前は、CPOです</div>
+</section>
+
+<!-- 017 光電融合とCPOの関係 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：CPOとは</span><span class="brand"></span></div>
+  <div class="lead">光電融合という大きな流れの中で</div>
+  <div class="stmt">いま<span class="em">製品化がいちばん進んでいる</span>技術の<br>1つが、このCPOです。</div>
+  <div class="note">今日解説する9社が狙っているのも、このCPOに使う部材です</div>
+</section>
+
+<!-- 018 AIの話から -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：なぜ光が要るのか</span><span class="brand"></span></div>
+  <div class="lead">では、CPOとは何で、なぜ要るのか。AIの話から入ります</div>
+  <div class="stmt">いまのAIは、<span class="em">何千、何万というGPU</span>を<br>つないで動かしています。</div>
+  <div class="note">データセンター全体を、1台の巨大なコンピューターのように動かしています</div>
+</section>
+
+<!-- 019 通信が詰まる -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：なぜ光が要るのか</span><span class="brand"></span></div>
+  <div class="h-main">ところが、GPUを増やすほど問題になるのが通信です</div>
+  <div class="chain">
+    <div class="node">GPUを<br>増やす</div>
+    <div class="arr">→</div>
+    <div class="node">計算の力は<br>上がる</div>
+    <div class="arr">→</div>
+    <div class="node danger">GPU同士をつなぐ<br>通信が詰まる</div>
+  </div>
+  <div class="release" style="color:var(--red);background:linear-gradient(180deg,#fdf3f3,#fbeaea);border-color:#e0a9ab;">通信が詰まれば、性能を引き出せません</div>
+</section>
+
+<!-- 020 長い距離と、チップの周り -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：なぜ光が要るのか</span><span class="brand"></span></div>
+  <div class="h-main">データセンターの中で、光と電気は分かれています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">長い距離</div><div class="cap">装置と装置をつなぐ</div><div class="big">光ファイバー</div><div class="div"></div><div class="small">すでに光で運んでいる</div></div>
+    <div class="vsmark">／</div>
+    <div class="box right"><div class="name">短い距離</div><div class="cap">チップの周りや基板の中</div><div class="big">電気の配線</div><div class="div"></div><div class="strong">まだ電気が残っている</div></div>
+  </div>
+  <div class="foot-note">残っている電気の部分が、これから問題になります</div>
+</section>
+
+<!-- 021 光電融合の定義 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：なぜ光が要るのか</span><span class="brand"></span></div>
+  <div class="h-main">通信が速くなるほど、電力と熱が増えていきます</div>
+  <div class="chain">
+    <div class="node">通信が<br>速くなる</div>
+    <div class="arr">→</div>
+    <div class="node danger">電気の部分で<br>電力と熱が増える</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">データを運ぶ部分を<br>電気から光へ</div>
+  </div>
+  <div class="release">これが、<span style="color:#cf820f">光電融合</span>です</div>
+</section>
+
+<!-- 022 【画像01】いまのネットワークスイッチ -->
+<section class="slide t-image"><img src="img/img01.png" alt=""></section>
+
+<!-- 023 【画像02】CPO -->
+<section class="slide t-image"><img src="img/img02.png" alt=""></section>
+
+<!-- 024 どこが動いているか -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：いま動いている企業</span><span class="brand"></span></div>
+  <div class="h-main">製品は、出始めたばかりです</div>
+  <div class="h-sub">完成品を作る側と、その中身の部材を作る側で、国が分かれています</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">米</div><div class="ctitle">アメリカ</div><div class="ctext">NVIDIAとブロードコム</div></div>
+    <div class="card c2"><div class="cno">台</div><div class="ctitle">台湾</div><div class="ctext">TSMC</div></div>
+    <div class="card c3"><div class="cno">日</div><div class="ctitle">日本</div><div class="ctext">光を作る三菱電機、土台を作るDNP、光の通り道を作るAGCなど</div></div>
+  </div>
+  <div class="foot-bar">日本は、装置そのものではなく<span class="em">中身の部材</span>の側にいます</div>
+</section>
+
+<!-- 025 部材を握るのはこれから -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：いま動いている企業</span><span class="brand"></span></div>
+  <div class="lead">AIのコンピューターが増え続けるほど、光でデータを運ぶ重要性は高まります</div>
+  <div class="stmt">どの企業がその部材を握るかは、<br><span class="em">まだこれから</span>です。</div>
+  <div class="note">投資として見るなら、ここがチャンスです</div>
+</section>
+
+<!-- 026 その前に株価を見る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：いまの株価</span><span class="brand"></span></div>
+  <div class="lead">では、そのCPOを作るのに、どんな部材が必要なのか。日本企業がどこにいるのか</div>
+  <div class="stmt">その前に、<span class="em">光電融合の株が<br>いまどうなっているのか</span>を見ます。</div>
+</section>
+
+<!-- 027 IOWNとNTT -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：夏の高値を超えていない理由</span><span class="brand"></span></div>
+  <div class="lead">NTTが2019年に打ち出した、通信網そのものを電気から光に置き換える計画、IOWN</div>
+  <div class="stmt">光電融合という言葉は、何年も前から<br>ニュースに出ていました。</div>
+  <div class="note">だから、光電融合イコールNTT、と思っている方が多いはずです</div>
+</section>
+
+<!-- 028 海外から見た日本の強み -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：夏の高値を超えていない理由</span><span class="brand"></span></div>
+  <div class="badge navy">ところが</div>
+  <div class="h-main">海外から見た日本の強みは、NTTではありません</div>
+  <div class="cols">
+    <div class="box left"><div class="name">思われている側</div><div class="cap">光電融合といえば</div><div class="big">NTT</div><div class="div"></div><div class="small">通信網を光に置き換える計画</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">実際に名前がある側</div><div class="cap">NVIDIAが公表した供給網</div><div class="big">部材を納める企業</div><div class="div"></div><div class="strong">電線を作っている企業です</div></div>
+  </div>
+  <div class="foot-note">なぜその企業が入っているのかは、3社の話のあとでお伝えします</div>
+</section>
+
+<!-- 029 装置ではなく部材 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：夏の高値を超えていない理由</span><span class="brand"></span></div>
+  <div class="lead">NVIDIAが公表した、チップの隣に光を置く装置の供給網に、日本の企業の名前が入っています</div>
+  <div class="stmt">装置そのものではなく、<br>装置を作るのに欠かせない<span class="em">材料や土台</span>。</div>
+  <div class="note">つまり、部材を納める側です</div>
+</section>
+
+<!-- 030 製品がいつ出るか分からなかった -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：夏の高値を超えていない理由</span><span class="brand"></span></div>
+  <div class="lead">話を戻します</div>
+  <div class="stmt">IOWNの発表から何年もたっても、<br>実際の製品がいつ出るのかは、<br><span class="emr">はっきりしませんでした。</span></div>
+</section>
+
+<!-- 031 夏の高値から2〜3割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：夏の高値を超えていない理由</span><span class="brand"></span></div>
+  <div class="lead">光電融合の関連銘柄として買われた企業の株価</div>
+  <div class="h-main">春から夏にかけて高値をつけて、そこから下げた</div>
+  <div class="metrics">
+    <div class="metric hero">
+      <div class="mlbl">夏の高値から</div>
+      <div class="mfig">2割〜3割<span class="u">下げ</span></div>
+      <div class="msub">そうなったものが、いくつもあります</div>
+    </div>
+  </div>
+  <div class="note">年初から見ればまだ上がっているのに、夏の高値は超えていない</div>
+</section>
+
+<!-- 032 重さを感じている -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：夏の高値を超えていない理由</span><span class="brand"></span></div>
+  <div class="lead">そういう株を持っている方は</div>
+  <div class="stmt">重さを感じているはずです。<br><span class="em">気のせいではありません。</span></div>
+</section>
+
+<!-- 033 利益は減っていない -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 1：なぜ下がったのか</span><span class="brand"></span></div>
+  <div class="h-main">本業の利益が減ったから、ではありません</div>
+  <div class="cols">
+    <div class="box left"><div class="name">株価</div><div class="cap">春から夏の高値から</div><div class="big">下げた</div><div class="div"></div><div class="small">テーマとして買われた分が戻った</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">企業全体の営業利益</div><div class="cap">夏に下がった企業の多くは</div><div class="big">むしろ増えた</div><div class="div"></div><div class="strong">中身が悪くなったわけではありません</div></div>
+  </div>
+</section>
+
+<!-- 034 期待が戻った -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：なぜ下がったのか</span><span class="brand"></span></div>
+  <div class="h-main">先に行き過ぎた期待の分が、戻りました</div>
+  <div class="chain">
+    <div class="node">これから伸びる、<br>という期待で<br>先に買われる</div>
+    <div class="arr">→</div>
+    <div class="node">量産は<br>2028年や29年だと<br>分かる</div>
+    <div class="arr">→</div>
+    <div class="node danger">行き過ぎた<br>期待の分が戻る</div>
+  </div>
+  <div class="release" style="color:var(--navy);background:linear-gradient(180deg,#f3f8fe,#eaf2fc);border-color:#bcd6f5;">夏にAI半導体の株がまとめて売られた時期とも、重なっています</div>
+</section>
+
+<!-- 035 テーマで上がった株は -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：なぜ下がったのか</span><span class="brand"></span></div>
+  <div class="stmt">テーマで上がった株は、<br><span class="em">テーマで下がります。</span></div>
+  <div class="note">それだけの話で、企業の中身が悪くなったわけではありません</div>
+</section>
+
+<!-- 036 2026年に起きたこと -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">ところが、2026年に入って</div>
+  <div class="stmt">研究の話が、<span class="em">実物</span>に変わりました。</div>
+</section>
+
+<!-- 037 アメリカで製品化 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">アメリカでは、NVIDIAとブロードコム</div>
+  <div class="stmt">CPOのスイッチを、<span class="em">製品として<br>出し始めました。</span></div>
+  <div class="note">NVIDIAは2026年に、量産の段階に移し始めています。どこも、まだ数が出る前です</div>
+</section>
+
+<!-- 038 ブロードコムとは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">ブロードコムとは</div>
+  <div class="stmt">通信用のチップの設計で、<br><span class="em">世界最大手</span>の企業です。</div>
+  <div class="note">日本に同じ企業はありません</div>
+</section>
+
+<!-- 039 日本の3社 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="h-main">日本でも動いています</div>
+  <div class="h-sub">この3社の2026年の動きを、先に見ておきます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">土台</div><div class="ctitle">大日本印刷<br>DNP</div><div class="ctext">チップを載せる土台を作る側</div></div>
+    <div class="card c2"><div class="cno">通り道</div><div class="ctitle">AGC</div><div class="ctext">光の通り道を作る側</div></div>
+    <div class="card c3"><div class="cno">光</div><div class="ctitle">三菱電機</div><div class="ctext">光そのものを作る側</div></div>
+  </div>
+</section>
+
+<!-- 040 DNP -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">まず、大日本印刷、DNP。CPOの、チップを載せる土台を作る側にいる企業です</div>
+  <div class="stmt">2026年1月から、<span class="em">サンプル出荷</span>を<br>始めました。</div>
+  <div class="note">その土台について、量産の前に顧客に試してもらう段階です</div>
+</section>
+
+<!-- 041 AGC -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">次に、ガラス大手のAGC。光の通り道を作る側にいる企業です</div>
+  <div class="stmt">半導体関連の売上を、2030年までに<br>2025年の<span class="em">2倍</span>にすると発表。</div>
+  <div class="note">6月の説明会での発表です</div>
+</section>
+
+<!-- 042 三菱電機 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="lead">そして、三菱電機。光そのものを作る側にいる企業です</div>
+  <div class="h-main">2026年4月に、光電融合の専門チームを立ち上げ</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">半導体部門の利益（2026年4月〜6月の3か月）</div>
+      <div class="mfig">8割<span class="u">増</span></div>
+      <div class="msub">前の年の同じ時期との比較。光の部品とパワー半導体を作る部門</div>
+    </div>
+  </div>
+</section>
+
+<!-- 043 冷めたのではない -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="h-main">つまり、テーマが冷めたのではありません</div>
+  <div class="chain">
+    <div class="node">研究</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">量産の準備</div>
+  </div>
+  <div class="release">研究が、量産の準備に<span style="color:#cf820f">移りました</span></div>
+</section>
+
+<!-- 044 遅くない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 1：2026年に起きたこと</span><span class="brand"></span></div>
+  <div class="stmt">だから、いまから光電融合に投資するのは、<br><span class="em">遅くありません。</span><br>むしろ、<span class="em">先回りしている側</span>です。</div>
+  <div class="note">この3社が、CPOの作り方のどこにいるのかは、作り方の順番を見たあとで、1社ずつ解説します</div>
+</section>
+
+<!-- ========== p03_tsukurikata ========== -->
+<!-- 045 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 2：何が変わり、どう作られるのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 2 / 9</span><span class="bar"></span><span>どう作られて、日本のどこが強いのか</span></div>
+  <div class="numbox">02</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">何が変わり、<br>どう作られるのか</div><div class="rule"></div><div class="desc">3つの流れと、1つの合流点</div></div>
+</section>
+
+<!-- 046 【画像03】いまは前面で光に変えている -->
+<section class="slide t-image"><img src="img/img03.png" alt=""></section>
+
+<!-- 047 【画像04】チップの隣に置くと何が変わるか -->
+<section class="slide t-image"><img src="img/img04.png" alt=""></section>
+
+<!-- 048 7割は特定の製品の数字 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：チップの隣に置くと何が変わるか</span><span class="brand"></span></div>
+  <div class="lead">同社の特定の製品での数字なので、どの装置でも7割というわけではありません</div>
+  <div class="stmt">ただ、<span class="em">減る方向は、はっきりしています。</span></div>
+</section>
+
+<!-- 049 増やし続けるための技術 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 2：チップの隣に置くと何が変わるか</span><span class="brand"></span></div>
+  <div class="h-main">電力が減れば、同じ電力で、もっと多くのチップをつなげます</div>
+  <div class="chain">
+    <div class="node">光でつなぐ部分の<br>電力が減る</div>
+    <div class="arr">→</div>
+    <div class="node">同じ電力で、<br>もっと多くの<br>チップをつなげる</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">AI半導体を<br>増やし続けられる</div>
+  </div>
+  <div class="release">AI半導体を減らす技術ではなく、<span style="color:#cf820f">増やし続けるための技術</span>です</div>
+</section>
+
+<!-- 050 【画像05】差し込み式はすぐには消えない -->
+<section class="slide t-image"><img src="img/img05.png" alt=""></section>
+
+<!-- 051 【画像06】光源だけ外に置く設計 -->
+<section class="slide t-image"><img src="img/img06.png" alt=""></section>
+
+<!-- 052 速さが必要なところから -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：チップの隣に置くと何が変わるか</span><span class="brand"></span></div>
+  <div class="stmt">つまり、いちばん<span class="em">速さが必要なところ</span>から順に、<br>チップの隣に光が入っていきます。</div>
+</section>
+
+<!-- 053 【画像07】3つの流れ（自動車のたとえ） -->
+<section class="slide t-image"><img src="img/img07.png" alt=""></section>
+
+<!-- 054 【画像08】流れ1と流れ2 -->
+<section class="slide t-image"><img src="img/img08.png" alt=""></section>
+
+<!-- 055 【画像09】流れ3 土台と光の通り道 -->
+<section class="slide t-image"><img src="img/img09.png" alt=""></section>
+
+<!-- 056 【画像10】3つの流れが集まる -->
+<section class="slide t-image"><img src="img/img10.png" alt=""></section>
+
+<!-- 057 【画像11】レンズ→束→つなぎ口 -->
+<section class="slide t-image"><img src="img/img11.png" alt=""></section>
+
+<!-- 058 【画像12】1000分の数ミリ -->
+<section class="slide t-image"><img src="img/img12.png" alt=""></section>
+
+<!-- 059 【画像13】位置合わせ・接着・熱 -->
+<section class="slide t-image"><img src="img/img13.png" alt=""></section>
+
+<!-- 060 最後に検査して完成 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：合流点</span><span class="brand"></span></div>
+  <div class="lead">位置を合わせて、接着して、チップの熱と反りから守ったあと</div>
+  <div class="stmt">最後に検査して、<br><span class="em">スイッチとして完成します。</span></div>
+</section>
+
+<!-- 061 【画像14】完成品は海外、中身には日本 -->
+<section class="slide t-image"><img src="img/img14.png" alt=""></section>
+
+<!-- 062 【画像15】日本企業は中身の工程に集中 -->
+<section class="slide t-image"><img src="img/img15.png" alt=""></section>
+
+<!-- 063 【画像16】合流点と検査にも日本企業 -->
+<section class="slide t-image"><img src="img/img16.png" alt=""></section>
+
+<!-- 064 どこの国で作られても -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：完成品はアメリカ、中身と合流点は日本</span><span class="brand"></span></div>
+  <div class="lead">3つの流れが、どこの国で作られても</div>
+  <div class="stmt">合流点は、<span class="em">日本の企業を通ります。</span><br>だから、日本の部材は欠かせない。</div>
+  <div class="note">合流点にいる企業は、3社のあとで、まとめて見ます</div>
+</section>
+
+<!-- 065 経産省の白書 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：3つの段階と、いまの位置</span><span class="brand"></span></div>
+  <div class="lead">経済産業省の白書は、AIでデータセンターの電力が増える中で</div>
+  <div class="stmt">光電融合を、<span class="em">電力を抑えながら<br>デジタル化を進める技術</span>と<br>位置づけています。</div>
+</section>
+
+<!-- 066 【画像17】ボード間→チップ間 -->
+<section class="slide t-image"><img src="img/img17.png" alt=""></section>
+
+<!-- 067 【画像18】チップの中へ -->
+<section class="slide t-image"><img src="img/img18.png" alt=""></section>
+
+<!-- 068 いまの位置 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 2：3つの段階と、いまの位置</span><span class="brand"></span></div>
+  <div class="h-main">いま製品化が始まったCPOは、どこにいるのか</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">いまの段階</div><div class="cap">スイッチの中で</div><div class="big">チップの隣まで</div><div class="div"></div><div class="strong">光を持ってきた段階</div></div>
+    <div class="vsmark">→</div>
+    <div class="box left"><div class="name">次の段階</div><div class="cap">GPU同士を</div><div class="big">チップの間で</div><div class="div"></div><div class="small">直接、光でつなぐ</div></div>
+  </div>
+</section>
+
+<!-- 069 まだ入り口 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：3つの段階と、いまの位置</span><span class="brand"></span></div>
+  <div class="stmt">つまり、いまはまだ、<span class="em">入り口</span>です。</div>
+  <div class="note">この先の段階が株の持ち方にどう効くかは、最後にお話しします</div>
+</section>
+
+<!-- 070 3社へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 2：3つの段階と、いまの位置</span><span class="brand"></span></div>
+  <div class="stmt">では、この地図の上で、<br>まず<span class="em">3社</span>を見ます。</div>
+</section>
+
+<!-- ========== p04_3sha ========== -->
+<!-- 071 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 3：四季報で見る3社</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 3 / 9</span><span class="bar"></span><span>DNP・AGC・三菱電機</span></div>
+  <div class="numbox">03</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">四季報で見る3社</div><div class="rule"></div><div class="desc">DNP・AGC・三菱電機</div></div>
+</section>
+
+<!-- 072 今の利益と光電融合の利益は別 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：見方を1つ足す</span><span class="brand"></span></div>
+  <div class="lead">その3社を見る前に、見方を1つ足します</div>
+  <div class="stmt">今の利益と、<span class="em">光電融合の利益は別</span>です。</div>
+  <div class="note">チップの隣に置く部材そのもので利益を出している企業は、まだ1社もありません</div>
+</section>
+
+<!-- 073 見るところは3つ -->
+<section class="slide t-agenda" style="padding-bottom:58px">
+  <div class="hdr"><span class="sec">Section 3：見方を1つ足す</span><span class="brand"></span></div>
+  <div class="h-main">だから、見るところは3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">今、何で稼いでいるのか</span><span class="d">決算の部門別の利益を見る</span></div>
+    <div class="row"><span class="no">2</span><span class="t">作り方のどこを狙っているのか</span><span class="d">土台・光の通り道・光を出す部品</span></div>
+    <div class="row"><span class="no">3</span><span class="t">研究、試作、量産のどの段階か</span><span class="d">言葉が「量産」に変わっているかどうか</span></div>
+  </div>
+</section>
+
+<!-- 074 数字の出どころと順番 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：見方を1つ足す</span><span class="brand"></span></div>
+  <div class="lead">数字は、会社四季報の秋号と、各社の決算資料からです</div>
+  <div class="stmt">段階の早い<span class="em">DNP</span>から見て、<br>今の利益がいちばん出ている<span class="em">三菱電機</span>で<br>締めます。</div>
+  <div class="note">この見方は、あとで2つの見方にまとめます</div>
+</section>
+
+<!-- 075 DNP 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="lead">まず、大日本印刷、DNP</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">土台を作る企業</div>
+      <div class="mfig" style="font-size:108px">大日本印刷<span class="u" style="font-size:88px">　7912</span></div>
+      <div class="msub">土台と光の通り道を作る流れの中で、土台のほうを作る企業です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 076 DNP 中身は何の技術か -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="lead">名前は印刷ですが、中身は</div>
+  <div class="stmt">細かい模様を大きな面に、<br>同じ品質で<span class="em">大量に作る技術</span>の企業です。</div>
+  <div class="note">この技術を、半導体の回路を焼き付けるときの原版、フォトマスクなどに使ってきました</div>
+</section>
+
+<!-- 077 DNP 延長線上 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="h-main">ガラスの土台は、その技術の延長にあります</div>
+  <div class="chain">
+    <div class="node">細かい模様を<br>大きな面に作る</div>
+    <div class="arr">→</div>
+    <div class="node">フォトマスク<br>（半導体の原版）</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">ガラスに縦穴を開けて<br>配線を通す</div>
+  </div>
+  <div class="release">印刷企業が、急に半導体を始めたわけではありません</div>
+</section>
+
+<!-- 078 DNP 今の利益 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="h-main">今の利益は、どこから来ているか</div>
+  <div class="h-sub">エレクトロニクス部門（半導体や画面の部材）／2026年4月〜6月の3か月</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">売上の比率</div><div class="cd">全社の中で</div></div><div class="body"><div class="lbl">エレクトロニクス部門</div><div class="val2">2割に届かない</div><div class="tag">売上</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">3か月の営業利益</div><div class="val2">179億円</div><div class="tag">前年から3割近く増</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">利益率</div><div class="cd">同じ期間</div></div><div class="body"><div class="lbl">売上に対する利益</div><div class="val2">25%</div><div class="tag">高い利益率</div></div></div>
+  </div>
+</section>
+
+<!-- 079 DNP 中身はフォトマスク -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="lead">ただし、その利益の中身は</div>
+  <div class="stmt">フォトマスクの先端品などで、<br><span class="em">ガラスの土台の利益は、まだ入っていません。</span></div>
+  <div class="note">今の利益と光電融合の利益を分ける、最初の例です</div>
+</section>
+
+<!-- 080 DNP 純利益48%減の読み方 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="badge navy">持っている方へ</div>
+  <div class="h-main">純利益が48%減った、という数字だけで判断しない</div>
+  <div class="cols">
+    <div class="box left"><div class="name">純利益</div><div class="cap">前の年から</div><div class="big">48%減</div><div class="div"></div><div class="small">前の年に、持っていた株を売った大きな利益が乗っていた反動</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">本業の営業利益</div><div class="cap">同じ期間で</div><div class="big">2割増</div><div class="div"></div><div class="strong">本業は伸びています</div></div>
+  </div>
+</section>
+
+<!-- 081 DNP 段階 -->
+<section class="slide t-numline">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="h-main">光電融合では、試作と量産の間にいます</div>
+  <div class="scale">
+    <div class="mk" style="left:10%"><div class="val">研究</div><div class="dot"></div><div class="lab">―</div></div>
+    <div class="mk" style="left:46%"><div class="val" style="color:#d6850f">サンプル出荷</div><div class="dot" style="background:#d6850f"></div><div class="lab">1月開始・顧客が評価中</div></div>
+    <div class="mk" style="left:86%"><div class="val" style="color:var(--blue)">量産</div><div class="dot" style="background:var(--blue)"></div><div class="lab">目標は2028年度</div></div>
+  </div>
+  <div class="foot-note">研究、試作、量産の順でいえば、試作と量産の間</div>
+</section>
+
+<!-- 082 DNP オランダTNO -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="lead">2025年7月、オランダの公的な研究機関TNOと、CPO向けの部材を共同で研究する契約</div>
+  <div class="stmt">オランダに、<span class="em">海外で初めての研究拠点</span>を<br>置きました。</div>
+  <div class="note">TNOは、日本でいえば産総研のような機関です</div>
+</section>
+
+<!-- 083 DNP 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="h-main">株価は、年初からおよそ8.5%の上昇</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">2,758.5円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">2,994円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">およそ +8.5%</div></div>
+  </div>
+</section>
+
+<!-- 084 DNP 指標 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="h-main">10月2日時点の指標</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">PER</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">利益に対する株価</div><div class="val2">約13倍</div><div class="tag">3社でいちばん低い</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">純資産に対する株価</div><div class="val2">約1倍</div><div class="tag">1株の純資産とほぼ同じ</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">配当</div><div class="cd">今期予想</div></div><div class="body"><div class="lbl">1株あたり</div><div class="val2">年41円</div><div class="tag">予想</div></div></div>
+  </div>
+</section>
+
+<!-- 085 DNP まだ気づかれていない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="lead">光電融合の銘柄として見ると、株価はまだ極端には上がっていません</div>
+  <div class="stmt">この評価は、<span class="em">印刷や包装の企業としての<br>値段のまま</span>です。</div>
+  <div class="note">光電融合の銘柄だと気づいている人は、まだ少ないはずです</div>
+</section>
+
+<!-- 086 DNP 財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="h-main">財務は厚く、手元の現金のほうが多い</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">会社四季報 秋号</div><div class="cd">今期</div></div><div class="body"><div class="lbl">営業利益の見方</div><div class="val2">企業の予想より上</div><div class="tag">四季報予想</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">自己資本比率</div><div class="cd">直近</div></div><div class="body"><div class="lbl">財務の厚さ</div><div class="val2">59%</div><div class="tag">厚い</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">現金と借金</div><div class="cd">直近</div></div><div class="body"><div class="lbl">どちらが多いか</div><div class="val2">現金のほうが多い</div><div class="tag">実質の無借金</div></div></div>
+  </div>
+</section>
+
+<!-- 087 DNP 自社株買いと設備投資 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="h-main">そのうえで、お金の使い方も動いています</div>
+  <div class="h-sub">株主への還元と、半導体への投資を同時に進めています</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">還元</div><div class="ctitle">自社株買い</div><div class="ctext">500億円を上限に進めています</div></div>
+    <div class="card c2"><div class="cno">投資</div><div class="ctitle">3年で3,000億円<br>の設備投資</div><div class="ctext">そのうち、いちばん大きいのが半導体です</div></div>
+  </div>
+</section>
+
+<!-- 088 DNP 次に見る日 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：大日本印刷（7912）</span><span class="brand"></span></div>
+  <div class="lead">次に見る日は、11月13日の第2四半期決算</div>
+  <div class="stmt">見るのは、<span class="em">エレクトロニクス部門の利益率</span>と、<br>ガラスの土台に<span class="em">新しい言葉</span>が出るかどうか。</div>
+  <div class="note">顧客の評価や、量産の計画について</div>
+</section>
+
+<!-- 089 AGC 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="lead">次に、ガラス大手のAGC</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">光の通り道を作る企業</div>
+      <div class="mfig" style="font-size:108px">AGC<span class="u" style="font-size:88px">　5201</span></div>
+      <div class="msub">ガラスの土台も、光の向きをそろえるレンズも、1社で持っています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 090 AGC 公式にCPOの土台 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="lead">AGCの公式の製品説明には</div>
+  <div class="stmt">ガラスの土台の使い道として、<br><span class="em">CPOの土台</span>、とはっきり書かれています。</div>
+</section>
+
+<!-- 091 AGC 全社の利益 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="lead">では、今は何で稼いでいるのか（2026年1月〜6月の半年）</div>
+  <div class="h-main">全社の営業利益は、前の年から2割近く増えました</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">全社の営業利益（1〜6月）</div>
+      <div class="mfig">647<span class="u">億円</span></div>
+      <div class="msub">前の年から2割近く増</div>
+    </div>
+  </div>
+</section>
+
+<!-- 092 AGC 増益の中身 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="h-main">ところが、増益を引っ張ったのは半導体ではありません</div>
+  <div class="cols">
+    <div class="box right"><div class="name">エレクトロニクス部門</div><div class="cap">半導体を含む</div><div class="big">244億円 → 187億円</div><div class="div"></div><div class="strong">2割以上の減益</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">化学品</div><div class="cap">同じ期間</div><div class="big">25%増</div><div class="div"></div><div class="strong">増益を引っ張った</div></div>
+  </div>
+  <div class="foot-note">いまの増益を、AI半導体が好調だから、と読むのは違います</div>
+</section>
+
+<!-- 093 AGC 半導体関連の売上 -->
+<section class="slide t-steps">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="h-main">ただし、半導体関連の売上そのものは伸びています</div>
+  <div class="steps">
+    <div class="step s1"><div class="era">2020年</div><div class="v">約500億円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s2"><div class="era">2025年</div><div class="v" style="font-size:44px;white-space:nowrap">約1,000億円</div></div>
+    <div class="sarr">→</div>
+    <div class="step s3"><div class="era">2030年の目標</div><div class="v">さらに2倍</div></div>
+  </div>
+</section>
+
+<!-- 094 AGC 段階 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="h-main">光電融合の段階は、顧客の評価です</div>
+  <div class="h-sub">6月の説明会で、経営陣が説明した内容です</div>
+  <div class="grid g2">
+    <div class="card c2"><div class="cno">レンズ</div><div class="ctitle">引き合いが多数</div><div class="ctext">買いたいという問い合わせが来ている</div></div>
+    <div class="card c3"><div class="cno">通り道</div><div class="ctitle">サンプルを提供</div><div class="ctext">提供したうえで、引き合いが来ている</div></div>
+  </div>
+</section>
+
+<!-- 095 AGC 量産はこれから -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="lead">自社の部材がもう量産の装置に使われているのかと聞かれると</div>
+  <div class="stmt">経営陣は、<span class="em">開発と試作の段階で<br>量産はこれから</span>、と答えています。</div>
+  <div class="note">立ち上がりは2028年から29年、大きく伸びるのは2030年代の見込みです</div>
+</section>
+
+<!-- 096 AGC 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="h-main">株価は、年初からおよそ10%の上昇</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">5,225円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">5,749円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">およそ +10%</div></div>
+  </div>
+</section>
+
+<!-- 097 AGC 指標 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="h-main">10月2日時点の指標</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">PER</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">利益に対する株価</div><div class="val2">約16倍</div><div class="tag">3社の真ん中</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">純資産に対する株価</div><div class="val2">約0.8倍</div><div class="tag">純資産より株価が安い</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">配当</div><div class="cd">今期予想</div></div><div class="body"><div class="lbl">1株あたり／利回り</div><div class="val2">年210円</div><div class="tag">利回り3.6%台</div></div></div>
+  </div>
+</section>
+
+<!-- 098 AGC 割安とは言えない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="lead">1株あたりの純資産より、株価のほうが安い状態です</div>
+  <div class="stmt">ただ、だから割安、と<span class="emr">単純には言えません</span>。<br>資本の大きさに対して、利益がまだ薄いからです。</div>
+  <div class="note">半導体と光の部材で利益率を上げられるかが、市場の評価が変わる条件です</div>
+</section>
+
+<!-- 099 AGC 持っている方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：AGC（5201）</span><span class="brand"></span></div>
+  <div class="lead">AGCを持っている方は</div>
+  <div class="stmt">全社の増益ではなく、<span class="em">半導体関連の売上</span>と、<br>光の通り道の<span class="em">引き合いが量産に変わったか</span>を。</div>
+  <div class="note">配当は、その間も入ってきます。次に見る日は、11月5日の第3四半期決算です</div>
+</section>
+
+<!-- 100 三菱電機 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="lead">そして、三菱電機</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">光を出す部品を作る企業</div>
+      <div class="mfig" style="font-size:108px">三菱電機<span class="u" style="font-size:88px">　6503</span></div>
+      <div class="msub">3つの流れの中で、いちばん初めに光を生む側です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 101 三菱電機 すでに利益に入っている -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="lead">3社の中で、三菱電機だけは</div>
+  <div class="stmt">今の利益に、すでに<span class="em">光の部品の需要が<br>入っています。</span></div>
+  <div class="note">光を出す部品と光を刻む部品を1つにした、データセンター向けの光の部品を、すでに売っているからです</div>
+</section>
+
+<!-- 102 三菱電機 どこで使われているか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="lead">使われているのは、サーバーとサーバーの間の通信です</div>
+  <div class="stmt">チップの隣に置く部材ではありませんが、<br><span class="em">同じ技術の延長</span>にあります。</div>
+</section>
+
+<!-- 103 三菱電機 利益率 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="h-main">半導体・デバイス部門の利益率（4月〜6月）</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v">13%</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今年</div><div class="c-v">20.6%</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">売上の伸びは15%</div><div class="r-v">売上以上に利益増</div></div>
+  </div>
+  <div class="foot-note">企業は、通信用の光の部品の需要が堅調だから、と説明しています</div>
+</section>
+
+<!-- 104 三菱電機 AIの入り口は3つ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="h-main">三菱電機のAIは、光の部品だけではありません</div>
+  <div class="h-sub">この部門は、全社の売上の5%ほど。入り口が3つあります</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">半導体の工場を<br>動かす機械</div><div class="ctext">作る側の設備に入っている</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">データセンターの<br>電気と冷房</div><div class="ctext">動かす側の設備に入っている</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">光の部品</div><div class="ctext">サーバーとサーバーの間の通信に使われている</div></div>
+  </div>
+</section>
+
+<!-- 105 三菱電機 増産 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="lead">光電融合では、どこまで進んでいるか</div>
+  <div class="h-main">今売っている光の部品の、生産能力を増やしています</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">2029年度までに、2025年度の</div>
+      <div class="mfig">3倍超<span class="u">へ</span></div>
+      <div class="msub">段階でいえば、量産の中で設備を増やしているところ</div>
+    </div>
+  </div>
+</section>
+
+<!-- 106 三菱電機 CPO向け -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="lead">CPO向けには、化合物半導体で、光を出す部品と光を刻む部品を作る方針</div>
+  <div class="stmt">4月に立ち上げた<span class="em">専門チーム</span>は、<br>そのための組織です。</div>
+  <div class="note">ただし企業自身は、CPOはいまはまだ未成熟な技術だ、と説明しています</div>
+</section>
+
+<!-- 107 三菱電機 住み分け -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="h-main">今の光の部品とCPOは、取り合いになりません</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">今売っている光の部品</div><div class="cap">使われる場所</div><div class="big">サーバーの間</div><div class="div"></div><div class="strong">すでに利益が出ている</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">CPO向け</div><div class="cap">使われる場所</div><div class="big">ラックの中</div><div class="div"></div><div class="small">市場ができるのは2028年度か29年度、本格的には2030年代</div></div>
+  </div>
+  <div class="foot-note">距離で住み分けて、両方が伸びる計画です</div>
+</section>
+
+<!-- 108 三菱電機 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="h-main">株価は、年初からおよそ9.9%の上昇</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">4,790円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">5,264円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">およそ +9.9%</div></div>
+  </div>
+</section>
+
+<!-- 109 三菱電機 指標 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="h-main">3社の中で、いちばん高い評価がついています</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">PER</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">利益に対する株価</div><div class="val2">約22倍</div><div class="tag">3社でいちばん高い</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">純資産に対する株価</div><div class="val2">約2.4倍</div><div class="tag">3社でいちばん高い</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">配当</div><div class="cd">今期予想</div></div><div class="body"><div class="lbl">1株あたり</div><div class="val2">年60円</div><div class="tag">予想</div></div></div>
+  </div>
+</section>
+
+<!-- 110 三菱電機 財務 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="lead">財務は3社でいちばん厚く、自己資本比率は63%</div>
+  <div class="h-main">手元の現金が、借金を上回っています</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">手元の現金と借金の差</div>
+      <div class="mfig">約5,900<span class="u">億円</span></div>
+      <div class="msub">増産もCPOの開発も、お金の制約が小さい企業です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 111 三菱電機 持っている方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：三菱電機（6503）</span><span class="brand"></span></div>
+  <div class="lead">三菱電機を持っている方は</div>
+  <div class="stmt">全社の利益だけでなく、半導体・デバイス部門の<br><span class="em">利益率が20%台を保っているか</span>を。</div>
+  <div class="note">次に見る日は、10月30日の第2四半期決算。3社の中で、いちばん早く来ます</div>
+</section>
+
+<!-- 112 3社は競合ではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：3社のまとめ</span><span class="brand"></span></div>
+  <div class="stmt">3社は、競合ではありません。<br><span class="em">同じ装置の、別の場所</span>です。</div>
+</section>
+
+<!-- 113 PERの開き -->
+<section class="slide t-rank">
+  <div class="hdr"><span class="sec">Section 3：3社のまとめ</span><span class="brand"></span></div>
+  <div class="h-main">PERは、13倍から22倍まで開いています</div>
+  <div class="h-sub">同じ「光電融合の3社」でも、市場のつけている値段はこれだけ違います</div>
+  <div class="rows">
+    <div class="row"><span class="nm">三菱電機</span><span class="pct up">約22倍</span></div>
+    <div class="row"><span class="nm">AGC</span><span class="pct up">約16倍</span></div>
+    <div class="row"><span class="nm">DNP</span><span class="pct up">約13倍</span></div>
+  </div>
+  <div class="foot-note">この開きの理由も、あとの2つの見方で分かります</div>
+</section>
+
+<!-- 114 持ち株がこの中にあるなら -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：3社のまとめ</span><span class="brand"></span></div>
+  <div class="lead">ご自分の持ち株がこの中にあるなら、決算のどの数字を見ればいいかが、分かったはずです</div>
+  <div class="stmt">全社の利益ではなく、<span class="em">部門の利益</span>。<br>そして、顧客の評価と量産の<span class="em">どちら側</span>にいるか。</div>
+</section>
+
+<!-- 115 次へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 3：3社のまとめ</span><span class="brand"></span></div>
+  <div class="stmt">では、この3社のほかの日本の企業は、<br><span class="em">作り方のどこにいるのか。</span></div>
+</section>
+
+<!-- ========== p05_junban ========== -->
+<!-- 116 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 4：作る順番で見る、日本の企業の居場所</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 4 / 9</span><span class="bar"></span><span>工程ごとに、社名を置いていきます</span></div>
+  <div class="numbox">04</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">作る順番で見る、<br>日本の企業の居場所</div><div class="rule"></div><div class="desc">3つの流れと、1つの合流点</div></div>
+</section>
+
+<!-- 117 これから歩く順番 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：日本の企業の居場所</span><span class="brand"></span></div>
+  <div class="lead">CPOを作る順番に沿って、3つの流れと1つの合流点を、工程ごとに歩きます</div>
+  <div class="stmt">それぞれの工程で、日本のどの企業が、<br>何を作っているのか。<span class="em">社名を置いていきます。</span></div>
+</section>
+
+<!-- 118 流れ1 三菱電機 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光を作り、データを載せる</span><span class="brand"></span></div>
+  <div class="lead">最初の流れは、光を作るところです</div>
+  <div class="stmt">化合物半導体で<span class="em">レーザー</span>を作り、<br><span class="em">光変調器</span>でデータを刻む。</div>
+  <div class="note">三菱電機の役割は、もう見ました。光を出す部品と、光を刻む部品です</div>
+</section>
+
+<!-- 119 古河電工 外に置く光源 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：光を作り、データを載せる</span><span class="brand"></span></div>
+  <div class="h-main">この流れには、もう1社います。古河電工です</div>
+  <div class="chain">
+    <div class="node danger">レーザーは<br>熱に弱い</div>
+    <div class="arr">→</div>
+    <div class="node">だからチップの<br>外に置く</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">光だけを<br>中に送る</div>
+  </div>
+  <div class="release">この外に置く光源を、自社の<span style="color:#cf820f">高出力のレーザー</span>で作っています</div>
+</section>
+
+<!-- 120 古河電工 すでに売っている -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光を作り、データを載せる</span><span class="brand"></span></div>
+  <div class="lead">レーザーのチップそのものは、光ファイバーと合わせて、データセンター向けに</div>
+  <div class="stmt"><span class="em">すでに売っています。</span></div>
+  <div class="note">CPOが来る前から、需要がある部材です</div>
+</section>
+
+<!-- 121 外部光源が市場になる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光を作り、データを載せる</span><span class="brand"></span></div>
+  <div class="lead">NVIDIAの装置も、光を出す部品は外に置いて交換できる設計です</div>
+  <div class="stmt">この方式が広がれば、<br>外に置く光源が<span class="em">1つの市場</span>になります。</div>
+</section>
+
+<!-- 122 外部光源の市場規模 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 4：光を作り、データを載せる</span><span class="brand"></span></div>
+  <div class="lead">光通信の市場を調べているアメリカの調査企業、Cignal AIの予測</div>
+  <div class="h-main">外に置く光源だけで、2030年に</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">2030年の市場規模（外に置く光源）</div>
+      <div class="mfig">約2,400<span class="u">億円超</span></div>
+      <div class="msub">15億ドルを超えると予測</div>
+    </div>
+  </div>
+</section>
+
+<!-- 123 古河電工は両方に入る -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：光を作り、データを載せる</span><span class="brand"></span></div>
+  <div class="h-main">古河電工は、流れの入り口と合流点の両方に入れる企業</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">流れの入り口</div><div class="cap">光を作る側</div><div class="big">外に置く光源</div><div class="div"></div><div class="strong">高出力のレーザー</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">合流点</div><div class="cap">つなぐ側</div><div class="big">小さなつなぎ口</div><div class="div"></div><div class="small">光ファイバーをつなぐ</div></div>
+  </div>
+  <div class="foot-note">つなぎ口の話は、合流点でもう一度出てきます</div>
+</section>
+
+<!-- 124 流れ2 日本の出番が少ない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光と電気のチップを作り、検査する</span><span class="brand"></span></div>
+  <div class="lead">2つ目の流れは、光を扱うチップと、それを動かす電気のチップです</div>
+  <div class="stmt">設計するのはブロードコムとNVIDIA、<br>作るのは台湾のTSMCなど。<br><span class="emr">日本の企業の出番が、いちばん少ない工程</span>です。</div>
+</section>
+
+<!-- 125 デクセリアルズ 受光部品 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光と電気のチップを作り、検査する</span><span class="brand"></span></div>
+  <div class="lead">ただ、光を受けて電気に戻す部品、受光部品には、日本の企業がいます</div>
+  <div class="stmt"><span class="em">デクセリアルズ</span>です。</div>
+  <div class="note">データセンター向けの光トランシーバーに使う受光部品を、すでに売っています</div>
+</section>
+
+<!-- 126 アドバンテスト 検査 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光と電気のチップを作り、検査する</span><span class="brand"></span></div>
+  <div class="lead">そして、作ったチップを検査する工程にも、日本の企業がいます</div>
+  <div class="stmt"><span class="em">アドバンテスト</span>です。</div>
+</section>
+
+<!-- 127 検品のたとえ -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：なぜ検査の価値が上がるのか</span><span class="brand"></span></div>
+  <div class="h-main">高級車を全部組み立てたあとで、エンジンが壊れていたと分かる</div>
+  <div class="chain">
+    <div class="node danger">全部組み立てた<br>あとで分かる</div>
+    <div class="arr">→</div>
+    <div class="node">それを防ぐために<br>部品の段階で<br>検品する</div>
+  </div>
+  <div class="release">CPOの検査は、この<span style="color:#2f8f6b">検品</span>に当たります</div>
+</section>
+
+<!-- 128 丸ごと無駄になる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：なぜ検査の価値が上がるのか</span><span class="brand"></span></div>
+  <div class="lead">CPOでは、高いスイッチのチップと光の部品を、1つのパッケージに固めてしまいます</div>
+  <div class="stmt">あとで不良が見つかると、<span class="emr">丸ごと無駄</span>になる。<br>だから検査の価値が、<span class="em">普通の半導体より上がります。</span></div>
+</section>
+
+<!-- 129 【画像19】組み立てる前から検査 -->
+<section class="slide t-image"><img src="img/img19.png" alt=""></section>
+
+<!-- 130 【画像20】完成後ももう一度検査 -->
+<section class="slide t-image"><img src="img/img20.png" alt=""></section>
+
+<!-- 131 アドバンテストの開発 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光と電気のチップを作り、検査する</span><span class="brand"></span></div>
+  <div class="lead">アドバンテストは、海外の光チップの企業と共同で、電気と光を同時に測る量産用の検査装置を開発中</div>
+  <div class="stmt">AI半導体の検査で伸びてきた企業が、<br><span class="em">CPOの検査にも入ります。</span></div>
+  <div class="note">AI半導体株を持っている方には、いちばん近い入り口です。アドバンテストは、名簿でも見ます</div>
+</section>
+
+<!-- 132 流れ3 パッケージが巨大に -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：土台を作る</span><span class="brand"></span></div>
+  <div class="lead">3つ目の流れは、土台と光の通り道です。まず、土台から</div>
+  <div class="stmt">GPUと、その隣に置くメモリと、周りのチップを、<br>1枚のパッケージにまとめる方向へ。<br><span class="em">パッケージが、巨大になります。</span></div>
+</section>
+
+<!-- 133 【画像21】巨大パッケージでは反りが問題 -->
+<section class="slide t-image"><img src="img/img21.png" alt=""></section>
+
+<!-- 134 レゾナックの量産計画 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：土台を作る</span><span class="brand"></span></div>
+  <div class="lead">レゾナックは、10センチを超える大きなパッケージ向けの材料を</div>
+  <div class="stmt"><span class="em">2026年から量産を始める計画</span>です。</div>
+</section>
+
+<!-- 135 通り道を作る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光の通り道を作る</span><span class="brand"></span></div>
+  <div class="stmt">土台ができたら、その上に<br><span class="em">光の通り道</span>を作ります。</div>
+</section>
+
+<!-- 136 【画像22】光の通り道を作る企業 -->
+<section class="slide t-image"><img src="img/img22.png" alt=""></section>
+
+<!-- 137 【画像23】日産化学は材料を作る -->
+<section class="slide t-image"><img src="img/img23.png" alt=""></section>
+
+<!-- 138 【画像24】材料から光導波路へ -->
+<section class="slide t-image"><img src="img/img24.png" alt=""></section>
+
+<!-- 139 【画像25】光の材料に必要な3条件 -->
+<section class="slide t-image"><img src="img/img25.png" alt=""></section>
+
+<!-- 140 日産化学はそれを狙う -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：光の通り道を作る</span><span class="brand"></span></div>
+  <div class="stmt">日産化学の材料は、<br><span class="em">それを狙っています。</span></div>
+</section>
+
+<!-- 141 デクセリアルズ 2つの顔 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：光の通り道を作る</span><span class="brand"></span></div>
+  <div class="h-main">通り道の材料には、もう1社。デクセリアルズです</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">1つ目の顔</div><div class="cap">さきほど見た</div><div class="big">受光部品</div><div class="div"></div><div class="strong">光を受けて電気に戻す</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">2つ目の顔</div><div class="cap">産総研が中心のCPOの試作品で</div><div class="big">通り道の材料</div><div class="div"></div><div class="small">材料と、その形を作る工程を担当</div></div>
+  </div>
+  <div class="foot-note">受光部品と通り道の、両方を持つ企業です</div>
+</section>
+
+<!-- 142 合流点 新光電気工業 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：合流点</span><span class="brand"></span></div>
+  <div class="lead">3つの流れが集まる、合流点です。まず、光を扱うチップと計算のチップを、土台に載せて組み上げます</div>
+  <div class="stmt">これをまとめてできる企業が、日本にあります。<br><span class="em">新光電気工業</span>です。</div>
+</section>
+
+<!-- 143 新光電気工業の技術 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：合流点</span><span class="brand"></span></div>
+  <div class="lead">土台の上に光の通り道を直接作り</div>
+  <div class="stmt">光を扱うチップと光ファイバーの束と計算のチップを、<br><span class="em">1つのパッケージに組み上げる技術</span>を持っています。</div>
+</section>
+
+<!-- 144 新光電気工業は非上場 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：合流点</span><span class="brand"></span></div>
+  <div class="lead">ただし、いまは上場していないので、株は買えません</div>
+  <div class="stmt">だから<span class="emr">名簿には入れません。</span><br>それでも、合流点が日本にある、という話の<br><span class="em">真ん中にいる企業</span>です。</div>
+</section>
+
+<!-- 145 【画像26】住友電工 200本超 -->
+<section class="slide t-image"><img src="img/img26.png" alt=""></section>
+
+<!-- 146 残しておいた話 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：なぜ電線の企業なのか</span><span class="brand"></span></div>
+  <div class="lead">ここで、残しておいた話に答えます</div>
+  <div class="stmt">住友電工が、なぜNVIDIAの供給網に入っているのか。<br>なぜ、<span class="em">電線の企業</span>なのか。</div>
+</section>
+
+<!-- 147 本数はむしろ増える -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 4：なぜ電線の企業なのか</span><span class="brand"></span></div>
+  <div class="h-main">CPOになると、光ファイバーの本数はむしろ増えます</div>
+  <div class="cols">
+    <div class="box left"><div class="name">差し込み式の光の部品</div><div class="cap">CPOになると</div><div class="big">減る</div><div class="div"></div><div class="small">光に変える場所がチップの隣へ移る</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">外へ出る光ファイバー</div><div class="cap">ところが</div><div class="big">むしろ増える</div><div class="div"></div><div class="strong">1台で運ぶデータが増えるから</div></div>
+  </div>
+</section>
+
+<!-- 148 欠かせない技術 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：なぜ電線の企業なのか</span><span class="brand"></span></div>
+  <div class="stmt">何百本の光ファイバーを、狭い場所に、正確に並べる。<br>この技術が、<span class="em">欠かせなくなります。</span></div>
+</section>
+
+<!-- 149 電線の企業が持っていた -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：なぜ電線の企業なのか</span><span class="brand"></span></div>
+  <div class="lead">それを、何十年も光ファイバーを作ってきた電線の企業が持っていた</div>
+  <div class="stmt">だから、アメリカと台湾の部品企業と並んで、<br><span class="em">住友電工が供給網にいます。</span></div>
+</section>
+
+<!-- 150 【画像27】古河電工 面積1/6 -->
+<section class="slide t-image"><img src="img/img27.png" alt=""></section>
+
+<!-- 151 日産化学の接着材 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：位置を合わせ、固定し、熱と反りから守る</span><span class="brand"></span></div>
+  <div class="lead">光を束に渡したら、その位置を接着して固定します</div>
+  <div class="stmt">光が通る場所に使うので、<br><span class="em">光を通す透明な接着材</span>が要ります。</div>
+  <div class="note">日産化学は、この接着材も作っています</div>
+</section>
+
+<!-- 152 次は熱 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：位置を合わせ、固定し、熱と反りから守る</span><span class="brand"></span></div>
+  <div class="lead">固定したら、次は熱です</div>
+  <div class="stmt">スイッチのチップは、大量の熱を出します。<br>そのすぐ隣に、位置を合わせたばかりの<br><span class="em">光の部品</span>が並んでいます。</div>
+</section>
+
+<!-- 153 エンジンの横のカメラ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：位置を合わせ、固定し、熱と反りから守る</span><span class="brand"></span></div>
+  <div class="lead">巨大なエンジンのすぐ横に、精密なカメラを置くようなものです</div>
+  <div class="stmt">エンジンの熱や振動で、<br><span class="em">カメラの位置がずれないように</span>しなければ<br>なりません。</div>
+</section>
+
+<!-- 154 3つを同時に -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 4：位置を合わせ、固定し、熱と反りから守る</span><span class="brand"></span></div>
+  <div class="h-main">だから、3つを同時にやります</div>
+  <div class="h-sub">大きなパッケージを反らせない材料のレゾナックが、ここでも効きます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">冷やす</div><div class="ctext">チップが出す大量の熱を逃がす</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">固定する</div><div class="ctext">合わせた位置がずれないようにする</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">反らせない</div><div class="ctext">熱で伸び縮みしても平らを保つ</div></div>
+  </div>
+</section>
+
+<!-- 155 最後にもう一度検査 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：位置を合わせ、固定し、熱と反りから守る</span><span class="brand"></span></div>
+  <div class="lead">最後に、完成したものをもう一度検査します</div>
+  <div class="stmt">わざと高い温度で長く動かして、<br><span class="em">初期不良をあぶり出す試験</span>です。</div>
+  <div class="note">ここも、検査装置の企業の仕事です。これで、スイッチとして完成します</div>
+</section>
+
+<!-- 156 完成品はアメリカ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：完成品はアメリカ。だからこそ、部材です</span><span class="brand"></span></div>
+  <div class="lead">完成したスイッチを売るのは、ブロードコムとNVIDIAです</div>
+  <div class="stmt">ここだけは、<span class="emr">日本の企業の名前がありません。</span></div>
+</section>
+
+<!-- 157 【画像28】完成品の一歩手前まで日本企業 -->
+<section class="slide t-image"><img src="img/img28.png" alt=""></section>
+
+<!-- 158 どちらが勝っても -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 4：完成品はアメリカ。だからこそ、部材です</span><span class="brand"></span></div>
+  <div class="h-main">ブロードコムが勝っても、NVIDIAが勝っても</div>
+  <div class="chain">
+    <div class="node">スイッチの中の<br>土台</div>
+    <div class="arr">＋</div>
+    <div class="node">通り道</div>
+    <div class="arr">＋</div>
+    <div class="node">束</div>
+    <div class="arr">＝</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">どれも<br>要ります</div>
+  </div>
+  <div class="release">完成品を1社に賭けるより、<span style="color:#cf820f">どの装置にも入る部材</span>を持つ</div>
+</section>
+
+<!-- 159 強みは密集 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：完成品はアメリカ。だからこそ、部材です</span><span class="brand"></span></div>
+  <div class="stmt">日本の企業の強みは、<br><span class="em">この工程に密集していること</span>です。</div>
+</section>
+
+<!-- 160 持ち株はこの順番のどこか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：完成品はアメリカ。だからこそ、部材です</span><span class="brand"></span></div>
+  <div class="lead">この順番の中で、今の利益がすでに出ているのはどこか</div>
+  <div class="stmt">それは、あとで<span class="em">見方の1つ</span>にします。</div>
+  <div class="note">ご自分の持ち株が、この順番のどこにいるか。あとで名簿で確認してください</div>
+</section>
+
+<!-- 161 次へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 4：完成品はアメリカ。だからこそ、部材です</span><span class="brand"></span></div>
+  <div class="lead">では、日本だけがこんなに強い、なんて都合のいい話があるのか</div>
+  <div class="stmt"><span class="em">ヨーロッパと中国</span>は、どこまで来ているのか。<br>次に、そこを見ます。</div>
+</section>
+
+<!-- ========== p06_eu_china ========== -->
+<!-- 162 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 5：ヨーロッパと中国は、どこまで来ているのか</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 5 / 9</span><span class="bar"></span><span>競争相手を、順番に見る</span></div>
+  <div class="numbox">05</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">ヨーロッパと中国は、<br>どこまで来ているのか</div><div class="rule"></div><div class="desc">競争相手がいる市場は、本物の市場</div></div>
+</section>
+
+<!-- 163 競争相手はいる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：競争相手</span><span class="brand"></span></div>
+  <div class="lead">日本だけがこんなに強いなんて、都合のいい話があるのか</div>
+  <div class="stmt">そう思った方は、<span class="em">正しいです。</span><br>競争相手はいます。</div>
+  <div class="note">ヨーロッパと中国を、順番に見ます</div>
+</section>
+
+<!-- 164 EUの研究予算 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ヨーロッパ</span><span class="brand"></span></div>
+  <div class="lead">EUの研究予算で、CPOを名指しした研究計画が複数動いています</div>
+  <div class="stmt">代表的なものは2023年から26年まで。<br>EUの拠出は約555万ユーロ、<br>日本円で<span class="em">10億円前後</span>です。</div>
+</section>
+
+<!-- 165 けたが2つ違う -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：ヨーロッパ</span><span class="brand"></span></div>
+  <div class="h-main">規模で比べると、けたが2つ以上違います</div>
+  <div class="h-sub">研究費と設備投資という、種類の違うお金ですが、規模の感覚として</div>
+  <div class="cols">
+    <div class="box left"><div class="name">EUの研究計画</div><div class="cap">2023年〜26年の拠出</div><div class="big">約10億円</div><div class="div"></div><div class="small">約555万ユーロ</div></div>
+    <div class="vsmark">対</div>
+    <div class="box bluebox"><div class="name">DNP1社</div><div class="cap">3年で使う設備投資</div><div class="big">3,000億円</div><div class="div"></div><div class="strong">けたが2つ以上違う</div></div>
+  </div>
+</section>
+
+<!-- 166 EUがやっているのは研究 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ヨーロッパ</span><span class="brand"></span></div>
+  <div class="stmt">ヨーロッパがやっているのは量産ではなく、<br><span class="em">技術を域内に残すための研究</span>です。</div>
+</section>
+
+<!-- 167 EUも勝負は部材 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ヨーロッパ</span><span class="brand"></span></div>
+  <div class="lead">しかも、EUの計画が狙っているのは、外に置く光源やレーザーのような、部材の技術です</div>
+  <div class="stmt">ヨーロッパも、<span class="em">勝負は部材</span>だと見ています。</div>
+</section>
+
+<!-- 168 組む相手でもある -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：ヨーロッパ</span><span class="brand"></span></div>
+  <div class="lead">そして、ヨーロッパは競争相手であると同時に</div>
+  <div class="stmt"><span class="em">組む相手</span>でもあります。</div>
+  <div class="note">DNPが共同研究の拠点を置いたのは、オランダでした</div>
+</section>
+
+<!-- 169 中国の強さ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 5：中国</span><span class="brand"></span></div>
+  <div class="h-main">中国は、違う強さを持っています</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">強いところ</div><div class="cap">差し込み式の光の部品</div><div class="big">数を作る力</div><div class="div"></div><div class="strong">製造では、すでに世界で大きな存在</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">追う側の部分</div><div class="cap">チップの隣に光を置く技術<br>巨大なパッケージを作る技術</div><div class="big">アメリカと台湾を追う</div><div class="div"></div><div class="small">経済産業省も、アメリカと中国を中心に開発競争が激しくなっていると書いています</div></div>
+  </div>
+</section>
+
+<!-- 170 安心していい相手ではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：中国</span><span class="brand"></span></div>
+  <div class="lead">つまり中国は、何年遅れている、と安心していい相手ではありません</div>
+  <div class="stmt">差し込み式で積み上げた<span class="em">量産の力</span>を、<br>チップの隣へ持ち込んでくる競争相手です。</div>
+</section>
+
+<!-- 171 見方を変える -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：見方を変える</span><span class="brand"></span></div>
+  <div class="lead">ここで、見方を変えます</div>
+  <div class="stmt">競争相手がいる市場は、<span class="em">本物の市場</span>です。<br>誰も争わない市場に、お金は集まりません。</div>
+  <div class="note">アメリカも、ヨーロッパも、中国も、同じ場所を取りに来ています</div>
+</section>
+
+<!-- 172 どの国の装置でも -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 5：見方を変える</span><span class="brand"></span></div>
+  <div class="h-main">そして、どの国の装置が増えても</div>
+  <div class="chain">
+    <div class="node">ガラスの土台</div>
+    <div class="arr">＋</div>
+    <div class="node">光の通り道</div>
+    <div class="arr">＋</div>
+    <div class="node">光ファイバーの束</div>
+  </div>
+  <div class="release">要ることは、<span style="color:#2f8f6b">変わりません</span></div>
+</section>
+
+<!-- 173 中国は条件に入れない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：見方を変える</span><span class="brand"></span></div>
+  <div class="stmt">だから、中国の追い上げは、<br><span class="em">見方を変える条件には入れていません。</span></div>
+  <div class="note">その理由は、最後の持ち方のところでお話しします</div>
+</section>
+
+<!-- 174 見るべきは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 5：見方を変える</span><span class="brand"></span></div>
+  <div class="lead">見るべきは、どの国が勝つかではなく</div>
+  <div class="stmt"><span class="em">どの部材の企業が、どの段階にいるか</span>、です。</div>
+  <div class="note">その見方をまとめる前に、1つ確かめておきます。競争があっても、お金は日本に来ているのか</div>
+</section>
+
+<!-- ========== p07_okane ========== -->
+<!-- 175 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 6：お金は、日本のデータセンターにもう来ています</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 6 / 9</span><span class="bar"></span><span>競争があっても、お金は来ているのか</span></div>
+  <div class="numbox">06</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">お金は、日本の<br>データセンターにもう来ています</div><div class="rule"></div><div class="desc">市場そのものと、日本に作られるデータセンター</div></div>
+</section>
+
+<!-- 176 2つの方向から -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 6：お金は2つの方向から</span><span class="brand"></span></div>
+  <div class="h-main">来ています。しかも、2つの方向からです</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">1つ目</div><div class="cap">市場そのもの</div><div class="big">装置の市場</div><div class="div"></div><div class="strong">チップの隣に光を置く装置</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">2つ目</div><div class="cap">日本の中に作られる</div><div class="big">AIデータセンター</div><div class="div"></div><div class="small">発表された投資額で見ます</div></div>
+  </div>
+  <div class="foot-note">まず、市場の大きさからです</div>
+</section>
+
+<!-- 177 Yoleの予測 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 6：2030年より、いつ数が出るか</span><span class="brand"></span></div>
+  <div class="lead">最初にお伝えした市場の数字は、フランスの調査企業Yoleの予測です</div>
+  <div class="h-main">2030年の市場規模</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">チップの隣に光を置く装置の市場（2030年）</div>
+      <div class="mfig">1兆2,800<span class="u">億円</span></div>
+      <div class="msub">Yole（フランスの調査企業）の予測</div>
+    </div>
+  </div>
+</section>
+
+<!-- 178 2030年は答え合わせできない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：2030年より、いつ数が出るか</span><span class="brand"></span></div>
+  <div class="lead">ただ、2030年の金額は、2030年にならないと答え合わせができません</div>
+  <div class="stmt">株を持つ側に効くのは、<br><span class="em">数が出始める年</span>のほうです。</div>
+</section>
+
+<!-- 179 Cignal AIの時間軸 -->
+<section class="slide t-numline">
+  <div class="hdr"><span class="sec">Section 6：2030年より、いつ数が出るか</span><span class="brand"></span></div>
+  <div class="h-main">調査企業のCignal AIが予測する、数が出る時期</div>
+  <div class="scale">
+    <div class="mk" style="left:14%"><div class="val">2027年ごろ</div><div class="dot"></div><div class="lab">数が増え始める</div></div>
+    <div class="mk" style="left:62%"><div class="val" style="color:#d6850f">2029年</div><div class="dot" style="background:#d6850f"></div><div class="lab">―</div></div>
+    <div class="mk" style="left:88%"><div class="val" style="color:var(--blue)">2030年</div><div class="dot" style="background:var(--blue)"></div><div class="lab">一気に増える</div></div>
+  </div>
+  <div class="foot-note">さきほど四季報で見た3社が説明していた、2028年から29年に立ち上がる、という時間軸と重なります</div>
+</section>
+
+<!-- 180 発表された数字 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本に来ているお金</span><span class="brand"></span></div>
+  <div class="lead">もう1つ、日本に来ているお金があります</div>
+  <div class="stmt">こちらは予測ではなく、<br><span class="em">発表された数字</span>です。</div>
+</section>
+
+<!-- 181 3社の投資 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 6：日本に来ているお金</span><span class="brand"></span></div>
+  <div class="h-main">日本のAIデータセンターへの投資</div>
+  <div class="h-sub">どれも、すでに発表されている数字です</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">マイクロソフト</div><div class="cd">2026〜29年</div></div><div class="body"><div class="lbl">日本のAIデータセンターなどへ</div><div class="val2">約1兆6,000億円</div><div class="tag">100億ドル</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">AWS</div><div class="cd">2027年まで</div></div><div class="body"><div class="lbl">日本への投資</div><div class="val2">2兆2,600億円</div><div class="tag">発表済み</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">デル など</div><div class="cd">稼働は2028年から</div></div><div class="body"><div class="lbl">千葉のAIデータセンター</div><div class="val2">約2兆4,000億円</div><div class="tag">150億ドル</div></div></div>
+  </div>
+</section>
+
+<!-- 182 デルの座組 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本に来ているお金</span><span class="brand"></span></div>
+  <div class="lead">2026年10月、アメリカのサーバー大手デルが</div>
+  <div class="stmt">東京電力と中部電力の火力発電の企業JERAなどと組み、<br><span class="em">千葉にAIデータセンター</span>を作ると発表。</div>
+  <div class="note">投資額は150億ドル、約2兆4,000億円。稼働は2028年からの計画です</div>
+</section>
+
+<!-- 183 出資ではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：日本に来ているお金</span><span class="brand"></span></div>
+  <div class="lead">このニュースを見て、光電融合の企業に出資したのか、と思った方がいるかもしれません</div>
+  <div class="stmt"><span class="emr">違います。</span><br>どれも、日本の中にAIデータセンターを作るための投資で、<br>部材の企業への出資ではありません。</div>
+</section>
+
+<!-- 184 それでも需要は来ている -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 6：日本に来ているお金</span><span class="brand"></span></div>
+  <div class="h-main">ただし、データセンターが増えれば</div>
+  <div class="chain">
+    <div class="node">データセンターが<br>増える</div>
+    <div class="arr">→</div>
+    <div class="node">光に変える場所が<br>増える</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">光ファイバーを<br>つなぐ口が増える</div>
+  </div>
+  <div class="release">チップの隣に光を置く装置が入る前から、<span style="color:#cf820f">光の需要は、もう来ています</span></div>
+</section>
+
+<!-- 185 名簿へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 6：名簿へ</span><span class="brand"></span></div>
+  <div class="lead">では、その需要は、どの企業の利益にもう入っているのか</div>
+  <div class="stmt">ここからは<span class="em">名簿</span>です。<br>残りの6社を、1社ずつ見ていきます。</div>
+</section>
+
+<!-- ========== p08_meibo ========== -->
+<!-- 186 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 7：合流点の2社と、材料の3社、検査の1社</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 7 / 9</span><span class="bar"></span><span>残りの6社を、1社ずつ</span></div>
+  <div class="numbox">07</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">合流点の2社と、<br>材料の3社、検査の1社</div><div class="rule"></div><div class="desc">古河電工・住友電工・レゾナック・日産化学・デクセリアルズ・アドバンテスト</div></div>
+</section>
+
+<!-- 187 もう買われているのでは -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：名簿の入り口</span><span class="brand"></span></div>
+  <div class="lead">動画の最初の迷いが、ここでもう一度出てきます</div>
+  <div class="stmt">候補が分かっても、<br><span class="emr">もう買われているのではないか。</span></div>
+  <div class="note">実際、9社の株価は、1月5日から10月2日までで、どれも上がっています</div>
+</section>
+
+<!-- 188 上がり方の開き -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：名簿の入り口</span><span class="brand"></span></div>
+  <div class="h-main">ただ、上がり方は、これだけ開いています</div>
+  <div class="cols">
+    <div class="box left"><div class="name">いちばん小さい</div><div class="cap">年初からの上がり方</div><div class="big">8.5%</div><div class="div"></div><div class="small">DNP</div></div>
+    <div class="vsmark">〜</div>
+    <div class="box bluebox"><div class="name">いちばん大きい</div><div class="cap">年初からの上がり方</div><div class="big">4.2倍</div><div class="div"></div><div class="strong">古河電工</div></div>
+  </div>
+  <div class="foot-note">PERも、DNPの約13倍からアドバンテストの約42倍まで、3倍以上の差があります</div>
+</section>
+
+<!-- 189 同じ光電融合の企業なのに -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：名簿の入り口</span><span class="brand"></span></div>
+  <div class="stmt">同じ光電融合の企業なのに、です。</div>
+  <div class="note">この開きを読む見方は、2つです</div>
+</section>
+
+<!-- 190 2つの見方 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：2つの見方</span><span class="brand"></span></div>
+  <div class="h-main">この開きを読む、2つの見方</div>
+  <div class="h-sub">ここからの6社は、どちらもこの2つで見ます</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">今の利益に、<br>光の需要が入っているか</div><div class="ctext">決算の部門の数字に、もう出ているかどうか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">CPOの部材が、<br>どの段階にいるか</div><div class="ctext">技術の発表から、営業利益が増えるまでの6段階</div></div>
+  </div>
+</section>
+
+<!-- 191 6つの段階（前半） -->
+<section class="slide t-agenda" style="padding-bottom:58px">
+  <div class="hdr"><span class="sec">Section 7：2つの見方</span><span class="brand"></span></div>
+  <div class="h-main">段階は、6つです（前半）</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">技術の発表</span><span class="d">学会や展示会で出す</span></div>
+    <div class="row"><span class="no">2</span><span class="t">顧客の評価</span><span class="d">サンプルを出して、試してもらう</span></div>
+    <div class="row"><span class="no">3</span><span class="t">設備投資</span><span class="d">作るための設備にお金を入れる</span></div>
+  </div>
+</section>
+
+<!-- 191b 6つの段階（後半） -->
+<section class="slide t-agenda">
+  <div class="hdr"><span class="sec">Section 7：2つの見方</span><span class="brand"></span></div>
+  <div class="h-main">段階は、6つです（後半）</div>
+  <div class="rows">
+    <div class="row"><span class="no">4</span><span class="t">量産</span><span class="d">数を作り始める</span></div>
+    <div class="row"><span class="no">5</span><span class="t">部門の売上が増える</span><span class="d">決算の数字に出てくる</span></div>
+    <div class="row"><span class="no">6</span><span class="t">営業利益が増える</span><span class="d">1株利益に効いてくる</span></div>
+  </div>
+  <div class="cta">テーマが1株利益に変わるのは、最後の2つに来てから</div>
+</section>
+
+<!-- 192 6社の内訳 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：ここからの6社</span><span class="brand"></span></div>
+  <div class="h-main">ここからの6社の、内訳です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">2社</div><div class="ctitle">合流点</div><div class="ctext">古河電工・住友電工</div></div>
+    <div class="card c2"><div class="cno">3社</div><div class="ctitle">材料</div><div class="ctext">レゾナック・日産化学・デクセリアルズ</div></div>
+    <div class="card c3"><div class="cno">1社</div><div class="ctitle">検査</div><div class="ctext">アドバンテスト</div></div>
+  </div>
+  <div class="foot-bar">1社ずつ、<span class="em">この2つの見方</span>で見ます</div>
+</section>
+
+<!-- 193 古河電工 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="lead">まず、古河電工</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">外に置く光源と、つなぎ口</div>
+      <div class="mfig" style="font-size:108px">古河電工<span class="u" style="font-size:88px">　5801</span></div>
+      <div class="msub">光を作る側と、つなぐ側の両方にいます</div>
+    </div>
+  </div>
+</section>
+
+<!-- 194 古河電工 全社の利益 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="lead">今の利益から見ます（2026年4月〜6月の3か月）</div>
+  <div class="h-main">全社の営業利益は、前の年の3倍</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">全社の営業利益（4〜6月）</div>
+      <div class="mfig">255<span class="u">億円</span></div>
+      <div class="msub">前の年の同じ時期の3倍。8月に今期の予想を1,230億円へ引き上げ</div>
+    </div>
+  </div>
+</section>
+
+<!-- 195 古河電工 光の部門 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="h-main">光ファイバーなどの光の部門が、赤字から黒字へ</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v" style="font-size:44px">7億円の赤字</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今年（4〜6月）</div><div class="c-v" style="font-size:44px">92億円の黒字</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">理由</div><div class="r-v" style="font-size:46px">データセンター向け</div></div>
+  </div>
+</section>
+
+<!-- 196 古河電工 利益の中心 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="h-main">利益の中心は、もうデータセンターに移っています</div>
+  <div class="h-sub">光の部門と、冷却や光半導体を含む部門を足した比率</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">3か月の利益</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">2つの部門の合計が占める割合</div><div class="val2">約65%</div><div class="tag">実績</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">通期の予想</div><div class="cd">今期</div></div><div class="body"><div class="lbl">同じ2つの部門の割合</div><div class="val2">約76%</div><div class="tag">予想</div></div></div>
+  </div>
+</section>
+
+<!-- 197 古河電工 段階 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="h-main">段階で見ると、2つに分かれます</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">今の光の部品</div><div class="cap">6段階のうち</div><div class="big">最後の2つ</div><div class="div"></div><div class="strong">部門の売上と営業利益が増える段階</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">CPO向けの外に置く光源</div><div class="cap">2022年に世界で初めてサンプル出荷</div><div class="big">量産に入ろうとしている</div><div class="div"></div><div class="small">段階が1つ手前</div></div>
+  </div>
+</section>
+
+<!-- 198 古河電工 事業部門を新設 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="lead">さらに2026年度からは、光電融合デバイスという名前の事業部門を作りました</div>
+  <div class="stmt">研究のテーマではなく、<br><span class="em">事業として数字を管理し始めた</span>、<br>ということです。</div>
+</section>
+
+<!-- 199 古河電工 評価 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="h-main">材料と電線の企業の中では、いちばん高い評価</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">PER</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">利益に対する株価</div><div class="val2">約30倍</div><div class="tag">材料・電線で最高</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">純資産に対する株価</div><div class="val2">約7倍</div><div class="tag">高い</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">配当</div><div class="cd">今期予想</div></div><div class="body"><div class="lbl">1株あたり</div><div class="val2">年22円</div><div class="tag">予想</div></div></div>
+  </div>
+</section>
+
+<!-- 200 古河電工 なぜ高いのか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="lead">光電融合の候補だから高いのではありません</div>
+  <div class="stmt">今の利益が出ていて、2030年度に営業利益<span class="em">2,500億円</span>、<br>その<span class="em">8割をデータセンター関連</span>で、という計画を、<br>市場が先に買っているからです。</div>
+</section>
+
+<!-- 201 取り分の話 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="lead">大事なのは、市場が何倍になるかより</div>
+  <div class="stmt">その企業の<span class="em">売上が何倍になるか</span>、です。</div>
+  <div class="note">市場が1兆2,800億円になっても、取り分が小さければ、1株利益は動きません。古河電工は、取り分が先に見えている側です</div>
+</section>
+
+<!-- 202 古河電工 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="h-main">株価は約4.2倍。9社でいちばん上がっています</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">1,054円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">4,429円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">約4.2倍</div></div>
+  </div>
+  <div class="foot-note">7月に1株を10株に分割しているので、分割前の株価と比べるときは注意してください</div>
+</section>
+
+<!-- 203 古河電工 投資している時期 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="h-main">ただし、借金も増やして投資している時期です</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">今期の設備投資</div><div class="cd">今期</div></div><div class="body"><div class="lbl">前の年との比較</div><div class="val2">1,500億円</div><div class="tag">前の年の2.6倍</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd">直近</div></div><div class="body"><div class="lbl">財務の厚さ</div><div class="val2">39%</div><div class="tag">投資の時期</div></div></div>
+  </div>
+</section>
+
+<!-- 204 古河電工 持っている方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：古河電工（5801）</span><span class="brand"></span></div>
+  <div class="lead">古河電工を持っている方は</div>
+  <div class="stmt">CPOのニュースより、<span class="em">光の部門の利益</span>と、<br><span class="em">投資したお金が利益で戻っているか</span>を。</div>
+  <div class="note">次に確かめるのは、11月9日の第2四半期決算です</div>
+</section>
+
+<!-- 205 住友電工 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：住友電工（5802）</span><span class="brand"></span></div>
+  <div class="lead">次に、住友電工</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">光ファイバーの束と、つなぎ口</div>
+      <div class="mfig" style="font-size:108px">住友電工<span class="u" style="font-size:88px">　5802</span></div>
+      <div class="msub">NVIDIAの供給網に、名前が入っています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 206 住友電工 全社の数字 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：住友電工（5802）</span><span class="brand"></span></div>
+  <div class="h-main">2026年4月〜6月の3か月</div>
+  <div class="h-sub">企業はこのあと、通期の予想も引き上げています</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">売上</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">3か月の売上</div><div class="val2">1兆3,306億円</div><div class="tag">前の年から16%増</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">3か月の営業利益</div><div class="val2">971億円</div><div class="tag">6割増</div></div></div>
+  </div>
+</section>
+
+<!-- 207 住友電工 情報通信部門 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：住友電工（5802）</span><span class="brand"></span></div>
+  <div class="h-main">情報通信の部門の営業利益は、3倍以上</div>
+  <div class="row">
+    <div class="card"><div class="c-l">前の年</div><div class="c-v">81億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">今年（4〜6月）</div><div class="c-v">272億円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">利益率</div><div class="r-v">31%</div></div>
+  </div>
+  <div class="foot-note">企業が理由に挙げているのは、生成AIで増えたデータセンター向けの光の配線と光の部品です</div>
+</section>
+
+<!-- 208 住友電工 1割に届かないが3割を稼ぐ -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 7：住友電工（5802）</span><span class="brand"></span></div>
+  <div class="h-main">情報通信は、売上は小さいのに、利益は大きい</div>
+  <div class="cols">
+    <div class="box left"><div class="name">売上で見ると</div><div class="cap">売上5兆円の企業の中で</div><div class="big">1割に届かない</div><div class="div"></div><div class="small">自動車の配線から電力ケーブルまで持つ企業です</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">利益で見ると</div><div class="cap">通期の予想では</div><div class="big">全社の約3割</div><div class="div"></div><div class="strong">この部門が稼ぎます</div></div>
+  </div>
+</section>
+
+<!-- 209 住友電工 段階 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：住友電工（5802）</span><span class="brand"></span></div>
+  <div class="lead">段階で見ると、束の技術はNVIDIAの供給網に入っています</div>
+  <div class="stmt"><span class="em">顧客の評価の段階は通った</span>、ということです。</div>
+  <div class="note">CPO向けには、外に置く光源に使う高出力のレーザーも開発していて、光を作る側にも入っています</div>
+</section>
+
+<!-- 210 住友電工 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：住友電工（5802）</span><span class="brand"></span></div>
+  <div class="h-main">株価は、約1.5倍</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">1,677円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">2,452円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">約1.5倍</div></div>
+  </div>
+  <div class="foot-note">7月に1株を4株に分割しているので、分割前の値段と比べるときは注意してください</div>
+</section>
+
+<!-- 211 住友電工 評価 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：住友電工（5802）</span><span class="brand"></span></div>
+  <div class="h-main">評価は、古河電工ほど先を買っていません</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">PER</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">利益に対する株価</div><div class="val2">約22倍</div><div class="tag">古河電工は約30倍</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">純資産に対する株価</div><div class="val2">約2.7倍</div><div class="tag">10/2時点</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">配当</div><div class="cd">今期予想</div></div><div class="body"><div class="lbl">1株あたり</div><div class="val2">年39円</div><div class="tag">予想</div></div></div>
+  </div>
+  <div class="foot-bar">情報通信の利益がすでに出ている分、<span class="em">テーマだけの株より裏付けがあります</span></div>
+</section>
+
+<!-- 212 住友電工 持っている方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：住友電工（5802）</span><span class="brand"></span></div>
+  <div class="lead">住友電工をお持ちの方は、情報通信部門の売上と利益率を</div>
+  <div class="stmt"><span class="em">31%の利益率が保てているか</span>が、<br>光の需要の強さそのものです。</div>
+  <div class="note">次の決算は、11月です</div>
+</section>
+
+<!-- 213 レゾナック 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：レゾナック（4004）</span><span class="brand"></span></div>
+  <div class="lead">3社目は、レゾナック</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">反りを止める材料の企業</div>
+      <div class="mfig" style="font-size:108px">レゾナック<span class="u" style="font-size:88px">　4004</span></div>
+      <div class="msub">光の通り道の材料と、光を通す接着材も開発しています</div>
+    </div>
+  </div>
+</section>
+
+<!-- 214 レゾナック 本業の利益 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：レゾナック（4004）</span><span class="brand"></span></div>
+  <div class="h-main">2026年1月〜6月の半年</div>
+  <div class="h-sub">企業は8月に、本業の利益の予想を1,960億円に引き上げました</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">本業の利益</div><div class="cd">1〜6月</div></div><div class="body"><div class="lbl">半年の本業の利益</div><div class="val2">887億円</div><div class="tag">前の年の2.6倍</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">半導体と電子材料</div><div class="cd">同じ期間</div></div><div class="body"><div class="lbl">この部門の利益</div><div class="val2">815億円</div><div class="tag">全体の9割以上</div></div></div>
+  </div>
+</section>
+
+<!-- 215 レゾナック 中身はCPOではない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：レゾナック（4004）</span><span class="brand"></span></div>
+  <div class="lead">中身は、AI半導体の後ろの工程で使う材料です</div>
+  <div class="stmt">チップを重ねたり、巨大なパッケージにまとめたりする<br>ときの材料で、<span class="emr">CPOの材料ではありません。</span></div>
+</section>
+
+<!-- 216 レゾナック 段階と強み -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：レゾナック（4004）</span><span class="brand"></span></div>
+  <div class="lead">段階で見ると、CPO向けの材料は、2026年の国際会議で発表している段階です</div>
+  <div class="stmt">ただ、この企業の強みは、<br><span class="em">CPOが遅れても困らないこと</span>です。</div>
+  <div class="note">AIチップが巨大になるかぎり、反りを止める材料は要ります</div>
+</section>
+
+<!-- 217 レゾナック 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：レゾナック（4004）</span><span class="brand"></span></div>
+  <div class="h-main">株価は、約2.6倍</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">6,660円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">17,280円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">約2.6倍</div></div>
+  </div>
+  <div class="foot-note">9月に石油化学の企業を切り離して別に上場させたので、それより前の株価と比べるときは注意してください</div>
+</section>
+
+<!-- 218 レゾナック 評価 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：レゾナック（4004）</span><span class="brand"></span></div>
+  <div class="h-main">10月2日時点の指標</div>
+  <div class="h-sub">自己資本比率は36%。9社の中では、借金を使って投資している側の企業です</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">PER</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">利益に対する株価</div><div class="val2">約30倍</div><div class="tag">10/2時点</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">純資産に対する株価</div><div class="val2">約4倍台</div><div class="tag">10/2時点</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">配当</div><div class="cd">今期予想</div></div><div class="body"><div class="lbl">1株あたり／利回り</div><div class="val2">年65円</div><div class="tag">利回り0.4%</div></div></div>
+  </div>
+</section>
+
+<!-- 219 レゾナック 持っている方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：レゾナック（4004）</span><span class="brand"></span></div>
+  <div class="lead">光電融合の銘柄として持っているつもりでも、効いているのは</div>
+  <div class="stmt">半導体と電子材料の部門の<span class="em">利益率</span>。<br><span class="em">27%</span>まで上がったこの数字を見てください。</div>
+  <div class="note">次の決算は、11月です</div>
+</section>
+
+<!-- 220 日産化学 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：日産化学（4021）</span><span class="brand"></span></div>
+  <div class="lead">4社目は、日産化学</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">材料を納める側の企業</div>
+      <div class="mfig" style="font-size:108px">日産化学<span class="u" style="font-size:88px">　4021</span></div>
+      <div class="msub">光の通り道と、接着に使う材料を納める側です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 221 日産化学 今の利益 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：日産化学（4021）</span><span class="brand"></span></div>
+  <div class="h-main">2026年4月〜6月の3か月</div>
+  <div class="h-sub">企業が5月に立てた計画を、営業利益で3割上回りました</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">売上</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">3か月の売上</div><div class="val2">788億円</div><div class="tag">実績</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">営業利益</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">3か月の営業利益／利益率</div><div class="val2">219億円</div><div class="tag">利益率28%</div></div></div>
+  </div>
+</section>
+
+<!-- 222 日産化学 中身 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：日産化学（4021）</span><span class="brand"></span></div>
+  <div class="lead">中身は、AI向けの半導体の材料です。半導体材料の売上は前の年から49%増え、中でもチップを重ねる工程の材料は2倍近くに</div>
+  <div class="stmt">光電融合の材料は、<br><span class="emr">まだこの利益に入っていません。</span></div>
+</section>
+
+<!-- 223 日産化学 段階 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：日産化学（4021）</span><span class="brand"></span></div>
+  <div class="lead">段階で見ると、光の材料は顧客の評価です</div>
+  <div class="stmt">2025年4月に光配線材料の開発グループを作り、<br>CPO向けの通り道の材料を開発。<br><span class="em">量産での採用は公表されていません。</span></div>
+</section>
+
+<!-- 224 日産化学 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：日産化学（4021）</span><span class="brand"></span></div>
+  <div class="h-main">株価は、約1.6倍</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">5,349円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">8,392円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">約1.6倍</div></div>
+  </div>
+</section>
+
+<!-- 225 日産化学 評価と財務 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：日産化学（4021）</span><span class="brand"></span></div>
+  <div class="h-main">10月2日時点の指標と、財務</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">PER／PBR</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">PER 約22倍</div><div class="val2">PBR 約4.5倍</div><div class="tag">10/2時点</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">配当</div><div class="cd">今期予想</div></div><div class="body"><div class="lbl">1株あたり／利回り</div><div class="val2">年212円</div><div class="tag">利回り2.5%</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">自己資本比率</div><div class="cd">直近</div></div><div class="body"><div class="lbl">財務の厚さ</div><div class="val2">70%</div><div class="tag">借金はほとんどない</div></div></div>
+  </div>
+</section>
+
+<!-- 226 日産化学 持っている方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：日産化学（4021）</span><span class="brand"></span></div>
+  <div class="lead">日産化学をお持ちの方は、決算の説明資料に</div>
+  <div class="stmt"><span class="em">光の材料の売上が、数字で出てくるか</span>を。<br>出てきたら、段階が1つ進んだ合図です。</div>
+  <div class="note">次の決算は、11月9日です</div>
+</section>
+
+<!-- 227 デクセリアルズ 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：デクセリアルズ（4980）</span><span class="brand"></span></div>
+  <div class="lead">5社目は、デクセリアルズ</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">通り道の材料と、受光部品</div>
+      <div class="mfig" style="font-size:108px">デクセリアルズ<span class="u" style="font-size:88px">　4980</span></div>
+      <div class="msub">ソニーから分かれた材料の企業。画面のフィルムや接着のフィルムで世界シェア1位</div>
+    </div>
+  </div>
+</section>
+
+<!-- 228 デクセリアルズ 2つの顔 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：デクセリアルズ（4980）</span><span class="brand"></span></div>
+  <div class="h-main">光電融合では、2つの顔があります</div>
+  <div class="h-sub">通り道の材料と、受光部品。流れの2か所に入っています</div>
+  <div class="grid g2">
+    <div class="card c2"><div class="cno">1</div><div class="ctitle">光の通り道の材料と、<br>その形を作る工程</div><div class="ctext">産総研が中心のCPOの試作品で担当</div></div>
+    <div class="card c3"><div class="cno">2</div><div class="ctitle">受光部品</div><div class="ctext">作る順番で見た、光を受けて電気に戻す部品</div></div>
+  </div>
+</section>
+
+<!-- 229 デクセリアルズ 今の利益 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：デクセリアルズ（4980）</span><span class="brand"></span></div>
+  <div class="h-main">2026年4月〜6月の3か月</div>
+  <div class="h-sub">理由は、データセンター向けの光トランシーバーに使う受光部品です</div>
+  <div class="cols">
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">3か月の営業利益／利益率</div><div class="val2">86億円</div><div class="tag">利益率32%</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">電子材料の部門</div><div class="cd">同じ期間</div></div><div class="body"><div class="lbl">売上と利益の伸び</div><div class="val2">売上19%・利益22%増</div><div class="tag">前の年から</div></div></div>
+  </div>
+</section>
+
+<!-- 230 デクセリアルズ 3倍の計画 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：デクセリアルズ（4980）</span><span class="brand"></span></div>
+  <div class="h-main">つまり、今の利益に光の需要が入っている側です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">2025年度</div><div class="c-v">約103億円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">2028年度</div><div class="c-v">325億円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">光の部品の売上</div><div class="r-v">3倍にする計画</div></div>
+  </div>
+  <div class="foot-note">5月に出した計画です</div>
+</section>
+
+<!-- 231 デクセリアルズ 段階 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：デクセリアルズ（4980）</span><span class="brand"></span></div>
+  <div class="lead">段階で見ると、CPO向けは研究の段階です</div>
+  <div class="stmt">産総研が中心になって作ったCPOの試作品で、<br>光の通り道の材料と形を作る工程を担当。<br><span class="em">実用化の目標は2030年</span>です。</div>
+</section>
+
+<!-- 232 デクセリアルズ 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：デクセリアルズ（4980）</span><span class="brand"></span></div>
+  <div class="h-main">株価は、およそ27%の上昇</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">2,668円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">3,389円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">約 +27%</div></div>
+  </div>
+  <div class="foot-note">PERは約21倍、PBRは約5倍。配当は年64円。自己資本比率は63%です</div>
+</section>
+
+<!-- 233 デクセリアルズ 持っている方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：デクセリアルズ（4980）</span><span class="brand"></span></div>
+  <div class="lead">デクセリアルズを持っている方は</div>
+  <div class="stmt">光の部品の売上が、<span class="em">3倍の計画の線に乗っているか</span>を。</div>
+  <div class="note">設備投資を増やしている時期なので、現金の流れも一緒に。次の決算は、11月です</div>
+</section>
+
+<!-- 234 アドバンテスト 役割 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 7：アドバンテスト（6857）</span><span class="brand"></span></div>
+  <div class="lead">最後に、アドバンテスト</div>
+  <div class="metrics">
+    <div class="metric navy hero">
+      <div class="mlbl">検査装置の企業</div>
+      <div class="mfig" style="font-size:108px">アドバンテスト<span class="u" style="font-size:88px">　6857</span></div>
+      <div class="msub">電気と光を同時に測る、検査装置の企業です</div>
+    </div>
+  </div>
+</section>
+
+<!-- 235 アドバンテスト 今の利益 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：アドバンテスト（6857）</span><span class="brand"></span></div>
+  <div class="h-main">今の利益は、AI半導体の検査装置で出ています</div>
+  <div class="h-sub">2026年4月〜6月の3か月／企業は7月に、通期の利益の予想を8,460億円に引き上げました</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">売上</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">3か月の売上</div><div class="val2">3,675億円</div><div class="tag">実績</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">営業利益</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">3か月の営業利益</div><div class="val2">1,900億円</div><div class="tag">実績</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">利益率</div><div class="cd">同じ期間</div></div><div class="body"><div class="lbl">売上に対する利益</div><div class="val2">52%</div><div class="tag">非常に高い</div></div></div>
+  </div>
+</section>
+
+<!-- 236 アドバンテスト 光はまだ入っていない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：アドバンテスト（6857）</span><span class="brand"></span></div>
+  <div class="lead">GPUや、その隣に置くメモリの検査で、この数年で利益を10倍近くに伸ばしてきた企業です</div>
+  <div class="stmt">光の検査は、<span class="emr">まだ利益に入っていません。</span></div>
+</section>
+
+<!-- 237 アドバンテスト 段階 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：アドバンテスト（6857）</span><span class="brand"></span></div>
+  <div class="lead">段階で見ると、CPO向けの検査装置は、海外の光チップの企業と共同で開発している段階です</div>
+  <div class="stmt">主力の検査装置に、光の部品向けの区分を新しく作りました。<br><span class="em">技術の発表から、顧客の評価へ</span>進んでいるところです。</div>
+</section>
+
+<!-- 238 アドバンテスト 株価 -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 7：アドバンテスト（6857）</span><span class="brand"></span></div>
+  <div class="h-main">株価は、約1.8倍。10月2日に年初来の高値</div>
+  <div class="row">
+    <div class="card"><div class="c-l">1月5日</div><div class="c-v">21,175円</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">10月2日</div><div class="c-v">38,630円</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">年初から</div><div class="r-v">約1.8倍</div></div>
+  </div>
+</section>
+
+<!-- 239 アドバンテスト 別格の評価 -->
+<section class="slide t-stats">
+  <div class="hdr"><span class="sec">Section 7：アドバンテスト（6857）</span><span class="brand"></span></div>
+  <div class="h-main">9社の中で、別格の評価です</div>
+  <div class="cols">
+    <div class="col"><div class="top"><div class="nm">PER</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">利益に対する株価</div><div class="val2">約42倍</div><div class="tag">9社で最高</div></div></div>
+    <div class="col cblue"><div class="top"><div class="nm">PBR</div><div class="cd">10/2</div></div><div class="body"><div class="lbl">純資産に対する株価</div><div class="val2">約27倍</div><div class="tag">9社で最高</div></div></div>
+    <div class="col cnavy"><div class="top"><div class="nm">利益率</div><div class="cd">4〜6月</div></div><div class="body"><div class="lbl">売上に対する利益</div><div class="val2">52%</div><div class="tag">この水準が前提</div></div></div>
+  </div>
+</section>
+
+<!-- 240 アドバンテスト 同じ軸では測れない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：アドバンテスト（6857）</span><span class="brand"></span></div>
+  <div class="lead">この評価は、材料や電線の企業と同じ軸では測れません</div>
+  <div class="stmt">市場は、<span class="em">AI半導体の検査が2030年まで<br>伸び続けること</span>を前提に値段をつけています。</div>
+</section>
+
+<!-- 241 アドバンテスト 持っている方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：アドバンテスト（6857）</span><span class="brand"></span></div>
+  <div class="lead">アドバンテストを持っている方は、決算の説明に</div>
+  <div class="stmt"><span class="em">CPOか、光の検査という言葉</span>が<br>出てくるかを見てください。</div>
+  <div class="note">次の決算は、10月28日です</div>
+</section>
+
+<!-- 242 一律には動かない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：6社を見て分かること</span><span class="brand"></span></div>
+  <div class="lead">6社を見て、分かることがあります</div>
+  <div class="stmt">候補だから一律に動く、<span class="emr">ということはありません。</span></div>
+  <div class="note">両端は、4.2倍の古河電工と、8.5%のDNPです</div>
+</section>
+
+<!-- 243 差は何か -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：6社を見て分かること</span><span class="brand"></span></div>
+  <div class="stmt">差は、<span class="em">今の利益に、需要がすでに<br>入っているかどうか</span>です。</div>
+</section>
+
+<!-- 244 3分類 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 7：6社を見て分かること</span><span class="brand"></span></div>
+  <div class="h-main">9社は、3つに分かれます</div>
+  <div class="h-sub">今の利益に、どの需要が入っているかで分けた形です</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">光</div><div class="ctitle">光の部品の需要で<br>入っている</div><div class="ctext">古河電工・住友電工・三菱電機・デクセリアルズ</div></div>
+    <div class="card c2"><div class="cno">AI</div><div class="ctitle">AI半導体の材料や<br>検査の需要で入っている</div><div class="ctext">レゾナック・日産化学・アドバンテスト</div></div>
+    <div class="card c3"><div class="cno">まだ</div><div class="ctitle">どちらも<br>まだ</div><div class="ctext">DNP・AGC</div></div>
+  </div>
+</section>
+
+<!-- 245 PERの開きも同じ理由 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：6社を見て分かること</span><span class="brand"></span></div>
+  <div class="lead">PERの開きも、同じ理由です</div>
+  <div class="stmt">三菱電機だけは、光の部門が全社の売上の5%なので、<br>株価は<span class="em">企業全体の業績</span>で動きます。</div>
+</section>
+
+<!-- 246 手前の需要 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：6社を見て分かること</span><span class="brand"></span></div>
+  <div class="lead">そして、今の利益に入っている企業も</div>
+  <div class="stmt">入っているのは、<span class="em">CPOの手前の需要</span>です。<br>ここを混ぜると、段階を読み違えます。</div>
+</section>
+
+<!-- 247 決算で確かめられる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：6社を見て分かること</span><span class="brand"></span></div>
+  <div class="lead">この2つの見方は、四半期ごとの決算で確かめられます</div>
+  <div class="stmt">決算のどこを見るかは、<br><span class="em">持ち方のところ</span>でまとめます。</div>
+</section>
+
+<!-- 248 どう持つか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 7：6社を見て分かること</span><span class="brand"></span></div>
+  <div class="stmt">では、この9社を、<span class="em">どう持つか。</span></div>
+  <div class="note">積み立て投資をしている方の分も、このあとに置きます</div>
+</section>
+
+<!-- ========== p09_mochikata ========== -->
+<!-- 249 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 8：光電融合の株の持ち方</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 8 / 9</span><span class="bar"></span><span>個別株の方と、積み立て投資の方へ</span></div>
+  <div class="numbox">08</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">光電融合の<br>株の持ち方</div><div class="rule"></div><div class="desc">見るものが違うので、別々に置きます</div></div>
+</section>
+
+<!-- 250 2つに分ける -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：持ち方</span><span class="brand"></span></div>
+  <div class="h-main">ここは、2つに分けてお話しします</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">1つ目</div><div class="cap">こちらから先に</div><div class="big">個別株で持つ方</div><div class="div"></div><div class="strong">選ぶ基準と、四半期ごとに見るもの</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">2つ目</div><div class="cap">そのあとに</div><div class="big">新NISAで<br>積み立てる方</div><div class="div"></div><div class="small">ETFと投資信託で、部材の側を持つ方法</div></div>
+  </div>
+  <div class="foot-note">見るものが違うので、別々に置きます</div>
+</section>
+
+<!-- 251 基準は2つ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：個別株で持つ方へ</span><span class="brand"></span></div>
+  <div class="h-main">個別株で持つなら、選ぶ基準は2つです</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">今の利益が<br>すでに出ている</div><div class="ctext">その理由に、光かAI半導体の需要があること</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">これから先も<br>伸びる理由がある</div><div class="ctext">その理由が、構造として見えること</div></div>
+  </div>
+</section>
+
+<!-- 252 入っている企業 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：個別株で持つ方へ</span><span class="brand"></span></div>
+  <div class="h-main">今の利益に、需要がすでに入っている企業</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">光で入っている</div><div class="cap">4社</div><div class="big">電線の2社と<br>三菱電機・デクセリアルズ</div><div class="div"></div><div class="strong">光の部品の需要</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">AI半導体で入っている</div><div class="cap">3社</div><div class="big">レゾナック・日産化学<br>アドバンテスト</div><div class="div"></div><div class="small">材料や検査の需要</div></div>
+  </div>
+</section>
+
+<!-- 253 伸びる理由が構造として見える -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：個別株で持つ方へ</span><span class="brand"></span></div>
+  <div class="h-main">2つ目の基準。伸びる理由が、構造として見えること</div>
+  <div class="chain">
+    <div class="node">データセンターが<br>増える</div>
+    <div class="arr">→</div>
+    <div class="node">光ファイバーの本数と<br>つなぎ口が増える</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">そこにCPOが来れば<br>土台・通り道・束が<br>さらに増える</div>
+  </div>
+</section>
+
+<!-- 254 評価も先に行っている -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：個別株で持つ方へ</span><span class="brand"></span></div>
+  <div class="lead">ただし、業績が出ている企業は、評価も先に行っています</div>
+  <div class="stmt">名簿で見たPERの高さは、そのためです。<br>だから、持ったら終わりではなく、<br><span class="em">四半期ごとに数字で確かめ続ける前提</span>で持ちます。</div>
+</section>
+
+<!-- 255 これからの側 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：個別株で持つ方へ</span><span class="brand"></span></div>
+  <div class="lead">これからの側、DNPとAGCは、捨てる名簿ではありません</div>
+  <div class="stmt">ガラスの土台や光の通り道の量産が決算に出たとき、<br><span class="em">段階が1つ進みます。</span></div>
+  <div class="note">持つなら、その時間を待てる大きさで持つ企業です</div>
+</section>
+
+<!-- 256 1社に寄せない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：個別株で持つ方へ</span><span class="brand"></span></div>
+  <div class="lead">そして、どの企業であっても、1社に寄せません</div>
+  <div class="stmt">企業自身が、CPOはまだ未成熟だと言っていて、<br><span class="em">どの企業がどの部材を握るかは、これから決まる</span>からです。</div>
+</section>
+
+<!-- 257 場所を分けて持つ -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：個別株で持つ方へ</span><span class="brand"></span></div>
+  <div class="h-main">だから、場所を分けて持ちます</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">光を作る側</div><div class="ctext">レーザーと、データを刻む部品</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">つなぐ側</div><div class="ctext">光ファイバーの束と、つなぎ口</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">土台と材料の側</div><div class="ctext">ガラスの土台、光の通り道、反りを止める材料</div></div>
+  </div>
+</section>
+
+<!-- 258 資産全体の中では一部 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：個別株で持つ方へ</span><span class="brand"></span></div>
+  <div class="lead">資産全体の中でも、光電融合は一部に留めてください</div>
+  <div class="stmt">AI半導体株をすでにお持ちの方は、<br>検査装置の企業で、<span class="em">もうつながっています。</span></div>
+  <div class="note">重ねて持つなら、同じ検査ではなく、部材の側です</div>
+</section>
+
+<!-- 259 四半期で見るのは3つ -->
+<section class="slide t-agenda" style="padding-bottom:58px">
+  <div class="hdr"><span class="sec">Section 8：四半期ごとに見るのは3つ</span><span class="brand"></span></div>
+  <div class="h-main">決算で見るのは、3つです</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">全社ではなく、部門の利益</span><span class="d">名簿で1社ずつ挙げた部門の名前がそれです</span></div>
+    <div class="row"><span class="no">2</span><span class="t">ブロードコムとNVIDIAの製品</span><span class="d">上位の機種だけから、標準の機種に広がるか</span></div>
+    <div class="row"><span class="no">3</span><span class="t">各社の言葉が変わる瞬間</span><span class="d">研究・サンプル・引き合い → 量産・売上</span></div>
+  </div>
+</section>
+
+<!-- 260 1つ目 部門の利益 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：四半期ごとに見るのは3つ</span><span class="brand"></span></div>
+  <div class="lead">1つ目は、全社ではなく、部門の利益です</div>
+  <div class="stmt">利益にまだ光が入っていない企業は、<br>光の材料や部材の売上が、<br><span class="em">数字として出てくるか</span>を見ます。</div>
+</section>
+
+<!-- 261 2つ目 標準機種に広がるか -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：四半期ごとに見るのは3つ</span><span class="brand"></span></div>
+  <div class="lead">2つ目は、ブロードコムとNVIDIAの製品です</div>
+  <div class="stmt">装置の数が決まれば、<span class="em">部材の数が決まります。</span></div>
+  <div class="note">日本の企業の決算に出るより先に、ここが動きます</div>
+</section>
+
+<!-- 262 3つ目 言葉が変わる -->
+<section class="slide numviz t-fx">
+  <div class="hdr"><span class="sec">Section 8：四半期ごとに見るのは3つ</span><span class="brand"></span></div>
+  <div class="h-main">3つ目は、各社の言葉です</div>
+  <div class="row">
+    <div class="card"><div class="c-l">いままでの言葉</div><div class="c-v" style="font-size:36px">研究・サンプル<br>引き合い</div></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="c-l">変わったあと</div><div class="c-v" style="font-size:36px">量産・売上</div></div>
+    <div class="arr">→</div>
+    <div class="result"><div class="r-l">この四半期が</div><div class="r-v" style="font-size:44px">6段階を<br>1つ進んだ合図</div></div>
+  </div>
+  <div class="foot-note">ニュースの大きさではなく、言葉が変わったかで見ます</div>
+</section>
+
+<!-- 263 決算の日 -->
+<section class="slide t-numline">
+  <div class="hdr"><span class="sec">Section 8：四半期ごとに見るのは3つ</span><span class="brand"></span></div>
+  <div class="h-main">9社の決算が、順に出てきます</div>
+  <div class="scale">
+    <div class="mk" style="left:10%"><div class="val" style="color:#d6850f">10月28日</div><div class="dot" style="background:#d6850f"></div><div class="lab">アドバンテスト。いちばん早い</div></div>
+    <div class="mk" style="left:80%"><div class="val" style="color:var(--blue)">11月の中ごろ</div><div class="dot" style="background:var(--blue)"></div><div class="lab">ここまでに、9社が出そろう</div></div>
+  </div>
+</section>
+
+<!-- 264 積み立ての方へ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：新NISAで積み立て投資をしている方へ</span><span class="brand"></span></div>
+  <div class="lead">動画の最初に、積み立て投資をされている方も関係のある話だ、と言いました</div>
+  <div class="stmt">ここで、<span class="em">その分</span>です。</div>
+</section>
+
+<!-- 265 中身を1度見る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：新NISAで積み立て投資をしている方へ</span><span class="brand"></span></div>
+  <div class="lead">まず、いま積み立てている投資信託の中身を、1度見てください</div>
+  <div class="stmt">S&amp;P500や全世界株には、<br>NVIDIAもブロードコムも、たいてい入っています。<br><span class="em">完成品の側は、もう持っています。</span></div>
+</section>
+
+<!-- 266 部材の側はごくわずか -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：新NISAで積み立て投資をしている方へ</span><span class="brand"></span></div>
+  <div class="h-main">ところが、部材の側はほとんど入っていません</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">完成品の側</div><div class="cap">S&amp;P500や全世界株</div><div class="big">もう持っている</div><div class="div"></div><div class="strong">NVIDIA・ブロードコム</div></div>
+    <div class="vsmark">／</div>
+    <div class="box left"><div class="name">日本の部材の企業</div><div class="cap">全世界株の中では</div><div class="big">ごくわずか</div><div class="div"></div><div class="small">ここを足せるかが論点です</div></div>
+  </div>
+</section>
+
+<!-- 267 ETFという方法 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：新NISAで積み立て投資をしている方へ</span><span class="brand"></span></div>
+  <div class="lead">個別株を選ばずに、部材の側を持つ方法があります。ETFです</div>
+  <div class="stmt">ただし、半導体のETFを1本買えば足りる、<br><span class="emr">とはなりません。</span></div>
+  <div class="note">半導体だけでなく、光ファイバー、電線、つなぎ口、光源と、業界をまたぐからです</div>
+</section>
+
+<!-- 268 1623 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：1本目は 1623</span><span class="brand"></span></div>
+  <div class="lead">1本目は、東証に上場しているETFで、証券コードは1623</div>
+  <div class="stmt"><span class="em">鉄鋼・非鉄</span>のETFです。</div>
+  <div class="note">名前は光電融合と関係がなさそうに見えます</div>
+</section>
+
+<!-- 269 1623の中身 -->
+<section class="slide numviz t-prop">
+  <div class="hdr"><span class="sec">Section 8：1本目は 1623</span><span class="brand"></span></div>
+  <div class="lead">ところが中身を見ると（2026年10月1日時点）</div>
+  <div class="h-main">電線の3社で、約半分を占めています</div>
+  <div class="pbar">
+    <div class="seg main"><span class="p">約 50%</span><span class="l">フジクラ・住友電工・古河電工</span></div>
+    <div class="seg rest"><span class="p">残り 約 50%</span><span class="l">そのほかの鉄鋼・非鉄の企業</span></div>
+  </div>
+  <div class="note">光を運ぶ側を、1本でまとめて持てるETFです</div>
+</section>
+
+<!-- 270 1623の弱点 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：1本目は 1623</span><span class="brand"></span></div>
+  <div class="lead">弱点もあります</div>
+  <div class="stmt">鉄鋼や非鉄金属の企業も入っているので、<br><span class="emr">銅や鉄の値段でも動きます。</span></div>
+  <div class="note">光電融合100%のETFではありません。ただ、電線3社で半分という中身は、個別株で3社をそろえるより手間がかかりません</div>
+</section>
+
+<!-- 271 1625 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：2本目は 1625</span><span class="brand"></span></div>
+  <div class="lead">2本目は、証券コード1625</div>
+  <div class="stmt"><span class="em">電機・精密</span>のETFです。</div>
+  <div class="note">三菱電機やアドバンテストのほか、半導体の装置や電子部品の企業が入っています</div>
+</section>
+
+<!-- 272 2本で補い合う -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 8：日本の2本</span><span class="brand"></span></div>
+  <div class="h-main">1623と1625は、2本で補い合います</div>
+  <div class="cols">
+    <div class="box bluebox"><div class="name">1623</div><div class="cap">鉄鋼・非鉄</div><div class="big">光を運ぶ側</div><div class="div"></div><div class="strong">電線の3社で約半分</div></div>
+    <div class="vsmark">＋</div>
+    <div class="box left"><div class="name">1625</div><div class="cap">電機・精密</div><div class="big">光を作る側と検査の側</div><div class="div"></div><div class="small">三菱電機・アドバンテストなど</div></div>
+  </div>
+  <div class="foot-note">信託報酬は、どちらも年0.35%ほどです</div>
+</section>
+
+<!-- 273 3本目 SOX -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：3本目は SOX指数</span><span class="brand"></span></div>
+  <div class="lead">3本目は、アメリカの半導体30社の指数、SOX指数に連動する投資信託です</div>
+  <div class="stmt">日本の投資信託なら、<br><span class="em">ニッセイSOX指数インデックスファンド</span>。</div>
+  <div class="note">円で、自動で積み立てられて、信託報酬は年0.18%です</div>
+</section>
+
+<!-- 274 SOXの中身 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：3本目は SOX指数</span><span class="brand"></span></div>
+  <div class="lead">NVIDIAとブロードコムが入っています</div>
+  <div class="stmt">アメリカのETFで直接買うならSOXXという商品もありますが、<br><span class="emr">ドルでの売買になります。</span></div>
+  <div class="note">完成品の側はもう持っている方が多いので、足すなら、日本の2本からです</div>
+</section>
+
+<!-- 275 成長投資枠 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：新NISAの枠</span><span class="brand"></span></div>
+  <div class="lead">ここで、1つ注意があります</div>
+  <div class="stmt">この3本は、つみたて投資枠ではなく、<br><span class="em">成長投資枠</span>で買う商品です。</div>
+  <div class="note">いまの積み立てはそのまま続けて、成長投資枠で足す形になります</div>
+</section>
+
+<!-- 276 全部を寄せない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：新NISAの枠</span><span class="brand"></span></div>
+  <div class="stmt">そして、成長投資枠の全部を<br><span class="emr">光電融合にはしないでください。</span></div>
+  <div class="note">個別株と同じで、テーマは資産の一部です</div>
+</section>
+
+<!-- 277 僕が見方を変える条件 -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 8：僕が見方を変える条件</span><span class="brand"></span></div>
+  <div class="h-main">僕がこの見方を変える条件は、2つだけです</div>
+  <div class="grid g2">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">差し込み式の改良で、<br>電力の問題が解決したとき</div><div class="ctext">チップの隣に置く採用が2030年代に先送りされれば、需要は消えませんが、遅れます</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">AIデータセンターの<br>投資そのものが減ったとき</div><div class="ctext">マイクロソフトやAWS、デルの日本への計画が止まれば、光の需要の元が細ります</div></div>
+  </div>
+</section>
+
+<!-- 278 中国を条件に入れない理由 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：僕が見方を変える条件</span><span class="brand"></span></div>
+  <div class="lead">見方を変える条件は、需要が消えるか遅れるかに効くものだけです</div>
+  <div class="stmt">中国の追い上げは、需要の行き先、<br>つまり<span class="em">取り分の話</span>です。</div>
+</section>
+
+<!-- 279 取り分は決算に出る -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：僕が見方を変える条件</span><span class="brand"></span></div>
+  <div class="lead">取り分が減れば、名簿の企業の部門の利益に出ます</div>
+  <div class="stmt">四半期ごとに見る1つ目で、<span class="em">そのまま確かめられます。</span></div>
+  <div class="note">だから、別の条件として置く必要がありません</div>
+</section>
+
+<!-- 280 段階が進むと名簿は広がる -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 8：この先の段階</span><span class="brand"></span></div>
+  <div class="h-main">光が内側へ進むほど、部材の数が増えます</div>
+  <div class="chain">
+    <div class="node">チップとチップの間</div>
+    <div class="arr">→</div>
+    <div class="node">チップの中</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">光に変える場所が<br>増える</div>
+  </div>
+  <div class="release">いまの9社は、スイッチの段階の名簿。段階が進んだら、<span style="color:#cf820f">捨てるのではなく、広げます</span></div>
+</section>
+
+<!-- 281 条件は先に決めておく -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：この先の段階</span><span class="brand"></span></div>
+  <div class="lead">見方を変える条件は、ご自分でも先に決めておいてください</div>
+  <div class="stmt">決めていないと、<br><span class="emr">株価が下がった日の気分で決めることになります。</span></div>
+</section>
+
+<!-- 282 最初の迷いへ -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 8：この先の段階</span><span class="brand"></span></div>
+  <div class="stmt">最後に、この動画の<span class="em">最初の迷い</span>に戻ります。</div>
+</section>
+
+<!-- ========== p10_imi ========== -->
+<!-- 283 セクション扉 -->
+<section class="slide t-section">
+  <div class="hdr"><span class="sec">Section 9：「AIの次」の、本当の意味</span><span class="brand"></span></div>
+  <div class="topic"><span>PART 9 / 9</span><span class="bar"></span><span>最初の迷いに、答えを出します</span></div>
+  <div class="numbox">09</div>
+  <div class="stitle"><div class="label">SECTION</div><div class="ttl">「AIの次」の、<br>本当の意味</div><div class="rule"></div><div class="desc">AIの次ではなく、AIを続けるために</div></div>
+</section>
+
+<!-- 284 最初の迷い -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：最初の迷いに戻る</span><span class="brand"></span></div>
+  <div class="lead">動画の最初に、迷いを1つ置きました</div>
+  <div class="stmt">株価がもう上がっているなら、<br>いまから投資するのは<span class="emr">遅いんじゃないか。</span></div>
+</section>
+
+<!-- 285 答え -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：最初の迷いに戻る</span><span class="brand"></span></div>
+  <div class="lead">答えは</div>
+  <div class="stmt"><span class="em">遅くはありません。</span><br>CPOの部材で見れば、まだ<span class="em">早いくらい</span>です。</div>
+</section>
+
+<!-- 286 ただし2つに分かれる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：最初の迷いに戻る</span><span class="brand"></span></div>
+  <div class="lead">ただし、9社が全部、同じ性格ではありません</div>
+  <div class="stmt">今の利益に光の需要が入っている企業と、<br><span class="em">これからの企業</span>に分かれるからです。</div>
+</section>
+
+<!-- 287 社名ではなく3つで見る -->
+<section class="slide t-agenda" style="padding-bottom:58px">
+  <div class="hdr"><span class="sec">Section 9：社名ではなく、3つで見る</span><span class="brand"></span></div>
+  <div class="h-main">だから、社名ではなく、3つで見ます</div>
+  <div class="rows">
+    <div class="row"><span class="no">1</span><span class="t">どの部材を作る企業か</span><span class="d">光を作る側・つなぐ側・土台と材料の側</span></div>
+    <div class="row"><span class="no">2</span><span class="t">今の利益に、需要がもう入っているか</span><span class="d">光で入っているか、AI半導体で入っているか</span></div>
+    <div class="row"><span class="no">3</span><span class="t">どの段階にいるか</span><span class="d">6段階のうち、どこまで来たか</span></div>
+  </div>
+</section>
+
+<!-- 288 9社は置き直せる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：社名ではなく、3つで見る</span><span class="brand"></span></div>
+  <div class="stmt">ここまで見てきた9社は、<br>この3つで<span class="em">全部置き直せます。</span></div>
+</section>
+
+<!-- 289 AIの次と言われる -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：「AIの次」の、本当の意味</span><span class="brand"></span></div>
+  <div class="lead">光電融合は、AIの次のテーマだ、と言われることがあります</div>
+  <div class="stmt">AIが一段落したあとに来るもの、という言い方です。</div>
+</section>
+
+<!-- 290 順番が逆 -->
+<section class="slide t-flow">
+  <div class="hdr"><span class="sec">Section 9：「AIの次」の、本当の意味</span><span class="brand"></span></div>
+  <div class="h-main">ところが、順番が逆です</div>
+  <div class="chain">
+    <div class="node">AIを<br>増やし続ける</div>
+    <div class="arr">→</div>
+    <div class="node danger">電力が<br>先に足りなくなる</div>
+    <div class="arr">→</div>
+    <div class="node" style="border-bottom-color:var(--orange);color:#cf820f;">その電力を減らすのが<br>光に変える技術</div>
+  </div>
+  <div class="release">つまり光電融合は、AIの次ではなく、<span style="color:#cf820f">AIを続けるために欠かせないもの</span>です</div>
+</section>
+
+<!-- 291 完成品と中身 -->
+<section class="slide t-vs">
+  <div class="hdr"><span class="sec">Section 9：「AIの次」の、本当の意味</span><span class="brand"></span></div>
+  <div class="h-main">完成した装置を作るのは、アメリカの企業。ここは変わりません</div>
+  <div class="cols">
+    <div class="box left"><div class="name">完成品</div><div class="cap">装置そのもの</div><div class="big">アメリカの企業</div><div class="div"></div><div class="small">ここは、変わりません</div></div>
+    <div class="vsmark">／</div>
+    <div class="box bluebox"><div class="name">量産するときに要る中身</div><div class="cap">光を作る部材から、土台と通り道、束とつなぎ口、検査まで</div><div class="big">日本の企業</div><div class="div"></div><div class="strong">この中身を、日本の企業が握っています</div></div>
+  </div>
+</section>
+
+<!-- 292 絶対に外せない一文 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：「AIの次」の、本当の意味</span><span class="brand"></span></div>
+  <div class="stmt">これは、AI半導体が<span class="emr">終わるという話ではありません。</span><br>AI半導体を増やし続けるために、<br><span class="em">日本の企業が必要になる話</span>です。</div>
+</section>
+
+<!-- 293 キオクシアの例 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：1つ、例を出します</span><span class="brand"></span></div>
+  <div class="lead">キオクシアです。NANDフラッシュメモリとSSDを作る企業で、2024年の年末に上場しました</div>
+  <div class="stmt">公開価格は、<span class="em">1,455円</span>です。</div>
+</section>
+
+<!-- 294 キオクシア 77倍 -->
+<section class="slide numviz t-metric">
+  <div class="hdr"><span class="sec">Section 9：1つ、例を出します</span><span class="brand"></span></div>
+  <div class="lead">生成AIでメモリの需要が爆発して</div>
+  <div class="h-main">株価は、上場から1年半で</div>
+  <div class="metrics">
+    <div class="metric up hero">
+      <div class="mlbl">公開価格1,455円からの倍率</div>
+      <div class="mfig">一時 77<span class="u">倍</span></div>
+      <div class="msub">その後は大きく下げています</div>
+    </div>
+  </div>
+  <div class="note">需要が爆発したとき株価がどこまで動くかを、この株は見せました</div>
+</section>
+
+<!-- 295 眠っている企業 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：1つ、例を出します</span><span class="brand"></span></div>
+  <div class="stmt">光電融合の部材にも、同じように<br><span class="em">眠っている企業</span>が、まだあるかもしれません。</div>
+  <div class="note">それを社名で当てる必要はありません</div>
+</section>
+
+<!-- 296 3つで読む -->
+<section class="slide t-cards">
+  <div class="hdr"><span class="sec">Section 9：この見方で読めば</span><span class="brand"></span></div>
+  <div class="h-main">社名で当てずに、この3つで見る</div>
+  <div class="grid">
+    <div class="card c1"><div class="cno">1</div><div class="ctitle">どの部材の企業か</div><div class="ctext">作る順番の、どこにいるか</div></div>
+    <div class="card c2"><div class="cno">2</div><div class="ctitle">どの段階か</div><div class="ctext">技術の発表から、営業利益が増えるまで</div></div>
+    <div class="card c3"><div class="cno">3</div><div class="ctitle">今の利益に、<br>もう入っているのか</div><div class="ctext">決算の部門の数字で確かめる</div></div>
+  </div>
+</section>
+
+<!-- 297 ニュースに振り回されない -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：この見方で読めば</span><span class="brand"></span></div>
+  <div class="lead">この見方で読めば、次に光電融合のニュースが出たとき</div>
+  <div class="stmt">ニュースの大きさに振り回されずに、<br><span class="em">ご自分の持ち株を見られる</span>はずです。</div>
+</section>
+
+<!-- 298 過去動画への誘導 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：最後に</span><span class="brand"></span></div>
+  <div class="stmt">AI半導体やメモリの株については、<br>僕のチャンネルの<span class="em">過去動画</span>でかなり解説してます。</div>
+  <div class="note">良ければ、ご覧ください</div>
+</section>
+
+<!-- 299 コメント訴求 -->
+<section class="slide t-text">
+  <div class="hdr"><span class="sec">Section 9：最後に</span><span class="brand"></span></div>
+  <div class="lead">今回見た9社の中で</div>
+  <div class="stmt">あなたが<span class="em">すでに持っている企業</span>、あるいは<br><span class="em">これから見ていこうと思った企業</span>があれば、<br>ぜひコメント欄で教えてください。</div>
+  <div class="note">皆さんの声を楽しみにしています</div>
+</section>
+
+<!-- 300 エンディング -->
+<section class="slide t-closing">
+  <div class="big">光電融合は、AIの次ではなく、<br><span class="em">AIを続けるために欠かせないもの。</span></div>
+  <div class="sub">それではまた、次の動画でお会いしましょう。ご視聴いただき、ありがとうございました。</div>
+  <div class="tags"><span class="tg">👍 高評価</span><span class="tg">🔔 チャンネル登録</span><span class="tg">⚡ ハイプボタン</span></div>
+</section>
+
+</body>
+</html>
